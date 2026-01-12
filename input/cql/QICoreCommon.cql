@@ -45,3 +45,10 @@ define fluent function daysInPeriod(Period Interval<DateTime>):
       dayIndex: DayIndex,
       dayPeriod: Interval[startPeriod, endPeriod)
     }
+
+/*
+@description: Returns the sex element as defined for the USCore patient profile
+@comment: This should be in USCoreCommon (see https://jira.hl7.org/browse/FHIR-53939)
+*/
+define fluent function sex(patient Patient):
+  patient.ext('http://hl7.org/fhir/us/core/StructureDefinition/us-core-sex').value as FHIR.code

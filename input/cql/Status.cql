@@ -1,11 +1,21 @@
-library Status version '1.15.000'
+/*
+@description: This library contains functions used to constrain FHIR resource elements for measures 
+authored by NCQA, based on QICore 7.0.0 resources including IG and authoring patterns. The functions 
+may appear similar to some QICoreCommon functions but differ in that they have constraints that are 
+relevant for measures authored by NCQA.
 
-//For use by January 2026 Connectathon participants for internal use only. Not for use or distribution in commercial products.
+NOTE: For use by January 2026 Connectathon participants for internal use only. Not for use or distribution in commercial products.
+*/
+library Status version '2.0.000'
 
 using QICore version '7.0.2'
+using USCore version '7.0.0'
+using FHIR version '4.0.1'
 
-include FHIRHelpers version '4.4.000' called FHIRHelpers
+include hl7.fhir.uv.cql.FHIRHelpers version '4.0.1' called FHIRHelpers
+include hl7.fhir.uv.cql.FHIRCommon version '2.0.0' called FHIRCommon
 
+// TODO: Consider whether to refactor to use the FHIRCommon declarations here
 codesystem "ObservationCategoryCodes": 'http://terminology.hl7.org/CodeSystem/observation-category'
 codesystem "ConditionVerificationStatusCodes": 'http://terminology.hl7.org/CodeSystem/condition-ver-status'
 
@@ -18,8 +28,7 @@ code "differential": 'differential' from ConditionVerificationStatusCodes displa
 
 context Patient
 
-//This library contains functions used to constrain FHIR resource elements for measures authored by NCQA, based on QICore 6.0.0 resources including IG and authoring patterns. The functions may appear similar to some QICoreCommon functions but differ in that they have constraints that are relevant for measures authored by NCQA.
-
+// TODO: Consider whether to use FHIR.Condition here
 //Condition
 //Returns conditions in the given list that either have no verification status or have a verification status of confirmed, unconfirmed, provisional, or differential
 define fluent function verified(conditions List<Choice<ConditionProblemsHealthConcerns, ConditionEncounterDiagnosis>>):
@@ -37,25 +46,25 @@ define fluent function isAssessmentPerformed(Obs List<ObservationScreeningAssess
     where O.status in { 'final', 'amended', 'corrected' }
 
 //Device, Order - Personal Use Devices
-define fluent function isDeviceOrderPersonalUseDevices(DeviceRequest List<DeviceRequest>):
+define fluent function isDeviceOrderPersonalUseDevices(DeviceRequest List<FHIR.DeviceRequest>):
   DeviceRequest D
     where D.status in { 'active', 'completed' }
       and D.intent in {'order', 'original-order', 'reflex-order', 'filler-order', 'instance-order'}
 
 //Diagnostic Study, Order
-define fluent function isDiagnosticStudyOrder(ServiceRequest List<ServiceRequest>):
+define fluent function isDiagnosticStudyOrder(ServiceRequest List<FHIR.ServiceRequest>):
   ServiceRequest S
     where S.status in { 'active', 'completed' }
       and S.intent in {'order', 'original-order', 'reflex-order', 'filler-order', 'instance-order'}
       
 //Intervention, Order
-define fluent function isInterventionOrder(ServiceRequest List<ServiceRequest>):
+define fluent function isInterventionOrder(ServiceRequest List<FHIR.ServiceRequest>):
   ServiceRequest S
     where S.status in { 'active', 'completed' }
       and S.intent in {'order', 'original-order', 'reflex-order', 'filler-order', 'instance-order'}    
 
 //Laboratory Test, Order
-define fluent function isLaboratoryTestOrder(ServiceRequest List<ServiceRequest>):
+define fluent function isLaboratoryTestOrder(ServiceRequest List<FHIR.ServiceRequest>):
   ServiceRequest S
     where S.status in { 'active', 'completed' }
       and S.intent in {'order', 'original-order', 'reflex-order', 'filler-order', 'instance-order'}       
@@ -70,22 +79,22 @@ define fluent function isDiagnosticStudyPerformed(Obs List<ObservationClinicalRe
     
 //Encounter, Performed
 //General usage unless required otherwise by measure intent (e.g., follow-up encounters)
-define fluent function isEncounterPerformed(Enc List<Encounter>):
+define fluent function isEncounterPerformed(Enc List<FHIR.Encounter>):
   Enc E
     where E.status = 'finished'
 
 //Immunization, Administered
-define fluent function isImmunizationAdministered(Immunization List<Immunization>):
+define fluent function isImmunizationAdministered(Immunization List<FHIR.Immunization>):
   Immunization I
     where I.status ~ 'completed'
 
 //Intervention, Performed
-define fluent function isInterventionPerformed(Proc List<Procedure>):
+define fluent function isInterventionPerformed(Proc List<FHIR.Procedure>):
   Proc P
     where P.status ~ 'completed'
 
 //Procedure, Performed
-define fluent function isProcedurePerformed(Proc List<Procedure>):
+define fluent function isProcedurePerformed(Proc List<FHIR.Procedure>):
   Proc P
     where P.status ~ 'completed'
 
@@ -95,18 +104,18 @@ define fluent function isLaboratoryTestPerformed(Obs List<LaboratoryResultObserv
     where O.status in { 'final', 'amended', 'corrected' }
 
 //Medication, Active
-define fluent function isMedicationActive(MedicationRequest List<MedicationRequest>):
+define fluent function isMedicationActive(MedicationRequest List<FHIR.MedicationRequest>):
   MedicationRequest M
     where M.status = 'active'
       and M.intent in {'order', 'original-order', 'reflex-order', 'filler-order', 'instance-order'}
 
 //Medication, Dispensed
-define fluent function isMedicationDispensed(Med List<MedicationDispense>):
+define fluent function isMedicationDispensed(Med List<FHIR.MedicationDispense>):
   Med M
     where M.status in { 'completed', 'in-progress', 'on-hold' }
 
 //Medication, Order
-define fluent function isMedicationOrder(MedicationRequest List<MedicationRequest>):
+define fluent function isMedicationOrder(MedicationRequest List<FHIR.MedicationRequest>):
   MedicationRequest M
     where M.status in { 'active', 'completed' }
     and M.intent in {'order', 'original-order', 'reflex-order', 'filler-order', 'instance-order'}
@@ -120,29 +129,29 @@ define fluent function isPhysicalExamPerformed(Obs List<ObservationClinicalResul
       )
 
 //Observation Vital Signs
-define fluent function isObservationBP(Obs List<USCoreBloodPressureProfile>):
+define fluent function isObservationBP(Obs List<BloodPressureProfile>):
   Obs O
     where O.status in { 'final', 'amended', 'corrected' }
       
-define fluent function isObservationBodyHeight(Obs List<USCoreBodyHeightProfile>):
+define fluent function isObservationBodyHeight(Obs List<BodyHeightProfile>):
   Obs O
     where O.status in { 'final', 'amended', 'corrected' }
       
-define fluent function isObservationBodyWeight(Obs List<USCoreBodyWeightProfile>):
+define fluent function isObservationBodyWeight(Obs List<BodyWeightProfile>):
   Obs O
     where O.status in { 'final', 'amended', 'corrected' }
       
-define fluent function isObservationBMI(Obs List<USCoreBMIProfile>):
+define fluent function isObservationBMI(Obs List<BMIProfile>):
   Obs O
     where O.status in { 'final', 'amended', 'corrected' }
  
 //Observation Pediatric BMI
-define fluent function isObservationPediatricBMI(Obs List<USCorePediatricBMIforAgeObservationProfile>):
+define fluent function isObservationPediatricBMI(Obs List<PediatricBMIforAgeObservationProfile>):
   Obs O
     where O.status in { 'final', 'amended', 'corrected' } 
    
 //Observation Smoking Status
-define fluent function isObservationSmokingStatus(Obs List<USCoreSmokingStatusProfile>):
+define fluent function isObservationSmokingStatus(Obs List<SmokingStatusProfile>):
   Obs O
     where O.status = 'final' 
 

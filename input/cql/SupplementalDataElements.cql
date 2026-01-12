@@ -1,12 +1,19 @@
 /*
-@update: GCW 2025-03-27 ->
-Updated to reflect valueset name change from CMS Sex to Federal Administrative Sex
+@description: Supplemental data elements for use in digital quality measure specifications in CMS programs
+
+NOTE: This library is not published in this IG, it is included here for convenience. The source of truth for
+this library will be the MADiE environment once it fully supports use of QICore STU7.
 */
-library SupplementalDataElements version '5.1.000'
+library SupplementalDataElements version '6.0.000'
 
 using QICore version '7.0.2'
+using USCore version '7.0.0'
+using FHIR version '4.0.1'
 
-include FHIRHelpers version '4.4.000' called FHIRHelpers
+include hl7.fhir.uv.cql.FHIRHelpers version '4.0.1' called FHIRHelpers
+include hl7.fhir.uv.cql.FHIRCommon version '2.0.0' called FHIRCommon
+include hl7.fhir.us.cql.USCoreCommon called USCommon
+include QICoreCommon
 
 codesystem "SNOMEDCT": 'http://snomed.info/sct'
 
@@ -21,21 +28,21 @@ code "Female (finding)": '248152002' from "SNOMEDCT" display 'Female (finding)'
 context Patient
 
 define "SDE Ethnicity":
-  Patient.ethnicity() E
+  (Patient.ethnicity()) E
     return Tuple {
       codes: { E.ombCategory } union E.detailed,
       display: E.text
     }
 
 define "SDE Payer":
-  [Coverage: type in "Payer Type"] Payer
+  [QICore.Coverage: type in "Payer Type"] Payer
     return {
       code: Payer.type,
       period: Payer.period
     }
 
 define "SDE Race":
-  Patient.race() R
+  (Patient.race()) R
     return Tuple {
       codes: R.ombCategory union R.detailed,
       display: R.text

@@ -1,20 +1,24 @@
-library BreastCancerScreening_dQM_draft version '1.0.000'
+/*
+NOTE: For use by January 2026 Connectathon participants for internal use only. Not for use or distribution in commercial products.
+*/
+library BreastCancerScreeningDQMDraft version '1.0.000'
 
-//For use by January 2026 Connectathon participants for internal use only. Not for use or distribution in commercial products.
-
-using FHIR version '4.0.1'
-using USCore version '7.0.0'
 using QICore version '7.0.2'
+using USCore version '7.0.0'
 using C4BB version '2.1.1'
+using FHIR version '4.0.1'
 
-include FHIRHelpers version '4.4.000' called FHIRHelpers
-include SupplementalDataElements version '5.1.000' called SDE
-include QICoreCommon version '5.0.0' called QICoreCommon
-include AdultOutpatientEncounters version '4.19.000' called AdultOutpatientEncounters
-include Hospice version '6.18.000' called Hospice
-include Status version '1.15.000' called Status
-include PalliativeCare version '1.18.000' called PalliativeCare
-include AdvancedIllnessandFrailty version '1.27.000' called AIFrailLTCF
+include hl7.fhir.uv.cql.FHIRHelpers version '4.0.1' called FHIRHelpers
+include hl7.fhir.uv.cql.FHIRCommon version '2.0.0' called FHIRCommon
+include hl7.fhir.us.cql.USCoreCommon called USCommon
+include QICoreCommon
+
+include SupplementalDataElements version '6.0.000' called SDE
+include AdultOutpatientEncounters version '5.0.000' called AdultOutpatientEncounters
+include Hospice version '7.0.000' called Hospice
+include Status version '2.0.000' called Status
+include PalliativeCare version '2.0.000' called PalliativeCare
+include AdvancedIllnessandFrailty version '2.0.000' called AIFrailLTCF
 
 codesystem "ClaimTypeCodes": 'http://terminology.hl7.org/CodeSystem/claim-type'
 codesystem "SNOMEDCT": 'http://snomed.info/sct'
@@ -49,7 +53,7 @@ define "Denominator":
   "Initial Population"
 
 define "Denominator Exclusions":
-  //"Is deceased during measurement period"
+  "Is deceased during measurement period"
     or Hospice."Has Hospice Services"
     or ( ( exists ( "Right Mastectomy Diagnosis" )
           or exists ( "Right Mastectomy Procedure" )
@@ -64,75 +68,67 @@ define "Denominator Exclusions":
     or AIFrailLTCF."Is Age 66 or Older Living Long Term in a Nursing Home"
     or PalliativeCare."Has Palliative Care in the Measurement Period"
 
-// define "Is deceased during measurement period":
-//     Patient."Deceased during"("Measurement Period")
+ define "Is deceased during measurement period":
+     Patient."Deceased during"("Measurement Period")
 
-// define fluent function "Deceased during"(patient FHIR.Patient, duringPeriod Interval<System.Date>):
-//     if patient is null or duringPeriod is null or patient.deceased is null then false
-//     else 
-//         patient."Deceased date"() during duringPeriod
+ define fluent function "Deceased during"(patient FHIR.Patient, duringPeriod Interval<System.DateTime>):
+     if patient is null or duringPeriod is null or patient.deceased is null then false
+     else 
+         patient."Deceased date"() during duringPeriod
 
-// define fluent function "Deceased date"(patient FHIR.Patient):
-//     if patient is null then null
-//     else 
-//         if patient.deceased is null then null
-//         else
-//             case 
-//                 when patient.deceased is FHIR.dateTime then 
-//                     date from (patient.deceased as FHIR.dateTime)
-//                 else Common.Error(Errors."Not supported", 'Type not supported')
-//             end
+define fluent function "Deceased date"(patient FHIR.Patient):
+     if patient is null then null
+     else 
+         if patient.deceased is null then null
+         else
+             case 
+                 when patient.deceased is FHIR.dateTime then 
+                     date from (patient.deceased as FHIR.dateTime)
+                 else Message(null, true, 'BreastCancerScreeningDQMDraft.DeceasedDate.NotSupported', 'Error', 'Cannot determine deceased date because deceased is specified as a boolean')
+             end
 
 define "Right Mastectomy Diagnosis":
-  ( ( [ConditionEncounterDiagnosis: "Status Post Right Mastectomy"]
-      union [ConditionProblemsHealthConcerns: "Status Post Right Mastectomy"] 
-  ).verified ( ) ) RightMastectomy
+  ( ([Condition: "Status Post Right Mastectomy"]).verified ( ) ) RightMastectomy
     where RightMastectomy.prevalenceInterval ( ) starts on or before end of "Measurement Period"
 
 define "Right Mastectomy Procedure":
-  ( ( [Procedure: "Unilateral Mastectomy Right"]
-  union [Procedure: "Unilateral Mastectomy"] UnilateralMastectomyProcedure 
+  ( ( [QICore.Procedure: "Unilateral Mastectomy Right"]
+  union [QICore.Procedure: "Unilateral Mastectomy"] UnilateralMastectomyProcedure 
   where exists UnilateralMastectomyProcedure.bodySite S where S ~ "Entire right breast (body structure)" 
   ).isProcedurePerformed ( ) ) UnilateralMastectomyRightPerformed
     where UnilateralMastectomyRightPerformed.performed.toInterval ( ) ends on or before end of "Measurement Period"
 
 define "Left Mastectomy Diagnosis":
-  ( ( [ConditionEncounterDiagnosis: "Status Post Left Mastectomy"]
-        union [ConditionProblemsHealthConcerns: "Status Post Left Mastectomy"]
-  ).verified ( ) ) LeftMastectomy
+  ( ( [Condition: "Status Post Left Mastectomy"] ).verified ( ) ) LeftMastectomy
     where LeftMastectomy.prevalenceInterval ( ) starts on or before end of "Measurement Period"
 
 define "Left Mastectomy Procedure":
-  ( ( [Procedure: "Unilateral Mastectomy Left"] 
-        union [Procedure: "Unilateral Mastectomy"] UnilateralMastectomyProcedure
+  ( ( [QICore.Procedure: "Unilateral Mastectomy Left"] 
+        union [QICore.Procedure: "Unilateral Mastectomy"] UnilateralMastectomyProcedure
         where exists UnilateralMastectomyProcedure.bodySite S where S ~ "Entire left breast (body structure)"
   ).isProcedurePerformed ( ) ) UnilateralMastectomyLeftPerformed
     where UnilateralMastectomyLeftPerformed.performed.toInterval ( ) ends on or before end of "Measurement Period"
 
 define "Bilateral Mastectomy Diagnosis":
-  ( ( [ConditionEncounterDiagnosis: "History of bilateral mastectomy"]
-      union [ConditionProblemsHealthConcerns: "History of bilateral mastectomy"]
-  ).verified ( ) ) BilateralMastectomyHistory
+  ( ( [Condition: "History of bilateral mastectomy"] ).verified ( ) ) BilateralMastectomyHistory
     where BilateralMastectomyHistory.prevalenceInterval ( ) starts on or before end of "Measurement Period"
 
 define "Bilateral Mastectomy Procedure":
-  ( ( [Procedure: "Bilateral Mastectomy"] ).isProcedurePerformed ( ) ) BilateralMastectomyPerformed
+  ( ( [QICore.Procedure: "Bilateral Mastectomy"] ).isProcedurePerformed ( ) ) BilateralMastectomyPerformed
     where BilateralMastectomyPerformed.performed.toInterval ( ) ends on or before end of "Measurement Period"
 
 define "Numerator":
 exists "Mammography Observation"
-  or "With mammography during"(
-        [Claim],
+  or ([QICore.Claim])."With mammography during"(
         Interval["October 1 Two Years Prior to the Measurement Period", end of "Measurement Period"]
     ) is not null
-  or "With mammography during"(
-        [ExplanationOfBenefit],
+  or ([ExplanationOfBenefit])."With mammography during"(
         Interval["October 1 Two Years Prior to the Measurement Period", end of "Measurement Period"]
     ) is not null
     
 //Mammography Observation
 define "Mammography Observation":
-     ( ( [ObservationClinicalResult: "Mammography"] ).isDiagnosticStudyPerformed ( ) ) Mammogram
+     ( ( [ObservationClinicalResult: code ~ "Mammography"] ).isDiagnosticStudyPerformed ( ) ) Mammogram
     where Mammogram.effective.toInterval ( ) ends during day of Interval["October 1 Two Years Prior to the Measurement Period", end of "Measurement Period"] 
 
 define "October 1 Two Years Prior to the Measurement Period":
@@ -141,7 +137,7 @@ define "October 1 Two Years Prior to the Measurement Period":
 //Mammography Claim
 define fluent function "With mammography during"(
     claims List<FHIR.Claim>,
-    duringPeriod Interval<System.Date>
+    duringPeriod Interval<System.DateTime>
 ):
     if duringPeriod is null then null
     else
@@ -167,8 +163,8 @@ define fluent function "With product or service during"(
 
 define fluent function "Professional or institutional"(claims List<FHIR.Claim>):
     (claims) claim
-    where claim.type."Has"("Institutional")
-    or claim.type."Has"("Professional")
+      where claim.type ~ "institutional"
+        or claim.type ~ "professional"
 
 define fluent function "Starts during"(items List<FHIR.Claim.Item>, interval Interval<Date>):
     if interval is null then null
@@ -233,12 +229,12 @@ define fluent function "During"(items List<FHIR.ExplanationOfBenefit.Item>, inte
 define fluent function "Has product or service"(item FHIR.ExplanationOfBenefit.Item, codes System.ValueSet):
     if item is null or item.productOrService is null then false
     else 
-        item.productOrService."Has"(codes)
+        item.productOrService in codes
 
 define fluent function "Professional or institutional"(eobs List<FHIR.ExplanationOfBenefit>): 
     (eobs) eob
-    where eob.type."Has"("Institutional")
-    or eob.type."Has"("Professional")
+      where eob.type ~ "institutional"
+        or eob.type ~ "professional"
 
 define fluent function "Has"(coding FHIR.Coding, code System.Code):
     if coding is null or code is null then false
