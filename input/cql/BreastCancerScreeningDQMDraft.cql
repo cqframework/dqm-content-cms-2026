@@ -31,6 +31,7 @@ valueset "Status Post Right Mastectomy": 'http://cts.nlm.nih.gov/fhir/ValueSet/2
 valueset "Unilateral Mastectomy Left": 'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.198.12.1133'
 valueset "Unilateral Mastectomy Right": 'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.198.12.1134'
 valueset "Unilateral Mastectomy": 'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.1285'
+valueset "HCPCS Mammogram Codes": 'https://cms.madie.gov/ValueSet/HCPCS-Mammogram-Codes'
 
 code "Female (finding)": '248152002' from "SNOMEDCT" display 'Female (finding)'
 code "Entire left breast (body structure)": '361716006' from "SNOMEDCT" display 'Entire left breast (body structure)'
@@ -120,15 +121,15 @@ define "Bilateral Mastectomy Procedure":
 define "Numerator":
 exists "Mammography Observation"
   or ([QICore.Claim])."With mammography during"(
-        Interval["October 1 Two Years Prior to the Measurement Period", end of "Measurement Period"]
+        Interval[date from "October 1 Two Years Prior to the Measurement Period", date from end of "Measurement Period"]
     ) is not null
   or ([ExplanationOfBenefit])."With mammography during"(
-        Interval["October 1 Two Years Prior to the Measurement Period", end of "Measurement Period"]
+        Interval[date from "October 1 Two Years Prior to the Measurement Period", date from end of "Measurement Period"]
     ) is not null
     
 //Mammography Observation
 define "Mammography Observation":
-     ( ( [ObservationClinicalResult: code ~ "Mammography"] ).isDiagnosticStudyPerformed ( ) ) Mammogram
+     ( ( [ObservationClinicalResult: code in "Mammography"] ).isDiagnosticStudyPerformed ( ) ) Mammogram
     where Mammogram.effective.toInterval ( ) ends during day of Interval["October 1 Two Years Prior to the Measurement Period", end of "Measurement Period"] 
 
 define "October 1 Two Years Prior to the Measurement Period":
@@ -137,13 +138,13 @@ define "October 1 Two Years Prior to the Measurement Period":
 //Mammography Claim
 define fluent function "With mammography during"(
     claims List<FHIR.Claim>,
-    duringPeriod Interval<System.DateTime>
+    duringPeriod Interval<System.Date>
 ):
     if duringPeriod is null then null
     else
         claims
             ."With product or service during"(
-                "Mammography",
+                "HCPCS Mammogram Codes",
                 duringPeriod
             )
 
@@ -160,6 +161,11 @@ define fluent function "With product or service during"(
                 ."Starts during"(duringPeriod)
         ) item
         such that item."Has product or service"(productOrServiceCodes)
+
+define fluent function "Has product or service"(item FHIR.Claim.Item, codes System.ValueSet):
+    if item is null or item.productOrService is null then false
+    else 
+        item.productOrService in codes
 
 define fluent function "Professional or institutional"(claims List<FHIR.Claim>):
     (claims) claim
@@ -202,7 +208,7 @@ define fluent function "With mammography during"(
     else
         eobs
             ."With product or service during"(
-                "Mammography",
+                "HCPCS Mammogram Codes",
                 duringPeriod
             )
 
@@ -225,6 +231,17 @@ define fluent function "During"(items List<FHIR.ExplanationOfBenefit.Item>, inte
     else 
         (items) item
         where item."Serviced"() overlaps interval 
+
+define fluent function "Serviced"(item FHIR.ExplanationOfBenefit.Item):
+    if item is null or item.serviced is null then null
+    else 
+        case 
+            when item.serviced is FHIR.date then 
+                (item.serviced as FHIR.date)."Serviced internal"()
+            when item.serviced is FHIR.Period then 
+                (item.serviced as FHIR.Period)."To date interval"()
+            else null
+        end
 
 define fluent function "Has product or service"(item FHIR.ExplanationOfBenefit.Item, codes System.ValueSet):
     if item is null or item.productOrService is null then false
