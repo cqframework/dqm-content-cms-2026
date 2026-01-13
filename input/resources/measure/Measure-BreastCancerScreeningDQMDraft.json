@@ -3,7 +3,7 @@
   "resourceType": "Measure",
   "url": "https://madie.cms.gov/Measure/BreastCancerScreeningDQMDraft",
   "library": [
-    "http://madie.cms.gov/Library/BreastCancerScreeningDQMDraft"
+    "https://madie.cms.gov/Library/BreastCancerScreeningDQMDraft"
   ],
   "scoring": {
     "coding": [

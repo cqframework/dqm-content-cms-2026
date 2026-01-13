@@ -3,7 +3,7 @@
   "resourceType": "Measure",
   "url": "https://madie.cms.gov/Measure/SupportingEvidenceExample",
   "library": [
-    "http://madie.cms.gov/Library/SupportingEvidenceExample"
+    "https://madie.cms.gov/Library/SupportingEvidenceExample"
   ],
   "scoring": {
     "coding": [

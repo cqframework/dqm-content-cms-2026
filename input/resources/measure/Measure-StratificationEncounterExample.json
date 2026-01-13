@@ -3,7 +3,7 @@
   "resourceType": "Measure",
   "url": "https://madie.cms.gov/Measure/StratificationEncounterExample",
   "library": [
-    "http://madie.cms.gov/Library/StratificationEncounterExample"
+    "https://madie.cms.gov/Library/StratificationEncounterExample"
   ],
   "scoring": {
     "coding": [
