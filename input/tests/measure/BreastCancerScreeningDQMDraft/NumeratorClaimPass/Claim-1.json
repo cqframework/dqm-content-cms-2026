@@ -1,0 +1,102 @@
+{
+  "resourceType": "Claim",
+  "id": "claim-1",
+  "meta": {
+    "profile": [
+      "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-claim"
+    ]
+  },
+  "identifier": [
+    {
+      "system": "http://example.org/claims",
+      "value": "CLM-77062-20260105"
+    }
+  ],
+  "status": "active",
+  "type": {
+    "coding": [
+      {
+        "system": "http://terminology.hl7.org/CodeSystem/claim-type",
+        "code": "professional",
+        "display": "Professional"
+      }
+    ],
+    "text": "Professional"
+  },
+  "use": "claim",
+  "patient": { "reference": "Patient/f4d00e60-e525-4644-a397-4d7d970bcfdb", "display": "Jane Doe" },
+  "billablePeriod": { "start": "2026-01-05", "end": "2026-01-05" },
+  "created": "2026-01-12",
+  "insurer": { "reference": "Organization/insurer-1", "display": "Health Plan" },
+  "provider": { "reference": "Organization/provider-1", "display": "Radiology Group" },
+  "priority": {
+    "coding": [
+      { "system": "http://terminology.hl7.org/CodeSystem/processpriority", "code": "normal", "display": "Normal" }
+    ]
+  },
+  "payee": {
+    "type": {
+      "coding": [
+        { "system": "http://terminology.hl7.org/CodeSystem/payeetype", "code": "provider", "display": "Provider" }
+      ]
+    }
+  },
+  "careTeam": [
+    {
+      "sequence": 1,
+      "provider": { "reference": "Organization/provider-1", "display": "Radiology Group" }
+    }
+  ],
+  "diagnosis": [
+    {
+      "sequence": 1,
+      "diagnosisCodeableConcept": {
+        "coding": [
+          {
+            "system": "http://hl7.org/fhir/sid/icd-10-cm",
+            "code": "Z12.31",
+            "display": "Encounter for screening mammogram for malignant neoplasm of breast"
+          }
+        ]
+      }
+    }
+  ],
+  "insurance": [
+    {
+      "sequence": 1,
+      "focal": true,
+      "coverage": { "reference": "Coverage/cov-1" }
+    }
+  ],
+  "item": [
+    {
+      "sequence": 1,
+      "careTeamSequence": [1],
+      "productOrService": {
+        "coding": [
+          {
+            "system": "http://www.cms.gov/Medicare/Coding/HCPCSReleaseCodeSets",
+            "inactive": false,
+            "version": "2026",
+            "code": "77062",
+            "display": "Diagnostic digital breast tomosynthesis; bilateral"
+          }
+        ],
+        "text": "Diagnostic digital breast tomosynthesis; bilateral"
+      },
+      "servicedDate": "2026-01-05",
+      "locationCodeableConcept": {
+        "coding": [
+          {
+            "system": "http://terminology.hl7.org/CodeSystem/ex-serviceplace",
+            "code": "11",
+            "display": "Office"
+          }
+        ]
+      },
+      "quantity": { "value": 1 },
+      "unitPrice": { "value": 220.0, "currency": "USD" },
+      "net": { "value": 220.0, "currency": "USD" }
+    }
+  ]
+}
