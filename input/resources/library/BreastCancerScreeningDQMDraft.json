@@ -1,0 +1,36 @@
+{
+  "resourceType": "Library",
+  "id": "BreastCancerScreeningDQMDraft",
+  "extension": [ {
+      "url" : "http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm",
+      "valueInteger" : 1
+    },
+    {
+      "url" : "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg",
+      "valueCode" : "cds"
+    },
+    {
+      "url" : "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status",
+      "valueCode" : "informative"
+    } ],
+  "url": "https://madie.cms.gov/Library/BreastCancerScreeningDQMDraft",
+  "name": "BreastCancerScreeningDQMDraft",
+  "title": "Breast Cancer Screening DQM Draft",
+  "status": "active",
+  "experimental": false,
+  "type": {
+    "coding": [ {
+      "system": "http://terminology.hl7.org/CodeSystem/library-type",
+      "code": "logic-library"
+    } ]
+  },
+  "description": "BreastCancerScreeningDQMDraft logic.",
+  "topic": [ {
+    "text": "FHIR"
+  }, {
+    "text": "CQL"
+  } ],
+  "content": [ {
+    "id": "ig-loader-BreastCancerScreeningDQMDraft.cql"
+  } ]
+}

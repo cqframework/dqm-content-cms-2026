@@ -1,0 +1,118 @@
+{
+  "id": "StratificationPatientExample",
+  "resourceType": "Measure",
+  "url": "https://madie.cms.gov/Measure/StratificationPatientExample",
+  "library": [
+    "http://madie.cms.gov/Library/StratificationPatientExample"
+  ],
+  "scoring": {
+    "coding": [
+      {
+        "system": "http://hl7.org/fhir/measure-scoring",
+        "code": "proportion"
+      }
+    ]
+  },
+  "group": [
+    {
+      "id": "group-1",
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-populationBasis",
+          "valueCode": "boolean"
+        }
+      ],
+      "population": [
+        {
+          "id": "initial-population",
+          "code": {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+                "code": "initial-population",
+                "display": "Initial Population"
+              }
+            ]
+          },
+          "criteria": {
+            "language": "text/cql-identifier",
+            "expression": "Initial Population"
+          }
+        },
+        {
+          "id": "denominator",
+          "code": {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+                "code": "denominator",
+                "display": "Denominator"
+              }
+            ]
+          },
+          "criteria": {
+            "language": "text/cql-identifier",
+            "expression": "Denominator"
+          }
+        },
+        {
+          "id": "numerator",
+          "code": {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+                "code": "numerator",
+                "display": "Numerator"
+              }
+            ]
+          },
+          "criteria": {
+            "language": "text/cql-identifier",
+            "expression": "Numerator"
+          }
+        }
+      ],
+      "stratifier": [
+        {
+          "code": { "text": "Criteria-based Age Range Stratifier, 0 to 20 years" },
+          "criteria": {
+            "language": "text/cql-identifier",
+            "expression": "Stratifier P0Y--P21Y"
+          }
+        },
+        {
+          "code": { "text": "Criteria-based Age Range Stratifier, 21 to 40 years" },
+          "criteria": {
+            "language": "text/cql-identifier",
+            "expression": "Stratifier P21Y--P41Y"
+          }
+        },
+        {
+          "code": { "text": "Criteria-based Age Range Stratifier, 41+ years" },
+          "criteria": {
+            "language": "text/cql-identifier",
+            "expression": "Stratifier P41Y--P9999Y"
+          }
+        },
+        {
+          "code": { "text": "Value-based Gender and Age Range Stratifier" },
+          "component": [
+            {
+              "code": { "text": "Value-based Gender Component Stratifier" },
+              "criteria": {
+                "language": "text/cql-identifier",
+                "expression": "Gender Stratifier"
+              }
+            },
+            {
+              "code": { "text": "Value-based Age Range Component Stratifier" },
+              "criteria": {
+                "language": "text/cql-identifier",
+                "expression": "Age Range Stratifier"
+              }
+            }
+          ]
+        }
+      ]
+    }]
+}
