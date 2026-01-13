@@ -23,6 +23,7 @@ parameter "Measurement Period" Interval<DateTime>
 
 context Patient
 
+// NOTE: The QICore encounter here is not introducing any constraints, and so could be expressed directly using US Core
 define "Qualifying Encounters":
   ( ( [QICore.Encounter: "Office Visit"]
     union [QICore.Encounter: "Annual Wellness Visit"]
