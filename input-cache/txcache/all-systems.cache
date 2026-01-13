@@ -26,7 +26,6 @@ v: {
   "system" : "urn:ietf:bcp:13",
   "server" : "https://tx-dev.fhir.org/r4",
   "diagnostics" : "0 0 : start\r\n0 0     : 0ms  : Analysing urn:uuid:e4563f3f-f7ef-4bd0-a7e0-ccfbf656f650 for validation purposes\r\n0 0     : 0ms  : Parameters: disp-lang=en-US, default-to-latest\r\n0 0     : 0ms  : Version Rules: system-version:http://snomed.info/sct#http://snomed.info/sct/731000124108\r\n0 0     : 0ms  : Prepare include: \"(urn:ietf:bcp:13)\"\r\n15 15   : 15ms : CodeSystem found: \"urn:ietf:bcp:13|\"\r\n15 0    : 15ms : Validate \"[#text/cql (\"\")]\" and infer system\r\n15 0    : 15ms : Check \"#text/cql\"\r\n15 0    : 15ms : Inferred CodeSystem = \"urn:ietf:bcp:13\"\r\n15 0    : 15ms : CodeSystem found: urn:ietf:bcp:13| for urn:ietf:bcp:13\r\n15 0    : 15ms : check code in (urn:ietf:bcp:13) at \r\n15 0    : 15ms : Code \"text/cql\" found in urn:ietf:bcp:13|\r\n",
-  "unknown-systems" : "",
   "issues" : {
   "resourceType" : "OperationOutcome"
 }
@@ -53,7 +52,6 @@ v: {
   "system" : "urn:ietf:bcp:13",
   "server" : "https://tx-dev.fhir.org/r4",
   "diagnostics" : "0 0 : start\r\n15 15   : 0ms  : Analysing http://hl7.org/fhir/ValueSet/mimetypes|4.0.1 for validation purposes\r\n15 0    : 0ms  : Parameters: disp-lang=en-US, default-to-latest\r\n15 0    : 0ms  : Version Rules: system-version:http://snomed.info/sct#http://snomed.info/sct/731000124108\r\n15 0    : 0ms  : Prepare include: \"(urn:ietf:bcp:13)\"\r\n15 0    : 0ms  : CodeSystem found: \"urn:ietf:bcp:13|\"\r\n15 0    : 0ms  : Validate \"[#text/cql (\"\")]\" and infer system\r\n15 0    : 0ms  : Check \"#text/cql\"\r\n15 0    : 0ms  : Inferred CodeSystem = \"urn:ietf:bcp:13\"\r\n15 0    : 0ms  : CodeSystem found: urn:ietf:bcp:13| for urn:ietf:bcp:13\r\n15 0    : 0ms  : check code in (urn:ietf:bcp:13) at \r\n15 0    : 0ms  : Code \"text/cql\" found in urn:ietf:bcp:13|\r\n",
-  "unknown-systems" : "",
   "issues" : {
   "resourceType" : "OperationOutcome"
 }
@@ -87,7 +85,6 @@ v: {
   "system" : "urn:ietf:bcp:13",
   "server" : "https://tx-dev.fhir.org/r4",
   "diagnostics" : "0 0 : start\r\n0 0     : 0ms  : Analysing urn:uuid:5d11826c-cf62-45ea-bd71-2e45922cf394 for validation purposes\r\n0 0     : 0ms  : Parameters: disp-lang=en-US, default-to-latest\r\n0 0     : 0ms  : Version Rules: system-version:http://snomed.info/sct#http://snomed.info/sct/731000124108\r\n0 0     : 0ms  : Prepare include: \"(urn:ietf:bcp:13)\"\r\n0 0     : 0ms  : CodeSystem found: \"urn:ietf:bcp:13|\"\r\n0 0     : 0ms  : Validate \"[#application/elm+xml (\"\")]\" and infer system\r\n0 0     : 0ms  : Check \"#application/elm+xml\"\r\n0 0     : 0ms  : Inferred CodeSystem = \"urn:ietf:bcp:13\"\r\n0 0     : 0ms  : CodeSystem found: urn:ietf:bcp:13| for urn:ietf:bcp:13\r\n0 0     : 0ms  : check code in (urn:ietf:bcp:13) at \r\n0 0     : 0ms  : Code \"application/elm+xml\" found in urn:ietf:bcp:13|\r\n",
-  "unknown-systems" : "",
   "issues" : {
   "resourceType" : "OperationOutcome"
 }
@@ -114,7 +111,6 @@ v: {
   "system" : "urn:ietf:bcp:13",
   "server" : "https://tx-dev.fhir.org/r4",
   "diagnostics" : "0 0 : start\r\n0 0     : 0ms  : Analysing http://hl7.org/fhir/ValueSet/mimetypes|4.0.1 for validation purposes\r\n0 0     : 0ms  : Parameters: disp-lang=en-US, default-to-latest\r\n0 0     : 0ms  : Version Rules: system-version:http://snomed.info/sct#http://snomed.info/sct/731000124108\r\n0 0     : 0ms  : Prepare include: \"(urn:ietf:bcp:13)\"\r\n0 0     : 0ms  : CodeSystem found: \"urn:ietf:bcp:13|\"\r\n0 0     : 0ms  : Validate \"[#application/elm+xml (\"\")]\" and infer system\r\n0 0     : 0ms  : Check \"#application/elm+xml\"\r\n0 0     : 0ms  : Inferred CodeSystem = \"urn:ietf:bcp:13\"\r\n0 0     : 0ms  : CodeSystem found: urn:ietf:bcp:13| for urn:ietf:bcp:13\r\n0 0     : 0ms  : check code in (urn:ietf:bcp:13) at \r\n0 0     : 0ms  : Code \"application/elm+xml\" found in urn:ietf:bcp:13|\r\n",
-  "unknown-systems" : "",
   "issues" : {
   "resourceType" : "OperationOutcome"
 }
@@ -148,7 +144,6 @@ v: {
   "system" : "urn:ietf:bcp:13",
   "server" : "https://tx-dev.fhir.org/r4",
   "diagnostics" : "0 0 : start\r\n0 0     : 0ms  : Analysing urn:uuid:8fde9f14-0c76-4939-9dcd-0102c1fc3a5d for validation purposes\r\n0 0     : 0ms  : Parameters: disp-lang=en-US, default-to-latest\r\n0 0     : 0ms  : Version Rules: system-version:http://snomed.info/sct#http://snomed.info/sct/731000124108\r\n0 0     : 0ms  : Prepare include: \"(urn:ietf:bcp:13)\"\r\n0 0     : 0ms  : CodeSystem found: \"urn:ietf:bcp:13|\"\r\n0 0     : 0ms  : Validate \"[#application/elm+json (\"\")]\" and infer system\r\n0 0     : 0ms  : Check \"#application/elm+json\"\r\n0 0     : 0ms  : Inferred CodeSystem = \"urn:ietf:bcp:13\"\r\n0 0     : 0ms  : CodeSystem found: urn:ietf:bcp:13| for urn:ietf:bcp:13\r\n0 0     : 0ms  : check code in (urn:ietf:bcp:13) at \r\n0 0     : 0ms  : Code \"application/elm+json\" found in urn:ietf:bcp:13|\r\n",
-  "unknown-systems" : "",
   "issues" : {
   "resourceType" : "OperationOutcome"
 }
@@ -175,6 +170,1964 @@ v: {
   "system" : "urn:ietf:bcp:13",
   "server" : "https://tx-dev.fhir.org/r4",
   "diagnostics" : "0 0 : start\r\n0 0     : 0ms  : Analysing http://hl7.org/fhir/ValueSet/mimetypes|4.0.1 for validation purposes\r\n0 0     : 0ms  : Parameters: disp-lang=en-US, default-to-latest\r\n0 0     : 0ms  : Version Rules: system-version:http://snomed.info/sct#http://snomed.info/sct/731000124108\r\n0 0     : 0ms  : Prepare include: \"(urn:ietf:bcp:13)\"\r\n0 0     : 0ms  : CodeSystem found: \"urn:ietf:bcp:13|\"\r\n0 0     : 0ms  : Validate \"[#application/elm+json (\"\")]\" and infer system\r\n0 0     : 0ms  : Check \"#application/elm+json\"\r\n0 0     : 0ms  : Inferred CodeSystem = \"urn:ietf:bcp:13\"\r\n0 0     : 0ms  : CodeSystem found: urn:ietf:bcp:13| for urn:ietf:bcp:13\r\n0 0     : 0ms  : check code in (urn:ietf:bcp:13) at \r\n0 0     : 0ms  : Code \"application/elm+json\" found in urn:ietf:bcp:13|\r\n",
+  "issues" : {
+  "resourceType" : "OperationOutcome"
+}
+
+}
+-------------------------------------------------------------------------------------
+{"code" : {
+  "code" : "text/cql"
+}, "valueSet" :{
+  "resourceType" : "ValueSet",
+  "compose" : {
+    "include" : [{
+      "system" : "urn:ietf:bcp:13"
+    }]
+  }
+}, "langs":"en-US", "useServer":"true", "useClient":"false", "guessSystem":"true", "activeOnly":"false", "membershipOnly":"false", "displayWarningMode":"false", "versionFlexible":"true", "profile": {
+  "resourceType" : "Parameters",
+  "id" : "manifest",
+  "parameter" : [{
+    "name" : "system-version",
+    "valueCanonical" : "http://snomed.info/sct|http://snomed.info/sct/731000124108"
+  }]
+}}####
+v: {
+  "display" : "text/cql",
+  "code" : "text/cql",
+  "system" : "urn:ietf:bcp:13",
+  "server" : "https://tx.fhir.org/r4",
+  "diagnostics" : "0 0 : start\r\n0 0     : 0ms  : Analysing urn:uuid:29c6930b-23da-454c-82b4-4a9edc4331e7 for validation purposes\r\n0 0     : 0ms  : Parameters: disp-lang=en-US, default-to-latest\r\n0 0     : 0ms  : Version Rules: system-version:http://snomed.info/sct#http://snomed.info/sct/731000124108\r\n0 0     : 0ms  : Prepare include: \"(urn:ietf:bcp:13)\"\r\n0 0     : 0ms  : CodeSystem found: \"urn:ietf:bcp:13|\"\r\n0 0     : 0ms  : Validate \"[#text/cql (\"\")]\" and infer system\r\n0 0     : 0ms  : Check \"#text/cql\"\r\n0 0     : 0ms  : Inferred CodeSystem = \"urn:ietf:bcp:13\"\r\n0 0     : 0ms  : CodeSystem found: urn:ietf:bcp:13| for urn:ietf:bcp:13\r\n0 0     : 0ms  : check code in (urn:ietf:bcp:13) at \r\n0 0     : 0ms  : Code \"text/cql\" found in urn:ietf:bcp:13|\r\n",
+  "issues" : {
+  "resourceType" : "OperationOutcome"
+}
+
+}
+-------------------------------------------------------------------------------------
+{"code" : {
+  "code" : "text/cql"
+}, "url": "http://hl7.org/fhir/ValueSet/mimetypes", "version": "4.0.1", "langs":"en-US", "useServer":"true", "useClient":"true", "guessSystem":"true", "activeOnly":"false", "membershipOnly":"false", "displayWarningMode":"false", "versionFlexible":"true", "profile": {
+  "resourceType" : "Parameters",
+  "id" : "manifest",
+  "parameter" : [{
+    "name" : "system-version",
+    "valueCanonical" : "http://snomed.info/sct|http://snomed.info/sct/731000124108"
+  }]
+}}####
+v: {
+  "display" : "text/cql",
+  "code" : "text/cql",
+  "system" : "urn:ietf:bcp:13",
+  "server" : "https://tx.fhir.org/r4",
+  "diagnostics" : "0 0 : start\r\n16 16   : 0ms  : Analysing http://hl7.org/fhir/ValueSet/mimetypes|4.0.1 for validation purposes\r\n16 0    : 0ms  : Parameters: disp-lang=en-US, default-to-latest\r\n16 0    : 0ms  : Version Rules: system-version:http://snomed.info/sct#http://snomed.info/sct/731000124108\r\n16 0    : 0ms  : Prepare include: \"(urn:ietf:bcp:13)\"\r\n16 0    : 0ms  : CodeSystem found: \"urn:ietf:bcp:13|\"\r\n16 0    : 0ms  : Validate \"[#text/cql (\"\")]\" and infer system\r\n16 0    : 0ms  : Check \"#text/cql\"\r\n16 0    : 0ms  : Inferred CodeSystem = \"urn:ietf:bcp:13\"\r\n16 0    : 0ms  : CodeSystem found: urn:ietf:bcp:13| for urn:ietf:bcp:13\r\n16 0    : 0ms  : check code in (urn:ietf:bcp:13) at \r\n16 0    : 0ms  : Code \"text/cql\" found in urn:ietf:bcp:13|\r\n",
+  "issues" : {
+  "resourceType" : "OperationOutcome"
+}
+
+}
+-------------------------------------------------------------------------------------
+{"code" : {
+  "code" : "text/cql"
+}, "valueSet" :{
+  "resourceType" : "ValueSet",
+  "compose" : {
+    "include" : [{
+      "system" : "urn:ietf:bcp:13"
+    }]
+  }
+}, "langs":"en-US", "useServer":"true", "useClient":"false", "guessSystem":"true", "activeOnly":"false", "membershipOnly":"false", "displayWarningMode":"false", "versionFlexible":"true", "profile": {
+  "resourceType" : "Parameters",
+  "id" : "manifest",
+  "parameter" : [{
+    "name" : "system-version",
+    "valueCanonical" : "http://snomed.info/sct|http://snomed.info/sct/731000124108"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.3.1240|20190315"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1016|20240110"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1001|20180310"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1089|20210224"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1025|20170504"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1023|20170504"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1080|20250205"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-encounter|8.0.0-ballot"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.110.12.1082|20190315"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.196.12.1510|20190315"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.118.12.1300|20200310"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.113.12.1074|20190315"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1088|20210224"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.113.12.1075|20190315"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-devicerequest|8.0.0-ballot"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-observation-screening-assessment|8.0.0-ballot"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "http://hl7.org/fhir/StructureDefinition/Condition|4.0.1"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-simple-observation|8.0.0-ballot"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "http://hl7.org/fhir/StructureDefinition/MedicationRequest|4.0.1"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "http://hl7.org/fhir/StructureDefinition/Medication|4.0.1"
+  },
+  {
+    "name" : "system-version",
+    "valueString" : "http://terminology.hl7.org/CodeSystem/claim-type|1.0.1"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.198.12.1005|20240105"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.198.12.1068|20171219"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.108.12.1018|20210304"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.198.12.1069|20171216"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.198.12.1070|20171216"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.198.12.1133|20190315"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.198.12.1134|20190315"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-procedure|8.0.0-ballot"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-observation-clinical-result|8.0.0-ballot"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-claim|8.0.0-ballot"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "http://hl7.org/fhir/StructureDefinition/ExplanationOfBenefit|4.0.1"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.666.5.307|20200307"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.3.1584|20210825"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.1003|20210820"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.1165|20220818"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-servicerequest|8.0.0-ballot"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1090|20210224"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.198.12.1135|20210224"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.1167|20220820"
+  },
+  {
+    "name" : "system-version",
+    "valueString" : "http://hl7.org/fhir/CodeSystem/task-code|4.0.1"
+  },
+  {
+    "name" : "system-version",
+    "valueString" : "http://terminology.hl7.org/CodeSystem/observation-category|2.0.0"
+  },
+  {
+    "name" : "system-version",
+    "valueString" : "http://terminology.hl7.org/CodeSystem/condition-ver-status|2.0.1"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "https://madie.cms.gov/Library/PatientCommon|2026.0.0"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "http://hl7.org/fhir/StructureDefinition/Encounter|4.0.1"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "http://hl7.org/fhir/StructureDefinition/Observation|4.0.1"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "https://madie.cms.gov/Library/QICoreCommon|2026.0.0"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.114222.4.11.837|20121025"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1021.121|20250228"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.114222.4.11.3591|20250419"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.114222.4.11.836|20121025"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-coverage|8.0.0-ballot"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "http://hl7.org/fhir/StructureDefinition/Patient|4.0.1"
+  }]
+}}####
+v: {
+  "display" : "text/cql",
+  "code" : "text/cql",
+  "system" : "urn:ietf:bcp:13",
+  "server" : "https://tx.fhir.org/r4",
+  "diagnostics" : "0 0 : start\r\n15 15   : 0ms  : Analysing urn:uuid:59063766-3be3-4e9e-8def-75b259f1323a for validation purposes\r\n15 0    : 0ms  : Parameters: disp-lang=en-US, default-to-latest\r\n15 0    : 0ms  : Version Rules: system-version:http://snomed.info/sct#http://snomed.info/sct/731000124108\r\n15 0    : 0ms  : Prepare include: \"(urn:ietf:bcp:13)\"\r\n15 0    : 0ms  : CodeSystem found: \"urn:ietf:bcp:13|\"\r\n15 0    : 0ms  : Validate \"[#text/cql (\"\")]\" and infer system\r\n15 0    : 0ms  : Check \"#text/cql\"\r\n15 0    : 0ms  : Inferred CodeSystem = \"urn:ietf:bcp:13\"\r\n15 0    : 0ms  : CodeSystem found: urn:ietf:bcp:13| for urn:ietf:bcp:13\r\n15 0    : 0ms  : check code in (urn:ietf:bcp:13) at \r\n15 0    : 0ms  : Code \"text/cql\" found in urn:ietf:bcp:13|\r\n",
+  "unknown-systems" : "",
+  "issues" : {
+  "resourceType" : "OperationOutcome"
+}
+
+}
+-------------------------------------------------------------------------------------
+{"code" : {
+  "code" : "text/cql"
+}, "url": "http://hl7.org/fhir/ValueSet/mimetypes", "version": "4.0.1", "langs":"en-US", "useServer":"true", "useClient":"true", "guessSystem":"true", "activeOnly":"false", "membershipOnly":"false", "displayWarningMode":"false", "versionFlexible":"true", "profile": {
+  "resourceType" : "Parameters",
+  "id" : "manifest",
+  "parameter" : [{
+    "name" : "system-version",
+    "valueCanonical" : "http://snomed.info/sct|http://snomed.info/sct/731000124108"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.3.1240|20190315"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1016|20240110"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1001|20180310"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1089|20210224"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1025|20170504"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1023|20170504"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1080|20250205"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-encounter|8.0.0-ballot"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.110.12.1082|20190315"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.196.12.1510|20190315"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.118.12.1300|20200310"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.113.12.1074|20190315"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1088|20210224"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.113.12.1075|20190315"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-devicerequest|8.0.0-ballot"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-observation-screening-assessment|8.0.0-ballot"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "http://hl7.org/fhir/StructureDefinition/Condition|4.0.1"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-simple-observation|8.0.0-ballot"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "http://hl7.org/fhir/StructureDefinition/MedicationRequest|4.0.1"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "http://hl7.org/fhir/StructureDefinition/Medication|4.0.1"
+  },
+  {
+    "name" : "system-version",
+    "valueString" : "http://terminology.hl7.org/CodeSystem/claim-type|1.0.1"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.198.12.1005|20240105"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.198.12.1068|20171219"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.108.12.1018|20210304"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.198.12.1069|20171216"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.198.12.1070|20171216"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.198.12.1133|20190315"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.198.12.1134|20190315"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-procedure|8.0.0-ballot"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-observation-clinical-result|8.0.0-ballot"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-claim|8.0.0-ballot"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "http://hl7.org/fhir/StructureDefinition/ExplanationOfBenefit|4.0.1"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.666.5.307|20200307"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.3.1584|20210825"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.1003|20210820"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.1165|20220818"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-servicerequest|8.0.0-ballot"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1090|20210224"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.198.12.1135|20210224"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.1167|20220820"
+  },
+  {
+    "name" : "system-version",
+    "valueString" : "http://hl7.org/fhir/CodeSystem/task-code|4.0.1"
+  },
+  {
+    "name" : "system-version",
+    "valueString" : "http://terminology.hl7.org/CodeSystem/observation-category|2.0.0"
+  },
+  {
+    "name" : "system-version",
+    "valueString" : "http://terminology.hl7.org/CodeSystem/condition-ver-status|2.0.1"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "https://madie.cms.gov/Library/PatientCommon|2026.0.0"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "http://hl7.org/fhir/StructureDefinition/Encounter|4.0.1"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "http://hl7.org/fhir/StructureDefinition/Observation|4.0.1"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "https://madie.cms.gov/Library/QICoreCommon|2026.0.0"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.114222.4.11.837|20121025"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1021.121|20250228"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.114222.4.11.3591|20250419"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.114222.4.11.836|20121025"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-coverage|8.0.0-ballot"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "http://hl7.org/fhir/StructureDefinition/Patient|4.0.1"
+  }]
+}}####
+v: {
+  "display" : "text/cql",
+  "code" : "text/cql",
+  "system" : "urn:ietf:bcp:13",
+  "server" : "https://tx.fhir.org/r4",
+  "diagnostics" : "0 0 : start\r\n0 0     : 0ms  : Analysing http://hl7.org/fhir/ValueSet/mimetypes|4.0.1 for validation purposes\r\n0 0     : 0ms  : Parameters: disp-lang=en-US, default-to-latest\r\n0 0     : 0ms  : Version Rules: system-version:http://snomed.info/sct#http://snomed.info/sct/731000124108\r\n0 0     : 0ms  : Prepare include: \"(urn:ietf:bcp:13)\"\r\n0 0     : 0ms  : CodeSystem found: \"urn:ietf:bcp:13|\"\r\n0 0     : 0ms  : Validate \"[#text/cql (\"\")]\" and infer system\r\n0 0     : 0ms  : Check \"#text/cql\"\r\n0 0     : 0ms  : Inferred CodeSystem = \"urn:ietf:bcp:13\"\r\n0 0     : 0ms  : CodeSystem found: urn:ietf:bcp:13| for urn:ietf:bcp:13\r\n0 0     : 0ms  : check code in (urn:ietf:bcp:13) at \r\n0 0     : 0ms  : Code \"text/cql\" found in urn:ietf:bcp:13|\r\n",
+  "unknown-systems" : "",
+  "issues" : {
+  "resourceType" : "OperationOutcome"
+}
+
+}
+-------------------------------------------------------------------------------------
+{"code" : {
+  "code" : "application/elm+xml"
+}, "valueSet" :{
+  "resourceType" : "ValueSet",
+  "compose" : {
+    "include" : [{
+      "system" : "urn:ietf:bcp:13"
+    }]
+  }
+}, "langs":"en-US", "useServer":"true", "useClient":"false", "guessSystem":"true", "activeOnly":"false", "membershipOnly":"false", "displayWarningMode":"false", "versionFlexible":"true", "profile": {
+  "resourceType" : "Parameters",
+  "id" : "manifest",
+  "parameter" : [{
+    "name" : "system-version",
+    "valueCanonical" : "http://snomed.info/sct|http://snomed.info/sct/731000124108"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.3.1240|20190315"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1016|20240110"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1001|20180310"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1089|20210224"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1025|20170504"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1023|20170504"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1080|20250205"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-encounter|8.0.0-ballot"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.110.12.1082|20190315"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.196.12.1510|20190315"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.118.12.1300|20200310"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.113.12.1074|20190315"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1088|20210224"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.113.12.1075|20190315"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-devicerequest|8.0.0-ballot"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-observation-screening-assessment|8.0.0-ballot"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "http://hl7.org/fhir/StructureDefinition/Condition|4.0.1"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-simple-observation|8.0.0-ballot"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "http://hl7.org/fhir/StructureDefinition/MedicationRequest|4.0.1"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "http://hl7.org/fhir/StructureDefinition/Medication|4.0.1"
+  },
+  {
+    "name" : "system-version",
+    "valueString" : "http://terminology.hl7.org/CodeSystem/claim-type|1.0.1"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.198.12.1005|20240105"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.198.12.1068|20171219"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.108.12.1018|20210304"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.198.12.1069|20171216"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.198.12.1070|20171216"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.198.12.1133|20190315"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.198.12.1134|20190315"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-procedure|8.0.0-ballot"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-observation-clinical-result|8.0.0-ballot"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-claim|8.0.0-ballot"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "http://hl7.org/fhir/StructureDefinition/ExplanationOfBenefit|4.0.1"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.666.5.307|20200307"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.3.1584|20210825"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.1003|20210820"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.1165|20220818"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-servicerequest|8.0.0-ballot"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1090|20210224"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.198.12.1135|20210224"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.1167|20220820"
+  },
+  {
+    "name" : "system-version",
+    "valueString" : "http://hl7.org/fhir/CodeSystem/task-code|4.0.1"
+  },
+  {
+    "name" : "system-version",
+    "valueString" : "http://terminology.hl7.org/CodeSystem/observation-category|2.0.0"
+  },
+  {
+    "name" : "system-version",
+    "valueString" : "http://terminology.hl7.org/CodeSystem/condition-ver-status|2.0.1"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "https://madie.cms.gov/Library/PatientCommon|2026.0.0"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "http://hl7.org/fhir/StructureDefinition/Encounter|4.0.1"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "http://hl7.org/fhir/StructureDefinition/Observation|4.0.1"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "https://madie.cms.gov/Library/QICoreCommon|2026.0.0"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.114222.4.11.837|20121025"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1021.121|20250228"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.114222.4.11.3591|20250419"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.114222.4.11.836|20121025"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-coverage|8.0.0-ballot"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "http://hl7.org/fhir/StructureDefinition/Patient|4.0.1"
+  }]
+}}####
+v: {
+  "display" : "application/elm+xml",
+  "code" : "application/elm+xml",
+  "system" : "urn:ietf:bcp:13",
+  "server" : "https://tx.fhir.org/r4",
+  "diagnostics" : "0 0 : start\r\n16 16   : 0ms  : Analysing urn:uuid:da049e0a-92c0-4bc0-aa6b-2a17d789391d for validation purposes\r\n16 0    : 0ms  : Parameters: disp-lang=en-US, default-to-latest\r\n16 0    : 0ms  : Version Rules: system-version:http://snomed.info/sct#http://snomed.info/sct/731000124108\r\n16 0    : 0ms  : Prepare include: \"(urn:ietf:bcp:13)\"\r\n16 0    : 0ms  : CodeSystem found: \"urn:ietf:bcp:13|\"\r\n16 0    : 0ms  : Validate \"[#application/elm+xml (\"\")]\" and infer system\r\n16 0    : 0ms  : Check \"#application/elm+xml\"\r\n16 0    : 0ms  : Inferred CodeSystem = \"urn:ietf:bcp:13\"\r\n16 0    : 0ms  : CodeSystem found: urn:ietf:bcp:13| for urn:ietf:bcp:13\r\n16 0    : 0ms  : check code in (urn:ietf:bcp:13) at \r\n16 0    : 0ms  : Code \"application/elm+xml\" found in urn:ietf:bcp:13|\r\n",
+  "unknown-systems" : "",
+  "issues" : {
+  "resourceType" : "OperationOutcome"
+}
+
+}
+-------------------------------------------------------------------------------------
+{"code" : {
+  "code" : "application/elm+xml"
+}, "url": "http://hl7.org/fhir/ValueSet/mimetypes", "version": "4.0.1", "langs":"en-US", "useServer":"true", "useClient":"true", "guessSystem":"true", "activeOnly":"false", "membershipOnly":"false", "displayWarningMode":"false", "versionFlexible":"true", "profile": {
+  "resourceType" : "Parameters",
+  "id" : "manifest",
+  "parameter" : [{
+    "name" : "system-version",
+    "valueCanonical" : "http://snomed.info/sct|http://snomed.info/sct/731000124108"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.3.1240|20190315"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1016|20240110"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1001|20180310"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1089|20210224"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1025|20170504"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1023|20170504"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1080|20250205"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-encounter|8.0.0-ballot"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.110.12.1082|20190315"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.196.12.1510|20190315"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.118.12.1300|20200310"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.113.12.1074|20190315"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1088|20210224"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.113.12.1075|20190315"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-devicerequest|8.0.0-ballot"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-observation-screening-assessment|8.0.0-ballot"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "http://hl7.org/fhir/StructureDefinition/Condition|4.0.1"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-simple-observation|8.0.0-ballot"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "http://hl7.org/fhir/StructureDefinition/MedicationRequest|4.0.1"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "http://hl7.org/fhir/StructureDefinition/Medication|4.0.1"
+  },
+  {
+    "name" : "system-version",
+    "valueString" : "http://terminology.hl7.org/CodeSystem/claim-type|1.0.1"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.198.12.1005|20240105"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.198.12.1068|20171219"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.108.12.1018|20210304"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.198.12.1069|20171216"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.198.12.1070|20171216"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.198.12.1133|20190315"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.198.12.1134|20190315"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-procedure|8.0.0-ballot"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-observation-clinical-result|8.0.0-ballot"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-claim|8.0.0-ballot"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "http://hl7.org/fhir/StructureDefinition/ExplanationOfBenefit|4.0.1"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.666.5.307|20200307"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.3.1584|20210825"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.1003|20210820"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.1165|20220818"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-servicerequest|8.0.0-ballot"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1090|20210224"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.198.12.1135|20210224"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.1167|20220820"
+  },
+  {
+    "name" : "system-version",
+    "valueString" : "http://hl7.org/fhir/CodeSystem/task-code|4.0.1"
+  },
+  {
+    "name" : "system-version",
+    "valueString" : "http://terminology.hl7.org/CodeSystem/observation-category|2.0.0"
+  },
+  {
+    "name" : "system-version",
+    "valueString" : "http://terminology.hl7.org/CodeSystem/condition-ver-status|2.0.1"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "https://madie.cms.gov/Library/PatientCommon|2026.0.0"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "http://hl7.org/fhir/StructureDefinition/Encounter|4.0.1"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "http://hl7.org/fhir/StructureDefinition/Observation|4.0.1"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "https://madie.cms.gov/Library/QICoreCommon|2026.0.0"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.114222.4.11.837|20121025"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1021.121|20250228"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.114222.4.11.3591|20250419"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.114222.4.11.836|20121025"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-coverage|8.0.0-ballot"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "http://hl7.org/fhir/StructureDefinition/Patient|4.0.1"
+  }]
+}}####
+v: {
+  "display" : "application/elm+xml",
+  "code" : "application/elm+xml",
+  "system" : "urn:ietf:bcp:13",
+  "server" : "https://tx.fhir.org/r4",
+  "diagnostics" : "0 0 : start\r\n0 0     : 0ms  : Analysing http://hl7.org/fhir/ValueSet/mimetypes|4.0.1 for validation purposes\r\n0 0     : 0ms  : Parameters: disp-lang=en-US, default-to-latest\r\n0 0     : 0ms  : Version Rules: system-version:http://snomed.info/sct#http://snomed.info/sct/731000124108\r\n0 0     : 0ms  : Prepare include: \"(urn:ietf:bcp:13)\"\r\n0 0     : 0ms  : CodeSystem found: \"urn:ietf:bcp:13|\"\r\n0 0     : 0ms  : Validate \"[#application/elm+xml (\"\")]\" and infer system\r\n0 0     : 0ms  : Check \"#application/elm+xml\"\r\n0 0     : 0ms  : Inferred CodeSystem = \"urn:ietf:bcp:13\"\r\n0 0     : 0ms  : CodeSystem found: urn:ietf:bcp:13| for urn:ietf:bcp:13\r\n0 0     : 0ms  : check code in (urn:ietf:bcp:13) at \r\n0 0     : 0ms  : Code \"application/elm+xml\" found in urn:ietf:bcp:13|\r\n",
+  "unknown-systems" : "",
+  "issues" : {
+  "resourceType" : "OperationOutcome"
+}
+
+}
+-------------------------------------------------------------------------------------
+{"code" : {
+  "code" : "application/elm+json"
+}, "valueSet" :{
+  "resourceType" : "ValueSet",
+  "compose" : {
+    "include" : [{
+      "system" : "urn:ietf:bcp:13"
+    }]
+  }
+}, "langs":"en-US", "useServer":"true", "useClient":"false", "guessSystem":"true", "activeOnly":"false", "membershipOnly":"false", "displayWarningMode":"false", "versionFlexible":"true", "profile": {
+  "resourceType" : "Parameters",
+  "id" : "manifest",
+  "parameter" : [{
+    "name" : "system-version",
+    "valueCanonical" : "http://snomed.info/sct|http://snomed.info/sct/731000124108"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.3.1240|20190315"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1016|20240110"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1001|20180310"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1089|20210224"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1025|20170504"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1023|20170504"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1080|20250205"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-encounter|8.0.0-ballot"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.110.12.1082|20190315"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.196.12.1510|20190315"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.118.12.1300|20200310"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.113.12.1074|20190315"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1088|20210224"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.113.12.1075|20190315"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-devicerequest|8.0.0-ballot"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-observation-screening-assessment|8.0.0-ballot"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "http://hl7.org/fhir/StructureDefinition/Condition|4.0.1"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-simple-observation|8.0.0-ballot"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "http://hl7.org/fhir/StructureDefinition/MedicationRequest|4.0.1"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "http://hl7.org/fhir/StructureDefinition/Medication|4.0.1"
+  },
+  {
+    "name" : "system-version",
+    "valueString" : "http://terminology.hl7.org/CodeSystem/claim-type|1.0.1"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.198.12.1005|20240105"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.198.12.1068|20171219"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.108.12.1018|20210304"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.198.12.1069|20171216"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.198.12.1070|20171216"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.198.12.1133|20190315"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.198.12.1134|20190315"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-procedure|8.0.0-ballot"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-observation-clinical-result|8.0.0-ballot"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-claim|8.0.0-ballot"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "http://hl7.org/fhir/StructureDefinition/ExplanationOfBenefit|4.0.1"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.666.5.307|20200307"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.3.1584|20210825"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.1003|20210820"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.1165|20220818"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-servicerequest|8.0.0-ballot"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1090|20210224"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.198.12.1135|20210224"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.1167|20220820"
+  },
+  {
+    "name" : "system-version",
+    "valueString" : "http://hl7.org/fhir/CodeSystem/task-code|4.0.1"
+  },
+  {
+    "name" : "system-version",
+    "valueString" : "http://terminology.hl7.org/CodeSystem/observation-category|2.0.0"
+  },
+  {
+    "name" : "system-version",
+    "valueString" : "http://terminology.hl7.org/CodeSystem/condition-ver-status|2.0.1"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "https://madie.cms.gov/Library/PatientCommon|2026.0.0"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "http://hl7.org/fhir/StructureDefinition/Encounter|4.0.1"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "http://hl7.org/fhir/StructureDefinition/Observation|4.0.1"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "https://madie.cms.gov/Library/QICoreCommon|2026.0.0"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.114222.4.11.837|20121025"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1021.121|20250228"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.114222.4.11.3591|20250419"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.114222.4.11.836|20121025"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-coverage|8.0.0-ballot"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "http://hl7.org/fhir/StructureDefinition/Patient|4.0.1"
+  }]
+}}####
+v: {
+  "display" : "application/elm+json",
+  "code" : "application/elm+json",
+  "system" : "urn:ietf:bcp:13",
+  "server" : "https://tx.fhir.org/r4",
+  "diagnostics" : "0 0 : start\r\n0 0     : 0ms  : Analysing urn:uuid:49faa988-4331-44d2-84cd-ff7a200882b7 for validation purposes\r\n0 0     : 0ms  : Parameters: disp-lang=en-US, default-to-latest\r\n0 0     : 0ms  : Version Rules: system-version:http://snomed.info/sct#http://snomed.info/sct/731000124108\r\n0 0     : 0ms  : Prepare include: \"(urn:ietf:bcp:13)\"\r\n0 0     : 0ms  : CodeSystem found: \"urn:ietf:bcp:13|\"\r\n0 0     : 0ms  : Validate \"[#application/elm+json (\"\")]\" and infer system\r\n0 0     : 0ms  : Check \"#application/elm+json\"\r\n0 0     : 0ms  : Inferred CodeSystem = \"urn:ietf:bcp:13\"\r\n0 0     : 0ms  : CodeSystem found: urn:ietf:bcp:13| for urn:ietf:bcp:13\r\n0 0     : 0ms  : check code in (urn:ietf:bcp:13) at \r\n0 0     : 0ms  : Code \"application/elm+json\" found in urn:ietf:bcp:13|\r\n",
+  "unknown-systems" : "",
+  "issues" : {
+  "resourceType" : "OperationOutcome"
+}
+
+}
+-------------------------------------------------------------------------------------
+{"code" : {
+  "code" : "application/elm+json"
+}, "url": "http://hl7.org/fhir/ValueSet/mimetypes", "version": "4.0.1", "langs":"en-US", "useServer":"true", "useClient":"true", "guessSystem":"true", "activeOnly":"false", "membershipOnly":"false", "displayWarningMode":"false", "versionFlexible":"true", "profile": {
+  "resourceType" : "Parameters",
+  "id" : "manifest",
+  "parameter" : [{
+    "name" : "system-version",
+    "valueCanonical" : "http://snomed.info/sct|http://snomed.info/sct/731000124108"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.3.1240|20190315"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1016|20240110"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1001|20180310"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1089|20210224"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1025|20170504"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1023|20170504"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1080|20250205"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-encounter|8.0.0-ballot"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.110.12.1082|20190315"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.196.12.1510|20190315"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.118.12.1300|20200310"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.113.12.1074|20190315"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1088|20210224"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.113.12.1075|20190315"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-devicerequest|8.0.0-ballot"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-observation-screening-assessment|8.0.0-ballot"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "http://hl7.org/fhir/StructureDefinition/Condition|4.0.1"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-simple-observation|8.0.0-ballot"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "http://hl7.org/fhir/StructureDefinition/MedicationRequest|4.0.1"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "http://hl7.org/fhir/StructureDefinition/Medication|4.0.1"
+  },
+  {
+    "name" : "system-version",
+    "valueString" : "http://terminology.hl7.org/CodeSystem/claim-type|1.0.1"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.198.12.1005|20240105"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.198.12.1068|20171219"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.108.12.1018|20210304"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.198.12.1069|20171216"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.198.12.1070|20171216"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.198.12.1133|20190315"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.198.12.1134|20190315"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-procedure|8.0.0-ballot"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-observation-clinical-result|8.0.0-ballot"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-claim|8.0.0-ballot"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "http://hl7.org/fhir/StructureDefinition/ExplanationOfBenefit|4.0.1"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.666.5.307|20200307"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.3.1584|20210825"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.1003|20210820"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.1165|20220818"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-servicerequest|8.0.0-ballot"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1090|20210224"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.198.12.1135|20210224"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.1167|20220820"
+  },
+  {
+    "name" : "system-version",
+    "valueString" : "http://hl7.org/fhir/CodeSystem/task-code|4.0.1"
+  },
+  {
+    "name" : "system-version",
+    "valueString" : "http://terminology.hl7.org/CodeSystem/observation-category|2.0.0"
+  },
+  {
+    "name" : "system-version",
+    "valueString" : "http://terminology.hl7.org/CodeSystem/condition-ver-status|2.0.1"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "https://madie.cms.gov/Library/PatientCommon|2026.0.0"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "http://hl7.org/fhir/StructureDefinition/Encounter|4.0.1"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "http://hl7.org/fhir/StructureDefinition/Observation|4.0.1"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "https://madie.cms.gov/Library/QICoreCommon|2026.0.0"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.114222.4.11.837|20121025"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1021.121|20250228"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.114222.4.11.3591|20250419"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.114222.4.11.836|20121025"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-coverage|8.0.0-ballot"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "http://hl7.org/fhir/StructureDefinition/Patient|4.0.1"
+  }]
+}}####
+v: {
+  "display" : "application/elm+json",
+  "code" : "application/elm+json",
+  "system" : "urn:ietf:bcp:13",
+  "server" : "https://tx.fhir.org/r4",
+  "diagnostics" : "0 0 : start\r\n0 0     : 0ms  : Analysing http://hl7.org/fhir/ValueSet/mimetypes|4.0.1 for validation purposes\r\n0 0     : 0ms  : Parameters: disp-lang=en-US, default-to-latest\r\n0 0     : 0ms  : Version Rules: system-version:http://snomed.info/sct#http://snomed.info/sct/731000124108\r\n0 0     : 0ms  : Prepare include: \"(urn:ietf:bcp:13)\"\r\n0 0     : 0ms  : CodeSystem found: \"urn:ietf:bcp:13|\"\r\n0 0     : 0ms  : Validate \"[#application/elm+json (\"\")]\" and infer system\r\n0 0     : 0ms  : Check \"#application/elm+json\"\r\n0 0     : 0ms  : Inferred CodeSystem = \"urn:ietf:bcp:13\"\r\n0 0     : 0ms  : CodeSystem found: urn:ietf:bcp:13| for urn:ietf:bcp:13\r\n0 0     : 0ms  : check code in (urn:ietf:bcp:13) at \r\n0 0     : 0ms  : Code \"application/elm+json\" found in urn:ietf:bcp:13|\r\n",
+  "unknown-systems" : "",
+  "issues" : {
+  "resourceType" : "OperationOutcome"
+}
+
+}
+-------------------------------------------------------------------------------------
+{"code" : {
+  "code" : "text/cql-identifier"
+}, "valueSet" :{
+  "resourceType" : "ValueSet",
+  "compose" : {
+    "include" : [{
+      "system" : "urn:ietf:bcp:13"
+    }]
+  }
+}, "langs":"en-US", "useServer":"true", "useClient":"false", "guessSystem":"true", "activeOnly":"false", "membershipOnly":"false", "displayWarningMode":"false", "versionFlexible":"true", "profile": {
+  "resourceType" : "Parameters",
+  "id" : "manifest",
+  "parameter" : [{
+    "name" : "system-version",
+    "valueCanonical" : "http://snomed.info/sct|http://snomed.info/sct/731000124108"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.3.1240|20190315"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1016|20240110"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1001|20180310"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1089|20210224"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1025|20170504"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1023|20170504"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1080|20250205"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-encounter|8.0.0-ballot"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.110.12.1082|20190315"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.196.12.1510|20190315"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.118.12.1300|20200310"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.113.12.1074|20190315"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1088|20210224"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.113.12.1075|20190315"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-devicerequest|8.0.0-ballot"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-observation-screening-assessment|8.0.0-ballot"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "http://hl7.org/fhir/StructureDefinition/Condition|4.0.1"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-simple-observation|8.0.0-ballot"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "http://hl7.org/fhir/StructureDefinition/MedicationRequest|4.0.1"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "http://hl7.org/fhir/StructureDefinition/Medication|4.0.1"
+  },
+  {
+    "name" : "system-version",
+    "valueString" : "http://terminology.hl7.org/CodeSystem/claim-type|1.0.1"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.198.12.1005|20240105"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.198.12.1068|20171219"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.108.12.1018|20210304"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.198.12.1069|20171216"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.198.12.1070|20171216"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.198.12.1133|20190315"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.198.12.1134|20190315"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-procedure|8.0.0-ballot"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-observation-clinical-result|8.0.0-ballot"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-claim|8.0.0-ballot"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "http://hl7.org/fhir/StructureDefinition/ExplanationOfBenefit|4.0.1"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.666.5.307|20200307"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.3.1584|20210825"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.1003|20210820"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.1165|20220818"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-servicerequest|8.0.0-ballot"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1090|20210224"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.198.12.1135|20210224"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.1167|20220820"
+  },
+  {
+    "name" : "system-version",
+    "valueString" : "http://hl7.org/fhir/CodeSystem/task-code|4.0.1"
+  },
+  {
+    "name" : "system-version",
+    "valueString" : "http://terminology.hl7.org/CodeSystem/observation-category|2.0.0"
+  },
+  {
+    "name" : "system-version",
+    "valueString" : "http://terminology.hl7.org/CodeSystem/condition-ver-status|2.0.1"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "https://madie.cms.gov/Library/PatientCommon|2026.0.0"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "http://hl7.org/fhir/StructureDefinition/Encounter|4.0.1"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "http://hl7.org/fhir/StructureDefinition/Observation|4.0.1"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "https://madie.cms.gov/Library/QICoreCommon|2026.0.0"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.114222.4.11.837|20121025"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1021.121|20250228"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.114222.4.11.3591|20250419"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.114222.4.11.836|20121025"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-coverage|8.0.0-ballot"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "http://hl7.org/fhir/StructureDefinition/Patient|4.0.1"
+  }]
+}}####
+v: {
+  "display" : "text/cql-identifier",
+  "code" : "text/cql-identifier",
+  "system" : "urn:ietf:bcp:13",
+  "server" : "https://tx.fhir.org/r4",
+  "diagnostics" : "0 0 : start\r\n16 16   : 0ms  : Analysing urn:uuid:1c66f5a0-eb15-46b6-9ff2-5b29f1207fa3 for validation purposes\r\n16 0    : 0ms  : Parameters: disp-lang=en-US, default-to-latest\r\n16 0    : 0ms  : Version Rules: system-version:http://snomed.info/sct#http://snomed.info/sct/731000124108\r\n16 0    : 0ms  : Prepare include: \"(urn:ietf:bcp:13)\"\r\n16 0    : 0ms  : CodeSystem found: \"urn:ietf:bcp:13|\"\r\n16 0    : 0ms  : Validate \"[#text/cql-identifier (\"\")]\" and infer system\r\n16 0    : 0ms  : Check \"#text/cql-identifier\"\r\n16 0    : 0ms  : Inferred CodeSystem = \"urn:ietf:bcp:13\"\r\n16 0    : 0ms  : CodeSystem found: urn:ietf:bcp:13| for urn:ietf:bcp:13\r\n16 0    : 0ms  : check code in (urn:ietf:bcp:13) at \r\n16 0    : 0ms  : Code \"text/cql-identifier\" found in urn:ietf:bcp:13|\r\n",
+  "unknown-systems" : "",
+  "issues" : {
+  "resourceType" : "OperationOutcome"
+}
+
+}
+-------------------------------------------------------------------------------------
+{"code" : {
+  "code" : "text/cql-identifier"
+}, "url": "http://hl7.org/fhir/ValueSet/mimetypes", "version": "4.0.1", "langs":"en-US", "useServer":"true", "useClient":"true", "guessSystem":"true", "activeOnly":"false", "membershipOnly":"false", "displayWarningMode":"false", "versionFlexible":"true", "profile": {
+  "resourceType" : "Parameters",
+  "id" : "manifest",
+  "parameter" : [{
+    "name" : "system-version",
+    "valueCanonical" : "http://snomed.info/sct|http://snomed.info/sct/731000124108"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.3.1240|20190315"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1016|20240110"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1001|20180310"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1089|20210224"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1025|20170504"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1023|20170504"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1080|20250205"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-encounter|8.0.0-ballot"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.110.12.1082|20190315"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.196.12.1510|20190315"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.118.12.1300|20200310"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.113.12.1074|20190315"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1088|20210224"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.113.12.1075|20190315"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-devicerequest|8.0.0-ballot"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-observation-screening-assessment|8.0.0-ballot"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "http://hl7.org/fhir/StructureDefinition/Condition|4.0.1"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-simple-observation|8.0.0-ballot"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "http://hl7.org/fhir/StructureDefinition/MedicationRequest|4.0.1"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "http://hl7.org/fhir/StructureDefinition/Medication|4.0.1"
+  },
+  {
+    "name" : "system-version",
+    "valueString" : "http://terminology.hl7.org/CodeSystem/claim-type|1.0.1"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.198.12.1005|20240105"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.198.12.1068|20171219"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.108.12.1018|20210304"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.198.12.1069|20171216"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.198.12.1070|20171216"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.198.12.1133|20190315"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.198.12.1134|20190315"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-procedure|8.0.0-ballot"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-observation-clinical-result|8.0.0-ballot"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-claim|8.0.0-ballot"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "http://hl7.org/fhir/StructureDefinition/ExplanationOfBenefit|4.0.1"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.666.5.307|20200307"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.3.1584|20210825"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.1003|20210820"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.1165|20220818"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-servicerequest|8.0.0-ballot"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1090|20210224"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.198.12.1135|20210224"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.1167|20220820"
+  },
+  {
+    "name" : "system-version",
+    "valueString" : "http://hl7.org/fhir/CodeSystem/task-code|4.0.1"
+  },
+  {
+    "name" : "system-version",
+    "valueString" : "http://terminology.hl7.org/CodeSystem/observation-category|2.0.0"
+  },
+  {
+    "name" : "system-version",
+    "valueString" : "http://terminology.hl7.org/CodeSystem/condition-ver-status|2.0.1"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "https://madie.cms.gov/Library/PatientCommon|2026.0.0"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "http://hl7.org/fhir/StructureDefinition/Encounter|4.0.1"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "http://hl7.org/fhir/StructureDefinition/Observation|4.0.1"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "https://madie.cms.gov/Library/QICoreCommon|2026.0.0"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.114222.4.11.837|20121025"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1021.121|20250228"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.114222.4.11.3591|20250419"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueString" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.114222.4.11.836|20121025"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-coverage|8.0.0-ballot"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueString" : "http://hl7.org/fhir/StructureDefinition/Patient|4.0.1"
+  }]
+}}####
+v: {
+  "display" : "text/cql-identifier",
+  "code" : "text/cql-identifier",
+  "system" : "urn:ietf:bcp:13",
+  "server" : "https://tx.fhir.org/r4",
+  "diagnostics" : "0 0 : start\r\n16 16   : 0ms  : Analysing http://hl7.org/fhir/ValueSet/mimetypes|4.0.1 for validation purposes\r\n16 0    : 0ms  : Parameters: disp-lang=en-US, default-to-latest\r\n16 0    : 0ms  : Version Rules: system-version:http://snomed.info/sct#http://snomed.info/sct/731000124108\r\n16 0    : 0ms  : Prepare include: \"(urn:ietf:bcp:13)\"\r\n16 0    : 0ms  : CodeSystem found: \"urn:ietf:bcp:13|\"\r\n16 0    : 0ms  : Validate \"[#text/cql-identifier (\"\")]\" and infer system\r\n16 0    : 0ms  : Check \"#text/cql-identifier\"\r\n16 0    : 0ms  : Inferred CodeSystem = \"urn:ietf:bcp:13\"\r\n16 0    : 0ms  : CodeSystem found: urn:ietf:bcp:13| for urn:ietf:bcp:13\r\n16 0    : 0ms  : check code in (urn:ietf:bcp:13) at \r\n16 0    : 0ms  : Code \"text/cql-identifier\" found in urn:ietf:bcp:13|\r\n",
   "unknown-systems" : "",
   "issues" : {
   "resourceType" : "OperationOutcome"
