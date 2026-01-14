@@ -14,7 +14,7 @@
     "text": "Professional"
   },
   "use": "claim",
-  "patient": { "reference": "Patient/f4d00e60-e525-4644-a397-4d7d970bcfdb", "display": "Jane Doe" },
+  "patient": { "reference": "Patient/BCSNumeratorEOBPass", "display": "Jane Doe" },
   "billablePeriod": { "start": "2026-01-05", "end": "2026-01-05" },
   "created": "2026-01-12",
   "insurer": { "reference": "Organization/insurer-1", "display": "Health Plan" },

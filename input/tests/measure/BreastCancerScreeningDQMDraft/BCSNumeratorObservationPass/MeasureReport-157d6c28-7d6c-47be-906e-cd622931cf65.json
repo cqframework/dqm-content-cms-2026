@@ -9,7 +9,7 @@
     "id": "873d6412-2b20-4355-9d6d-780d81f25d40-parameters",
     "parameter": [ {
       "name": "subject",
-      "valueString": "f4d00e60-e525-4644-a397-4d7d970bcfdb"
+      "valueString": "BCSNumeratorObservationPass"
     } ]
   } ],
   "extension": [ {
@@ -267,7 +267,7 @@
     } ]
   } ],
   "evaluatedResource": [ {
-    "reference": "Patient/f4d00e60-e525-4644-a397-4d7d970bcfdb"
+    "reference": "Patient/BCSNumeratorObservationPass"
   }, {
     "reference": "Encounter/344ec536-2f6a-4b34-a4e1-74461778cd5a"
   }, {

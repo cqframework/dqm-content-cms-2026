@@ -1,17 +1,6 @@
 {
   "resourceType": "Claim",
-  "id": "claim-1",
-  "meta": {
-    "profile": [
-      "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-claim"
-    ]
-  },
-  "identifier": [
-    {
-      "system": "http://example.org/claims",
-      "value": "CLM-77062-20260105"
-    }
-  ],
+  "id": "1",
   "status": "active",
   "type": {
     "coding": [
@@ -24,10 +13,9 @@
     "text": "Professional"
   },
   "use": "claim",
-  "patient": { "reference": "Patient/f4d00e60-e525-4644-a397-4d7d970bcfdb", "display": "Jane Doe" },
+  "patient": { "reference": "Patient/BCSNumeratorEOBPass", "display": "Jane Doe" },
   "billablePeriod": { "start": "2026-01-05", "end": "2026-01-05" },
   "created": "2026-01-12",
-  "insurer": { "reference": "Organization/insurer-1", "display": "Health Plan" },
   "provider": { "reference": "Organization/provider-1", "display": "Radiology Group" },
   "priority": {
     "coding": [
@@ -94,7 +82,9 @@
           }
         ]
       },
-      "quantity": { "value": 1 },
+      "quantity": {
+        "value": 1
+      },
       "unitPrice": { "value": 220.0, "currency": "USD" },
       "net": { "value": 220.0, "currency": "USD" }
     }

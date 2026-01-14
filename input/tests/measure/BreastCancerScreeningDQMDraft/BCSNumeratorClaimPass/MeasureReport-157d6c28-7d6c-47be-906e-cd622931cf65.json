@@ -1,25 +1,25 @@
 {
   "resourceType": "MeasureReport",
-  "id": "9d2d1444-f7a9-4497-a785-cacfab3639fb",
+  "id": "157d6c28-7d6c-47be-906e-cd622931cf65",
   "meta": {
     "profile": [ "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/test-case-cqfm" ]
   },
   "contained": [ {
     "resourceType": "Parameters",
-    "id": "c0733d1b-6e62-42b1-aec9-7e712086d472-parameters",
+    "id": "873d6412-2b20-4355-9d6d-780d81f25d40-parameters",
     "parameter": [ {
       "name": "subject",
-      "valueString": "f9de4c72-b2ed-4c8f-94fe-8c934e42e0a0"
+      "valueString": "BCSNumeratorClaimPass"
     } ]
   } ],
   "extension": [ {
     "url": "http://hl7.org/fhir/StructureDefinition/cqf-inputParameters",
     "valueReference": {
-      "reference": "#c0733d1b-6e62-42b1-aec9-7e712086d472-parameters"
+      "reference": "#873d6412-2b20-4355-9d6d-780d81f25d40-parameters"
     }
   }, {
     "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-testCaseDescription",
-    "valueMarkdown": "Patient 52yo w/ an Office Visit  Encounter 1/1 of the MP & Bilateral Mastectomy Dx that starts on 1/1 after the MP."
+    "valueMarkdown": "Patient 52yo w/ an Office Visit Encounter 1/1 during the MP and Mammogram Observation 1/1 after observation interval."
   } ],
   "modifierExtension": [ {
     "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-isTestCase",
@@ -73,7 +73,7 @@
           "display": "Numerator"
         } ]
       },
-      "count": 0
+      "count": 1
     } ],
     "measureScore": {
       "value": 1.0
@@ -158,7 +158,7 @@
               "display": "Denominator Exclusion"
             } ]
           },
-          "count": 0
+          "count": 1
         }, {
           "id": "Numerator_1",
           "code": {
@@ -168,7 +168,7 @@
               "display": "Numerator"
             } ]
           },
-          "count": 0
+          "count": 1
         } ]
       } ]
     }, {
@@ -251,7 +251,7 @@
               "display": "Denominator Exclusion"
             } ]
           },
-          "count": 0
+          "count": 1
         }, {
           "id": "Numerator_1",
           "code": {
@@ -261,16 +261,16 @@
               "display": "Numerator"
             } ]
           },
-          "count": 0
+          "count": 1
         } ]
       } ]
     } ]
   } ],
   "evaluatedResource": [ {
-    "reference": "Patient/f9de4c72-b2ed-4c8f-94fe-8c934e42e0a0"
+    "reference": "Patient/BCSNumeratorClaimPass"
   }, {
-    "reference": "Encounter/091f360e-8ad8-4d4b-a716-e57d14d371a0"
+    "reference": "Encounter/344ec536-2f6a-4b34-a4e1-74461778cd5a"
   }, {
-    "reference": "Condition/35ee4576-dccd-472d-adba-d5b779b2ab75"
+    "reference": "Observation/d93c37fc-04bb-4c17-b48e-0e88e2c9eb36"
   } ]
 }

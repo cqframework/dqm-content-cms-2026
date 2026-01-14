@@ -9,7 +9,7 @@
     "id": "c0733d1b-6e62-42b1-aec9-7e712086d472-parameters",
     "parameter": [ {
       "name": "subject",
-      "valueString": "f9de4c72-b2ed-4c8f-94fe-8c934e42e0a0"
+      "valueString": "BCSDenominatorPass"
     } ]
   } ],
   "extension": [ {
@@ -267,7 +267,7 @@
     } ]
   } ],
   "evaluatedResource": [ {
-    "reference": "Patient/f9de4c72-b2ed-4c8f-94fe-8c934e42e0a0"
+    "reference": "Patient/BCSDenominatorPass"
   }, {
     "reference": "Encounter/091f360e-8ad8-4d4b-a716-e57d14d371a0"
   }, {

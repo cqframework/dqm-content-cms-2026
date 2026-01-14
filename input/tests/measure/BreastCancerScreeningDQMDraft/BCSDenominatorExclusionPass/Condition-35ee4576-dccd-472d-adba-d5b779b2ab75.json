@@ -25,7 +25,7 @@
     } ]
   },
   "subject": {
-    "reference": "Patient/f9de4c72-b2ed-4c8f-94fe-8c934e42e0a0"
+    "reference": "Patient/BCSDenominatorExclusionPass"
   },
   "onsetDateTime": "2026-01-01T00:00:00.000+00:00"
 }
