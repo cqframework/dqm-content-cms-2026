@@ -121,12 +121,8 @@ define "Bilateral Mastectomy Procedure":
 
 define "Numerator":
 exists "Mammography Observation"
-  or ([QICore.Claim])."With mammography during"(
-        Interval[date from "October 1 Two Years Prior to the Measurement Period", date from end of "Measurement Period"]
-    ) is not null
-  or ([ExplanationOfBenefit])."With mammography during"(
-        Interval[date from "October 1 Two Years Prior to the Measurement Period", date from end of "Measurement Period"]
-    ) is not null
+  or exists "Mammography Claim"
+  or exists "Mammography EOB"
     
 //Mammography Observation
 define "Mammography Observation":
@@ -137,6 +133,10 @@ define "October 1 Two Years Prior to the Measurement Period":
   DateTime((year from start of "Measurement Period" - 2), 10, 1, 0, 0, 0, 0, 0)
 
 //Mammography Claim
+define "Mammography Claim":
+([QICore.Claim])."With mammography during"(
+        Interval[date from "October 1 Two Years Prior to the Measurement Period", date from end of "Measurement Period"])
+
 define fluent function "With mammography during"(
     claims List<FHIR.Claim>,
     duringPeriod Interval<System.Date>
@@ -201,6 +201,10 @@ define fluent function "To date interval"(period FHIR.Period):
         Interval[date from period.start, date from period.end]
 
 //Mammography EOB
+define "Mammography EOB":
+([ExplanationOfBenefit])."With mammography during"(
+        Interval[date from "October 1 Two Years Prior to the Measurement Period", date from end of "Measurement Period"])
+
 define fluent function "With mammography during"(
     eobs List<FHIR.ExplanationOfBenefit>,
     duringPeriod Interval<System.Date>
