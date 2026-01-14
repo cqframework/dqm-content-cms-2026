@@ -52,11 +52,13 @@ define "Catheter Usage During Measurement Period":
         ]
   )
 
+/*
 define function "Denominator Observation"():
   Sum(
     "Catheter Usage During Measurement Period" Usage
       return all duration in days of Usage
   )
+*/
 
 define "Urine Culture With Bacterium":
   [Observation: "Urine Culture"] O
@@ -137,6 +139,10 @@ define "Bacteremic UTI":
 define "Numerator Observation":
   Count("Catheter-Associated UTI")
 
+// TODO: Update to the 2022 Baseline parameters:
+// [NHSN SIR Guide](https://www.cdc.gov/nhsn/2022rebaseline/sir-guide.pdf)
+// As HTML: https://www.cdc.gov/nhsn/2022rebaseline/sir-risk-factors.html
+// CAUTI ACH Factors https://www.cdc.gov/nhsn/2022rebaseline/tables/table-6.html
 define "Acute Care Hospital Parameters": {
     { code: "Intercept", estimate: -10.2667, standardError: 0.1618, pValue: Quantity { value: 0.001, comparator: '<' } },
     { code: "Burn Critical Care", estimate: 3.3318, standardError: 0.1580, pValue: Quantity { value: 0.001, comparator: '<' } }
@@ -177,12 +183,9 @@ define "Denominator Initial Population":
 
 define "Denominator":
   "Denominator Initial Population"
+
 define function "Numerator Observation"():
   Count(CAUTIRate."Catheter-Associated UTI")
-
-define "Encounter During Measurement Period":
-  [Encounter] E
-    where E.period during "Measurement Period"
 
 define "Numerator Initial Population":
   exists ("Encounter During Measurement Period")
