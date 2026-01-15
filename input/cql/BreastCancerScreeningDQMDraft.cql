@@ -258,11 +258,6 @@ define fluent function "Professional or institutional"(eobs List<FHIR.Explanatio
       where eob.type ~ "institutional"
         or eob.type ~ "professional"
 
-define fluent function "Has"(coding FHIR.Coding, code System.Code):
-    if coding is null or code is null then false
-    else 
-        FHIRHelpers.ToCode(coding) ~ code
-
 define "SDE Ethnicity":
   SDE."SDE Ethnicity"
 
