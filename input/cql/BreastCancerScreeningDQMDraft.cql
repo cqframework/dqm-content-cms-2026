@@ -76,7 +76,7 @@ define "Denominator Exclusions":
  define fluent function "Deceased during"(patient FHIR.Patient, duringPeriod Interval<System.DateTime>):
      if patient is null or duringPeriod is null or patient.deceased is null then false
      else 
-         patient."Deceased date"() during duringPeriod
+         patient."Deceased date"() during day of duringPeriod
 
 define fluent function "Deceased date"(patient FHIR.Patient):
      if patient is null then null
