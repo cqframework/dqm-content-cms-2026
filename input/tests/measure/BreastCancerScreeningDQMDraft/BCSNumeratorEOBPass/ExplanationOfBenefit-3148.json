@@ -5,7 +5,7 @@
         "versionId": "4",
         "lastUpdated": "2022-10-25T19:54:20.106+00:00",
         "profile": [
-            "http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-ExplanationOfBenefit-Inpatient"
+            "http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-ExplanationOfBenefit-Inpatient-Institutional"
         ]
     },
     "identifier": [
@@ -37,7 +37,6 @@
     "patient": {
         "reference": "Patient/BCSNumeratorEOBPass"
     },
-    "servicedDate": "2026-01-05",
     "billablePeriod": {
         "start": "2020-10-06",
         "end": "2020-10-06"
@@ -235,6 +234,7 @@
     "item": [
         {
             "sequence": 2,
+            "servicedDate": "2026-01-05",
             "revenue": {
                 "coding": [
                     {
@@ -292,6 +292,7 @@
         },
         {
             "sequence": 1,
+            "servicedDate": "2026-01-05",
             "revenue": {
                 "coding": [
                     {
@@ -349,6 +350,7 @@
         },
         {
             "sequence": 4,
+            "servicedDate": "2026-01-05",
             "revenue": {
                 "coding": [
                     {
@@ -406,6 +408,7 @@
         },
         {
             "sequence": 3,
+            "servicedDate": "2026-01-05",
             "revenue": {
                 "coding": [
                     {
