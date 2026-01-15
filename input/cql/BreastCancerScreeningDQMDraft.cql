@@ -48,7 +48,7 @@ define "Initial Population":
   AgeInYearsAt(date from 
     end of "Measurement Period"
   ) in Interval[42, 74]
-    and Patient.sex() = '248152002'
+    and Patient.sex().value = '248152002'
     and exists AdultOutpatientEncounters."Qualifying Encounters"
 
 define "Denominator":
