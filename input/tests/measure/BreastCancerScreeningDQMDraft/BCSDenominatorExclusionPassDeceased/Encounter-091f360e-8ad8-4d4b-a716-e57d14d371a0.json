@@ -18,10 +18,10 @@
     } ]
   } ],
   "subject": {
-    "reference": "Patient/BCSDenominatorExclusionPass"
+    "reference": "Patient/BCSDenominatorExclusionPassDeceased"
   },
   "period": {
-    "start": "2026-01-02T00:00:00.000+00:00",
-    "end": "2026-01-02T00:00:00.000+00:00"
+    "start": "2026-01-01T00:00:00.000+00:00",
+    "end": "2026-01-01T00:00:00.000+00:00"
   }
 }
