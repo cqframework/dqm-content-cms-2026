@@ -60,7 +60,7 @@
               "valueExpression": {
                 "extension": [
                   { 
-                    "url": "http://hl7.org/fhir/StructureDefinition/cqf-expressionCode",
+                    "url": "http://hl7.org/fhir/StructureDefinition/expression-coding",
                     "valueCoding": {
                       "code": "always-true",
                       "system": "http://example.org/fhir/CodeSystem/example-supporting-evidence-codes",
@@ -79,7 +79,7 @@
               "valueExpression": {
                 "extension": [
                   { 
-                    "url": "http://hl7.org/fhir/StructureDefinition/cqf-expressionCode",
+                    "url": "http://hl7.org/fhir/StructureDefinition/expression-coding",
                     "valueCoding": {
                       "code": "denominator-resource",
                       "system": "http://example.org/fhir/CodeSystem/example-supporting-evidence-codes",
@@ -98,7 +98,7 @@
               "valueExpression": {
                 "extension": [
                   { 
-                    "url": "http://hl7.org/fhir/StructureDefinition/cqf-expressionCode",
+                    "url": "http://hl7.org/fhir/StructureDefinition/expression-coding",
                     "valueCoding": {
                       "code": "list-of-boolean",
                       "system": "http://example.org/fhir/CodeSystem/example-supporting-evidence-codes",
@@ -117,7 +117,7 @@
               "valueExpression": {
                 "extension": [
                   { 
-                    "url": "http://hl7.org/fhir/StructureDefinition/cqf-expressionCode",
+                    "url": "http://hl7.org/fhir/StructureDefinition/expression-coding",
                     "valueCoding": {
                       "code": "string",
                       "system": "http://example.org/fhir/CodeSystem/example-supporting-evidence-codes",
@@ -136,7 +136,7 @@
               "valueExpression": {
                 "extension": [
                   { 
-                    "url": "http://hl7.org/fhir/StructureDefinition/cqf-expressionCode",
+                    "url": "http://hl7.org/fhir/StructureDefinition/expression-coding",
                     "valueCoding": {
                       "code": "date",
                       "system": "http://example.org/fhir/CodeSystem/example-supporting-evidence-codes",
@@ -155,7 +155,7 @@
               "valueExpression": {
                 "extension": [
                   { 
-                    "url": "http://hl7.org/fhir/StructureDefinition/cqf-expressionCode",
+                    "url": "http://hl7.org/fhir/StructureDefinition/expression-coding",
                     "valueCoding": {
                       "code": "decimal",
                       "system": "http://example.org/fhir/CodeSystem/example-supporting-evidence-codes",
@@ -174,7 +174,7 @@
               "valueExpression": {
                 "extension": [
                   { 
-                    "url": "http://hl7.org/fhir/StructureDefinition/cqf-expressionCode",
+                    "url": "http://hl7.org/fhir/StructureDefinition/expression-coding",
                     "valueCoding": {
                       "code": "number",
                       "system": "http://example.org/fhir/CodeSystem/example-supporting-evidence-codes",
@@ -193,7 +193,7 @@
               "valueExpression": {
                 "extension": [
                   { 
-                    "url": "http://hl7.org/fhir/StructureDefinition/cqf-expressionCode",
+                    "url": "http://hl7.org/fhir/StructureDefinition/expression-coding",
                     "valueCoding": {
                       "code": "list-of-dates",
                       "system": "http://example.org/fhir/CodeSystem/example-supporting-evidence-codes",
@@ -212,7 +212,7 @@
               "valueExpression": {
                 "extension": [
                   { 
-                    "url": "http://hl7.org/fhir/StructureDefinition/cqf-expressionCode",
+                    "url": "http://hl7.org/fhir/StructureDefinition/expression-coding",
                     "valueCoding": {
                       "code": "list-of-numbers",
                       "system": "http://example.org/fhir/CodeSystem/example-supporting-evidence-codes",
@@ -231,7 +231,7 @@
               "valueExpression": {
                 "extension": [
                   { 
-                    "url": "http://hl7.org/fhir/StructureDefinition/cqf-expressionCode",
+                    "url": "http://hl7.org/fhir/StructureDefinition/expression-coding",
                     "valueCoding": {
                       "code": "list-of-string",
                       "system": "http://example.org/fhir/CodeSystem/example-supporting-evidence-codes",
@@ -250,7 +250,7 @@
               "valueExpression": {
                 "extension": [
                   { 
-                    "url": "http://hl7.org/fhir/StructureDefinition/cqf-expressionCode",
+                    "url": "http://hl7.org/fhir/StructureDefinition/expression-coding",
                     "valueCoding": {
                       "code": "test-tuple",
                       "system": "http://example.org/fhir/CodeSystem/example-supporting-evidence-codes",
@@ -269,7 +269,7 @@
               "valueExpression": {
                 "extension": [
                   { 
-                    "url": "http://hl7.org/fhir/StructureDefinition/cqf-expressionCode",
+                    "url": "http://hl7.org/fhir/StructureDefinition/expression-coding",
                     "valueCoding": {
                       "code": "interval",
                       "system": "http://example.org/fhir/CodeSystem/example-supporting-evidence-codes",
@@ -288,7 +288,7 @@
               "valueExpression": {
                 "extension": [
                   { 
-                    "url": "http://hl7.org/fhir/StructureDefinition/cqf-expressionCode",
+                    "url": "http://hl7.org/fhir/StructureDefinition/expression-coding",
                     "valueCoding": {
                       "code": "test-interval-list",
                       "system": "http://example.org/fhir/CodeSystem/example-supporting-evidence-codes",
@@ -307,7 +307,7 @@
               "valueExpression": {
                 "extension": [
                   { 
-                    "url": "http://hl7.org/fhir/StructureDefinition/cqf-expressionCode",
+                    "url": "http://hl7.org/fhir/StructureDefinition/expression-coding",
                     "valueCoding": {
                       "code": "test-decimal-list",
                       "system": "http://example.org/fhir/CodeSystem/example-supporting-evidence-codes",
@@ -326,7 +326,7 @@
               "valueExpression": {
                 "extension": [
                   { 
-                    "url": "http://hl7.org/fhir/StructureDefinition/cqf-expressionCode",
+                    "url": "http://hl7.org/fhir/StructureDefinition/expression-coding",
                     "valueCoding": {
                       "code": "test-code",
                       "system": "http://example.org/fhir/CodeSystem/example-supporting-evidence-codes",
@@ -345,7 +345,7 @@
               "valueExpression": {
                 "extension": [
                   { 
-                    "url": "http://hl7.org/fhir/StructureDefinition/cqf-expressionCode",
+                    "url": "http://hl7.org/fhir/StructureDefinition/expression-coding",
                     "valueCoding": {
                       "code": "empty-list-example",
                       "system": "http://example.org/fhir/CodeSystem/example-supporting-evidence-codes",
@@ -364,7 +364,7 @@
               "valueExpression": {
                 "extension": [
                   { 
-                    "url": "http://hl7.org/fhir/StructureDefinition/cqf-expressionCode",
+                    "url": "http://hl7.org/fhir/StructureDefinition/expression-coding",
                     "valueCoding": {
                       "code": "null-example",
                       "system": "http://example.org/fhir/CodeSystem/example-supporting-evidence-codes",
@@ -383,7 +383,7 @@
               "valueExpression": {
                 "extension": [
                   { 
-                    "url": "http://hl7.org/fhir/StructureDefinition/cqf-expressionCode",
+                    "url": "http://hl7.org/fhir/StructureDefinition/expression-coding",
                     "valueCoding": {
                       "code": "patient-resource",
                       "system": "http://example.org/fhir/CodeSystem/example-supporting-evidence-codes",
@@ -402,7 +402,7 @@
               "valueExpression": {
                 "extension": [
                   { 
-                    "url": "http://hl7.org/fhir/StructureDefinition/cqf-expressionCode",
+                    "url": "http://hl7.org/fhir/StructureDefinition/expression-coding",
                     "valueCoding": {
                       "code": "list-test-tuple",
                       "system": "http://example.org/fhir/CodeSystem/example-supporting-evidence-codes",
