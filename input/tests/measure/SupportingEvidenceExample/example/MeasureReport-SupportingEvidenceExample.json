@@ -558,19 +558,16 @@
                                 },
                                 {
                                     "url": "value",
-                                    "_valueBoolean": {
-                                        "extension": [
-                                            {
-                                                "url": "http://hl7.org/fhir/StructureDefinition/cqf-isEmptyList",
-                                                "valueBoolean": true
-                                            },
-                                            {
-                                                "url": "http://hl7.org/fhir/StructureDefinition/cqf-cqlType",
-                                                "valueString": "List<System.Any>"
-                                            }
-                                        ]
-
-                                    }
+                                    "extension": [
+                                        {
+                                            "url": "http://hl7.org/fhir/StructureDefinition/cqf-isEmptyList",
+                                            "valueBoolean": true
+                                        },
+                                        {
+                                            "url": "http://hl7.org/fhir/StructureDefinition/cqf-cqlType",
+                                            "valueString": "List<System.Any>"
+                                        }
+                                    ]
                                 }
                             ]
                         },
@@ -599,19 +596,16 @@
                                 },
                                 {
                                     "url": "value",
-                                    "_valueBoolean": {
-                                        "extension": [
-                                            {
-                                                "url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason",
-                                                "valueCode": "unknown"
-                                            },
-                                            {
-                                                "url": "http://hl7.org/fhir/StructureDefinition/cqf-cqlType",
-                                                "valueString": "System.Any"
-                                            }
-                                        ]
-
-                                    }
+                                    "extension": [
+                                        {
+                                            "url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason",
+                                            "valueCode": "unknown"
+                                        },
+                                        {
+                                            "url": "http://hl7.org/fhir/StructureDefinition/cqf-cqlType",
+                                            "valueString": "System.Any"
+                                        }
+                                    ]
                                 }
                             ]
                         },
