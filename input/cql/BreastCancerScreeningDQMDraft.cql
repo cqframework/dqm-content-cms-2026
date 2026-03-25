@@ -48,7 +48,7 @@ define "Initial Population":
   AgeInYearsAt(date from 
     end of "Measurement Period"
   ) in Interval[42, 74]
-    and Patient.sex() = '248152002'
+    and Patient.sex().value = '248152002'
     and exists AdultOutpatientEncounters."Qualifying Encounters"
 
 define "Denominator":
@@ -76,7 +76,7 @@ define "Denominator Exclusions":
  define fluent function "Deceased during"(patient FHIR.Patient, duringPeriod Interval<System.DateTime>):
      if patient is null or duringPeriod is null or patient.deceased is null then false
      else 
-         patient."Deceased date"() during duringPeriod
+         patient."Deceased date"() during day of duringPeriod
 
 define fluent function "Deceased date"(patient FHIR.Patient):
      if patient is null then null
@@ -121,12 +121,8 @@ define "Bilateral Mastectomy Procedure":
 
 define "Numerator":
 exists "Mammography Observation"
-  or ([QICore.Claim])."With mammography during"(
-        Interval[date from "October 1 Two Years Prior to the Measurement Period", date from end of "Measurement Period"]
-    ) is not null
-  or ([ExplanationOfBenefit])."With mammography during"(
-        Interval[date from "October 1 Two Years Prior to the Measurement Period", date from end of "Measurement Period"]
-    ) is not null
+  or exists "Mammography Claim"
+  or exists "Mammography EOB"
     
 //Mammography Observation
 define "Mammography Observation":
@@ -137,6 +133,10 @@ define "October 1 Two Years Prior to the Measurement Period":
   DateTime((year from start of "Measurement Period" - 2), 10, 1, 0, 0, 0, 0, 0)
 
 //Mammography Claim
+define "Mammography Claim":
+([QICore.Claim])."With mammography during"(
+        Interval[date from "October 1 Two Years Prior to the Measurement Period", date from end of "Measurement Period"])
+
 define fluent function "With mammography during"(
     claims List<FHIR.Claim>,
     duringPeriod Interval<System.Date>
@@ -201,6 +201,10 @@ define fluent function "To date interval"(period FHIR.Period):
         Interval[date from period.start, date from period.end]
 
 //Mammography EOB
+define "Mammography EOB":
+([ExplanationOfBenefit])."With mammography during"(
+        Interval[date from "October 1 Two Years Prior to the Measurement Period", date from end of "Measurement Period"])
+
 define fluent function "With mammography during"(
     eobs List<FHIR.ExplanationOfBenefit>,
     duringPeriod Interval<System.Date>
@@ -253,11 +257,6 @@ define fluent function "Professional or institutional"(eobs List<FHIR.Explanatio
     (eobs) eob
       where eob.type ~ "institutional"
         or eob.type ~ "professional"
-
-define fluent function "Has"(coding FHIR.Coding, code System.Code):
-    if coding is null or code is null then false
-    else 
-        FHIRHelpers.ToCode(coding) ~ code
 
 define "SDE Ethnicity":
   SDE."SDE Ethnicity"

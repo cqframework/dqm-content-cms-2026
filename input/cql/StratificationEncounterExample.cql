@@ -47,9 +47,15 @@ define "Stratifier P41Y--P9999Y":
   "Well-Visit Encounter" E
     where Patient.ageInYearsAt(end of E.period) >= 41
 
-/* Value-based Stratification */
+/* 
+  Value-based Stratification 
+  
+  Note that for value-based stratification of a non-subject-based measure, 
+  the expression may be a definition as "Gender Stratifier", or a function 
+  as "Age Range Stratifier"(Encounter)
+*/
 
-define function "Gender Stratifier"(encounter Encounter):
+define function "Gender Stratifier":
   Patient.gender
 
 define function "Age Range Stratifier"(encounter Encounter):
