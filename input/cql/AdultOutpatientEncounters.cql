@@ -9,6 +9,7 @@ using FHIR version '4.0.1'
 
 include hl7.fhir.uv.cql.FHIRHelpers version '4.0.1' called FHIRHelpers
 include hl7.fhir.uv.cql.FHIRCommon version '2.0.0' called FHIRCommon
+include hl7.fhir.us.cql.USCoreCommon called USCoreCommon
 include Status version '2.0.000'
 
 valueset "Annual Wellness Visit": 'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.3.1240' 

@@ -41,16 +41,16 @@
     <dependsOn id="uscql">
       <uri value="http://hl7.org/fhir/us/cql/ImplementationGuide/hl7.fhir.us.cql"/>
       <packageId value="hl7.fhir.us.cql"/>
+      <version value="1.0.0"/>
       <!--Use dev version to access the proposed TC -->
-      <!--version value="1.0.1"/-->
-      <version value="dev"/>
+      <!--version value="dev"/-->
     </dependsOn>    
     <dependsOn id="qicore">
       <uri value="http://hl7.org/fhir/us/qicore/ImplementationGuide/hl7.fhir.us.qicore"/>
       <packageId value="hl7.fhir.us.qicore"/>
+      <version value="7.0.2"/>
       <!--Use dev version to access the proposed TC -->
-      <!--version value="7.0.2"/-->
-      <version value="dev"/>
+      <!--version value="dev"/-->
     </dependsOn>
     <dependsOn id="qm">
       <uri value="http://hl7.org/fhir/uv/cqm/ImplementationGuide/hl7.fhir.uv.cqm"/>
