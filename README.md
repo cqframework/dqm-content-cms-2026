@@ -1,11 +1,9 @@
-# dqm-content-qicore-2026
-dQM Measure Content (Using QICore 7.0.2, based on FHIR R4 v4.0.1)
-
-These draft FHIR-based measures and shared libraries are updated from the FHIR dQMs in the [dqm-content-qicore-2025](https://github.com/cqframework/dqm-content-qicore-2025) repository, as well as authored directly in support of the January 2026 HL7 FHIR Connectathon.
+# dqm-content-cms-2026
+This repository contains example dQM content built using the USQualityCore 0.1.0-cibuild, US Core 6.1.0-derived, and CarinBB 2.1.1 models. The examples have been developed purely for testing purposes to demonstrate advanced dQM measure specification capability. Measure content in this repository was developed manually using the VSCode CQL Authoring plugin.
 
 Commits to this repository will automatically trigger a build of the continuous integration build, available here:
 
-https://build.fhir.org/ig/cqframework/dqm-content-qicore-2026
+https://build.fhir.org/ig/cqframework/dqm-content-cms-2026
 
 ## Repository Structure
 
@@ -27,7 +25,7 @@ This repository is setup like any HL7 FHIR IG project but also includes the CQL 
        |-- measure
            |-- <bundles>
    |-- input
-       |-- dqm-content-qicore-2026.xml
+       |-- dqm-content-cms-2026.xml
        |-- cql
            |-- <library name>.cql
        |-- pagecontent

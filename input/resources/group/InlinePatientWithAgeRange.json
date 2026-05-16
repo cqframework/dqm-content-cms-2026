@@ -1,0 +1,19 @@
+{
+    "resourceType": "Group",
+    "id": "InlinePatientWithAgeRange",
+    "extension": [{
+        "url": "http://hl7.org/fhir/StructureDefinition/artifact-url",
+        "valueUri": "https://research.balgrist.ch/Group/InlinePatientWithAgeRange"
+    }, {
+        "url": "http://hl7.org/fhir/StructureDefinition/characteristicExpression",
+        "valueExpression": {
+            "language": "text/cql-expression",
+            "expression": "Patient.birthDate >= Today() - 18 years"
+        }
+    }],
+    "active": true,
+    "type": "person",
+    "actual": false,
+    "code": { "text": "TODO: How do we specify subjectType" },
+    "name": "InlinePatientWithAgeRange"
+}

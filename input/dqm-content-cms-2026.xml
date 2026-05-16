@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ImplementationGuide xmlns="http://hl7.org/fhir">
+    <id value="cms.madie"/>
+    <url value="https://madie.cms.gov/ImplementationGuide/cms.madie"/>
+    <version value="2026.1.0"/>
+    <name value="DQMContentCMS"/>
+    <title value="dQM CMS Content Implementation Guide"/>
+    <status value="draft"/>
+    <experimental value="true"/>
+    <date value="2026-05-16"/>
+    <publisher value="cqframework"/>
+    <contact>
+      <telecom>
+        <system value="url"/>
+        <value value="https://github.com/cqframework/dqm-content-cms-2026"/>
+      </telecom>
+    </contact>
+    <description value="Draft digital Quality Measure (dQM) Content Implementation Guide"/>
+    <packageId value="cms.madie"/>
+    <!-- TODO: Identify the license for this content -->
+    <license value="CC0-1.0"/>
+	  <fhirVersion value="4.0.1"/>
+    <!--dependsOn id="terminology">
+      <uri value="http://terminology.hl7.org/ImplementationGuide/hl7.terminology"/>
+      <packageId value="hl7.terminology.r4"/>
+      <version value="6.3.0"/>
+    </dependsOn-->
+    <!--dependsOn id="extensions">
+      <uri value="http://hl7.org/fhir/extensions/ImplementationGuide/hl7.fhir.uv.extensions"/>
+      <packageId value="hl7.fhir.uv.extensions.r4"/>
+      <version value="5.2.0"/>
+    </dependsOn-->
+    <dependsOn id="cql">
+      <uri value="http://hl7.org/fhir/uv/cql/ImplementationGuide/hl7.fhir.uv.cql"/>
+      <packageId value="hl7.fhir.uv.cql"/>
+      <!--Use the newer version so we can take advantage of new FHIRCommon content  -->
+      <version value="2.0.0"/>
+    </dependsOn>    
+    <dependsOn id="uscql">
+      <uri value="http://hl7.org/fhir/us/cql/ImplementationGuide/hl7.fhir.us.cql"/>
+      <packageId value="hl7.fhir.us.cql"/>
+      <version value="2.0.0-ballot"/>
+    </dependsOn>    
+    <dependsOn id="qm">
+      <uri value="http://hl7.org/fhir/uv/cqm/ImplementationGuide/hl7.fhir.uv.cqm"/>
+      <packageId value="hl7.fhir.uv.cqm"/>
+      <version value="1.0.0"/>
+    </dependsOn>
+    <definition>
+      <resource>
+        <reference>
+          <reference value="Parameters/manifest"/>
+        </reference>
+        <name value="Input Expansion Parameters"/>
+        <description value="The input expansion parameters resource for this implementation guide, specifying SNOMED Edition and version. This resource will be contained within the published implementation guide with all pinned references."/>
+        <exampleBoolean value="false"/>
+      </resource>
+        <page>
+          <nameUrl value="toc.html" />
+          <title value="Table of Contents" />
+          <generation value="html" />
+          <page>
+            <nameUrl value="index.html" />
+            <title value="Home" />
+            <generation value="markdown" />
+          </page>
+          <page>
+            <nameUrl value="libraries.html"/>
+            <title value="Libraries" />
+            <generation value="markdown" />
+          </page>
+          <page>
+            <nameUrl value="measures.html" />
+            <title value="Measures" />
+            <generation value="markdown" />
+          </page>
+          <page>
+            <nameUrl value="downloads.html" />
+            <title value="Downloads" />
+            <generation value="markdown" />
+          </page>
+          <page>
+            <nameUrl value="license.html" />
+            <title value="License" />
+            <generation value="markdown" />
+          </page>
+        </page>
+
+        <!-- copyright year is a mandatory parameter -->
+        <parameter>
+          <code value="copyrightyear" />
+          <value value="2026+" />
+        </parameter>
+        <!-- releaselabel should be the ballot status for HL7-published IGs. -->
+        <parameter>
+          <code value="releaselabel" />
+          <value value="CI Build" />
+        </parameter>
+        <!-- apply-contact is false because this is maintained per artifact -->
+        <parameter>
+          <code value="apply-contact"/>
+          <value value="false"/>
+        </parameter>
+        <!-- apply-context is false because this is maintained per artifact -->
+        <parameter>
+          <code value="apply-context"/>
+          <value value="false"/>
+        </parameter>
+        <!-- apply-copyright is false because this is maintained per artifact -->
+        <parameter>
+          <code value="apply-copyright"/>
+          <value value="false"/>
+        </parameter>
+        <!-- apply-jurisdiction is false because this is maintained per artifact -->
+        <parameter>
+          <code value="apply-jurisdiction"/>
+          <value value="false"/>
+        </parameter>
+        <!-- apply-license is false because this is maintained per artifact -->
+        <parameter>
+          <code value="apply-license"/>
+          <value value="false"/>
+        </parameter>
+        <!-- apply-publisher is false because this is maintained per artifact -->
+        <parameter>
+          <code value="apply-publisher"/>
+          <value value="false"/>
+        </parameter>
+
+        <!-- applyVersion is false because this is maintained per artifact -->
+        <parameter>
+          <code value="apply-version"/>
+          <value value="false"/>
+        </parameter>
+
+        <!-- defaultVersion, if none specified -->
+        <parameter>
+          <code value="default-version"/>
+          <value value="true"/>
+        </parameter>
+
+        <parameter>
+          <code value="find-other-resources" />
+          <value value="true" />
+        </parameter>
+
+        <parameter>
+          <code value="path-pages" />
+          <value value="input/pagecontent"/>
+        </parameter>
+        <parameter>
+          <code value="path-resource" />
+          <value value="input/resources/library"/>
+        </parameter>
+        <parameter>
+          <code value="path-resource" />
+          <value value="input/resources/measure"/>
+        </parameter>
+        <parameter>
+          <code value="path-resource"/>
+          <value value="input/resources/parameters"/>
+        </parameter>
+        <parameter>
+          <code value="path-resource" />
+          <value value="input/vocabulary/valueset"/>
+        </parameter>
+        <parameter>
+          <code value="path-binary"/>
+          <value value="input/cql"/>
+        </parameter>
+        <parameter>
+          <code value="path-liquid-ig"/>
+          <value value="templates\liquid"/>
+        </parameter>
+
+        <parameter>
+          <code value="path-expansion-params"/>
+          <value value="resources/parameters/Parameters-manifest.json"/>
+        </parameter>
+        <parameter>
+          <code value="pin-canonicals"/>
+          <value value="pin-all"/>
+        </parameter>
+        <parameter>
+          <code value="pin-manifest"/>
+          <value value="manifest"/>
+        </parameter>
+        <parameter>
+          <code value="pin-external"/>
+          <value value="true"/>
+        </parameter>
+
+        <!-- Uncomment one or more of these if you want to limit which syntaxes are supported or want to disable the display of mappings
+         <parameter>
+           <code value="excludexml"/>
+           <value value="true"/>
+         </parameter>
+         <parameter>
+           <code value="excludejson"/>
+           <value value="true"/>
+         </parameter>
+          -->
+         <parameter>
+           <code value="excludettl"/>
+           <value value="true"/>
+         </parameter>
+         <!--
+         <parameter>
+           <code value="excludemap"/>
+           <value value="true"/>
+         </parameter>-->
+    </definition>
+</ImplementationGuide>

@@ -1,15 +1,16 @@
 /*
-NOTE: For use by January 2026 Connectathon participants for internal use only. Not for use or distribution in commercial products.
+NOTE: For use by March 2026 US Realm Connectathon participants for internal use only. Not for use or distribution in commercial products.
 */
-library PalliativeCare version '2.0.000'
+library PalliativeCare version '2.1.000'
 
-using QICore version '7.0.2'
-using USCore version '7.0.0'
+using USQualityCore version '0.1.0-cibuild'
+using USCore version '6.1.0-derived'
 using FHIR version '4.0.1'
 
 include hl7.fhir.uv.cql.FHIRHelpers version '4.0.1' called FHIRHelpers
 include hl7.fhir.uv.cql.FHIRCommon version '2.0.0' called FHIRCommon
-include Status version '2.0.000' called Status
+
+include Status version '2.1.000' called Status
 
 codesystem "LOINC": 'http://loinc.org'
 
@@ -25,16 +26,16 @@ context Patient
 
 define "Has Palliative Care in the Measurement Period":
   // TODO: Shouldn't need to specify a code path here (see https://jira.hl7.org/browse/FHIR-53941)
-  exists ((([ObservationScreeningAssessment: code ~ "Functional Assessment of Chronic Illness Therapy - Palliative Care Questionnaire (FACIT-Pal)"]).isAssessmentPerformed()) PalliativeAssessment
+  exists ((([USQualityCore.ObservationScreeningAssessment: code ~ "Functional Assessment of Chronic Illness Therapy - Palliative Care Questionnaire (FACIT-Pal)"]).isAssessmentPerformed()) PalliativeAssessment
       where PalliativeAssessment.effective.toInterval() overlaps day of "Measurement Period"
   )
     // TODO: Consider whether to keep this as the union of the problems and encounter diagnosis list? Anything enforced by the profiles that is expected but isn't stated here?
-    or exists ((([Condition: "Palliative Care Diagnosis"]).verified()) PalliativeDiagnosis
+    or exists ((([FHIR.Condition: "Palliative Care Diagnosis"]).verified()) PalliativeDiagnosis
         where PalliativeDiagnosis.prevalenceInterval() overlaps day of "Measurement Period"
     )
-    or exists ((([QICore.Encounter: "Palliative Care Encounter"]).isEncounterPerformed()) PalliativeEncounter
+    or exists ((([USQualityCore.Encounter: "Palliative Care Encounter"]).isEncounterPerformed()) PalliativeEncounter
         where PalliativeEncounter.period overlaps day of "Measurement Period"
     )
-    or exists ((([QICore.Procedure: "Palliative Care Intervention"]).isInterventionPerformed()) PalliativeIntervention
+    or exists ((([USQualityCore.Procedure: "Palliative Care Intervention"]).isInterventionPerformed()) PalliativeIntervention
         where PalliativeIntervention.performed.toInterval() overlaps day of "Measurement Period"
     )

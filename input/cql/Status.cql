@@ -1,15 +1,15 @@
 /*
 @description: This library contains functions used to constrain FHIR resource elements for measures 
-authored by NCQA, based on QICore 7.0.0 resources including IG and authoring patterns. The functions 
+authored by NCQA, based on QICore 7.0.0 resources then refactoring to use USQualityCore 0.1.0 including IG and authoring patterns. The functions 
 may appear similar to some QICoreCommon functions but differ in that they have constraints that are 
 relevant for measures authored by NCQA.
 
-NOTE: For use by January 2026 Connectathon participants for internal use only. Not for use or distribution in commercial products.
+NOTE: For use by March 2026 US Realm Connectathon participants for internal use only. Not for use or distribution in commercial products.
 */
-library Status version '2.0.000'
+library Status version '2.1.000'
 
-using QICore version '7.0.2'
-using USCore version '7.0.0'
+using USQualityCore version '0.1.0-cibuild'
+using USCore version '6.1.0-derived'
 using FHIR version '4.0.1'
 
 include hl7.fhir.uv.cql.FHIRHelpers version '4.0.1' called FHIRHelpers
@@ -25,12 +25,20 @@ code "confirmed": 'confirmed' from ConditionVerificationStatusCodes display 'con
 code "unconfirmed": 'unconfirmed' from ConditionVerificationStatusCodes display 'unconfirmed'
 code "provisional": 'provisional' from ConditionVerificationStatusCodes display 'provisional'
 code "differential": 'differential' from ConditionVerificationStatusCodes display 'differential'
+code "entered-in-error": 'entered-in-error' from ConditionVerificationStatusCodes display 'entered-in-error'
+code "refuted": 'refuted' from ConditionVerificationStatusCodes display 'refuted'
+code "inactive": 'inactive' from ConditionVerificationStatusCodes display 'inactive'
+code "resolved": 'resolved' from ConditionVerificationStatusCodes display 'resolved'
+code "remission": 'remission' from ConditionVerificationStatusCodes display 'remission'
 
 context Patient
 
-// TODO: Consider whether to use FHIR.Condition here
+// TODO: Deprecate because this is now in FHIRCommon
 //Condition
-//Returns conditions in the given list that either have no verification status or have a verification status of confirmed, unconfirmed, provisional, or differential
+/*
+@description: Returns conditions in the given list that either have no verification status or have a verification status of confirmed, unconfirmed, provisional, or differential
+@deprecated: Use the USCoreCommon verified function insteada
+*/
 define fluent function verified(conditions List<Choice<ConditionProblemsHealthConcerns, ConditionEncounterDiagnosis>>):
   conditions C
     where C.verificationStatus is not null implies
