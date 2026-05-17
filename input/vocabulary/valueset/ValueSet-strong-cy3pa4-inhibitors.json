@@ -1,0 +1,26 @@
+{
+  "resourceType": "ValueSet",
+  "id": "strong-cyp3a4-inhibitors",
+  "url": "https://example.org/fhir/ValueSet/strong-cyp3a4-inhibitors",
+  "version": "1.0.0",
+  "name": "StrongCYP3A4Inhibitors",
+  "title": "Strong CYP3A4 Inhibitor Medications",
+  "status": "draft",
+  "description": "RxNorm codes for strong CYP3A4 inhibitors that may interact with atorvastatin, including clarithromycin, HIV protease inhibitors, and itraconazole",
+  "compose": {
+    "include": [
+      {
+        "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+        "concept": [
+          { "code": "308460", "display": "Clarithromycin 500 MG Oral Tablet" },
+          { "code": "200344", "display": "Itraconazole 100 MG Oral Capsule" },
+          { "code": "349251", "display": "Ketoconazole 200 MG Oral Tablet" },
+          { "code": "349439", "display": "Ritonavir 100 MG Oral Tablet" },
+          { "code": "349478", "display": "Indinavir 400 MG Oral Capsule" },
+          { "code": "349476", "display": "Saquinavir 200 MG Oral Capsule" },
+          { "code": "359906", "display": "Nelfinavir 250 MG Oral Tablet" }
+        ]
+      }
+    ]
+  }
+}

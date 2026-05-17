@@ -1,0 +1,27 @@
+{
+  "resourceType": "Observation",
+  "id": "bilirubin-2",
+  "status": "final",
+  "code": {
+    "coding": [ {
+      "system": "http://loinc.org",
+      "code": "1975-2",
+      "display": "Bilirubin.total [Mass/volume] in Serum or Plasma"
+    } ]
+  },
+  "subject": {
+    "reference": "Patient/test-patient-2"
+  },
+  "valueQuantity": {
+    "value": 0.7,
+    "unit": "mg/dL",
+    "system": "http://unitsofmeasure.org",
+    "code": "mg/dL"
+  },
+  "referenceRange": [ {
+    "high": {
+      "value": 1.2,
+      "unit": "mg/dL"
+    }
+  } ]
+}

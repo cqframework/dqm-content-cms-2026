@@ -1,0 +1,27 @@
+{
+  "resourceType": "Observation",
+  "id": "creatinine-6",
+  "status": "final",
+  "code": {
+    "coding": [ {
+      "system": "http://loinc.org",
+      "code": "2160-0",
+      "display": "Creatinine [Mass/volume] in Serum or Plasma"
+    } ]
+  },
+  "subject": {
+    "reference": "Patient/test-patient-6"
+  },
+  "valueQuantity": {
+    "value": 0.9,
+    "unit": "mg/dL",
+    "system": "http://unitsofmeasure.org",
+    "code": "mg/dL"
+  },
+  "referenceRange": [ {
+    "high": {
+      "value": 1.4,
+      "unit": "mg/dL"
+    }
+  } ]
+}

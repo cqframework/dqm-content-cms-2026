@@ -1,0 +1,22 @@
+{
+  "resourceType": "ValueSet",
+  "id": "alkaline-phosphatase",
+  "url": "https://example.org/fhir/ValueSet/alkaline-phosphatase",
+  "version": "1.0.0",
+  "name": "AlkalinePhosphatase",
+  "title": "Alkaline Phosphatase Lab Tests",
+  "status": "draft",
+  "description": "LOINC codes for alkaline phosphatase laboratory observations",
+  "compose": {
+    "include": [
+      {
+        "system": "http://loinc.org",
+        "concept": [
+          { "code": "6768-6",  "display": "Alkaline phosphatase [Enzymatic activity/volume] in Serum or Plasma" },
+          { "code": "1779-8",  "display": "Alkaline phosphatase.liver [Enzymatic activity/volume] in Serum or Plasma" },
+          { "code": "59789-8", "display": "Alkaline phosphatase [Enzymatic activity/volume] in Blood" }
+        ]
+      }
+    ]
+  }
+}

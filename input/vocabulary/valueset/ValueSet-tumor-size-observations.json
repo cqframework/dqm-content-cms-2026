@@ -1,0 +1,35 @@
+{
+  "resourceType": "ValueSet",
+  "id": "tumor-size-observations",
+  "url": "https://example.org/fhir/ValueSet/tumor-size-observations",
+  "version": "1.0.0",
+  "name": "TumorSizeObservations",
+  "title": "Tumor Size Observations",
+  "status": "draft",
+  "description": "LOINC and SNOMED-CT codes for observations recording tumor size, used in pathology and imaging reports",
+  "compose": {
+    "include": [
+      {
+        "system": "http://loinc.org",
+        "concept": [
+          { "code": "21889-1",  "display": "Size Tumor" },
+          { "code": "33728-7",  "display": "Size.maximum dimension in Tumor" },
+          { "code": "44667-4",  "display": "Size.additional dimension in Tumor" },
+          { "code": "85319-2",  "display": "Size.maximum dimension in Tumor by Pathology report" },
+          { "code": "85320-0",  "display": "Size.additional dimension in Tumor by Pathology report" },
+          { "code": "33729-5",  "display": "Size.maximum dimension in Tumor by US" },
+          { "code": "33730-3",  "display": "Size.maximum dimension in Tumor by Mammogram" },
+          { "code": "33731-1",  "display": "Size.maximum dimension in Tumor by MRI" }
+        ]
+      },
+      {
+        "system": "http://snomed.info/sct",
+        "concept": [
+          { "code": "371479007", "display": "Tumor size, largest dimension (observable entity)" },
+          { "code": "384630000", "display": "Tumor size (observable entity)" },
+          { "code": "399067008", "display": "Tumor size, additional dimension (observable entity)" }
+        ]
+      }
+    ]
+  }
+}

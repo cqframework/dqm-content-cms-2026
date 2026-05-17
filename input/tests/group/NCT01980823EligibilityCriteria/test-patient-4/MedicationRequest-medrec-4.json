@@ -1,0 +1,9 @@
+{
+  "resourceType": "MedicationRequest",
+  "id": "medrec-4",
+  "status": "active",
+  "intent": "order",
+  "subject": {
+    "reference": "Patient/test-patient-4"
+  }
+}

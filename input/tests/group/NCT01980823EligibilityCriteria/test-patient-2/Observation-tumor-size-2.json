@@ -1,0 +1,21 @@
+{
+  "resourceType": "Observation",
+  "id": "tumor-size-2",
+  "status": "final",
+  "code": {
+    "coding": [ {
+      "system": "http://loinc.org",
+      "code": "85319-2",
+      "display": "Size.maximum dimension in Tumor by Pathology report"
+    } ]
+  },
+  "subject": {
+    "reference": "Patient/test-patient-2"
+  },
+  "valueQuantity": {
+    "value": 32,
+    "unit": "mm",
+    "system": "http://unitsofmeasure.org",
+    "code": "mm"
+  }
+}

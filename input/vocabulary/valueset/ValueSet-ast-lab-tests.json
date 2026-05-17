@@ -1,0 +1,22 @@
+{
+  "resourceType": "ValueSet",
+  "id": "ast-lab-tests",
+  "url": "https://example.org/fhir/ValueSet/ast-lab-tests",
+  "version": "1.0.0",
+  "name": "ASTLabTests",
+  "title": "Aspartate Transaminase (AST/SGOT) Lab Tests",
+  "status": "draft",
+  "description": "LOINC codes for AST (SGOT) laboratory observations",
+  "compose": {
+    "include": [
+      {
+        "system": "http://loinc.org",
+        "concept": [
+          { "code": "1920-8",  "display": "Aspartate aminotransferase [Enzymatic activity/volume] in Serum or Plasma" },
+          { "code": "30239-8", "display": "Aspartate aminotransferase [Enzymatic activity/volume] in Blood" },
+          { "code": "14409-7", "display": "Aspartate aminotransferase [Enzymatic activity/volume] in Serum or Plasma by No addition of P-5'-P" }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "resourceType": "Observation",
+  "id": "ast-2",
+  "status": "final",
+  "code": {
+    "coding": [ {
+      "system": "http://loinc.org",
+      "code": "1920-8",
+      "display": "Aspartate aminotransferase [Enzymatic activity/volume] in Serum or Plasma"
+    } ]
+  },
+  "subject": {
+    "reference": "Patient/test-patient-2"
+  },
+  "valueQuantity": {
+    "value": 31,
+    "unit": "U/L",
+    "system": "http://unitsofmeasure.org",
+    "code": "U/L"
+  },
+  "referenceRange": [ {
+    "high": {
+      "value": 40,
+      "unit": "U/L"
+    }
+  } ]
+}

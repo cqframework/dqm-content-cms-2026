@@ -1,0 +1,33 @@
+{
+  "resourceType": "ValueSet",
+  "id": "chemo-radiation-breast-resection",
+  "url": "https://example.org/fhir/ValueSet/chemo-radiation-breast-resection",
+  "version": "1.0.0",
+  "name": "ChemoRadiationBreastResection",
+  "title": "Chemotherapy, Radiation Therapy, or Breast Resection Procedures",
+  "status": "draft",
+  "description": "Procedures indicating prior chemotherapy, radiation therapy, or breast resection",
+  "compose": {
+    "include": [
+      {
+        "system": "http://snomed.info/sct",
+        "concept": [
+          { "code": "367336001", "display": "Chemotherapy (procedure)" },
+          { "code": "108290001", "display": "Radiation oncology AND/OR radiotherapy (procedure)" },
+          { "code": "69031006",  "display": "Excision of breast tissue (procedure)" },
+          { "code": "172043006", "display": "Simple mastectomy (procedure)" },
+          { "code": "392090004", "display": "Lumpectomy of breast (procedure)" }
+        ]
+      },
+      {
+        "system": "http://www.ama-assn.org/go/cpt",
+        "concept": [
+          { "code": "96401", "display": "Chemotherapy administration, subcutaneous or intramuscular" },
+          { "code": "77385", "display": "Intensity modulated radiation treatment delivery" },
+          { "code": "19301", "display": "Partial mastectomy (lumpectomy)" },
+          { "code": "19303", "display": "Simple complete mastectomy" }
+        ]
+      }
+    ]
+  }
+}

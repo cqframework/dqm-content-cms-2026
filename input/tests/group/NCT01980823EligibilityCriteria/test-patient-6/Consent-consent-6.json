@@ -1,0 +1,11 @@
+{
+  "resourceType": "Consent",
+  "id": "consent-6",
+  "status": "active",
+  "category": [ {
+    "coding": [ {
+      "system": "http://terminology.hl7.org/CodeSystem/v3-ActCode",
+      "code": "INFCONS"
+    } ]
+  } ]
+}

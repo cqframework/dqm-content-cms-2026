@@ -1,0 +1,29 @@
+{
+  "resourceType": "ValueSet",
+  "id": "core-needle-biopsy",
+  "url": "https://example.org/fhir/ValueSet/core-needle-biopsy",
+  "version": "1.0.0",
+  "name": "CoreNeedleBiopsy",
+  "title": "Core Needle Biopsy Procedures",
+  "status": "draft",
+  "description": "SNOMED-CT and CPT codes for core needle biopsy procedures",
+  "compose": {
+    "include": [
+      {
+        "system": "http://snomed.info/sct",
+        "concept": [
+          { "code": "44578009",  "display": "Core needle biopsy of breast (procedure)" },
+          { "code": "171000119109", "display": "Core needle biopsy of lesion of breast (procedure)" },
+          { "code": "274331003", "display": "Percutaneous needle biopsy of breast (procedure)" }
+        ]
+      },
+      {
+        "system": "http://www.ama-assn.org/go/cpt",
+        "concept": [
+          { "code": "19100", "display": "Biopsy of breast; percutaneous, needle core" },
+          { "code": "19081", "display": "Biopsy, breast, with placement of breast localization device, mammographic guidance" }
+        ]
+      }
+    ]
+  }
+}

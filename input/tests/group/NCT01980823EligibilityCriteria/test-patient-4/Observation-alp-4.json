@@ -1,0 +1,27 @@
+{
+  "resourceType": "Observation",
+  "id": "alp-4",
+  "status": "final",
+  "code": {
+    "coding": [ {
+      "system": "http://loinc.org",
+      "code": "6768-6",
+      "display": "Alkaline phosphatase [Enzymatic activity/volume] in Serum or Plasma"
+    } ]
+  },
+  "subject": {
+    "reference": "Patient/test-patient-4"
+  },
+  "valueQuantity": {
+    "value": 80,
+    "unit": "U/L",
+    "system": "http://unitsofmeasure.org",
+    "code": "U/L"
+  },
+  "referenceRange": [ {
+    "high": {
+      "value": 120,
+      "unit": "U/L"
+    }
+  } ]
+}

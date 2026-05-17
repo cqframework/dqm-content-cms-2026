@@ -2,7 +2,7 @@
 SET tooling_jar=tooling-cli-3.9.1.jar
 SET input_cache_path=%~dp0input-cache
 IF -%1-==-- (
-	SET mat_bundle=input\tests\measure\CMS2FHIRPCSDepressionScreenAndFollowUp
+	SET mat_bundle=input\tests\group\NCT01980823EligibilityCriteria
 ) ELSE (
 	SET mat_bundle=%1
 )

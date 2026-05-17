@@ -1,0 +1,23 @@
+{
+  "resourceType": "ValueSet",
+  "id": "serum-creatinine",
+  "url": "https://example.org/fhir/ValueSet/serum-creatinine",
+  "version": "1.0.0",
+  "name": "SerumCreatinine",
+  "title": "Serum Creatinine Lab Tests",
+  "status": "draft",
+  "description": "LOINC codes for serum creatinine laboratory observations",
+  "compose": {
+    "include": [
+      {
+        "system": "http://loinc.org",
+        "concept": [
+          { "code": "2160-0",  "display": "Creatinine [Mass/volume] in Serum or Plasma" },
+          { "code": "38483-4", "display": "Creatinine [Mass/volume] in Blood" },
+          { "code": "14682-9", "display": "Creatinine [Moles/volume] in Serum or Plasma" },
+          { "code": "21232-4", "display": "Creatinine [Mass/volume] in Arterial blood" }
+        ]
+      }
+    ]
+  }
+}

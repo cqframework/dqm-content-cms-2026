@@ -1,0 +1,16 @@
+{
+  "resourceType": "Observation",
+  "id": "ecog-1",
+  "status": "final",
+  "code": {
+    "coding": [ {
+      "system": "http://loinc.org",
+      "code": "89247-1",
+      "display": "ECOG Performance Status score"
+    } ]
+  },
+  "subject": {
+    "reference": "Patient/test-patient-1"
+  },
+  "valueInteger": 0
+}

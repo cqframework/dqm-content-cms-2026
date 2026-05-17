@@ -1,0 +1,16 @@
+{
+  "resourceType": "Procedure",
+  "id": "biopsy-3",
+  "status": "completed",
+  "code": {
+    "coding": [ {
+      "system": "http://snomed.info/sct",
+      "code": "44578009",
+      "display": "Core needle biopsy of breast (procedure)"
+    } ]
+  },
+  "subject": {
+    "reference": "Patient/test-patient-3"
+  },
+  "performedDateTime": "2026-04-20"
+}

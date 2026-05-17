@@ -1,0 +1,21 @@
+{
+  "resourceType": "Observation",
+  "id": "tumor-size-5",
+  "status": "final",
+  "code": {
+    "coding": [ {
+      "system": "http://loinc.org",
+      "code": "33728-7",
+      "display": "Size.maximum dimension in Tumor"
+    } ]
+  },
+  "subject": {
+    "reference": "Patient/test-patient-5"
+  },
+  "valueQuantity": {
+    "value": 20,
+    "unit": "mm",
+    "system": "http://unitsofmeasure.org",
+    "code": "mm"
+  }
+}

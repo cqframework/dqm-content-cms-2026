@@ -1,0 +1,26 @@
+{
+  "resourceType": "ValueSet",
+  "id": "diabetes-hypercholesterolemia-medications",
+  "url": "https://example.org/fhir/ValueSet/diabetes-hypercholesterolemia-medications",
+  "version": "1.0.0",
+  "name": "DiabetesHypercholesterolemiaMedications",
+  "title": "Medications for Diabetes or Hypercholesterolemia",
+  "status": "draft",
+  "description": "RxNorm codes for medications used to treat diabetes or hypercholesterolemia",
+  "compose": {
+    "include": [
+      {
+        "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+        "concept": [
+          { "code": "860975", "display": "Metformin Hydrochloride 500 MG Oral Tablet" },
+          { "code": "311040", "display": "Glipizide 5 MG Oral Tablet" },
+          { "code": "213442", "display": "Insulin glargine 100 UNT/ML Injectable Solution" },
+          { "code": "617310", "display": "Atorvastatin 10 MG Oral Tablet" },
+          { "code": "859751", "display": "Rosuvastatin 10 MG Oral Tablet" },
+          { "code": "200345", "display": "Simvastatin 20 MG Oral Tablet" },
+          { "code": "596723", "display": "Ezetimibe 10 MG Oral Tablet" }
+        ]
+      }
+    ]
+  }
+}

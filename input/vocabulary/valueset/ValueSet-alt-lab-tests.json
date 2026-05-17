@@ -1,0 +1,22 @@
+{
+  "resourceType": "ValueSet",
+  "id": "alt-lab-tests",
+  "url": "https://example.org/fhir/ValueSet/alt-lab-tests",
+  "version": "1.0.0",
+  "name": "ALTLabTests",
+  "title": "Alanine Transaminase (ALT/SGPT) Lab Tests",
+  "status": "draft",
+  "description": "LOINC codes for ALT (SGPT) laboratory observations",
+  "compose": {
+    "include": [
+      {
+        "system": "http://loinc.org",
+        "concept": [
+          { "code": "1742-6",  "display": "Alanine aminotransferase [Enzymatic activity/volume] in Serum or Plasma" },
+          { "code": "1743-4",  "display": "Alanine aminotransferase [Enzymatic activity/volume] in Serum or Plasma by No addition of P-5'-P" },
+          { "code": "76625-3", "display": "Alanine aminotransferase [Enzymatic activity/volume] in Blood" }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "resourceType": "ValueSet",
+  "id": "histologic-test",
+  "url": "https://example.org/fhir/ValueSet/histologic-test",
+  "version": "1.0.0",
+  "name": "HistologicTest",
+  "title": "Histologic Test Methods",
+  "status": "draft",
+  "description": "SNOMED-CT codes for histologic examination methods used to confirm diagnosis",
+  "compose": {
+    "include": [
+      {
+        "system": "http://snomed.info/sct",
+        "concept": [
+          { "code": "714797009", "display": "Histologic test (procedure)" },
+          { "code": "86273004",  "display": "Biopsy (procedure)" },
+          { "code": "119306004", "display": "Specimen from breast obtained by biopsy (specimen)" },
+          { "code": "250537006", "display": "Histopathology finding (finding)" }
+        ]
+      }
+    ]
+  }
+}

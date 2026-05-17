@@ -1,0 +1,39 @@
+{
+    "resourceType": "Group",
+    "id": "NCT01980823EligibilityCriteriaGroup",
+    "extension": [{
+        "url": "http://hl7.org/fhir/StructureDefinition/artifact-url",
+        "valueUri": "https://example.org/Group/NCT01980823EligibilityCriteriaGroup"
+    }, { 
+        "url": "http://hl7.org/fhir/StructureDefinition/cqf-library",
+        "valueCanonical": "https://example.org/Library/NCT01980823EligibilityCriteria"
+    }, {
+        "url": "http://hl7.org/fhir/StructureDefinition/characteristicExpression",
+        "valueExpression": {
+            "language": "text/cql-identifier",
+            "expression": "Is Eligible"
+        }
+    }, {
+        "url": "http://hl7.org/fhir/StructureDefinition/artifact-relatedArtifact",
+        "valueRelatedArtifact": {
+            "type": "derived-from",
+            "display": "NCT04077723 Eligibility Criteria - Englumafusp Alfa Plus Obinutuzumab for Relapsed/Refractory B-Cell NHL [Database Entry: FHIR Group Resource]. Contributors: Computable Publishing®: ClinicalTrials.gov-to-FEvIR Converter [Authors/Creators]. In: Fast Evidence Interoperability Resources (FEvIR) Platform, FOI 425038. Revised 2026-04-27. Available at: https://fevir.net/resources/Group/425038. Computable resource at: https://fevir.net/resources/Group/425038#json.",
+            "resource": "https://fevir.net/resources/Group/425038"
+        }
+    }, {
+        "url": "http://hl7.org/fhir/StructureDefinition/artifact-author",
+        "valueContactDetail": {
+            "name": "Claude, Sonnet 4.6"
+        }
+    }, {
+        "url": "http://hl7.org/fhir/StructureDefinition/artifact-editor",
+        "valueContactDetail": {
+            "name": "Bryn Rhodes"
+        }
+    }],
+    "active": true,
+    "type": "person",
+    "actual": false,
+    "code": { "text": "TODO: How do we specify subjectType" },
+    "name": "NCT01980823EligibilityCriteria"
+}
