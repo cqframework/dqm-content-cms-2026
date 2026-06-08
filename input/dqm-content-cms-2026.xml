@@ -41,6 +41,11 @@
       <packageId value="hl7.fhir.us.cql"/>
       <version value="2.0.0-ballot"/>
     </dependsOn>    
+    <dependsOn id="usqc">
+      <uri value="http://fhir.org/guides/onc/us-quality-core/ImplementationGuide/fhir.onc.us-quality-core"/>
+      <packageId value="fhir.onc.us-quality-core"/>
+      <version value="0.5.0"/>
+    </dependsOn>
     <dependsOn id="qm">
       <uri value="http://hl7.org/fhir/uv/cqm/ImplementationGuide/hl7.fhir.uv.cqm"/>
       <packageId value="hl7.fhir.uv.cqm"/>
@@ -51,8 +56,8 @@
         <reference>
           <reference value="Parameters/manifest"/>
         </reference>
-        <name value="Input Expansion Parameters"/>
-        <description value="The input expansion parameters resource for this implementation guide, specifying SNOMED Edition and version. This resource will be contained within the published implementation guide with all pinned references."/>
+        <name value="Expansion Parameters"/>
+        <description value="The expansion parameters resource for this implementation guide, specifying SNOMED Edition and version. This resource will be included in the published implementation guide with all pinned references."/>
         <exampleBoolean value="false"/>
       </resource>
         <page>
@@ -151,6 +156,10 @@
         <parameter>
           <code value="path-resource" />
           <value value="input/resources/library"/>
+        </parameter>
+        <parameter>
+          <code value="path-resource" />
+          <value value="input/resources/group"/>
         </parameter>
         <parameter>
           <code value="path-resource" />

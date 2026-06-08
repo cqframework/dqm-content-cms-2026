@@ -1,5 +1,5 @@
 # dqm-content-cms-2026
-This repository contains example dQM content built using the USQualityCore 0.1.0-cibuild, US Core 6.1.0-derived, and CarinBB 2.1.1 models. The examples have been developed purely for testing purposes to demonstrate advanced dQM measure specification capability. Measure content in this repository was developed manually using the VSCode CQL Authoring plugin.
+This repository contains example dQM content built using US Quality Core v0.5.0, US Core v6.1.0-derived, and CarinBB v2.1.1 models. The examples have been developed purely for testing purposes to demonstrate advanced dQM measure specification capability. Measure content in this repository was developed manually using the VSCode CQL Authoring plugin.
 
 Commits to this repository will automatically trigger a build of the continuous integration build, available here:
 

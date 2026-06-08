@@ -6,7 +6,7 @@ this library will be the MADiE environment once it fully supports use of US Qual
 */
 library CQMCommon version '5.1.000'
 
-using USQualityCore version '0.1.0-cibuild'
+using USQualityCore version '0.5.0'
 using USCore version '6.1.0-derived'
 using FHIR version '4.0.1'
 
@@ -14,6 +14,7 @@ include hl7.fhir.uv.cql.FHIRHelpers version '4.0.1' called FHIRHelpers
 include hl7.fhir.uv.cql.FHIRCommon version '2.0.0' called FHIRCommon
 include hl7.fhir.us.cql.USCoreCommon version '2.0.0-ballot' called USCoreCommon
 include hl7.fhir.us.cql.USCoreElements version '2.0.0-ballot' called USCoreElements
+include fhir.onc."us-quality-core".USQualityCoreCommon version '0.5.0' called USQCoreCommon
 
 codesystem DiagnosisRole: 'http://terminology.hl7.org/CodeSystem/diagnosis-role'
 codesystem "Diagnosis Type": 'http://terminology.hl7.org/CodeSystem/ex-diagnosistype'
@@ -26,6 +27,8 @@ valueset "Intensive Care Unit": 'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1
 valueset "Observation Services": 'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1111.143'
 valueset "Outpatient Surgery Service": 'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1110.38'
 valueset "Present on Admission or Clinically Undetermined": 'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1147.197'
+valueset "Healthcare Service Location": 'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.1.11.20275'
+valueset "NHSN Healthcare Service Location Code": 'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.13.19'
 
 code "Billing": 'billing' from DiagnosisRole display 'Billing'
 code "Admitting Diagnosis": 'admitting' from "Diagnosis Type" display 'Admitting Diagnosis'
@@ -431,14 +434,18 @@ define fluent function firstInpatientIntensiveCareUnit(Encounter Encounter ):
 */
 define function "EncounterDiagnosis"(Encounter Encounter ):
   Encounter.diagnosis D
-	return singleton from (([ConditionEncounterDiagnosis] union [ConditionProblemsHealthConcerns]) C where D.condition.references(C.id))
+	return singleton from ([Condition] C where D.condition.references(C))
 
 /*  
-@description: Returns the Condition resources referenced by the diagnosis element of the Encounter  
+@description: Returns the Condition resources referenced by the reason element of the Encounter  
 */
-define fluent function encounterDiagnosis(Encounter Encounter ):
+define fluent function encounterReasonDiagnosis(Encounter Encounter ):
   Encounter.reasonReference D
-    return singleton from (([ConditionEncounterDiagnosis] union [ConditionProblemsHealthConcerns]) C where D.references(C.id))
+    return singleton from ([Condition] C where D.references(C))
+
+define fluent function encounterDiagnosis(diagnosis FHIR.Encounter.Diagnosis):
+  diagnosis D
+    return singleton from ([Condition] C where D.condition.references(C))
 
 
 /*
@@ -466,13 +473,14 @@ define function "PrincipalDiagnosis"(Encounter Encounter):
 
 /*
 @description: Returns the claim diagnosis element that is specified as the principal diagnosis for the encounter
- @comment: See the QICore 6 Authoring Patterns discussion on [Principal Diagnosis and Present on Admission](https://github.com/cqframework/CQL-Formatting-and-Usage-Wiki/wiki/Authoring-Patterns-QICore-v6.0.0#conditions-present-on-admission-and-principal-diagnoses) for more information
+@comment: See the QICore 6 Authoring Patterns discussion on [Principal Diagnosis and Present on Admission](https://github.com/cqframework/CQL-Formatting-and-Usage-Wiki/wiki/Authoring-Patterns-QICore-v6.0.0#conditions-present-on-admission-and-principal-diagnoses) for more information
 */
 define fluent function principalDiagnosis(encounter Encounter):
 singleton from (
      (encounter.claimDiagnosis()) CD
        where CD.type.includesCode("Principal Diagnosis")
    )
+
 /*
 @description: Returns the claim diagnosis elements for the given encounter
 @comment: See the QICore 6 Authoring Patterns discussion on [Principal Diagnosis and Present on Admission](https://github.com/cqframework/CQL-Formatting-and-Usage-Wiki/wiki/Authoring-Patterns-QICore-v6.0.0#conditions-present-on-admission-and-principal-diagnoses) for more information
@@ -484,29 +492,71 @@ define fluent function claimDiagnosis(encounter Encounter):
       claimItem: (claim.item I where I.encounter.references(E))
     return claim.diagnosis D where D.sequence in claimItem.diagnosisSequence
 
+/*
+@description: Returns the condition that is specified as the principal diagnosis for the encounter and has a code in the given valueSet.
+@comment: See the QICore 6 Authoring Patterns discussion on [Principal Diagnosis and Present on Admission](https://github.com/cqframework/CQL-Formatting-and-Usage-Wiki/wiki/Authoring-Patterns-QICore-v6.0.0#conditions-present-on-admission-and-principal-diagnoses) for more information
+*/
+define fluent function hasPrincipalDiagnosisOf(encounter Encounter, valueSet System.ValueSet):
+  (encounter.principalDiagnosis()) PD
+    return PD.diagnosis in valueSet
+      or PD.diagnosis.getCondition().code in valueSet
+
 
 /*
- @description: Returns the condition that is specified as the principal diagnosis for the encounter and has a code in the given valueSet.
- @comment: See the QICore 6 Authoring Patterns discussion on [Principal Diagnosis and Present on Admission](https://github.com/cqframework/CQL-Formatting-and-Usage-Wiki/wiki/Authoring-Patterns-QICore-v6.0.0#conditions-present-on-admission-and-principal-diagnoses) for more information
- */
- define fluent function hasPrincipalDiagnosisOf(encounter Encounter, valueSet System.ValueSet):
-   (encounter.principalDiagnosis()) PD
-     return PD.diagnosis in valueSet
-       or PD.diagnosis.getCondition().code in valueSet
-
+@description: Returns true if the encounter has an encounter diagnosis code in the given valueSet.
+*/
+define fluent function hasEncounterDiagnosisOf(encounter Encounter, valueSet System.ValueSet):
+    exists (
+		encounter.reasonCode R
+		  where R in valueSet
+	)
+		or exists (
+			from
+				encounter.reasonReference R,
+				[ConditionEncounterDiagnosis] C
+			where R.references(C)
+				and C.code in valueSet
+		)
+		or exists (
+			from
+				encounter.diagnosis D,
+				[ConditionEncounterDiagnosis] C
+			where D.condition.references(C)
+				and C.code in valueSet
+		)
+	
 /*
- @description: Returns true if the given diagnosis is present on admission, based on the given poaValueSet
- @comment: See the QICore 6 Authoring Patterns discussion on [Principal Diagnosis and Present on Admission](https://github.com/cqframework/CQL-Formatting-and-Usage-Wiki/wiki/Authoring-Patterns-QICore-v6.0.0#conditions-present-on-admission-and-principal-diagnoses) for more information
- */
- define fluent function isDiagnosisPresentOnAdmission(encounter Encounter, diagnosisValueSet System.ValueSet, poaValueSet System.ValueSet):
-   exists (
-     (encounter.claimDiagnosis()) CD
-       where CD.onAdmission in poaValueSet
-         and (
-           CD.diagnosis in diagnosisValueSet
-             or CD.diagnosis.getCondition().code in diagnosisValueSet
-         )
-   )
+@description: Returns true if the given diagnosis is present on admission, based on the given poaValueSet
+@comment: See the QICore 6 Authoring Patterns discussion on [Principal Diagnosis and Present on Admission](https://github.com/cqframework/CQL-Formatting-and-Usage-Wiki/wiki/Authoring-Patterns-QICore-v6.0.0#conditions-present-on-admission-and-principal-diagnoses) for more information
+*/
+define fluent function isDiagnosisPresentOnAdmission(encounter Encounter, diagnosisValueSet System.ValueSet, poaValueSet System.ValueSet):
+  exists (
+	encounter.reasonCode R
+		where R in diagnosisValueSet
+  )
+    or exists (
+		from
+			encounter.reasonReference R,
+			[ConditionEncounterDiagnosis] C
+		where R.references(C)
+		  and C.code in diagnosisValueSet
+	)
+    or exists (
+		from
+			encounter.diagnosis D,
+			[ConditionEncounterDiagnosis] C
+		where D.condition.references(C)
+			and C.code in diagnosisValueSet
+			and D.use ~ "Admitting Diagnosis"
+	)
+	or exists (
+		(encounter.claimDiagnosis()) CD
+			where CD.onAdmission in poaValueSet
+				and (
+					CD.diagnosis in diagnosisValueSet
+						or CD.diagnosis.getCondition().code in diagnosisValueSet
+				)
+	)
 
 /*
 @description: Returns the Location resource specified by the given reference
@@ -554,3 +604,35 @@ define fluent function principalProcedure(encounter Encounter):
         claimItem: claim.item I where I.encounter.references(E),
         princProcedure: singleton from (claim.procedure P where P.sequence in claimItem.procedureSequence and P.type.includesCode("Primary procedure"))
     return princProcedure
+
+/*
+@description: Returns true if the encounter has a principal procedure with a code in the given value set
+*/
+define fluent function hasPrincipalProcedureOf(encounter Encounter, valueSet System.ValueSet):
+	encounter E
+		let
+			PPx: E.principalProcedure(),
+			CPx: singleton from ([Procedure] P where PPx.procedure.references(P))
+		return PPx.procedure as CodeableConcept in valueSet
+  			or CPx.code in valueSet
+
+/*
+Encounter Topics:
+* HSLOC Codes for representation: 
+    * valueset "Healthcare Service Location": 'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.1.11.20275'
+    * valueset "NHSN Healthcare Service Location Code": 'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.13.19'
+* Normalized representation of encounters
+    * Encounter class codes
+	* Encounter type codes
+	* Encounter.location codes
+	* Support for mappings?
+* Encounter Diagnosis Codes
+    * reasonCode
+	* reasonReference
+	* diagnosis.condition, .use, and .rank
+	* EncounterDiagnosis.encounter?
+	* .claimDiagnosis
+* presentOnAdmission
+* principalDiagnosis
+* principalProcedure
+*/
