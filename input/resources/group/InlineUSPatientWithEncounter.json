@@ -1,9 +1,9 @@
 {
     "resourceType": "Group",
-    "id": "InlinePatientWithEncounter",
+    "id": "InlineUSPatientWithEncounter",
     "extension": [{
         "url": "http://hl7.org/fhir/StructureDefinition/artifact-url",
-        "valueUri": "https://research.balgrist.ch/Group/InlinePatientWithEncounter"
+        "valueUri": "https://research.balgrist.ch/Group/InlineUSPatientWithEncounter"
     }, { 
         "url": "http://hl7.org/fhir/StructureDefinition/cqf-library",
         "valueCanonical": "http://hl7.org/fhir/us/cql/Library/USCoreCommon"
@@ -18,5 +18,5 @@
     "type": "person",
     "actual": false,
     "code": { "text": "TODO: How do we specify subjectType" },
-    "name": "InlinePatientWithEncounter"
+    "name": "InlineUSPatientWithEncounter"
 }

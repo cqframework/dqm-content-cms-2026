@@ -2,7 +2,7 @@ library ImagingStudyFeasibilityTest version '1.0.0'
 
 using FHIR version '4.0.1'
 
-include FHIRHelpers version '4.0.1'
+include hl7.fhir.uv.cql.FHIRHelpers version '4.0.1'
 
 codesystem DICOM: 'http://dicom.nema.org/resources/ontology/DCM'
 
