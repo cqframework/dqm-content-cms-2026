@@ -82,101 +82,126 @@ define "Bacteremia or Fungemia Result With Specimen":
       specimen: S
     }
 
-// TODO: Needs to account for Outpatient (i.e. never admitted)
-define "Encounter With ED and Observation":
+// Assertion is that there is never more than one ED/Observation preceding an inpatient stay
+// i.e. ED -> ED -> Inpatient, ED -> Observation -> ED -> Inpatient, Observation -> Inpatient are all combinations that will never appear
+// Build encounter normalization logic
+// Encounter.classHistory is not populated
+// Encounter normalization
+define "Outpatient Encounter":
+  [Encounter: CQMCommon."Emergency Department Visit"] ED
+    let observationEncounter: First(
+      [Encounter: CQMCommon."Observation Services"] O
+        where O.period starts 1 hour or less on or before end of ED.period
+        sort by start of period
+    ),
+    endOfStay: Coalesce(end of observationEncounter.period, end of ED.period),
+    inpatientEncounter: First(
+      [Encounter: CQMCommon."Encounter Inpatient"] E
+        where E.period starts 1 hour or less on or before endOfStay
+    )
+  return {
+    edEncounter: ED,
+    observationEncounter: observationEncounter,
+    inpatientEncounter: inpatientEncounter,
+    outpatientStay: Interval[start of ED.period, Coalesce(start of inpatientEncounter.period, endOfStay)],
+    inpatientStay: inpatientEncounter.period
+  }
+
+define "Inpatient Encounter":
   [Encounter: CQMCommon."Encounter Inpatient"] E
-    let observationVisit: Last(
+    let observationEncounter: Last(
       [Encounter: CQMCommon."Observation Services"] O
         where O.period ends 1 hour or less on or before start of E.period
         sort by end of period
     ),
-    visitStart: Coalesce(start of observationVisit.period, start of E.period),
-    edVisit: Last(
+    visitStart: Coalesce(start of observationEncounter.period, start of E.period),
+    edEncounter: Last(
       [Encounter: CQMCommon."Emergency Department Visit"] ED
-        where ED.period ends 1 hour or less on or before start of E.period
+        where ED.period ends 1 hour or less on or before visitStart
         sort by end of period
     ),
-    edOrObservationPeriod: 
-      if edVisit is null and observationVisit is null then 
-        null 
+    outpatientStay:
+      if observationEncounter is null and edEncounter is null then
+        null
       else
-        Interval[Coalesce(start of edVisit.period, start of observationVisit.period), start of E.period],
-    inpatientStay: E.period
-  return {
-    encounter: E,
-    observationVisit: observationVisit,
-    edVisit: edVisit,
-    edOrObservationPeriod: edOrObservationPeriod,
-    inpatientStay: inpatientStay
-  }
+        Interval[Coalesce(start of edEncounter.period, start of observationEncounter.period), start of E.period]
+    return {
+      edEncounter: edEncounter,
+      observationEncounter: observationEncounter,
+      inpatientEncounter: E,
+      outpatientStay: outpatientStay,
+      inpatientStay: E.period
+    }
 
 // TODO: USCDI+ Quality/USCDI Gap (Specimen Collection Time)
 define "Encounter With O-COB Result":
-  "Encounter With ED and Observation" E
+  "Outpatient Encounter" E
     let results: (
       "Bacteremia or Fungemia Result With Specimen" RS 
         where RS.specimen.collection.collected.toInterval()
-          during E.edOrObservationPeriod
+          during E.outpatientStay
     )
+    where exists (results)
     return {
-      encounter: E.encounter,
-      observationVisit: E.observationVisit,
-      edVisit: E.edVisit,
-      edOrObservationPeriod: E.edOrObservationPeriod,
+      edEncounter: E.edEncounter,
+      observationEncounter: E.observationEncounter,
+      inpatientEncounter: E.inpatientEncounter,
+      outpatientStay: E.outpatientStay,
       inpatientStay: E.inpatientStay,
       indexDate: Min(results R return start of R.specimen.collection.collected.toInterval()),
       organisms: results R return R.result.value as CodeableConcept
     }
 
 define "Encounter With COB Result":
-  "Encounter With O-COB Result" E
-    let results: (
-      "Bacteremia or Fungemia Result With Specimen" RS
-        where RS.specimen.collection.collected.toInterval()
-          during day of Interval[start of E.inpatientStay, start of E.inpatientStay + 3 days]
-          and not exists (
-            E.organisms O
-              where O.organismMatches(RS.result.value as CodeableConcept)
-          )
+  "Inpatient Encounter" E
+    let 
+      oCOB: "Encounter With O-COB Result" oCOBEncounter where E.inpatientEncounter.id = oCOBEncounter.inpatientEncounter.id,
+      results: (
+        "Bacteremia or Fungemia Result With Specimen" RS
+          where RS.specimen.collection.collected.toInterval()
+            during day of Interval[start of E.inpatientStay, start of E.inpatientStay + 3 days]
+            and not exists (
+              oCOB.organisms O
+                where O.organismMatches(RS.result.value as CodeableConcept)
+            )
     )
+    where exists (results)
     return {
-      encounter: E.encounter,
-      observationVisit: E.observationVisit,
-      edVisit: E.edVisit,
-      edOrObservationPeriod: E.edOrObservationPeriod,
+      edEncounter: E.edEncounter,
+      observationEncounter: E.observationEncounter,
+      inpatientEncounter: E.inpatientEncounter,
+      outpatientStay: E.outpatientStay,
       inpatientStay: E.inpatientStay,
-      ocobIndexDate: E.indexDate,
-      ocobOrganisms: E.organisms,
       indexDate: Min(results R return start of R.specimen.collection.collected.toInterval()),
       organisms: results R return R.result.value as CodeableConcept
     }
 
-// TODO: Check that inpatientStay is more than 4 days
 define "Encounter with HOB Result":
-  "Encounter With COB Result" E
-    let results: (
-      "Bacteremia or Fungemia Result With Specimen" RS
-        where RS.specimen.collection.collected.toInterval()
-          during day of Interval[start of E.inpatientStay + 4 days, end of E.inpatientStay]
-          and not exists (
-            E.organisms O
-              where O.organismMatches(RS.result.value as CodeableConcept)
-          )
-          and not exists (
-            E.ocobOrganisms O
-              where O.organismMatches(RS.result.value as CodeableConcept)
-          )
+  "Inpatient Encounter" E
+    let 
+      oCOB: "Encounter With O-COB Result" oCOBEncounter where E.inpatientEncounter.id = oCOBEncounter.inpatientEncounter.id,
+      COB: "Encounter With COB Result" COBEncounter where E.inpatientEncounter.id = COBEncounter.inpatientEncounter.id,
+      results: (
+        "Bacteremia or Fungemia Result With Specimen" RS
+          where RS.specimen.collection.collected.toInterval()
+            during day of Interval[start of E.inpatientStay + 4 days, end of E.inpatientStay]
+            and not exists (
+              oCOB.organisms O
+                where O.organismMatches(RS.result.value as CodeableConcept)
+            )
+            and not exists (
+              COB.organisms O
+                where O.organismMatches(RS.result.value as CodeableConcept)
+            )
     )
+    where duration in days of E.inpatientStay > 3
+      and exists (results)
     return {
-      encounter: E.encounter,
-      observationVisit: E.observationVisit,
-      edVisit: E.edVisit,
-      edOrObservationPeriod: E.edOrObservationPeriod,
+      edEncounter: E.edEncounter,
+      observationEncounter: E.observationEncounter,
+      inpatientEncounter: E.inpatientEncounter,
+      outpatientStay: E.outpatientStay,
       inpatientStay: E.inpatientStay,
-      ocobIndexDate: E.ocobIndexDate,
-      ocobOrganisms: E.ocobOrganisms,
-      cobIndexDate: E.indexDate,
-      cobOrganisms: E.organisms,
       indexDate: Min(results R return start of R.specimen.collection.collected.toInterval()),
       organisms: results R return R.result.value as CodeableConcept
     }
