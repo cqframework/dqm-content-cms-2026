@@ -55,7 +55,7 @@ define "Stratifier P41Y--P9999Y":
   as "Age Range Stratifier"(Encounter)
 */
 
-define function "Gender Stratifier":
+define function "Gender Stratifier"():
   Patient.gender
 
 define function "Age Range Stratifier"(encounter Encounter):
