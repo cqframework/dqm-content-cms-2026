@@ -1,0 +1,274 @@
+-------------------------------------------------------------------------------------
+{"code" : {
+  "system" : "http://unitsofmeasure.org",
+  "code" : "/1000.d",
+  "display" : "per 1000 urinary catheter days"
+}, "valueSet" :null, "langs":"en-US", "useServer":"true", "useClient":"false", "guessSystem":"false", "noAbstract":"false", "activeOnly":"false", "membershipOnly":"false", "displayWarningMode":"false", "versionFlexible":"true", "profile": {
+  "resourceType" : "Parameters",
+  "id" : "manifest",
+  "parameter" : [{
+    "name" : "system-version",
+    "valueCanonical" : "http://snomed.info/sct|http://snomed.info/sct/731000124108"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.3.1240|20190315"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1016|20240110"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1001|20180310"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1089|20210224"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1025|20170504"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1023|20170504"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1080|20210220"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.110.12.1082|20190315"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.196.12.1510|20190315"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.118.12.1300|20200310"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.113.12.1074|20190315"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1088|20210224"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.113.12.1075|20190315"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueUri" : "http://hl7.org/fhir/StructureDefinition/Condition|4.0.1"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueUri" : "http://hl7.org/fhir/StructureDefinition/MedicationRequest|4.0.1"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueUri" : "http://hl7.org/fhir/StructureDefinition/Medication|4.0.1"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueUri" : "http://hl7.org/fhir/StructureDefinition/Procedure|4.0.1"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueUri" : "http://hl7.org/fhir/StructureDefinition/Observation|4.0.1"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueUri" : "http://hl7.org/fhir/StructureDefinition/Encounter|4.0.1"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueUri" : "https://madie.cms.gov/Library/CAUTIElements|2026.1.0"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueUri" : "http://hl7.org/fhir/StructureDefinition/Location|4.0.1"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueUri" : "https://madie.cms.gov/Library/CAUTIParameters|2026.1.0"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.666.5.307|20200307"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.3.1584|20210825"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.1003|20210820"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.1165|20220818"
+  },
+  {
+    "name" : "system-version",
+    "valueUri" : "http://dicom.nema.org/resources/ontology/DCM|01"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueUri" : "http://hl7.org/fhir/StructureDefinition/ImagingStudy|4.0.1"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueUri" : "https://example.org/fhir/ValueSet/chemo-radiation-breast-resection|1.0.0"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueUri" : "https://example.org/fhir/ValueSet/diabetes-hypercholesterolemia-medications|1.0.0"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueUri" : "https://example.org/fhir/ValueSet/strong-cyp3a4-inhibitors|1.0.0"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueUri" : "https://example.org/fhir/ValueSet/serum-creatinine|1.0.0"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueUri" : "https://example.org/fhir/ValueSet/ast-lab-tests|1.0.0"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueUri" : "https://example.org/fhir/ValueSet/alt-lab-tests|1.0.0"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueUri" : "https://example.org/fhir/ValueSet/total-bilirubin|1.0.0"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueUri" : "https://example.org/fhir/ValueSet/alkaline-phosphatase|1.0.0"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueUri" : "https://example.org/fhir/ValueSet/core-needle-biopsy|1.0.0"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueUri" : "https://example.org/fhir/ValueSet/histologic-test|1.0.0"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueUri" : "https://example.org/fhir/ValueSet/tumor-size-observations|1.0.0"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueUri" : "http://hl7.org/fhir/StructureDefinition/Consent|4.0.1"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1090|20210224"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.198.12.1135|20210224"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.1167|20220820"
+  },
+  {
+    "name" : "system-version",
+    "valueUri" : "http://terminology.hl7.org/CodeSystem/observation-category|2.0.0"
+  },
+  {
+    "name" : "system-version",
+    "valueUri" : "http://terminology.hl7.org/CodeSystem/condition-ver-status|2.0.1"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueUri" : "https://madie.cms.gov/Library/PatientCommon|2026.1.0"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.114222.4.11.837|20121025"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.114222.4.11.3591|20221118"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.114222.4.11.836|20121025"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueUri" : "https://madie.cms.gov/Library/BreastCancerScreeningDQMDraft|2026.1.0"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueUri" : "http://hl7.org/fhir/StructureDefinition/Patient|4.0.1"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueUri" : "https://madie.cms.gov/Library/CAUTIRate|2026.1.0"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueUri" : "https://madie.cms.gov/Library/CAUTISIR|2026.1.0"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueUri" : "https://madie.cms.gov/Library/StratificationEncounterExample|2026.1.0"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueUri" : "https://madie.cms.gov/Library/StratificationPatientExample|2026.1.0"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueUri" : "https://madie.cms.gov/Library/SupportingEvidenceExample|2026.1.0"
+  }]
+}}####
+v: {
+  "display" : "/1000.d",
+  "code" : "/1000.d",
+  "system" : "http://unitsofmeasure.org",
+  "version" : "2.2",
+  "severity" : "error",
+  "error" : "Wrong Display Name 'per 1000 urinary catheter days' for http://unitsofmeasure.org#/1000.d. Valid display is one of 2 choices: '/1000.d' (en) or ' / 1000 * (day)' (en) (for the language(s) 'en-US')",
+  "class" : "UNKNOWN",
+  "server" : "https://tx.fhir.org/r4",
+  "diagnostics" : "0ms tx-op\n1ms http://unitsofmeasure.org/vs|2.2: Validate \"[http://unitsofmeasure.org#/1000.d (\"per 1000 urinary catheter days\")]\"\n1ms http://unitsofmeasure.org/vs|2.2: Check \"http://unitsofmeasure.org#/1000.d\"\n1ms http://unitsofmeasure.org/vs|2.2: CodeSystem found: http://unitsofmeasure.org|2.2 for http://unitsofmeasure.org|2.2\n1ms http://unitsofmeasure.org/vs|2.2: check code in (http://unitsofmeasure.org) at Coding\n1ms http://unitsofmeasure.org/vs|2.2: Code \"/1000.d\" found in http://unitsofmeasure.org|2.2",
+  "unknown-systems" : "",
+  "issues" : {
+  "resourceType" : "OperationOutcome",
+  "issue" : [{
+    "extension" : [{
+      "url" : "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
+      "valueString" : "Display_Name_for__should_be_one_of__instead_of"
+    },
+    {
+      "url" : "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-server",
+      "valueUrl" : "https://tx.fhir.org/r4"
+    }],
+    "severity" : "error",
+    "code" : "invalid",
+    "details" : {
+      "coding" : [{
+        "system" : "http://hl7.org/fhir/tools/CodeSystem/tx-issue-type",
+        "code" : "invalid-display"
+      }],
+      "text" : "Wrong Display Name 'per 1000 urinary catheter days' for http://unitsofmeasure.org#/1000.d. Valid display is one of 2 choices: '/1000.d' (en) or ' / 1000 * (day)' (en) (for the language(s) 'en-US')"
+    },
+    "expression" : ["Coding.display"]
+  }]
+}
+
+}
+-------------------------------------------------------------------------------------

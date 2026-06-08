@@ -1,4 +1,20 @@
 {
+  "http://fhir.org/guides/astp/us-quality-core/StructureDefinition/us-quality-core-encounter" : null,
+  "http://fhir.org/guides/astp/us-quality-core/StructureDefinition/us-quality-core-procedure" : null,
+  "http://fhir.org/guides/astp/us-quality-core/StructureDefinition/us-quality-core-observation-screening-assessment" : null,
+  "http://example.org/ValueSet/bacterium-presence" : null,
+  "http://hl7.org/fhir/us/cql/Library/USCoreCommon" : null,
+  "http://fhir.org/guides/astp/us-quality-core/StructureDefinition/us-quality-core-simple-observation" : null,
+  "https://example.org/Library/NCT01980823EligibilityCriteria" : null,
+  "http://fhir.org/guides/astp/us-quality-core/StructureDefinition/us-quality-core-devicerequest" : null,
+  "http://example.org/ValueSet/catheter-inserted" : null,
   "urn:ietf:bcp:13" : null,
-  "http://hl7.org/fhir/measure-scoring" : null
+  "http://hl7.org/fhir/measure-scoring" : null,
+  "https://research.balgrist.ch/ValueSet/CTImagingModality" : null,
+  "http://example.org/ValueSet/urine-culture" : null,
+  "http://example.org/ValueSet/catheter-removed" : null,
+  "http://snomed.info/sct|http://snomed.info/sct/731000124108" : null,
+  "http://fhir.org/guides/astp/us-quality-core/StructureDefinition/us-quality-core-servicerequest" : null,
+  "http://fhir.org/guides/astp/us-quality-core/StructureDefinition/us-quality-core-coverage" : null,
+  "http://snomed.info/sct" : null
 }
