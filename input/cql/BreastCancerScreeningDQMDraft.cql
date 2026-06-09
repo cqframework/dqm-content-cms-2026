@@ -3,22 +3,22 @@ NOTE: For use by January 2026 Connectathon participants for internal use only. N
 */
 library BreastCancerScreeningDQMDraft version '1.0.000'
 
-using QICore version '7.0.2'
-using USCore version '7.0.0'
+using USQualityCore version '0.5.0'
+using USCore version '6.1.0-derived'
 using C4BB version '2.1.1'
 using FHIR version '4.0.1'
 
 include hl7.fhir.uv.cql.FHIRHelpers version '4.0.1' called FHIRHelpers
 include hl7.fhir.uv.cql.FHIRCommon version '2.0.0' called FHIRCommon
-include hl7.fhir.us.cql.USCoreCommon called USCommon
-include QICoreCommon
+include hl7.fhir.us.cql.USCoreCommon version '2.0.0-ballot' called USCommon
+include fhir.onc."us-quality-core".USQualityCoreCommon version '0.5.0' called USQCommon
 
-include SupplementalDataElements version '6.0.000' called SDE
-include AdultOutpatientEncounters version '5.0.000' called AdultOutpatientEncounters
-include Hospice version '7.0.000' called Hospice
-include Status version '2.0.000' called Status
-include PalliativeCare version '2.0.000' called PalliativeCare
-include AdvancedIllnessandFrailty version '2.0.000' called AIFrailLTCF
+include AdultOutpatientEncounters version '5.1.000' called AdultOutpatientEncounters
+include AdvancedIllnessandFrailty version '2.1.000' called AIFrailLTCF
+include Hospice version '7.1.000' called Hospice
+include PalliativeCare version '2.1.000' called PalliativeCare
+include Status version '2.1.000' called Status
+include SupplementalDataElements version '6.1.000' called SDE
 
 codesystem "ClaimTypeCodes": 'http://terminology.hl7.org/CodeSystem/claim-type'
 codesystem "SNOMEDCT": 'http://snomed.info/sct'
@@ -94,8 +94,8 @@ define "Right Mastectomy Diagnosis":
     where RightMastectomy.prevalenceInterval ( ) starts on or before end of "Measurement Period"
 
 define "Right Mastectomy Procedure":
-  ( ( [QICore.Procedure: "Unilateral Mastectomy Right"]
-  union [QICore.Procedure: "Unilateral Mastectomy"] UnilateralMastectomyProcedure 
+  ( ( [USQualityCore.Procedure: "Unilateral Mastectomy Right"]
+  union [USQualityCore.Procedure: "Unilateral Mastectomy"] UnilateralMastectomyProcedure 
   where exists UnilateralMastectomyProcedure.bodySite S where S ~ "Entire right breast (body structure)" 
   ).isProcedurePerformed ( ) ) UnilateralMastectomyRightPerformed
     where UnilateralMastectomyRightPerformed.performed.toInterval ( ) ends on or before end of "Measurement Period"
@@ -105,8 +105,8 @@ define "Left Mastectomy Diagnosis":
     where LeftMastectomy.prevalenceInterval ( ) starts on or before end of "Measurement Period"
 
 define "Left Mastectomy Procedure":
-  ( ( [QICore.Procedure: "Unilateral Mastectomy Left"] 
-        union [QICore.Procedure: "Unilateral Mastectomy"] UnilateralMastectomyProcedure
+  ( ( [USQualityCore.Procedure: "Unilateral Mastectomy Left"] 
+        union [USQualityCore.Procedure: "Unilateral Mastectomy"] UnilateralMastectomyProcedure
         where exists UnilateralMastectomyProcedure.bodySite S where S ~ "Entire left breast (body structure)"
   ).isProcedurePerformed ( ) ) UnilateralMastectomyLeftPerformed
     where UnilateralMastectomyLeftPerformed.performed.toInterval ( ) ends on or before end of "Measurement Period"
@@ -116,7 +116,7 @@ define "Bilateral Mastectomy Diagnosis":
     where BilateralMastectomyHistory.prevalenceInterval ( ) starts on or before end of "Measurement Period"
 
 define "Bilateral Mastectomy Procedure":
-  ( ( [QICore.Procedure: "Bilateral Mastectomy"] ).isProcedurePerformed ( ) ) BilateralMastectomyPerformed
+  ( ( [USQualityCore.Procedure: "Bilateral Mastectomy"] ).isProcedurePerformed ( ) ) BilateralMastectomyPerformed
     where BilateralMastectomyPerformed.performed.toInterval ( ) ends on or before end of "Measurement Period"
 
 define "Numerator":
@@ -134,7 +134,7 @@ define "October 1 Two Years Prior to the Measurement Period":
 
 //Mammography Claim
 define "Mammography Claim":
-([QICore.Claim])."With mammography during"(
+([Claim])."With mammography during"(
         Interval[date from "October 1 Two Years Prior to the Measurement Period", date from end of "Measurement Period"])
 
 define fluent function "With mammography during"(
