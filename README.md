@@ -5,6 +5,14 @@ Commits to this repository will automatically trigger a build of the continuous 
 
 https://build.fhir.org/ig/cqframework/dqm-content-cms-2026
 
+## Terminology Expectations
+
+The measures in this repository use the value sets from the dQM FHIR 2025 update as a starting point, but add some additional terminology expectations as part of the draft development of advanced measures in this repository. The terminology package in support of the 2025 dQM FHIR measures is:
+
+http://cts.nlm.nih.gov/fhir/Library/ecqm-fhir-update-2025
+
+> NOTE: The value sets in this repository are limited to expansions of 1000. To obtain the full expansions requires an NLM license and can be downloaded from the Value Set Authority Center downloads site: https://vsac.nlm.nih.gov/download/manifest?rel=20251117&res=dqm.vs.20251117.json
+
 ## Repository Structure
 
 This repository is setup like any HL7 FHIR IG project but also includes the CQL files and test data which means the file structure will be as follows:
