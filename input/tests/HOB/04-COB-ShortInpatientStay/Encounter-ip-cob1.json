@@ -1,0 +1,33 @@
+{
+  "resourceType": "Encounter",
+  "id": "ip-cob1",
+  "meta": {
+    "profile": [
+      "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-encounter"
+    ]
+  },
+  "status": "finished",
+  "class": {
+    "system": "http://terminology.hl7.org/CodeSystem/v3-ActCode",
+    "code": "IMP",
+    "display": "inpatient encounter"
+  },
+  "type": [
+    {
+      "coding": [
+        {
+          "system": "http://snomed.info/sct",
+          "code": "32485007",
+          "display": "Hospital admission (procedure)"
+        }
+      ]
+    }
+  ],
+  "subject": {
+    "reference": "Patient/04-COB-ShortInpatientStay"
+  },
+  "period": {
+    "start": "2026-01-15T10:00:00.000+00:00",
+    "end": "2026-01-17T10:00:00.000+00:00"
+  }
+}

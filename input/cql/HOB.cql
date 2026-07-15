@@ -11,8 +11,8 @@ include hl7.fhir.uv.cql.FHIRCommon version '2.0.0' called FHIRCommon
 include CQMCommon version '5.1.000' called CQMCommon
 include HOBOrganismTaxonomy
 
-valueset "Bacteria and Fungi - HOB Specific": 'TBD'
-valueset "Bacterial Skin Commensals": 'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.114222.24.7.281' version '20241003'
+valueset "Bacteria and Fungi - HOB Specific": 'https://example.org/fhir/ValueSet/bacteria-and-fungi-hob-specific'
+valueset "Bacterial Skin Commensals": 'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.114222.24.7.281' version '20240918' // Was 20241003, verify
 valueset "Community-associated Organisms - HOB Specific": 'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.114222.24.7.1170' version '20250930'
 valueset "Bacterial and Fungal Blood Culture Tests": 'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1190.63' version '20220721'
 valueset "Enteral Medication Route": 'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1190.74' version '20240618'
@@ -49,8 +49,8 @@ define "Bacterial and Fungal Blood Culture Test Results":
 
 define "Bacteremia or Fungemia Result":
   "Bacterial and Fungal Blood Culture Test Results" R
-    where (R.value in "Bacteria and Fungi - HOB Specific")
-      and not (R.value in "Bacterial Skin Commensals")
+    where ((R.value as CodeableConcept) in "Bacteria and Fungi - HOB Specific")
+      and not ((R.value as CodeableConcept) in "Bacterial Skin Commensals")
 
 define "Bacteremia or Fungemia Result With Specimen":
   from
@@ -160,10 +160,16 @@ define "Encounter With HOB Result":
     let 
       oCOB: "Encounter With O-COB Result" oCOBEncounter where E.inpatientEncounter.id = oCOBEncounter.inpatientEncounter.id,
       COB: "Encounter With COB Result" COBEncounter where E.inpatientEncounter.id = COBEncounter.inpatientEncounter.id,
+      // Guard the interval: for stays of 3 days or fewer, start + 4 days is after the
+      // stay end, which would construct an inverted (invalid) interval and error.
+      hospitalOnsetWindow:
+        if duration in days of E.inpatientStay > 3
+          then Interval[start of E.inpatientStay + 4 days, end of E.inpatientStay]
+          else null as Interval<DateTime>,
       results: (
         "Bacteremia or Fungemia Result With Specimen" RS
           where RS.specimen.collection.collected.toInterval()
-            during day of Interval[start of E.inpatientStay + 4 days, end of E.inpatientStay]
+            during day of hospitalOnsetWindow
             and not exists (
               oCOB.organisms O
                 where O.organismMatches(RS.result.value as CodeableConcept)
@@ -247,9 +253,14 @@ Notes: The denominator for HOB admission risk will include only those inpatient 
 
 define "Hospital Eligible Inpatient Encounter During Measurement Period":
   "Inpatient Encounter" I
-    let hospitalEligible: Interval[start of I.inpatientStay + 4 days, end of I.inpatientStay]
-    where duration in days of I.inpatientStay > 4
-      and hospitalEligible overlaps "Measurement Period"
+    // Guard the interval: for stays of 3 days or fewer, start + 4 days is after the
+    // stay end, which would construct an inverted (invalid) interval and error. The
+    // conditional also subsumes the duration > 3 eligibility check.
+    let hospitalEligible:
+      if duration in days of I.inpatientStay > 3
+        then Interval[start of I.inpatientStay + 4 days, end of I.inpatientStay]
+        else null as Interval<DateTime>
+    where hospitalEligible overlaps "Measurement Period"
       and not exists (
         "Encounter With HOB Result" HOBEvent
           where HOBEvent.inpatientEncounter ~ I.inpatientEncounter

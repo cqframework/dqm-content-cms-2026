@@ -1,0 +1,175 @@
+{
+  "resourceType": "ValueSet",
+  "id": "2.16.840.1.113762.1.4.1190.63",
+  "meta": {
+    "versionId": "5",
+    "lastUpdated": "2025-02-21T09:04:01.000-05:00",
+    "profile": [ "http://hl7.org/fhir/StructureDefinition/shareablevalueset", "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/computable-valueset-cqfm", "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/publishable-valueset-cqfm" ]
+  },
+  "language": "en",
+  "extension": [ {
+    "url": "http://hl7.org/fhir/StructureDefinition/valueset-effectiveDate",
+    "valueDateTime": "2022-07-21"
+  }, {
+    "url": "http://hl7.org/fhir/StructureDefinition/artifact-effectivePeriod",
+    "valuePeriod": {
+      "start": "2022-07-21"
+    }
+  } ],
+  "url": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1190.63",
+  "identifier": [ {
+    "system": "urn:ietf:rfc:3986",
+    "value": "urn:oid:2.16.840.1.113762.1.4.1190.63"
+  } ],
+  "version": "20220721",
+  "name": "BacterialAndFungalBloodCultureTests",
+  "title": "Bacterial and Fungal Blood Culture Tests",
+  "status": "active",
+  "experimental": false,
+  "date": "2025-02-21T09:04:01-05:00",
+  "publisher": "CDC NHSN",
+  "expansion": {
+    "identifier": "urn:uuid:fb214262-8655-4732-9197-3cbc5a1279f9",
+    "timestamp": "2026-07-15T00:00:59-04:00",
+    "total": 26,
+    "offset": 0,
+    "parameter": [ {
+      "name": "count",
+      "valueInteger": 1000
+    }, {
+      "name": "offset",
+      "valueInteger": 0
+    } ],
+    "contains": [ {
+      "system": "http://loinc.org",
+      "version": "2.82",
+      "code": "14461-8",
+      "display": "Chlamydia trachomatis [Presence] in Blood by Organism specific culture"
+    }, {
+      "system": "http://loinc.org",
+      "version": "2.82",
+      "code": "17928-3",
+      "display": "Bacteria identified in Blood by Aerobe culture"
+    }, {
+      "system": "http://loinc.org",
+      "version": "2.82",
+      "code": "17929-1",
+      "display": "Bacteria # 2 identified in Blood by Aerobe culture"
+    }, {
+      "system": "http://loinc.org",
+      "version": "2.82",
+      "code": "17930-9",
+      "display": "Bacteria # 3 identified in Blood by Aerobe culture"
+    }, {
+      "system": "http://loinc.org",
+      "version": "2.82",
+      "code": "17931-7",
+      "display": "Bacteria # 4 identified in Blood by Aerobe culture"
+    }, {
+      "system": "http://loinc.org",
+      "version": "2.82",
+      "code": "17932-5",
+      "display": "Bacteria # 5 identified in Blood by Aerobe culture"
+    }, {
+      "system": "http://loinc.org",
+      "version": "2.82",
+      "code": "17933-3",
+      "display": "Bacteria # 6 identified in Blood by Aerobe culture"
+    }, {
+      "system": "http://loinc.org",
+      "version": "2.82",
+      "code": "17934-1",
+      "display": "Bacteria identified in Blood by Anaerobe culture"
+    }, {
+      "system": "http://loinc.org",
+      "version": "2.82",
+      "code": "17935-8",
+      "display": "Bacteria # 2 identified in Blood by Anaerobe culture"
+    }, {
+      "system": "http://loinc.org",
+      "version": "2.82",
+      "code": "17936-6",
+      "display": "Bacteria # 3 identified in Blood by Anaerobe culture"
+    }, {
+      "system": "http://loinc.org",
+      "version": "2.82",
+      "code": "45275-5",
+      "display": "Bacteria identified in Blood by Aerobe culture 25 degree C incubation"
+    }, {
+      "system": "http://loinc.org",
+      "version": "2.82",
+      "code": "45276-3",
+      "display": "Bacteria identified in Blood by Anaerobe culture 25 degree C incubation"
+    }, {
+      "system": "http://loinc.org",
+      "version": "2.82",
+      "code": "48724-9",
+      "display": "Bacteria # 3 identified in Blood by Culture"
+    }, {
+      "system": "http://loinc.org",
+      "version": "2.82",
+      "code": "48727-2",
+      "display": "Bacteria # 2 identified in Blood by Culture"
+    }, {
+      "system": "http://loinc.org",
+      "version": "2.82",
+      "code": "533-0",
+      "display": "Mycobacterium sp identified in Blood by Organism specific culture"
+    }, {
+      "system": "http://loinc.org",
+      "version": "2.82",
+      "code": "551-2",
+      "display": "Brucella sp identified in Blood by Organism specific culture"
+    }, {
+      "system": "http://loinc.org",
+      "version": "2.82",
+      "code": "5878-4",
+      "display": "Rickettsia sp identified in Blood by Organism specific culture"
+    }, {
+      "system": "http://loinc.org",
+      "version": "2.82",
+      "code": "600-7",
+      "display": "Bacteria identified in Blood by Culture"
+    }, {
+      "system": "http://loinc.org",
+      "version": "2.82",
+      "code": "601-5",
+      "display": "Fungus identified in Blood by Culture"
+    }, {
+      "system": "http://loinc.org",
+      "version": "2.82",
+      "code": "6330-5",
+      "display": "Campylobacter sp identified in Blood by Organism specific culture"
+    }, {
+      "system": "http://loinc.org",
+      "version": "2.82",
+      "code": "64412-0",
+      "display": "Mycobacterium sp [Presence] in Blood by Organism specific culture"
+    }, {
+      "system": "http://loinc.org",
+      "version": "2.82",
+      "code": "6453-5",
+      "display": "Leptospira sp identified in Blood by Organism specific culture"
+    }, {
+      "system": "http://loinc.org",
+      "version": "2.82",
+      "code": "6578-9",
+      "display": "Vibrio sp identified in Blood by Organism specific culture"
+    }, {
+      "system": "http://loinc.org",
+      "version": "2.82",
+      "code": "87954-4",
+      "display": "Bacteria identified in Cord blood by Aerobe culture"
+    }, {
+      "system": "http://loinc.org",
+      "version": "2.82",
+      "code": "87955-1",
+      "display": "Bacteria identified in Cord blood by Anaerobe culture"
+    }, {
+      "system": "http://loinc.org",
+      "version": "2.82",
+      "code": "97758-7",
+      "display": "Fungus and Mycobacterium sp identified in Blood by Organism specific culture"
+    } ]
+  }
+}

@@ -1,0 +1,624 @@
+{
+  "resourceType": "ValueSet",
+  "id": "bacteria-and-fungi-hob-specific",
+  "url": "https://example.org/fhir/ValueSet/bacteria-and-fungi-hob-specific",
+  "version": "0.1.0",
+  "name": "BacteriaAndFungiHOBSpecific",
+  "title": "Bacteria and Fungi - HOB Specific",
+  "status": "draft",
+  "experimental": true,
+  "publisher": "CQF (local starter)",
+  "description": "LOCAL STARTER VALUE SET (not sourced from VSAC). Placeholder for the HOB 'Bacteria and Fungi - HOB Specific' organism value set, which is still 'TBD' in HOB.cql. Derived from the HOBOrganismTaxonomy table: all organisms not flagged nhsn_skin_commensal. NOTE the taxonomy table is itself a work in progress (currently an alphabetical fragment), so this expansion is incomplete and intended only to exercise the HOB numerator logic locally. Replace with the authoritative expansion once published.",
+  "compose": {
+    "include": [
+      {
+        "system": "http://snomed.info/sct",
+        "concept": [
+          {
+            "code": "186087007",
+            "display": "(Cholera) or (Vibrio cholerae)"
+          },
+          {
+            "code": "266186009",
+            "display": "(Legionella) or (Legionnaire\\'s disease)"
+          },
+          {
+            "code": "154315008",
+            "display": "(Legionella) or (Legionnaire\\'s disease)"
+          },
+          {
+            "code": "186103005",
+            "display": "(Shigella dysenteriae - group A) or (bacillary dysentery)"
+          },
+          {
+            "code": "186350009",
+            "display": "(Whooping cough) or (Bordetella)"
+          },
+          {
+            "code": "115161005",
+            "display": "Abiotrophia"
+          },
+          {
+            "code": "113714003",
+            "display": "Abiotrophia defectiva"
+          },
+          {
+            "code": "409815006",
+            "display": "Abiotrophia para-adiacens"
+          },
+          {
+            "code": "372391001",
+            "display": "Abiotrophia species"
+          },
+          {
+            "code": "736080001",
+            "display": "Abortiporus"
+          },
+          {
+            "code": "736079004",
+            "display": "Abortiporus biennis"
+          },
+          {
+            "code": "57145009",
+            "display": "Absidia"
+          },
+          {
+            "code": "2591000146102",
+            "display": "Absidia caerulea"
+          },
+          {
+            "code": "243420008",
+            "display": "Absidia corymbifera"
+          },
+          {
+            "code": "49931000087108",
+            "display": "Absidia cylindrospora"
+          },
+          {
+            "code": "785768009",
+            "display": "Absidia glauca"
+          },
+          {
+            "code": "8296004",
+            "display": "Absidia halospora"
+          },
+          {
+            "code": "359802007",
+            "display": "Absidia lichtheimii"
+          },
+          {
+            "code": "36013002",
+            "display": "Absidia ramosa"
+          },
+          {
+            "code": "404226006",
+            "display": "Absidia species"
+          },
+          {
+            "code": "541341000124105",
+            "display": "Abyssicoccus"
+          },
+          {
+            "code": "541351000124107",
+            "display": "Abyssicoccus albus"
+          },
+          {
+            "code": "28861000087102",
+            "display": "Acaromyces"
+          },
+          {
+            "code": "28871000087106",
+            "display": "Acaromyces ingoldii"
+          },
+          {
+            "code": "785735002",
+            "display": "Acaulium"
+          },
+          {
+            "code": "59520005",
+            "display": "Acaulium acremonium"
+          },
+          {
+            "code": "423947001",
+            "display": "Acetanaerobacterium"
+          },
+          {
+            "code": "423867006",
+            "display": "Acetanaerobacterium elongatum"
+          },
+          {
+            "code": "424162006",
+            "display": "Acetitomaculum"
+          },
+          {
+            "code": "425276005",
+            "display": "Acetitomaculum ruminis"
+          },
+          {
+            "code": "72806006",
+            "display": "Acetivibrio"
+          },
+          {
+            "code": "432614007",
+            "display": "Acetivibrio aldrichii"
+          },
+          {
+            "code": "86860008",
+            "display": "Acetivibrio cellulolyticus"
+          },
+          {
+            "code": "64755006",
+            "display": "Acetivibrio ethanolgignens"
+          },
+          {
+            "code": "131199002",
+            "display": "Acetivibrio species"
+          },
+          {
+            "code": "432622000",
+            "display": "Acetivibrio straminisolvens"
+          },
+          {
+            "code": "68100006",
+            "display": "Acetivibrio thermocellus"
+          },
+          {
+            "code": "423611000",
+            "display": "Acetoanaerobium"
+          },
+          {
+            "code": "422656003",
+            "display": "Acetoanaerobium noterae"
+          },
+          {
+            "code": "78437006",
+            "display": "Acetoanaerobium sticklandii"
+          },
+          {
+            "code": "396949003",
+            "display": "Acetobacter"
+          },
+          {
+            "code": "396950003",
+            "display": "Acetobacter aceti"
+          },
+          {
+            "code": "413398000",
+            "display": "Acetobacter calcoaceticus"
+          },
+          {
+            "code": "413399008",
+            "display": "Acetobacter cerevisiae"
+          },
+          {
+            "code": "413400001",
+            "display": "Acetobacter cibinongensis"
+          },
+          {
+            "code": "413401002",
+            "display": "Acetobacter estunensis"
+          },
+          {
+            "code": "116881000181108",
+            "display": "Acetobacter fabarum"
+          },
+          {
+            "code": "23731000181109",
+            "display": "Acetobacter ghanensis"
+          },
+          {
+            "code": "396953001",
+            "display": "Acetobacter hansenii"
+          },
+          {
+            "code": "413402009",
+            "display": "Acetobacter indonesiensis"
+          },
+          {
+            "code": "23741000181102",
+            "display": "Acetobacter lambici"
+          },
+          {
+            "code": "396951004",
+            "display": "Acetobacter liquefaciens"
+          },
+          {
+            "code": "413403004",
+            "display": "Acetobacter lovaniensis"
+          },
+          {
+            "code": "413404005",
+            "display": "Acetobacter malorum"
+          },
+          {
+            "code": "23751000181104",
+            "display": "Acetobacter musti"
+          },
+          {
+            "code": "23761000181101",
+            "display": "Acetobacter nitrogenifigens"
+          },
+          {
+            "code": "23771000181106",
+            "display": "Acetobacter oeni"
+          },
+          {
+            "code": "413405006",
+            "display": "Acetobacter orientalis"
+          },
+          {
+            "code": "413406007",
+            "display": "Acetobacter orleanensis"
+          },
+          {
+            "code": "396952006",
+            "display": "Acetobacter pasteurianus"
+          },
+          {
+            "code": "413407003",
+            "display": "Acetobacter peroxydans"
+          },
+          {
+            "code": "708522006",
+            "display": "Acetobacter persici"
+          },
+          {
+            "code": "413408008",
+            "display": "Acetobacter polyoxogenes"
+          },
+          {
+            "code": "413409000",
+            "display": "Acetobacter pomorum"
+          },
+          {
+            "code": "413410005",
+            "display": "Acetobacter species"
+          }
+        ]
+      }
+    ]
+  },
+  "expansion": {
+    "identifier": "urn:uuid:bafh0b00-0000-4000-8000-000000000001",
+    "timestamp": "2026-01-01T00:00:00-05:00",
+    "total": 65,
+    "offset": 0,
+    "parameter": [
+      {
+        "name": "count",
+        "valueInteger": 1000
+      },
+      {
+        "name": "offset",
+        "valueInteger": 0
+      }
+    ],
+    "contains": [
+      {
+        "system": "http://snomed.info/sct",
+        "code": "186087007",
+        "display": "(Cholera) or (Vibrio cholerae)"
+      },
+      {
+        "system": "http://snomed.info/sct",
+        "code": "266186009",
+        "display": "(Legionella) or (Legionnaire\\'s disease)"
+      },
+      {
+        "system": "http://snomed.info/sct",
+        "code": "154315008",
+        "display": "(Legionella) or (Legionnaire\\'s disease)"
+      },
+      {
+        "system": "http://snomed.info/sct",
+        "code": "186103005",
+        "display": "(Shigella dysenteriae - group A) or (bacillary dysentery)"
+      },
+      {
+        "system": "http://snomed.info/sct",
+        "code": "186350009",
+        "display": "(Whooping cough) or (Bordetella)"
+      },
+      {
+        "system": "http://snomed.info/sct",
+        "code": "115161005",
+        "display": "Abiotrophia"
+      },
+      {
+        "system": "http://snomed.info/sct",
+        "code": "113714003",
+        "display": "Abiotrophia defectiva"
+      },
+      {
+        "system": "http://snomed.info/sct",
+        "code": "409815006",
+        "display": "Abiotrophia para-adiacens"
+      },
+      {
+        "system": "http://snomed.info/sct",
+        "code": "372391001",
+        "display": "Abiotrophia species"
+      },
+      {
+        "system": "http://snomed.info/sct",
+        "code": "736080001",
+        "display": "Abortiporus"
+      },
+      {
+        "system": "http://snomed.info/sct",
+        "code": "736079004",
+        "display": "Abortiporus biennis"
+      },
+      {
+        "system": "http://snomed.info/sct",
+        "code": "57145009",
+        "display": "Absidia"
+      },
+      {
+        "system": "http://snomed.info/sct",
+        "code": "2591000146102",
+        "display": "Absidia caerulea"
+      },
+      {
+        "system": "http://snomed.info/sct",
+        "code": "243420008",
+        "display": "Absidia corymbifera"
+      },
+      {
+        "system": "http://snomed.info/sct",
+        "code": "49931000087108",
+        "display": "Absidia cylindrospora"
+      },
+      {
+        "system": "http://snomed.info/sct",
+        "code": "785768009",
+        "display": "Absidia glauca"
+      },
+      {
+        "system": "http://snomed.info/sct",
+        "code": "8296004",
+        "display": "Absidia halospora"
+      },
+      {
+        "system": "http://snomed.info/sct",
+        "code": "359802007",
+        "display": "Absidia lichtheimii"
+      },
+      {
+        "system": "http://snomed.info/sct",
+        "code": "36013002",
+        "display": "Absidia ramosa"
+      },
+      {
+        "system": "http://snomed.info/sct",
+        "code": "404226006",
+        "display": "Absidia species"
+      },
+      {
+        "system": "http://snomed.info/sct",
+        "code": "541341000124105",
+        "display": "Abyssicoccus"
+      },
+      {
+        "system": "http://snomed.info/sct",
+        "code": "541351000124107",
+        "display": "Abyssicoccus albus"
+      },
+      {
+        "system": "http://snomed.info/sct",
+        "code": "28861000087102",
+        "display": "Acaromyces"
+      },
+      {
+        "system": "http://snomed.info/sct",
+        "code": "28871000087106",
+        "display": "Acaromyces ingoldii"
+      },
+      {
+        "system": "http://snomed.info/sct",
+        "code": "785735002",
+        "display": "Acaulium"
+      },
+      {
+        "system": "http://snomed.info/sct",
+        "code": "59520005",
+        "display": "Acaulium acremonium"
+      },
+      {
+        "system": "http://snomed.info/sct",
+        "code": "423947001",
+        "display": "Acetanaerobacterium"
+      },
+      {
+        "system": "http://snomed.info/sct",
+        "code": "423867006",
+        "display": "Acetanaerobacterium elongatum"
+      },
+      {
+        "system": "http://snomed.info/sct",
+        "code": "424162006",
+        "display": "Acetitomaculum"
+      },
+      {
+        "system": "http://snomed.info/sct",
+        "code": "425276005",
+        "display": "Acetitomaculum ruminis"
+      },
+      {
+        "system": "http://snomed.info/sct",
+        "code": "72806006",
+        "display": "Acetivibrio"
+      },
+      {
+        "system": "http://snomed.info/sct",
+        "code": "432614007",
+        "display": "Acetivibrio aldrichii"
+      },
+      {
+        "system": "http://snomed.info/sct",
+        "code": "86860008",
+        "display": "Acetivibrio cellulolyticus"
+      },
+      {
+        "system": "http://snomed.info/sct",
+        "code": "64755006",
+        "display": "Acetivibrio ethanolgignens"
+      },
+      {
+        "system": "http://snomed.info/sct",
+        "code": "131199002",
+        "display": "Acetivibrio species"
+      },
+      {
+        "system": "http://snomed.info/sct",
+        "code": "432622000",
+        "display": "Acetivibrio straminisolvens"
+      },
+      {
+        "system": "http://snomed.info/sct",
+        "code": "68100006",
+        "display": "Acetivibrio thermocellus"
+      },
+      {
+        "system": "http://snomed.info/sct",
+        "code": "423611000",
+        "display": "Acetoanaerobium"
+      },
+      {
+        "system": "http://snomed.info/sct",
+        "code": "422656003",
+        "display": "Acetoanaerobium noterae"
+      },
+      {
+        "system": "http://snomed.info/sct",
+        "code": "78437006",
+        "display": "Acetoanaerobium sticklandii"
+      },
+      {
+        "system": "http://snomed.info/sct",
+        "code": "396949003",
+        "display": "Acetobacter"
+      },
+      {
+        "system": "http://snomed.info/sct",
+        "code": "396950003",
+        "display": "Acetobacter aceti"
+      },
+      {
+        "system": "http://snomed.info/sct",
+        "code": "413398000",
+        "display": "Acetobacter calcoaceticus"
+      },
+      {
+        "system": "http://snomed.info/sct",
+        "code": "413399008",
+        "display": "Acetobacter cerevisiae"
+      },
+      {
+        "system": "http://snomed.info/sct",
+        "code": "413400001",
+        "display": "Acetobacter cibinongensis"
+      },
+      {
+        "system": "http://snomed.info/sct",
+        "code": "413401002",
+        "display": "Acetobacter estunensis"
+      },
+      {
+        "system": "http://snomed.info/sct",
+        "code": "116881000181108",
+        "display": "Acetobacter fabarum"
+      },
+      {
+        "system": "http://snomed.info/sct",
+        "code": "23731000181109",
+        "display": "Acetobacter ghanensis"
+      },
+      {
+        "system": "http://snomed.info/sct",
+        "code": "396953001",
+        "display": "Acetobacter hansenii"
+      },
+      {
+        "system": "http://snomed.info/sct",
+        "code": "413402009",
+        "display": "Acetobacter indonesiensis"
+      },
+      {
+        "system": "http://snomed.info/sct",
+        "code": "23741000181102",
+        "display": "Acetobacter lambici"
+      },
+      {
+        "system": "http://snomed.info/sct",
+        "code": "396951004",
+        "display": "Acetobacter liquefaciens"
+      },
+      {
+        "system": "http://snomed.info/sct",
+        "code": "413403004",
+        "display": "Acetobacter lovaniensis"
+      },
+      {
+        "system": "http://snomed.info/sct",
+        "code": "413404005",
+        "display": "Acetobacter malorum"
+      },
+      {
+        "system": "http://snomed.info/sct",
+        "code": "23751000181104",
+        "display": "Acetobacter musti"
+      },
+      {
+        "system": "http://snomed.info/sct",
+        "code": "23761000181101",
+        "display": "Acetobacter nitrogenifigens"
+      },
+      {
+        "system": "http://snomed.info/sct",
+        "code": "23771000181106",
+        "display": "Acetobacter oeni"
+      },
+      {
+        "system": "http://snomed.info/sct",
+        "code": "413405006",
+        "display": "Acetobacter orientalis"
+      },
+      {
+        "system": "http://snomed.info/sct",
+        "code": "413406007",
+        "display": "Acetobacter orleanensis"
+      },
+      {
+        "system": "http://snomed.info/sct",
+        "code": "396952006",
+        "display": "Acetobacter pasteurianus"
+      },
+      {
+        "system": "http://snomed.info/sct",
+        "code": "413407003",
+        "display": "Acetobacter peroxydans"
+      },
+      {
+        "system": "http://snomed.info/sct",
+        "code": "708522006",
+        "display": "Acetobacter persici"
+      },
+      {
+        "system": "http://snomed.info/sct",
+        "code": "413408008",
+        "display": "Acetobacter polyoxogenes"
+      },
+      {
+        "system": "http://snomed.info/sct",
+        "code": "413409000",
+        "display": "Acetobacter pomorum"
+      },
+      {
+        "system": "http://snomed.info/sct",
+        "code": "413410005",
+        "display": "Acetobacter species"
+      }
+    ]
+  }
+}

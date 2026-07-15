@@ -1,0 +1,102 @@
+{
+  "resourceType": "ValueSet",
+  "id": "2.16.840.1.114222.24.7.315",
+  "meta": {
+    "profile": [
+      "http://hl7.org/fhir/StructureDefinition/shareablevalueset",
+      "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/computable-valueset-cqfm",
+      "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/publishable-valueset-cqfm"
+    ]
+  },
+  "language": "en",
+  "extension": [
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/valueset-effectiveDate",
+      "valueDateTime": "2025-09-29"
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/artifact-effectivePeriod",
+      "valuePeriod": {
+        "start": "2025-09-29"
+      }
+    }
+  ],
+  "url": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.114222.24.7.315",
+  "identifier": [
+    {
+      "system": "urn:ietf:rfc:3986",
+      "value": "urn:oid:2.16.840.1.114222.24.7.315"
+    }
+  ],
+  "version": "20250929",
+  "name": "SpecimenTypeBlood",
+  "title": "Specimen Type - Blood",
+  "status": "active",
+  "experimental": false,
+  "date": "2025-09-29T00:00:00-04:00",
+  "publisher": "CQF (local starter)",
+  "description": "LOCAL STARTER VALUE SET (not sourced from VSAC). Placeholder for the HOB 'Specimen Type - Blood' value set (OID 2.16.840.1.114222.24.7.315), which does not currently resolve in VSAC. Seeded with SNOMED CT blood specimen codes relevant to blood culture collection so the HOB numerator logic can be exercised locally. Replace with the authoritative expansion once it is published.",
+  "compose": {
+    "include": [
+      {
+        "system": "http://snomed.info/sct",
+        "concept": [
+          {
+            "code": "119297000",
+            "display": "Blood specimen (specimen)"
+          },
+          {
+            "code": "122554006",
+            "display": "Blood specimen obtained for blood culture (specimen)"
+          },
+          {
+            "code": "122552005",
+            "display": "Peripheral blood specimen (specimen)"
+          },
+          {
+            "code": "258580003",
+            "display": "Whole blood sample (specimen)"
+          }
+        ]
+      }
+    ]
+  },
+  "expansion": {
+    "identifier": "urn:uuid:0e0b4d2e-6b7a-4c9d-9a1e-315000000001",
+    "timestamp": "2025-09-29T00:00:00-04:00",
+    "total": 4,
+    "offset": 0,
+    "parameter": [
+      {
+        "name": "count",
+        "valueInteger": 1000
+      },
+      {
+        "name": "offset",
+        "valueInteger": 0
+      }
+    ],
+    "contains": [
+      {
+        "system": "http://snomed.info/sct",
+        "code": "119297000",
+        "display": "Blood specimen (specimen)"
+      },
+      {
+        "system": "http://snomed.info/sct",
+        "code": "122554006",
+        "display": "Blood specimen obtained for blood culture (specimen)"
+      },
+      {
+        "system": "http://snomed.info/sct",
+        "code": "122552005",
+        "display": "Peripheral blood specimen (specimen)"
+      },
+      {
+        "system": "http://snomed.info/sct",
+        "code": "258580003",
+        "display": "Whole blood sample (specimen)"
+      }
+    ]
+  }
+}
