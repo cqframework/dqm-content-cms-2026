@@ -129,6 +129,9 @@ define "Mammography Observation":
      ( ( [ObservationClinicalResult: code in "Mammography"] ).isDiagnosticStudyPerformed ( ) ) Mammogram
     where Mammogram.effective.toInterval ( ) ends during day of Interval["October 1 Two Years Prior to the Measurement Period", end of "Measurement Period"] 
 
+define "Last Mammography Date":
+  start of ("Mammography Observation".mostRecent().effective.toInterval())
+
 define "October 1 Two Years Prior to the Measurement Period":
   DateTime((year from start of "Measurement Period" - 2), 10, 1, 0, 0, 0, 0, 0)
 

@@ -1,0 +1,478 @@
+{
+  "id": "HOBExample",
+  "resourceType": "Measure",
+  "url": "https://madie.cms.gov/Measure/HOBExample",
+  "library": [
+    "https://madie.cms.gov/Library/HOB"
+  ],
+  "group": [
+    {
+      "id": "o-cob-prevalence-rate",
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/5.0/StructureDefinition/extension-Measure.group.linkId",
+          "valueString": "o-cob-prevalence-rate"
+        },
+        {
+          "url": "http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-populationBasis",
+          "valueCode": "Encounter"
+        },
+        {
+          "url": "http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-scoring",
+          "valueCodeableConcept": {
+            "coding": [{
+              "system": "http://terminology.hl7.org/CodeSystem/measure-scoring",
+              "code": "proportion",
+              "display": "Proportion"
+            }]
+          }
+        }
+      ],
+      "description": "O-COB Prevalence Rate",
+      "population": [
+        {
+          "id": "o-cob-ip",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/5.0/StructureDefinition/extension-Measure.group.population.linkId",
+              "valueString": "o-cob-ip"
+            }
+          ],
+          "code": {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+                "code": "initial-population",
+                "display": "Initial Population"
+              }
+            ]
+          },
+          "description": "Outpatient (ED/OBS) encounters occurring within the measurement period",
+          "criteria": {
+            "language": "text/cql-identifier",
+            "expression": "O-COB Prevalence Rate Initial Population"
+          }
+        },
+        {
+          "id": "o-cob-denom",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/5.0/StructureDefinition/extension-Measure.group.population.linkId",
+              "valueString": "o-cob-denom"
+            }
+          ],
+          "code": {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+                "code": "denominator",
+                "display": "Denominator"
+              }
+            ]
+          },
+          "description": "Outpatient (ED/OBS) encounters occurring within the measurement period",
+          "criteria": {
+            "language": "text/cql-identifier",
+            "expression": "O-COB Prevalence Rate Denominator"
+          }
+        },
+        {
+          "id": "o-cob-numer",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/5.0/StructureDefinition/extension-Measure.group.population.linkId",
+              "valueString": "o-cob-numer"
+            }
+          ],
+          "code": {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+                "code": "numerator",
+                "display": "Numerator"
+              }
+            ]
+          },
+          "description": "Number of outpatient O-COB events occurring within the measurement period",
+          "criteria": {
+            "language": "text/cql-identifier",
+            "expression": "Numerator"
+          }
+        }
+      ]
+    }, {
+      "id": "cob-prevalence-rate",
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/5.0/StructureDefinition/extension-Measure.group.linkId",
+          "valueString": "cob-prevalence-rate"
+        },
+        {
+          "url": "http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-populationBasis",
+          "valueCode": "Encounter"
+        },
+        {
+          "url": "http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-scoring",
+          "valueCodeableConcept": {
+            "coding": [{
+              "system": "http://terminology.hl7.org/CodeSystem/measure-scoring",
+              "code": "proportion",
+              "display": "Proportion"
+            }]
+          }
+        }
+      ],
+      "description": "COB Prevalence Rate",
+      "population": [
+        {
+          "id": "cob-ip",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/5.0/StructureDefinition/extension-Measure.group.population.linkId",
+              "valueString": "cob-ip"
+            }
+          ],
+          "code": {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+                "code": "initial-population",
+                "display": "Initial Population"
+              }
+            ]
+          },
+          "description": "Inpatient stays where at least one of the first three inpatient calendar days falls within the measurement period",
+          "criteria": {
+            "language": "text/cql-identifier",
+            "expression": "COB Prevalence Rate Initial Population"
+          }
+        },
+        {
+          "id": "cob-denom",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/5.0/StructureDefinition/extension-Measure.group.population.linkId",
+              "valueString": "cob-denom"
+            }
+          ],
+          "code": {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+                "code": "denominator",
+                "display": "Denominator"
+              }
+            ]
+          },
+          "description": "Inpatient stays where at least one of the first three inpatient calendar days falls within the measurement period",
+          "criteria": {
+            "language": "text/cql-identifier",
+            "expression": "COB Prevalence Rate Denominator"
+          }
+        },
+        {
+          "id": "cob-numer",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/5.0/StructureDefinition/extension-Measure.group.population.linkId",
+              "valueString": "cob-numer"
+            }
+          ],
+          "code": {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+                "code": "numerator",
+                "display": "Numerator"
+              }
+            ]
+          },
+          "description": "Inpatient COB events occurring within the measurement period",
+          "criteria": {
+            "language": "text/cql-identifier",
+            "expression": "Numerator"
+          }
+        }
+      ]
+    }, {
+      "id": "hob-crude-risk",
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/5.0/StructureDefinition/extension-Measure.group.linkId",
+          "valueString": "hob-crude-risk"
+        },
+        {
+          "url": "http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-populationBasis",
+          "valueCode": "Encounter"
+        },
+        {
+          "url": "http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-scoring",
+          "valueCodeableConcept": {
+            "coding": [{
+              "system": "http://terminology.hl7.org/CodeSystem/measure-scoring",
+              "code": "proportion",
+              "display": "Proportion"
+            }]
+          }
+        }
+      ],
+      "description": "HOB Crude Risk",
+      "population": [
+        {
+          "id": "hob-crude-ip",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/5.0/StructureDefinition/extension-Measure.group.population.linkId",
+              "valueString": "hob-crude-ip"
+            }
+          ],
+          "code": {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+                "code": "initial-population",
+                "display": "Initial Population"
+              }
+            ]
+          },
+          "description": "Number of inpatient stays where there are any inpatient days eligible for a hospital-onset event during the measurement period",
+          "criteria": {
+            "language": "text/cql-identifier",
+            "expression": "HOB Crude Risk Initial Population"
+          }
+        },
+        {
+          "id": "hob-crude-denom",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/5.0/StructureDefinition/extension-Measure.group.population.linkId",
+              "valueString": "hob-crude-denom"
+            }
+          ],
+          "code": {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+                "code": "denominator",
+                "display": "Denominator"
+              }
+            ]
+          },
+          "description": "Number of inpatient stays where there are any inpatient days eligible for a hospital-onset event during the measurement period",
+          "criteria": {
+            "language": "text/cql-identifier",
+            "expression": "HOB Crude Risk Denominator"
+          }
+        },
+        {
+          "id": "hob-crude-numer",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/5.0/StructureDefinition/extension-Measure.group.population.linkId",
+              "valueString": "hob-crude-numer"
+            }
+          ],
+          "code": {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+                "code": "numerator",
+                "display": "Numerator"
+              }
+            ]
+          },
+          "description": "Number of inpatient stays with at least one HOB event occurring within the measurement period",
+          "criteria": {
+            "language": "text/cql-identifier",
+            "expression": "Numerator"
+          }
+        }
+      ]
+    }, {
+      "id": "hob-incidence",
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/5.0/StructureDefinition/extension-Measure.group.linkId",
+          "valueString": "hob-incidence"
+        },
+        {
+          "url": "http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-populationBasis",
+          "valueCode": "Encounter"
+        },
+        {
+          "url": "http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-scoring",
+          "valueCodeableConcept": {
+            "coding": [{
+              "system": "http://terminology.hl7.org/CodeSystem/measure-scoring",
+              "code": "ratio",
+              "display": "Ratio"
+            }]
+          }
+        },
+        {
+          "url": "http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-scoringUnit",
+          "valueCodeableConcept": {
+            "coding": [{
+              "system": "http://unitsofmeasure.org",
+              "code": "/100.d",
+              "display": "per 100 eligible patient days"
+            }]
+          }
+        }
+      ],
+      "description": "HOB Incidence Density",
+      "population": [
+        {
+          "id": "hob-incidence-ip",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/5.0/StructureDefinition/extension-Measure.group.population.linkId",
+              "valueString": "hob-incidence-ip"
+            }
+          ],
+          "code": {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+                "code": "initial-population",
+                "display": "Initial Population"
+              }
+            ]
+          },
+          "description": "Inpatient stay with days eligible for a hospital-onset event during the measurement period",
+          "criteria": {
+            "language": "text/cql-identifier",
+            "expression": "HOB Incidence Initial Population"
+          }
+        },
+        {
+          "id": "hob-incidence-denom",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/5.0/StructureDefinition/extension-Measure.group.population.linkId",
+              "valueString": "hob-incidence-denom"
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-criteriaReference",
+              "valueString": "hob-incidence-ip"
+            }
+          ],
+          "code": {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+                "code": "denominator",
+                "display": "Denominator"
+              }
+            ]
+          },
+          "description": "Inpatient stay with days eligible for a hospital-onset event during the measurement period",
+          "criteria": {
+            "language": "text/cql-identifier",
+            "expression": "Denominator"
+          }
+        },
+        {
+          "id": "hob-incidence-denom-obs",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/5.0/StructureDefinition/extension-Measure.group.population.linkId",
+              "valueString": "hob-incidence-denom-obs"
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-criteriaReference",
+              "valueString": "hob-incidence-denom"
+            },
+            {
+              "url": "http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-aggregateMethod",
+              "valueCodeableConcept": {
+                "coding": [{
+                  "system": "http://terminology.hl7.org/CodeSystem/measure-aggregate-method",
+                  "code": "sum",
+                  "display": "Sum"
+                }]
+              }
+            }
+          ],
+          "code": {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+                "code": "measure-observation",
+                "display": "Measure Observation"
+              }
+            ]
+          },
+          "description": "Number of inipatient days eligible for a hospital-onset event during the measurement period",
+          "criteria": {
+            "language": "text/cql-identifier",
+            "expression": "HOB Incidence Denominator Observation"
+          }
+        },
+        {
+          "id": "hob-incidence-numer",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/5.0/StructureDefinition/extension-Measure.group.population.linkId",
+              "valueString": "hob-incidence-numer"
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-criteriaReference",
+              "valueString": "hob-incidence-ip"
+            }
+          ],
+          "code": {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+                "code": "numerator",
+                "display": "Numerator"
+              }
+            ]
+          },
+          "description": "HOB Event",
+          "criteria": {
+            "language": "text/cql-identifier",
+            "expression": "HOB Incidence Numerator"
+          }
+        },
+        {
+          "id": "hob-incidence-numer-obs",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/5.0/StructureDefinition/extension-Measure.group.population.linkId",
+              "valueString": "hob-incidence-numer-obs"
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/cqf-criteriaReference",
+              "valueString": "hob-incidence-numer"
+            },
+            {
+              "url": "http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-aggregateMethod",
+              "valueCodeableConcept": {
+                "coding": [{
+                  "system": "http://terminology.hl7.org/CodeSystem/measure-aggregate-method",
+                  "code": "sum",
+                  "display": "Sum"
+                }]
+              }
+            }
+          ],
+          "code": {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+                "code": "measure-observation",
+                "display": "Measure Observation"
+              }
+            ]
+          },
+          "description": "Number of HOB Events",
+          "criteria": {
+            "language": "text/cql-identifier",
+            "expression": "HOB Incidence Numerator Observation"
+          }
+        }
+      ]
+    }]
+}

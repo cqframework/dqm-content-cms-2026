@@ -55,6 +55,8 @@ define "CTImagingStudies":
 define "HasCTImagingStudies":
   exists "CTImagingStudies"
 
+
+
 // =============================================================================
 // TEST 2: Custom Search Param (manufacturer - series level extension)
 // =============================================================================
