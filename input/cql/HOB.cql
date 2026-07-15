@@ -113,6 +113,7 @@ define "Inpatient Encounter":
     }
 
 // TODO: USCDI+ Quality/USCDI Gap (Specimen Collection Time)
+// NOTE: Can we use effectiveTime here rather than Specimen Collection Time
 define "Encounter With O-COB Result":
   "Outpatient Encounter" E
     let results: (
