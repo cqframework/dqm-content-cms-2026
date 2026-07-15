@@ -1,0 +1,2110 @@
+{
+  "resourceType": "CodeSystem",
+  "id": "hob-organism-taxonomy",
+  "url": "https://example.org/fhir/CodeSystem/hob-organism-taxonomy",
+  "version": "0.1.0",
+  "name": "HOBOrganismTaxonomy",
+  "title": "HOB Organism Taxonomy - SNOMED CT Supplement",
+  "status": "draft",
+  "experimental": true,
+  "publisher": "CQF (local starter)",
+  "description": "SNOMED CT code system supplement carrying the NHSN HOB organism-taxonomy rollup and classification properties. Generated from the OrganismTaxonomy expression in the HOBOrganismTaxonomy CQL library (the source is a work-in-progress alphabetical fragment, so this supplement is incomplete). The source columns roll_up_genus_level / roll_up_species_level are omitted because they are fully implied by the presence of the roll-up-genus / roll-up-species properties, and the always-null 'L' column is omitted. Genus/species preferred terms are carried as the display of each Coding-valued property.",
+  "content": "supplement",
+  "supplements": "http://snomed.info/sct",
+  "count": 65,
+  "property": [
+    {
+      "code": "roll-up-genus",
+      "type": "Coding",
+      "description": "Genus-level SNOMED CT concept this organism rolls up to (roll_up_genus_conceptid / roll_up_genus_name)."
+    },
+    {
+      "code": "roll-up-species",
+      "type": "Coding",
+      "description": "Species-level SNOMED CT concept this organism rolls up to (roll_up_species_conceptid / roll_up_species_name). Absent for genus-level or higher concepts."
+    },
+    {
+      "code": "nhsn-community-associated",
+      "type": "boolean",
+      "description": "NHSN classification: organism is community-associated (source nhsn_community_associated, 1=true)."
+    },
+    {
+      "code": "nhsn-skin-commensal",
+      "type": "boolean",
+      "description": "NHSN classification: organism is a common skin commensal (source nhsn_skin_commensal, 1=true)."
+    },
+    {
+      "code": "snomed-status",
+      "type": "code",
+      "description": "SNOMED status flag as recorded in the source taxonomy ('0'/'1'). Exact semantics to be confirmed (likely active=1)."
+    }
+  ],
+  "concept": [
+    {
+      "code": "186087007",
+      "display": "(Cholera) or (Vibrio cholerae)",
+      "property": [
+        {
+          "code": "roll-up-genus",
+          "valueCoding": {
+            "system": "http://snomed.info/sct",
+            "code": "34872001",
+            "display": "Vibrio"
+          }
+        },
+        {
+          "code": "roll-up-species",
+          "valueCoding": {
+            "system": "http://snomed.info/sct",
+            "code": "75953000",
+            "display": "Vibrio cholerae"
+          }
+        },
+        {
+          "code": "nhsn-community-associated",
+          "valueBoolean": false
+        },
+        {
+          "code": "nhsn-skin-commensal",
+          "valueBoolean": false
+        },
+        {
+          "code": "snomed-status",
+          "valueCode": "0"
+        }
+      ]
+    },
+    {
+      "code": "266186009",
+      "display": "(Legionella) or (Legionnaire's disease)",
+      "property": [
+        {
+          "code": "roll-up-genus",
+          "valueCoding": {
+            "system": "http://snomed.info/sct",
+            "code": "7527002",
+            "display": "Legionella"
+          }
+        },
+        {
+          "code": "nhsn-community-associated",
+          "valueBoolean": false
+        },
+        {
+          "code": "nhsn-skin-commensal",
+          "valueBoolean": false
+        },
+        {
+          "code": "snomed-status",
+          "valueCode": "0"
+        }
+      ]
+    },
+    {
+      "code": "154315008",
+      "display": "(Legionella) or (Legionnaire's disease)",
+      "property": [
+        {
+          "code": "roll-up-genus",
+          "valueCoding": {
+            "system": "http://snomed.info/sct",
+            "code": "7527002",
+            "display": "Legionella"
+          }
+        },
+        {
+          "code": "nhsn-community-associated",
+          "valueBoolean": false
+        },
+        {
+          "code": "nhsn-skin-commensal",
+          "valueBoolean": false
+        },
+        {
+          "code": "snomed-status",
+          "valueCode": "0"
+        }
+      ]
+    },
+    {
+      "code": "186103005",
+      "display": "(Shigella dysenteriae - group A) or (bacillary dysentery)",
+      "property": [
+        {
+          "code": "roll-up-genus",
+          "valueCoding": {
+            "system": "http://snomed.info/sct",
+            "code": "77352002",
+            "display": "Shigella"
+          }
+        },
+        {
+          "code": "roll-up-species",
+          "valueCoding": {
+            "system": "http://snomed.info/sct",
+            "code": "43612004",
+            "display": "Shigella dysenteriae"
+          }
+        },
+        {
+          "code": "nhsn-community-associated",
+          "valueBoolean": false
+        },
+        {
+          "code": "nhsn-skin-commensal",
+          "valueBoolean": false
+        },
+        {
+          "code": "snomed-status",
+          "valueCode": "0"
+        }
+      ]
+    },
+    {
+      "code": "186350009",
+      "display": "(Whooping cough) or (Bordetella)",
+      "property": [
+        {
+          "code": "roll-up-genus",
+          "valueCoding": {
+            "system": "http://snomed.info/sct",
+            "code": "46466005",
+            "display": "Bordetella"
+          }
+        },
+        {
+          "code": "nhsn-community-associated",
+          "valueBoolean": false
+        },
+        {
+          "code": "nhsn-skin-commensal",
+          "valueBoolean": false
+        },
+        {
+          "code": "snomed-status",
+          "valueCode": "0"
+        }
+      ]
+    },
+    {
+      "code": "115161005",
+      "display": "Abiotrophia",
+      "property": [
+        {
+          "code": "roll-up-genus",
+          "valueCoding": {
+            "system": "http://snomed.info/sct",
+            "code": "115161005",
+            "display": "Abiotrophia"
+          }
+        },
+        {
+          "code": "nhsn-community-associated",
+          "valueBoolean": false
+        },
+        {
+          "code": "nhsn-skin-commensal",
+          "valueBoolean": false
+        },
+        {
+          "code": "snomed-status",
+          "valueCode": "1"
+        }
+      ]
+    },
+    {
+      "code": "113714003",
+      "display": "Abiotrophia defectiva",
+      "property": [
+        {
+          "code": "roll-up-genus",
+          "valueCoding": {
+            "system": "http://snomed.info/sct",
+            "code": "115161005",
+            "display": "Abiotrophia"
+          }
+        },
+        {
+          "code": "roll-up-species",
+          "valueCoding": {
+            "system": "http://snomed.info/sct",
+            "code": "113714003",
+            "display": "Abiotrophia defectiva"
+          }
+        },
+        {
+          "code": "nhsn-community-associated",
+          "valueBoolean": false
+        },
+        {
+          "code": "nhsn-skin-commensal",
+          "valueBoolean": false
+        },
+        {
+          "code": "snomed-status",
+          "valueCode": "1"
+        }
+      ]
+    },
+    {
+      "code": "409815006",
+      "display": "Abiotrophia para-adiacens",
+      "property": [
+        {
+          "code": "roll-up-genus",
+          "valueCoding": {
+            "system": "http://snomed.info/sct",
+            "code": "115161005",
+            "display": "Abiotrophia"
+          }
+        },
+        {
+          "code": "roll-up-species",
+          "valueCoding": {
+            "system": "http://snomed.info/sct",
+            "code": "409815006",
+            "display": "Abiotrophia para-adiacens"
+          }
+        },
+        {
+          "code": "nhsn-community-associated",
+          "valueBoolean": false
+        },
+        {
+          "code": "nhsn-skin-commensal",
+          "valueBoolean": false
+        },
+        {
+          "code": "snomed-status",
+          "valueCode": "0"
+        }
+      ]
+    },
+    {
+      "code": "372391001",
+      "display": "Abiotrophia species",
+      "property": [
+        {
+          "code": "roll-up-genus",
+          "valueCoding": {
+            "system": "http://snomed.info/sct",
+            "code": "115161005",
+            "display": "Abiotrophia"
+          }
+        },
+        {
+          "code": "nhsn-community-associated",
+          "valueBoolean": false
+        },
+        {
+          "code": "nhsn-skin-commensal",
+          "valueBoolean": false
+        },
+        {
+          "code": "snomed-status",
+          "valueCode": "0"
+        }
+      ]
+    },
+    {
+      "code": "736080001",
+      "display": "Abortiporus",
+      "property": [
+        {
+          "code": "roll-up-genus",
+          "valueCoding": {
+            "system": "http://snomed.info/sct",
+            "code": "736080001",
+            "display": "Abortiporus"
+          }
+        },
+        {
+          "code": "nhsn-community-associated",
+          "valueBoolean": false
+        },
+        {
+          "code": "nhsn-skin-commensal",
+          "valueBoolean": false
+        },
+        {
+          "code": "snomed-status",
+          "valueCode": "1"
+        }
+      ]
+    },
+    {
+      "code": "736079004",
+      "display": "Abortiporus biennis",
+      "property": [
+        {
+          "code": "roll-up-genus",
+          "valueCoding": {
+            "system": "http://snomed.info/sct",
+            "code": "736080001",
+            "display": "Abortiporus"
+          }
+        },
+        {
+          "code": "roll-up-species",
+          "valueCoding": {
+            "system": "http://snomed.info/sct",
+            "code": "736079004",
+            "display": "Abortiporus biennis"
+          }
+        },
+        {
+          "code": "nhsn-community-associated",
+          "valueBoolean": false
+        },
+        {
+          "code": "nhsn-skin-commensal",
+          "valueBoolean": false
+        },
+        {
+          "code": "snomed-status",
+          "valueCode": "1"
+        }
+      ]
+    },
+    {
+      "code": "57145009",
+      "display": "Absidia",
+      "property": [
+        {
+          "code": "roll-up-genus",
+          "valueCoding": {
+            "system": "http://snomed.info/sct",
+            "code": "57145009",
+            "display": "Absidia"
+          }
+        },
+        {
+          "code": "nhsn-community-associated",
+          "valueBoolean": false
+        },
+        {
+          "code": "nhsn-skin-commensal",
+          "valueBoolean": false
+        },
+        {
+          "code": "snomed-status",
+          "valueCode": "1"
+        }
+      ]
+    },
+    {
+      "code": "2591000146102",
+      "display": "Absidia caerulea",
+      "property": [
+        {
+          "code": "roll-up-genus",
+          "valueCoding": {
+            "system": "http://snomed.info/sct",
+            "code": "57145009",
+            "display": "Absidia"
+          }
+        },
+        {
+          "code": "roll-up-species",
+          "valueCoding": {
+            "system": "http://snomed.info/sct",
+            "code": "2591000146102",
+            "display": "Absidia caerulea"
+          }
+        },
+        {
+          "code": "nhsn-community-associated",
+          "valueBoolean": false
+        },
+        {
+          "code": "nhsn-skin-commensal",
+          "valueBoolean": false
+        },
+        {
+          "code": "snomed-status",
+          "valueCode": "1"
+        }
+      ]
+    },
+    {
+      "code": "243420008",
+      "display": "Absidia corymbifera",
+      "property": [
+        {
+          "code": "roll-up-genus",
+          "valueCoding": {
+            "system": "http://snomed.info/sct",
+            "code": "57145009",
+            "display": "Absidia"
+          }
+        },
+        {
+          "code": "roll-up-species",
+          "valueCoding": {
+            "system": "http://snomed.info/sct",
+            "code": "243420008",
+            "display": "Absidia corymbifera"
+          }
+        },
+        {
+          "code": "nhsn-community-associated",
+          "valueBoolean": false
+        },
+        {
+          "code": "nhsn-skin-commensal",
+          "valueBoolean": false
+        },
+        {
+          "code": "snomed-status",
+          "valueCode": "0"
+        }
+      ]
+    },
+    {
+      "code": "49931000087108",
+      "display": "Absidia cylindrospora",
+      "property": [
+        {
+          "code": "roll-up-genus",
+          "valueCoding": {
+            "system": "http://snomed.info/sct",
+            "code": "57145009",
+            "display": "Absidia"
+          }
+        },
+        {
+          "code": "roll-up-species",
+          "valueCoding": {
+            "system": "http://snomed.info/sct",
+            "code": "49931000087108",
+            "display": "Absidia cylindrospora"
+          }
+        },
+        {
+          "code": "nhsn-community-associated",
+          "valueBoolean": false
+        },
+        {
+          "code": "nhsn-skin-commensal",
+          "valueBoolean": false
+        },
+        {
+          "code": "snomed-status",
+          "valueCode": "1"
+        }
+      ]
+    },
+    {
+      "code": "785768009",
+      "display": "Absidia glauca",
+      "property": [
+        {
+          "code": "roll-up-genus",
+          "valueCoding": {
+            "system": "http://snomed.info/sct",
+            "code": "57145009",
+            "display": "Absidia"
+          }
+        },
+        {
+          "code": "roll-up-species",
+          "valueCoding": {
+            "system": "http://snomed.info/sct",
+            "code": "785768009",
+            "display": "Absidia glauca"
+          }
+        },
+        {
+          "code": "nhsn-community-associated",
+          "valueBoolean": false
+        },
+        {
+          "code": "nhsn-skin-commensal",
+          "valueBoolean": false
+        },
+        {
+          "code": "snomed-status",
+          "valueCode": "1"
+        }
+      ]
+    },
+    {
+      "code": "8296004",
+      "display": "Absidia halospora",
+      "property": [
+        {
+          "code": "roll-up-genus",
+          "valueCoding": {
+            "system": "http://snomed.info/sct",
+            "code": "57145009",
+            "display": "Absidia"
+          }
+        },
+        {
+          "code": "roll-up-species",
+          "valueCoding": {
+            "system": "http://snomed.info/sct",
+            "code": "8296004",
+            "display": "Absidia halospora"
+          }
+        },
+        {
+          "code": "nhsn-community-associated",
+          "valueBoolean": false
+        },
+        {
+          "code": "nhsn-skin-commensal",
+          "valueBoolean": false
+        },
+        {
+          "code": "snomed-status",
+          "valueCode": "1"
+        }
+      ]
+    },
+    {
+      "code": "359802007",
+      "display": "Absidia lichtheimii",
+      "property": [
+        {
+          "code": "roll-up-genus",
+          "valueCoding": {
+            "system": "http://snomed.info/sct",
+            "code": "57145009",
+            "display": "Absidia"
+          }
+        },
+        {
+          "code": "roll-up-species",
+          "valueCoding": {
+            "system": "http://snomed.info/sct",
+            "code": "359802007",
+            "display": "Absidia lichtheimii"
+          }
+        },
+        {
+          "code": "nhsn-community-associated",
+          "valueBoolean": false
+        },
+        {
+          "code": "nhsn-skin-commensal",
+          "valueBoolean": false
+        },
+        {
+          "code": "snomed-status",
+          "valueCode": "0"
+        }
+      ]
+    },
+    {
+      "code": "36013002",
+      "display": "Absidia ramosa",
+      "property": [
+        {
+          "code": "roll-up-genus",
+          "valueCoding": {
+            "system": "http://snomed.info/sct",
+            "code": "57145009",
+            "display": "Absidia"
+          }
+        },
+        {
+          "code": "roll-up-species",
+          "valueCoding": {
+            "system": "http://snomed.info/sct",
+            "code": "36013002",
+            "display": "Absidia ramosa"
+          }
+        },
+        {
+          "code": "nhsn-community-associated",
+          "valueBoolean": false
+        },
+        {
+          "code": "nhsn-skin-commensal",
+          "valueBoolean": false
+        },
+        {
+          "code": "snomed-status",
+          "valueCode": "0"
+        }
+      ]
+    },
+    {
+      "code": "404226006",
+      "display": "Absidia species",
+      "property": [
+        {
+          "code": "roll-up-genus",
+          "valueCoding": {
+            "system": "http://snomed.info/sct",
+            "code": "57145009",
+            "display": "Absidia"
+          }
+        },
+        {
+          "code": "nhsn-community-associated",
+          "valueBoolean": false
+        },
+        {
+          "code": "nhsn-skin-commensal",
+          "valueBoolean": false
+        },
+        {
+          "code": "snomed-status",
+          "valueCode": "0"
+        }
+      ]
+    },
+    {
+      "code": "541341000124105",
+      "display": "Abyssicoccus",
+      "property": [
+        {
+          "code": "roll-up-genus",
+          "valueCoding": {
+            "system": "http://snomed.info/sct",
+            "code": "541341000124105",
+            "display": "Abyssicoccus"
+          }
+        },
+        {
+          "code": "nhsn-community-associated",
+          "valueBoolean": false
+        },
+        {
+          "code": "nhsn-skin-commensal",
+          "valueBoolean": false
+        },
+        {
+          "code": "snomed-status",
+          "valueCode": "1"
+        }
+      ]
+    },
+    {
+      "code": "541351000124107",
+      "display": "Abyssicoccus albus",
+      "property": [
+        {
+          "code": "roll-up-genus",
+          "valueCoding": {
+            "system": "http://snomed.info/sct",
+            "code": "541341000124105",
+            "display": "Abyssicoccus"
+          }
+        },
+        {
+          "code": "roll-up-species",
+          "valueCoding": {
+            "system": "http://snomed.info/sct",
+            "code": "541351000124107",
+            "display": "Abyssicoccus albus"
+          }
+        },
+        {
+          "code": "nhsn-community-associated",
+          "valueBoolean": false
+        },
+        {
+          "code": "nhsn-skin-commensal",
+          "valueBoolean": false
+        },
+        {
+          "code": "snomed-status",
+          "valueCode": "1"
+        }
+      ]
+    },
+    {
+      "code": "28861000087102",
+      "display": "Acaromyces",
+      "property": [
+        {
+          "code": "roll-up-genus",
+          "valueCoding": {
+            "system": "http://snomed.info/sct",
+            "code": "28861000087102",
+            "display": "Acaromyces"
+          }
+        },
+        {
+          "code": "nhsn-community-associated",
+          "valueBoolean": false
+        },
+        {
+          "code": "nhsn-skin-commensal",
+          "valueBoolean": false
+        },
+        {
+          "code": "snomed-status",
+          "valueCode": "1"
+        }
+      ]
+    },
+    {
+      "code": "28871000087106",
+      "display": "Acaromyces ingoldii",
+      "property": [
+        {
+          "code": "roll-up-genus",
+          "valueCoding": {
+            "system": "http://snomed.info/sct",
+            "code": "28861000087102",
+            "display": "Acaromyces"
+          }
+        },
+        {
+          "code": "roll-up-species",
+          "valueCoding": {
+            "system": "http://snomed.info/sct",
+            "code": "28871000087106",
+            "display": "Acaromyces ingoldii"
+          }
+        },
+        {
+          "code": "nhsn-community-associated",
+          "valueBoolean": false
+        },
+        {
+          "code": "nhsn-skin-commensal",
+          "valueBoolean": false
+        },
+        {
+          "code": "snomed-status",
+          "valueCode": "1"
+        }
+      ]
+    },
+    {
+      "code": "785735002",
+      "display": "Acaulium",
+      "property": [
+        {
+          "code": "roll-up-genus",
+          "valueCoding": {
+            "system": "http://snomed.info/sct",
+            "code": "785735002",
+            "display": "Acaulium"
+          }
+        },
+        {
+          "code": "nhsn-community-associated",
+          "valueBoolean": false
+        },
+        {
+          "code": "nhsn-skin-commensal",
+          "valueBoolean": false
+        },
+        {
+          "code": "snomed-status",
+          "valueCode": "1"
+        }
+      ]
+    },
+    {
+      "code": "59520005",
+      "display": "Acaulium acremonium",
+      "property": [
+        {
+          "code": "roll-up-genus",
+          "valueCoding": {
+            "system": "http://snomed.info/sct",
+            "code": "785735002",
+            "display": "Acaulium"
+          }
+        },
+        {
+          "code": "roll-up-species",
+          "valueCoding": {
+            "system": "http://snomed.info/sct",
+            "code": "59520005",
+            "display": "Acaulium acremonium"
+          }
+        },
+        {
+          "code": "nhsn-community-associated",
+          "valueBoolean": false
+        },
+        {
+          "code": "nhsn-skin-commensal",
+          "valueBoolean": false
+        },
+        {
+          "code": "snomed-status",
+          "valueCode": "1"
+        }
+      ]
+    },
+    {
+      "code": "423947001",
+      "display": "Acetanaerobacterium",
+      "property": [
+        {
+          "code": "roll-up-genus",
+          "valueCoding": {
+            "system": "http://snomed.info/sct",
+            "code": "423947001",
+            "display": "Acetanaerobacterium"
+          }
+        },
+        {
+          "code": "nhsn-community-associated",
+          "valueBoolean": false
+        },
+        {
+          "code": "nhsn-skin-commensal",
+          "valueBoolean": false
+        },
+        {
+          "code": "snomed-status",
+          "valueCode": "1"
+        }
+      ]
+    },
+    {
+      "code": "423867006",
+      "display": "Acetanaerobacterium elongatum",
+      "property": [
+        {
+          "code": "roll-up-genus",
+          "valueCoding": {
+            "system": "http://snomed.info/sct",
+            "code": "423947001",
+            "display": "Acetanaerobacterium"
+          }
+        },
+        {
+          "code": "roll-up-species",
+          "valueCoding": {
+            "system": "http://snomed.info/sct",
+            "code": "423867006",
+            "display": "Acetanaerobacterium elongatum"
+          }
+        },
+        {
+          "code": "nhsn-community-associated",
+          "valueBoolean": false
+        },
+        {
+          "code": "nhsn-skin-commensal",
+          "valueBoolean": false
+        },
+        {
+          "code": "snomed-status",
+          "valueCode": "1"
+        }
+      ]
+    },
+    {
+      "code": "424162006",
+      "display": "Acetitomaculum",
+      "property": [
+        {
+          "code": "roll-up-genus",
+          "valueCoding": {
+            "system": "http://snomed.info/sct",
+            "code": "424162006",
+            "display": "Acetitomaculum"
+          }
+        },
+        {
+          "code": "nhsn-community-associated",
+          "valueBoolean": false
+        },
+        {
+          "code": "nhsn-skin-commensal",
+          "valueBoolean": false
+        },
+        {
+          "code": "snomed-status",
+          "valueCode": "1"
+        }
+      ]
+    },
+    {
+      "code": "425276005",
+      "display": "Acetitomaculum ruminis",
+      "property": [
+        {
+          "code": "roll-up-genus",
+          "valueCoding": {
+            "system": "http://snomed.info/sct",
+            "code": "424162006",
+            "display": "Acetitomaculum"
+          }
+        },
+        {
+          "code": "roll-up-species",
+          "valueCoding": {
+            "system": "http://snomed.info/sct",
+            "code": "425276005",
+            "display": "Acetitomaculum ruminis"
+          }
+        },
+        {
+          "code": "nhsn-community-associated",
+          "valueBoolean": false
+        },
+        {
+          "code": "nhsn-skin-commensal",
+          "valueBoolean": false
+        },
+        {
+          "code": "snomed-status",
+          "valueCode": "1"
+        }
+      ]
+    },
+    {
+      "code": "72806006",
+      "display": "Acetivibrio",
+      "property": [
+        {
+          "code": "roll-up-genus",
+          "valueCoding": {
+            "system": "http://snomed.info/sct",
+            "code": "72806006",
+            "display": "Acetivibrio"
+          }
+        },
+        {
+          "code": "nhsn-community-associated",
+          "valueBoolean": false
+        },
+        {
+          "code": "nhsn-skin-commensal",
+          "valueBoolean": false
+        },
+        {
+          "code": "snomed-status",
+          "valueCode": "1"
+        }
+      ]
+    },
+    {
+      "code": "432614007",
+      "display": "Acetivibrio aldrichii",
+      "property": [
+        {
+          "code": "roll-up-genus",
+          "valueCoding": {
+            "system": "http://snomed.info/sct",
+            "code": "72806006",
+            "display": "Acetivibrio"
+          }
+        },
+        {
+          "code": "roll-up-species",
+          "valueCoding": {
+            "system": "http://snomed.info/sct",
+            "code": "432614007",
+            "display": "Acetivibrio aldrichii"
+          }
+        },
+        {
+          "code": "nhsn-community-associated",
+          "valueBoolean": false
+        },
+        {
+          "code": "nhsn-skin-commensal",
+          "valueBoolean": false
+        },
+        {
+          "code": "snomed-status",
+          "valueCode": "1"
+        }
+      ]
+    },
+    {
+      "code": "86860008",
+      "display": "Acetivibrio cellulolyticus",
+      "property": [
+        {
+          "code": "roll-up-genus",
+          "valueCoding": {
+            "system": "http://snomed.info/sct",
+            "code": "72806006",
+            "display": "Acetivibrio"
+          }
+        },
+        {
+          "code": "roll-up-species",
+          "valueCoding": {
+            "system": "http://snomed.info/sct",
+            "code": "86860008",
+            "display": "Acetivibrio cellulolyticus"
+          }
+        },
+        {
+          "code": "nhsn-community-associated",
+          "valueBoolean": false
+        },
+        {
+          "code": "nhsn-skin-commensal",
+          "valueBoolean": false
+        },
+        {
+          "code": "snomed-status",
+          "valueCode": "1"
+        }
+      ]
+    },
+    {
+      "code": "64755006",
+      "display": "Acetivibrio ethanolgignens",
+      "property": [
+        {
+          "code": "roll-up-genus",
+          "valueCoding": {
+            "system": "http://snomed.info/sct",
+            "code": "72806006",
+            "display": "Acetivibrio"
+          }
+        },
+        {
+          "code": "roll-up-species",
+          "valueCoding": {
+            "system": "http://snomed.info/sct",
+            "code": "64755006",
+            "display": "Acetivibrio ethanolgignens"
+          }
+        },
+        {
+          "code": "nhsn-community-associated",
+          "valueBoolean": false
+        },
+        {
+          "code": "nhsn-skin-commensal",
+          "valueBoolean": false
+        },
+        {
+          "code": "snomed-status",
+          "valueCode": "1"
+        }
+      ]
+    },
+    {
+      "code": "131199002",
+      "display": "Acetivibrio species",
+      "property": [
+        {
+          "code": "roll-up-genus",
+          "valueCoding": {
+            "system": "http://snomed.info/sct",
+            "code": "72806006",
+            "display": "Acetivibrio"
+          }
+        },
+        {
+          "code": "nhsn-community-associated",
+          "valueBoolean": false
+        },
+        {
+          "code": "nhsn-skin-commensal",
+          "valueBoolean": false
+        },
+        {
+          "code": "snomed-status",
+          "valueCode": "0"
+        }
+      ]
+    },
+    {
+      "code": "432622000",
+      "display": "Acetivibrio straminisolvens",
+      "property": [
+        {
+          "code": "roll-up-genus",
+          "valueCoding": {
+            "system": "http://snomed.info/sct",
+            "code": "72806006",
+            "display": "Acetivibrio"
+          }
+        },
+        {
+          "code": "roll-up-species",
+          "valueCoding": {
+            "system": "http://snomed.info/sct",
+            "code": "432622000",
+            "display": "Acetivibrio straminisolvens"
+          }
+        },
+        {
+          "code": "nhsn-community-associated",
+          "valueBoolean": false
+        },
+        {
+          "code": "nhsn-skin-commensal",
+          "valueBoolean": false
+        },
+        {
+          "code": "snomed-status",
+          "valueCode": "1"
+        }
+      ]
+    },
+    {
+      "code": "68100006",
+      "display": "Acetivibrio thermocellus",
+      "property": [
+        {
+          "code": "roll-up-genus",
+          "valueCoding": {
+            "system": "http://snomed.info/sct",
+            "code": "72806006",
+            "display": "Acetivibrio"
+          }
+        },
+        {
+          "code": "roll-up-species",
+          "valueCoding": {
+            "system": "http://snomed.info/sct",
+            "code": "68100006",
+            "display": "Acetivibrio thermocellus"
+          }
+        },
+        {
+          "code": "nhsn-community-associated",
+          "valueBoolean": false
+        },
+        {
+          "code": "nhsn-skin-commensal",
+          "valueBoolean": false
+        },
+        {
+          "code": "snomed-status",
+          "valueCode": "1"
+        }
+      ]
+    },
+    {
+      "code": "423611000",
+      "display": "Acetoanaerobium",
+      "property": [
+        {
+          "code": "roll-up-genus",
+          "valueCoding": {
+            "system": "http://snomed.info/sct",
+            "code": "423611000",
+            "display": "Acetoanaerobium"
+          }
+        },
+        {
+          "code": "nhsn-community-associated",
+          "valueBoolean": false
+        },
+        {
+          "code": "nhsn-skin-commensal",
+          "valueBoolean": false
+        },
+        {
+          "code": "snomed-status",
+          "valueCode": "1"
+        }
+      ]
+    },
+    {
+      "code": "422656003",
+      "display": "Acetoanaerobium noterae",
+      "property": [
+        {
+          "code": "roll-up-genus",
+          "valueCoding": {
+            "system": "http://snomed.info/sct",
+            "code": "423611000",
+            "display": "Acetoanaerobium"
+          }
+        },
+        {
+          "code": "roll-up-species",
+          "valueCoding": {
+            "system": "http://snomed.info/sct",
+            "code": "422656003",
+            "display": "Acetoanaerobium noterae"
+          }
+        },
+        {
+          "code": "nhsn-community-associated",
+          "valueBoolean": false
+        },
+        {
+          "code": "nhsn-skin-commensal",
+          "valueBoolean": false
+        },
+        {
+          "code": "snomed-status",
+          "valueCode": "1"
+        }
+      ]
+    },
+    {
+      "code": "78437006",
+      "display": "Acetoanaerobium sticklandii",
+      "property": [
+        {
+          "code": "roll-up-genus",
+          "valueCoding": {
+            "system": "http://snomed.info/sct",
+            "code": "423611000",
+            "display": "Acetoanaerobium"
+          }
+        },
+        {
+          "code": "roll-up-species",
+          "valueCoding": {
+            "system": "http://snomed.info/sct",
+            "code": "78437006",
+            "display": "Acetoanaerobium sticklandii"
+          }
+        },
+        {
+          "code": "nhsn-community-associated",
+          "valueBoolean": false
+        },
+        {
+          "code": "nhsn-skin-commensal",
+          "valueBoolean": false
+        },
+        {
+          "code": "snomed-status",
+          "valueCode": "1"
+        }
+      ]
+    },
+    {
+      "code": "396949003",
+      "display": "Acetobacter",
+      "property": [
+        {
+          "code": "roll-up-genus",
+          "valueCoding": {
+            "system": "http://snomed.info/sct",
+            "code": "396949003",
+            "display": "Acetobacter"
+          }
+        },
+        {
+          "code": "nhsn-community-associated",
+          "valueBoolean": false
+        },
+        {
+          "code": "nhsn-skin-commensal",
+          "valueBoolean": false
+        },
+        {
+          "code": "snomed-status",
+          "valueCode": "1"
+        }
+      ]
+    },
+    {
+      "code": "396950003",
+      "display": "Acetobacter aceti",
+      "property": [
+        {
+          "code": "roll-up-genus",
+          "valueCoding": {
+            "system": "http://snomed.info/sct",
+            "code": "396949003",
+            "display": "Acetobacter"
+          }
+        },
+        {
+          "code": "roll-up-species",
+          "valueCoding": {
+            "system": "http://snomed.info/sct",
+            "code": "396950003",
+            "display": "Acetobacter aceti"
+          }
+        },
+        {
+          "code": "nhsn-community-associated",
+          "valueBoolean": false
+        },
+        {
+          "code": "nhsn-skin-commensal",
+          "valueBoolean": false
+        },
+        {
+          "code": "snomed-status",
+          "valueCode": "1"
+        }
+      ]
+    },
+    {
+      "code": "413398000",
+      "display": "Acetobacter calcoaceticus",
+      "property": [
+        {
+          "code": "roll-up-genus",
+          "valueCoding": {
+            "system": "http://snomed.info/sct",
+            "code": "396949003",
+            "display": "Acetobacter"
+          }
+        },
+        {
+          "code": "roll-up-species",
+          "valueCoding": {
+            "system": "http://snomed.info/sct",
+            "code": "413398000",
+            "display": "Acetobacter calcoaceticus"
+          }
+        },
+        {
+          "code": "nhsn-community-associated",
+          "valueBoolean": false
+        },
+        {
+          "code": "nhsn-skin-commensal",
+          "valueBoolean": false
+        },
+        {
+          "code": "snomed-status",
+          "valueCode": "1"
+        }
+      ]
+    },
+    {
+      "code": "413399008",
+      "display": "Acetobacter cerevisiae",
+      "property": [
+        {
+          "code": "roll-up-genus",
+          "valueCoding": {
+            "system": "http://snomed.info/sct",
+            "code": "396949003",
+            "display": "Acetobacter"
+          }
+        },
+        {
+          "code": "roll-up-species",
+          "valueCoding": {
+            "system": "http://snomed.info/sct",
+            "code": "413399008",
+            "display": "Acetobacter cerevisiae"
+          }
+        },
+        {
+          "code": "nhsn-community-associated",
+          "valueBoolean": false
+        },
+        {
+          "code": "nhsn-skin-commensal",
+          "valueBoolean": false
+        },
+        {
+          "code": "snomed-status",
+          "valueCode": "1"
+        }
+      ]
+    },
+    {
+      "code": "413400001",
+      "display": "Acetobacter cibinongensis",
+      "property": [
+        {
+          "code": "roll-up-genus",
+          "valueCoding": {
+            "system": "http://snomed.info/sct",
+            "code": "396949003",
+            "display": "Acetobacter"
+          }
+        },
+        {
+          "code": "roll-up-species",
+          "valueCoding": {
+            "system": "http://snomed.info/sct",
+            "code": "413400001",
+            "display": "Acetobacter cibinongensis"
+          }
+        },
+        {
+          "code": "nhsn-community-associated",
+          "valueBoolean": false
+        },
+        {
+          "code": "nhsn-skin-commensal",
+          "valueBoolean": false
+        },
+        {
+          "code": "snomed-status",
+          "valueCode": "1"
+        }
+      ]
+    },
+    {
+      "code": "413401002",
+      "display": "Acetobacter estunensis",
+      "property": [
+        {
+          "code": "roll-up-genus",
+          "valueCoding": {
+            "system": "http://snomed.info/sct",
+            "code": "396949003",
+            "display": "Acetobacter"
+          }
+        },
+        {
+          "code": "roll-up-species",
+          "valueCoding": {
+            "system": "http://snomed.info/sct",
+            "code": "413401002",
+            "display": "Acetobacter estunensis"
+          }
+        },
+        {
+          "code": "nhsn-community-associated",
+          "valueBoolean": false
+        },
+        {
+          "code": "nhsn-skin-commensal",
+          "valueBoolean": false
+        },
+        {
+          "code": "snomed-status",
+          "valueCode": "1"
+        }
+      ]
+    },
+    {
+      "code": "116881000181108",
+      "display": "Acetobacter fabarum",
+      "property": [
+        {
+          "code": "roll-up-genus",
+          "valueCoding": {
+            "system": "http://snomed.info/sct",
+            "code": "396949003",
+            "display": "Acetobacter"
+          }
+        },
+        {
+          "code": "roll-up-species",
+          "valueCoding": {
+            "system": "http://snomed.info/sct",
+            "code": "116881000181108",
+            "display": "Acetobacter fabarum"
+          }
+        },
+        {
+          "code": "nhsn-community-associated",
+          "valueBoolean": false
+        },
+        {
+          "code": "nhsn-skin-commensal",
+          "valueBoolean": false
+        },
+        {
+          "code": "snomed-status",
+          "valueCode": "1"
+        }
+      ]
+    },
+    {
+      "code": "23731000181109",
+      "display": "Acetobacter ghanensis",
+      "property": [
+        {
+          "code": "roll-up-genus",
+          "valueCoding": {
+            "system": "http://snomed.info/sct",
+            "code": "396949003",
+            "display": "Acetobacter"
+          }
+        },
+        {
+          "code": "roll-up-species",
+          "valueCoding": {
+            "system": "http://snomed.info/sct",
+            "code": "23731000181109",
+            "display": "Acetobacter ghanensis"
+          }
+        },
+        {
+          "code": "nhsn-community-associated",
+          "valueBoolean": false
+        },
+        {
+          "code": "nhsn-skin-commensal",
+          "valueBoolean": false
+        },
+        {
+          "code": "snomed-status",
+          "valueCode": "1"
+        }
+      ]
+    },
+    {
+      "code": "396953001",
+      "display": "Acetobacter hansenii",
+      "property": [
+        {
+          "code": "roll-up-genus",
+          "valueCoding": {
+            "system": "http://snomed.info/sct",
+            "code": "396949003",
+            "display": "Acetobacter"
+          }
+        },
+        {
+          "code": "roll-up-species",
+          "valueCoding": {
+            "system": "http://snomed.info/sct",
+            "code": "396953001",
+            "display": "Acetobacter hansenii"
+          }
+        },
+        {
+          "code": "nhsn-community-associated",
+          "valueBoolean": false
+        },
+        {
+          "code": "nhsn-skin-commensal",
+          "valueBoolean": false
+        },
+        {
+          "code": "snomed-status",
+          "valueCode": "1"
+        }
+      ]
+    },
+    {
+      "code": "413402009",
+      "display": "Acetobacter indonesiensis",
+      "property": [
+        {
+          "code": "roll-up-genus",
+          "valueCoding": {
+            "system": "http://snomed.info/sct",
+            "code": "396949003",
+            "display": "Acetobacter"
+          }
+        },
+        {
+          "code": "roll-up-species",
+          "valueCoding": {
+            "system": "http://snomed.info/sct",
+            "code": "413402009",
+            "display": "Acetobacter indonesiensis"
+          }
+        },
+        {
+          "code": "nhsn-community-associated",
+          "valueBoolean": false
+        },
+        {
+          "code": "nhsn-skin-commensal",
+          "valueBoolean": false
+        },
+        {
+          "code": "snomed-status",
+          "valueCode": "1"
+        }
+      ]
+    },
+    {
+      "code": "23741000181102",
+      "display": "Acetobacter lambici",
+      "property": [
+        {
+          "code": "roll-up-genus",
+          "valueCoding": {
+            "system": "http://snomed.info/sct",
+            "code": "396949003",
+            "display": "Acetobacter"
+          }
+        },
+        {
+          "code": "roll-up-species",
+          "valueCoding": {
+            "system": "http://snomed.info/sct",
+            "code": "23741000181102",
+            "display": "Acetobacter lambici"
+          }
+        },
+        {
+          "code": "nhsn-community-associated",
+          "valueBoolean": false
+        },
+        {
+          "code": "nhsn-skin-commensal",
+          "valueBoolean": false
+        },
+        {
+          "code": "snomed-status",
+          "valueCode": "1"
+        }
+      ]
+    },
+    {
+      "code": "396951004",
+      "display": "Acetobacter liquefaciens",
+      "property": [
+        {
+          "code": "roll-up-genus",
+          "valueCoding": {
+            "system": "http://snomed.info/sct",
+            "code": "396949003",
+            "display": "Acetobacter"
+          }
+        },
+        {
+          "code": "roll-up-species",
+          "valueCoding": {
+            "system": "http://snomed.info/sct",
+            "code": "396951004",
+            "display": "Acetobacter liquefaciens"
+          }
+        },
+        {
+          "code": "nhsn-community-associated",
+          "valueBoolean": false
+        },
+        {
+          "code": "nhsn-skin-commensal",
+          "valueBoolean": false
+        },
+        {
+          "code": "snomed-status",
+          "valueCode": "0"
+        }
+      ]
+    },
+    {
+      "code": "413403004",
+      "display": "Acetobacter lovaniensis",
+      "property": [
+        {
+          "code": "roll-up-genus",
+          "valueCoding": {
+            "system": "http://snomed.info/sct",
+            "code": "396949003",
+            "display": "Acetobacter"
+          }
+        },
+        {
+          "code": "roll-up-species",
+          "valueCoding": {
+            "system": "http://snomed.info/sct",
+            "code": "413403004",
+            "display": "Acetobacter lovaniensis"
+          }
+        },
+        {
+          "code": "nhsn-community-associated",
+          "valueBoolean": false
+        },
+        {
+          "code": "nhsn-skin-commensal",
+          "valueBoolean": false
+        },
+        {
+          "code": "snomed-status",
+          "valueCode": "1"
+        }
+      ]
+    },
+    {
+      "code": "413404005",
+      "display": "Acetobacter malorum",
+      "property": [
+        {
+          "code": "roll-up-genus",
+          "valueCoding": {
+            "system": "http://snomed.info/sct",
+            "code": "396949003",
+            "display": "Acetobacter"
+          }
+        },
+        {
+          "code": "roll-up-species",
+          "valueCoding": {
+            "system": "http://snomed.info/sct",
+            "code": "413404005",
+            "display": "Acetobacter malorum"
+          }
+        },
+        {
+          "code": "nhsn-community-associated",
+          "valueBoolean": false
+        },
+        {
+          "code": "nhsn-skin-commensal",
+          "valueBoolean": false
+        },
+        {
+          "code": "snomed-status",
+          "valueCode": "1"
+        }
+      ]
+    },
+    {
+      "code": "23751000181104",
+      "display": "Acetobacter musti",
+      "property": [
+        {
+          "code": "roll-up-genus",
+          "valueCoding": {
+            "system": "http://snomed.info/sct",
+            "code": "396949003",
+            "display": "Acetobacter"
+          }
+        },
+        {
+          "code": "roll-up-species",
+          "valueCoding": {
+            "system": "http://snomed.info/sct",
+            "code": "23751000181104",
+            "display": "Acetobacter musti"
+          }
+        },
+        {
+          "code": "nhsn-community-associated",
+          "valueBoolean": false
+        },
+        {
+          "code": "nhsn-skin-commensal",
+          "valueBoolean": false
+        },
+        {
+          "code": "snomed-status",
+          "valueCode": "1"
+        }
+      ]
+    },
+    {
+      "code": "23761000181101",
+      "display": "Acetobacter nitrogenifigens",
+      "property": [
+        {
+          "code": "roll-up-genus",
+          "valueCoding": {
+            "system": "http://snomed.info/sct",
+            "code": "396949003",
+            "display": "Acetobacter"
+          }
+        },
+        {
+          "code": "roll-up-species",
+          "valueCoding": {
+            "system": "http://snomed.info/sct",
+            "code": "23761000181101",
+            "display": "Acetobacter nitrogenifigens"
+          }
+        },
+        {
+          "code": "nhsn-community-associated",
+          "valueBoolean": false
+        },
+        {
+          "code": "nhsn-skin-commensal",
+          "valueBoolean": false
+        },
+        {
+          "code": "snomed-status",
+          "valueCode": "1"
+        }
+      ]
+    },
+    {
+      "code": "23771000181106",
+      "display": "Acetobacter oeni",
+      "property": [
+        {
+          "code": "roll-up-genus",
+          "valueCoding": {
+            "system": "http://snomed.info/sct",
+            "code": "396949003",
+            "display": "Acetobacter"
+          }
+        },
+        {
+          "code": "roll-up-species",
+          "valueCoding": {
+            "system": "http://snomed.info/sct",
+            "code": "23771000181106",
+            "display": "Acetobacter oeni"
+          }
+        },
+        {
+          "code": "nhsn-community-associated",
+          "valueBoolean": false
+        },
+        {
+          "code": "nhsn-skin-commensal",
+          "valueBoolean": false
+        },
+        {
+          "code": "snomed-status",
+          "valueCode": "1"
+        }
+      ]
+    },
+    {
+      "code": "413405006",
+      "display": "Acetobacter orientalis",
+      "property": [
+        {
+          "code": "roll-up-genus",
+          "valueCoding": {
+            "system": "http://snomed.info/sct",
+            "code": "396949003",
+            "display": "Acetobacter"
+          }
+        },
+        {
+          "code": "roll-up-species",
+          "valueCoding": {
+            "system": "http://snomed.info/sct",
+            "code": "413405006",
+            "display": "Acetobacter orientalis"
+          }
+        },
+        {
+          "code": "nhsn-community-associated",
+          "valueBoolean": false
+        },
+        {
+          "code": "nhsn-skin-commensal",
+          "valueBoolean": false
+        },
+        {
+          "code": "snomed-status",
+          "valueCode": "1"
+        }
+      ]
+    },
+    {
+      "code": "413406007",
+      "display": "Acetobacter orleanensis",
+      "property": [
+        {
+          "code": "roll-up-genus",
+          "valueCoding": {
+            "system": "http://snomed.info/sct",
+            "code": "396949003",
+            "display": "Acetobacter"
+          }
+        },
+        {
+          "code": "roll-up-species",
+          "valueCoding": {
+            "system": "http://snomed.info/sct",
+            "code": "413406007",
+            "display": "Acetobacter orleanensis"
+          }
+        },
+        {
+          "code": "nhsn-community-associated",
+          "valueBoolean": false
+        },
+        {
+          "code": "nhsn-skin-commensal",
+          "valueBoolean": false
+        },
+        {
+          "code": "snomed-status",
+          "valueCode": "1"
+        }
+      ]
+    },
+    {
+      "code": "396952006",
+      "display": "Acetobacter pasteurianus",
+      "property": [
+        {
+          "code": "roll-up-genus",
+          "valueCoding": {
+            "system": "http://snomed.info/sct",
+            "code": "396949003",
+            "display": "Acetobacter"
+          }
+        },
+        {
+          "code": "roll-up-species",
+          "valueCoding": {
+            "system": "http://snomed.info/sct",
+            "code": "396952006",
+            "display": "Acetobacter pasteurianus"
+          }
+        },
+        {
+          "code": "nhsn-community-associated",
+          "valueBoolean": false
+        },
+        {
+          "code": "nhsn-skin-commensal",
+          "valueBoolean": false
+        },
+        {
+          "code": "snomed-status",
+          "valueCode": "1"
+        }
+      ]
+    },
+    {
+      "code": "413407003",
+      "display": "Acetobacter peroxydans",
+      "property": [
+        {
+          "code": "roll-up-genus",
+          "valueCoding": {
+            "system": "http://snomed.info/sct",
+            "code": "396949003",
+            "display": "Acetobacter"
+          }
+        },
+        {
+          "code": "roll-up-species",
+          "valueCoding": {
+            "system": "http://snomed.info/sct",
+            "code": "413407003",
+            "display": "Acetobacter peroxydans"
+          }
+        },
+        {
+          "code": "nhsn-community-associated",
+          "valueBoolean": false
+        },
+        {
+          "code": "nhsn-skin-commensal",
+          "valueBoolean": false
+        },
+        {
+          "code": "snomed-status",
+          "valueCode": "0"
+        }
+      ]
+    },
+    {
+      "code": "708522006",
+      "display": "Acetobacter persici",
+      "property": [
+        {
+          "code": "roll-up-genus",
+          "valueCoding": {
+            "system": "http://snomed.info/sct",
+            "code": "396949003",
+            "display": "Acetobacter"
+          }
+        },
+        {
+          "code": "roll-up-species",
+          "valueCoding": {
+            "system": "http://snomed.info/sct",
+            "code": "708522006",
+            "display": "Acetobacter persici"
+          }
+        },
+        {
+          "code": "nhsn-community-associated",
+          "valueBoolean": false
+        },
+        {
+          "code": "nhsn-skin-commensal",
+          "valueBoolean": false
+        },
+        {
+          "code": "snomed-status",
+          "valueCode": "1"
+        }
+      ]
+    },
+    {
+      "code": "413408008",
+      "display": "Acetobacter polyoxogenes",
+      "property": [
+        {
+          "code": "roll-up-genus",
+          "valueCoding": {
+            "system": "http://snomed.info/sct",
+            "code": "396949003",
+            "display": "Acetobacter"
+          }
+        },
+        {
+          "code": "roll-up-species",
+          "valueCoding": {
+            "system": "http://snomed.info/sct",
+            "code": "413408008",
+            "display": "Acetobacter polyoxogenes"
+          }
+        },
+        {
+          "code": "nhsn-community-associated",
+          "valueBoolean": false
+        },
+        {
+          "code": "nhsn-skin-commensal",
+          "valueBoolean": false
+        },
+        {
+          "code": "snomed-status",
+          "valueCode": "1"
+        }
+      ]
+    },
+    {
+      "code": "413409000",
+      "display": "Acetobacter pomorum",
+      "property": [
+        {
+          "code": "roll-up-genus",
+          "valueCoding": {
+            "system": "http://snomed.info/sct",
+            "code": "396949003",
+            "display": "Acetobacter"
+          }
+        },
+        {
+          "code": "roll-up-species",
+          "valueCoding": {
+            "system": "http://snomed.info/sct",
+            "code": "413409000",
+            "display": "Acetobacter pomorum"
+          }
+        },
+        {
+          "code": "nhsn-community-associated",
+          "valueBoolean": false
+        },
+        {
+          "code": "nhsn-skin-commensal",
+          "valueBoolean": false
+        },
+        {
+          "code": "snomed-status",
+          "valueCode": "1"
+        }
+      ]
+    },
+    {
+      "code": "413410005",
+      "display": "Acetobacter species",
+      "property": [
+        {
+          "code": "roll-up-genus",
+          "valueCoding": {
+            "system": "http://snomed.info/sct",
+            "code": "396949003",
+            "display": "Acetobacter"
+          }
+        },
+        {
+          "code": "nhsn-community-associated",
+          "valueBoolean": false
+        },
+        {
+          "code": "nhsn-skin-commensal",
+          "valueBoolean": false
+        },
+        {
+          "code": "snomed-status",
+          "valueCode": "0"
+        }
+      ]
+    }
+  ]
+}

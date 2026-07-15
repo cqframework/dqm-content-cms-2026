@@ -1,0 +1,19 @@
+{
+  "resourceType": "Patient",
+  "id": "10-HOB-Numerator-Day6",
+  "meta": {
+    "profile": [
+      "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-patient"
+    ]
+  },
+  "name": [
+    {
+      "family": "HOBTest",
+      "given": [
+        "10-HOB-Numerator-Day6"
+      ]
+    }
+  ],
+  "gender": "female",
+  "birthDate": "1970-01-01"
+}

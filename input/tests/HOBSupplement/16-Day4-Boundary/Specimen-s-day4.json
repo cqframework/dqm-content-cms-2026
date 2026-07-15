@@ -1,0 +1,19 @@
+{
+  "resourceType": "Specimen",
+  "id": "s-day4",
+  "type": {
+    "coding": [
+      {
+        "system": "http://snomed.info/sct",
+        "code": "119297000",
+        "display": "Blood specimen (specimen)"
+      }
+    ]
+  },
+  "subject": {
+    "reference": "Patient/16-Day4-Boundary"
+  },
+  "collection": {
+    "collectedDateTime": "2026-01-08T10:00:00.000+00:00"
+  }
+}
