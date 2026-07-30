@@ -618,6 +618,26 @@
         "system": "http://snomed.info/sct",
         "code": "413410005",
         "display": "Acetobacter species"
+      },
+      {
+        "system": "http://snomed.info/sct",
+        "code": "3092008",
+        "display": "Staphylococcus aureus"
+      },
+      {
+        "system": "http://snomed.info/sct",
+        "code": "44651000087108",
+        "display": "Staphylococcus aureus complex"
+      },
+      {
+        "system": "http://snomed.info/sct",
+        "code": "113961008",
+        "display": "Staphylococcus aureus ss aureus"
+      },
+      {
+        "system": "http://snomed.info/sct",
+        "code": "50269000",
+        "display": "Staphylococcus aureus ss. anaerobius"
       }
     ]
   }

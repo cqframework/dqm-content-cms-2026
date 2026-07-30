@@ -1,0 +1,79 @@
+{
+  "resourceType": "MeasureReport",
+  "id": "f2d34a8e-c376-45b7-b0db-dd7745411e85",
+  "meta": {
+    "profile": [ "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/test-case-cqfm" ]
+  },
+  "contained": [ {
+    "resourceType": "Parameters",
+    "id": "fb2620c9-e3bb-432e-8ad2-b36409b7171c-parameters",
+    "parameter": [ {
+      "name": "subject",
+      "valueString": "a968eaa1-0e1f-5eb9-95de-24cafe3b064b"
+    } ]
+  } ],
+  "extension": [ {
+    "url": "http://hl7.org/fhir/StructureDefinition/cqf-inputParameters",
+    "valueReference": {
+      "reference": "#fb2620c9-e3bb-432e-8ad2-b36409b7171c-parameters"
+    }
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-testCaseDescription",
+    "valueMarkdown": "Blood culture contamination: 1 of 2 paired sets positive for S. epidermidis"
+  } ],
+  "modifierExtension": [ {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-isTestCase",
+    "valueBoolean": true
+  } ],
+  "status": "complete",
+  "type": "individual",
+  "measure": "https://madie.cms.gov/Measure/NHSNAcuteCareHospitalMonthlyInitialPopulation2",
+  "period": {
+    "start": "2025-01-01",
+    "end": "2025-01-31"
+  },
+  "group": [ {
+    "id": "Group_1",
+    "population": [ {
+      "id": "InitialPopulation_1",
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "initial-population",
+          "display": "Initial Population"
+        } ]
+      },
+      "count": 1
+    } ],
+    "measureScore": {
+      "value": 0.0
+    }
+  } ],
+  "evaluatedResource": [ {
+    "reference": "Practitioner/91e62318-7b0d-4f29-8281-3c0e672dd96e"
+  }, {
+    "reference": "Patient/a968eaa1-0e1f-5eb9-95de-24cafe3b064b"
+  }, {
+    "reference": "Location/29d75b16-db96-4b35-a323-46f7436236bf"
+  }, {
+    "reference": "Encounter/d6454eb3-9480-4321-a5c7-964ba0775ea8"
+  }, {
+    "reference": "Coverage/a0c5e0a3-e893-4b56-85b7-825796abd185"
+  }, {
+    "reference": "Practitioner/062ecc06-517a-4805-87da-8d0795fd3848"
+  }, {
+    "reference": "ServiceRequest/1323eb65-638a-42a9-99c2-11a3d68e4449"
+  }, {
+    "reference": "Specimen/a14f8503-6d16-4ae8-84ef-8166d3f82a30"
+  }, {
+    "reference": "Observation/1f07bbec-b916-432e-b289-a9b7fc130c88"
+  }, {
+    "reference": "Practitioner/b0f16bfd-fc48-46d9-a3b4-71c88adabe2f"
+  }, {
+    "reference": "ServiceRequest/c5d0270e-3238-47c5-a7b4-4dfe553734c1"
+  }, {
+    "reference": "Specimen/1927541b-1703-47ad-8c32-dd49e2d239d5"
+  }, {
+    "reference": "Observation/57739bfb-777a-4dbc-848e-adc6e1c3f8ad"
+  } ]
+}

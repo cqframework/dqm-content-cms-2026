@@ -1,0 +1,75 @@
+{
+  "resourceType": "MeasureReport",
+  "id": "6961da09-a682-40c2-a43b-25cdd19a03aa",
+  "meta": {
+    "profile": [ "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/test-case-cqfm" ]
+  },
+  "contained": [ {
+    "resourceType": "Parameters",
+    "id": "05b853e7-2821-4b09-bc65-33aea2edfbc4-parameters",
+    "parameter": [ {
+      "name": "subject",
+      "valueString": "207ff6dc-067f-5191-b3b7-58543471a88a"
+    } ]
+  } ],
+  "extension": [ {
+    "url": "http://hl7.org/fhir/StructureDefinition/cqf-inputParameters",
+    "valueReference": {
+      "reference": "#05b853e7-2821-4b09-bc65-33aea2edfbc4-parameters"
+    }
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-testCaseDescription",
+    "valueMarkdown": "Measurable HOB: S. aureus bacteremia in patient with diabetes/HTN (no non-preventability)"
+  } ],
+  "modifierExtension": [ {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-isTestCase",
+    "valueBoolean": true
+  } ],
+  "status": "complete",
+  "type": "individual",
+  "measure": "https://madie.cms.gov/Measure/NHSNAcuteCareHospitalMonthlyInitialPopulation2",
+  "period": {
+    "start": "2025-01-01",
+    "end": "2025-01-31"
+  },
+  "group": [ {
+    "id": "Group_1",
+    "population": [ {
+      "id": "InitialPopulation_1",
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "initial-population",
+          "display": "Initial Population"
+        } ]
+      },
+      "count": 1
+    } ],
+    "measureScore": {
+      "value": 0.0
+    }
+  } ],
+  "evaluatedResource": [ {
+    "reference": "Practitioner/2f88ec82-42f0-4120-b3f6-6151cc3f682e"
+  }, {
+    "reference": "Patient/207ff6dc-067f-5191-b3b7-58543471a88a"
+  }, {
+    "reference": "Location/0e63b274-73fa-41f1-9178-4136cecf40ee"
+  }, {
+    "reference": "Encounter/83222d42-4efe-4006-9755-10ff71394ecd"
+  }, {
+    "reference": "Coverage/cc81cba7-baf3-4340-9d26-a36ba446adc5"
+  }, {
+    "reference": "Condition/f7e09247-0b5b-41f8-9af8-bc20df90d090"
+  }, {
+    "reference": "Condition/815bc89d-ea97-4779-ac56-448a21836660"
+  }, {
+    "reference": "Practitioner/fdd6fa20-0686-40be-b002-19bd4b4e0a69"
+  }, {
+    "reference": "ServiceRequest/772e18d4-c2d0-4225-acec-acb9fa554586"
+  }, {
+    "reference": "Specimen/96f2282f-65fc-4884-aee7-b5f70831621c"
+  }, {
+    "reference": "Observation/2c16a993-59cf-4f3f-b26a-5b5b38fcae1e"
+  } ]
+}

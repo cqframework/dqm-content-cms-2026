@@ -1,0 +1,15 @@
+{
+  "resourceType": "Medication",
+  "id": "8206ad42-74c7-4ecf-a23c-bd58608fb6a4",
+  "meta": {
+    "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-medication" ]
+  },
+  "code": {
+    "coding": [ {
+      "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+      "code": "1664986",
+      "display": "Vancomycin 1000 MG Injection"
+    } ]
+  },
+  "status": "active"
+}

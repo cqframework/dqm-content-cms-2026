@@ -1,0 +1,50 @@
+{
+  "resourceType": "Observation",
+  "id": "3e355cb2-d1df-4efa-9d0c-34116b41c315",
+  "meta": {
+    "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-observation-lab" ]
+  },
+  "basedOn": [ {
+    "reference": "ServiceRequest/87a8963a-11bb-4ba3-bdf5-2873e69d90e8"
+  } ],
+  "status": "final",
+  "category": [ {
+    "coding": [ {
+      "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+      "code": "laboratory",
+      "display": "Laboratory"
+    } ]
+  } ],
+  "code": {
+    "coding": [ {
+      "system": "http://loinc.org",
+      "code": "600-7",
+      "display": "Bacteria identified in Blood by Culture"
+    } ]
+  },
+  "subject": {
+    "reference": "Patient/cd473f06-05b2-54fe-a1c1-df10e54d6d56"
+  },
+  "encounter": {
+    "reference": "Encounter/a9c5373b-3780-4a7e-99c3-fc2493ad4fd6"
+  },
+  "effectiveDateTime": "2025-01-05T14:05:00.000Z",
+  "issued": "2025-01-05T14:05:00.000Z",
+  "valueCodeableConcept": {
+    "coding": [ {
+      "system": "http://snomed.info/sct",
+      "code": "60875001",
+      "display": "Staphylococcus epidermidis"
+    } ]
+  },
+  "interpretation": [ {
+    "coding": [ {
+      "system": "http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation",
+      "code": "POS",
+      "display": "Positive"
+    } ]
+  } ],
+  "specimen": {
+    "reference": "Specimen/95713a9c-9f68-49c4-99aa-1fbf80161c3d"
+  }
+}

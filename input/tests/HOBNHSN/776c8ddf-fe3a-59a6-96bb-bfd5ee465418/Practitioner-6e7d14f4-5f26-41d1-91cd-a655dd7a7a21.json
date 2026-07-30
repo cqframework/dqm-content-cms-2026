@@ -1,0 +1,15 @@
+{
+  "resourceType": "Practitioner",
+  "id": "6e7d14f4-5f26-41d1-91cd-a655dd7a7a21",
+  "meta": {
+    "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-practitioner" ]
+  },
+  "identifier": [ {
+    "system": "http://hl7.org/fhir/sid/us-npi",
+    "value": "1234567893"
+  } ],
+  "name": [ {
+    "family": "GeneralPractitioner",
+    "given": [ "Dr" ]
+  } ]
+}

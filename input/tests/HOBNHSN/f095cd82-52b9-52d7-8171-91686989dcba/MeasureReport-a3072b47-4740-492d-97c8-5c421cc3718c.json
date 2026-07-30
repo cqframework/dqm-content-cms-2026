@@ -1,0 +1,75 @@
+{
+  "resourceType": "MeasureReport",
+  "id": "a3072b47-4740-492d-97c8-5c421cc3718c",
+  "meta": {
+    "profile": [ "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/test-case-cqfm" ]
+  },
+  "contained": [ {
+    "resourceType": "Parameters",
+    "id": "ee8644ee-ea6b-44d0-a6c8-6126ee2d888c-parameters",
+    "parameter": [ {
+      "name": "subject",
+      "valueString": "f095cd82-52b9-52d7-8171-91686989dcba"
+    } ]
+  } ],
+  "extension": [ {
+    "url": "http://hl7.org/fhir/StructureDefinition/cqf-inputParameters",
+    "valueReference": {
+      "reference": "#ee8644ee-ea6b-44d0-a6c8-6126ee2d888c-parameters"
+    }
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-testCaseDescription",
+    "valueMarkdown": "Non-Measure HOB: E. coli bacteremia in patient with AML and neutropenia"
+  } ],
+  "modifierExtension": [ {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-isTestCase",
+    "valueBoolean": true
+  } ],
+  "status": "complete",
+  "type": "individual",
+  "measure": "https://madie.cms.gov/Measure/NHSNAcuteCareHospitalMonthlyInitialPopulation2",
+  "period": {
+    "start": "2025-01-01",
+    "end": "2025-01-31"
+  },
+  "group": [ {
+    "id": "Group_1",
+    "population": [ {
+      "id": "InitialPopulation_1",
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "initial-population",
+          "display": "Initial Population"
+        } ]
+      },
+      "count": 1
+    } ],
+    "measureScore": {
+      "value": 0.0
+    }
+  } ],
+  "evaluatedResource": [ {
+    "reference": "Practitioner/c5766951-4188-40ce-a06a-099b8ba65dec"
+  }, {
+    "reference": "Patient/f095cd82-52b9-52d7-8171-91686989dcba"
+  }, {
+    "reference": "Location/71cb7288-1fc7-4a0d-929c-0faac9d1f0a9"
+  }, {
+    "reference": "Encounter/55027b26-5ffa-48ad-b802-700cdcb9ee51"
+  }, {
+    "reference": "Coverage/f13a689c-3e5b-4be3-9108-ecf70570e808"
+  }, {
+    "reference": "Condition/0e5c194a-2f3b-4f34-bbae-271c95e51a63"
+  }, {
+    "reference": "Condition/af7b51cb-8a9e-4115-b3f3-eb1c690c4364"
+  }, {
+    "reference": "Practitioner/8318b444-2848-4c02-bfe2-154f2715d81d"
+  }, {
+    "reference": "ServiceRequest/8e56a614-095e-466d-b7b7-5f7626c68ec0"
+  }, {
+    "reference": "Specimen/807ff275-a32d-418d-b4e5-743006a5536b"
+  }, {
+    "reference": "Observation/decdcc0d-1fe8-41cf-accc-3d56bbc5a30c"
+  } ]
+}

@@ -1,0 +1,17 @@
+{
+  "resourceType": "Location",
+  "id": "aa584abb-ae3b-471f-8bf9-f9e0a3c43e8e",
+  "meta": {
+    "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-location" ]
+  },
+  "status": "active",
+  "name": "24 Hour Observation Area",
+  "type": [ {
+    "coding": [ {
+      "system": "https://www.cdc.gov/nhsn/cdaportal/terminology/codesystem/hsloc.html",
+      "version": "2022",
+      "code": "1162-7",
+      "display": "24 Hour Observation Area"
+    } ]
+  } ]
+}

@@ -1,0 +1,17 @@
+{
+  "resourceType": "Location",
+  "id": "71cb7288-1fc7-4a0d-929c-0faac9d1f0a9",
+  "meta": {
+    "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-location" ]
+  },
+  "status": "active",
+  "name": "Trauma Critical Care",
+  "type": [ {
+    "coding": [ {
+      "system": "https://www.cdc.gov/nhsn/cdaportal/terminology/codesystem/hsloc.html",
+      "version": "2022",
+      "code": "1025-6",
+      "display": "Trauma Critical Care"
+    } ]
+  } ]
+}

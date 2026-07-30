@@ -1,0 +1,24 @@
+{
+  "resourceType": "Specimen",
+  "id": "7e2475b8-034f-4067-863f-97bec17d3e72",
+  "meta": {
+    "profile": [ "http://hl7.org/fhir/us/core/StructureDefinition/us-core-specimen" ]
+  },
+  "type": {
+    "coding": [ {
+      "system": "http://snomed.info/sct",
+      "code": "119297000",
+      "display": "Blood specimen"
+    } ]
+  },
+  "subject": {
+    "reference": "Patient/767e83b2-9a68-5220-82ae-4037d362b64a"
+  },
+  "receivedTime": "2025-01-07T18:43:00.000Z",
+  "request": [ {
+    "reference": "ServiceRequest/57446199-02b5-4703-9b9f-77bb66490bcb"
+  } ],
+  "collection": {
+    "collectedDateTime": "2025-01-07T18:43:00.000Z"
+  }
+}

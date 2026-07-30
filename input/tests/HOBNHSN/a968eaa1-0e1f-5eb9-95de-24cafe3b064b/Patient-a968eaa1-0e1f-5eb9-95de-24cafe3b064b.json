@@ -1,0 +1,52 @@
+{
+  "resourceType": "Patient",
+  "id": "a968eaa1-0e1f-5eb9-95de-24cafe3b064b",
+  "meta": {
+    "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-patient" ]
+  },
+  "extension": [ {
+    "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-race",
+    "extension": [ {
+      "url": "ombCategory",
+      "valueCoding": {
+        "system": "urn:oid:2.16.840.1.113883.6.238",
+        "code": "2028-9",
+        "display": "Asian",
+        "userSelected": true
+      }
+    }, {
+      "url": "text",
+      "valueString": "Asian"
+    } ]
+  }, {
+    "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-ethnicity",
+    "extension": [ {
+      "url": "ombCategory",
+      "valueCoding": {
+        "system": "urn:oid:2.16.840.1.113883.6.238",
+        "code": "2186-5",
+        "display": "Not Hispanic or Latino",
+        "userSelected": true
+      }
+    }, {
+      "url": "text",
+      "valueString": "Not Hispanic or Latino"
+    } ]
+  } ],
+  "identifier": [ {
+    "type": {
+      "coding": [ {
+        "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+        "code": "MR"
+      } ]
+    },
+    "system": "https://madie.cms.gov/",
+    "value": "a968eaa1-0e1f-5eb9-95de-24cafe3b064b"
+  } ],
+  "name": [ {
+    "family": "HOBContamination",
+    "given": [ "1of2Positive" ]
+  } ],
+  "gender": "male",
+  "birthDate": "1972-11-08"
+}

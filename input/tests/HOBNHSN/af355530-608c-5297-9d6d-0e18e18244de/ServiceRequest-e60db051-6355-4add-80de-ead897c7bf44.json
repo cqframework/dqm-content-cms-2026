@@ -1,0 +1,34 @@
+{
+  "resourceType": "ServiceRequest",
+  "id": "e60db051-6355-4add-80de-ead897c7bf44",
+  "meta": {
+    "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-servicerequest" ]
+  },
+  "status": "completed",
+  "intent": "order",
+  "category": [ {
+    "coding": [ {
+      "system": "http://snomed.info/sct",
+      "code": "108252007",
+      "display": "Laboratory procedure"
+    } ]
+  } ],
+  "priority": "routine",
+  "code": {
+    "coding": [ {
+      "system": "http://loinc.org",
+      "code": "600-7",
+      "display": "Bacteria identified in Blood by Culture"
+    } ]
+  },
+  "subject": {
+    "reference": "Patient/af355530-608c-5297-9d6d-0e18e18244de"
+  },
+  "encounter": {
+    "reference": "Encounter/71c875b6-844e-4cc4-80bc-758553f277bf"
+  },
+  "authoredOn": "2025-01-06T09:00:00.000Z",
+  "requester": {
+    "reference": "Practitioner/db983cd9-2e10-48c1-93d5-15ede48a1bf5"
+  }
+}

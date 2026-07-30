@@ -1,0 +1,71 @@
+{
+  "resourceType": "MeasureReport",
+  "id": "f832ff39-bf91-4a98-aa31-69bf05636e98",
+  "meta": {
+    "profile": [ "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/test-case-cqfm" ]
+  },
+  "contained": [ {
+    "resourceType": "Parameters",
+    "id": "c18f2b8d-878f-4179-9f9d-ec23e7b106f6-parameters",
+    "parameter": [ {
+      "name": "subject",
+      "valueString": "776c8ddf-fe3a-59a6-96bb-bfd5ee465418"
+    } ]
+  } ],
+  "extension": [ {
+    "url": "http://hl7.org/fhir/StructureDefinition/cqf-inputParameters",
+    "valueReference": {
+      "reference": "#c18f2b8d-878f-4179-9f9d-ec23e7b106f6-parameters"
+    }
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-testCaseDescription",
+    "valueMarkdown": "HOB positive event: Candida albicans (fungemia) on hospital day 5"
+  } ],
+  "modifierExtension": [ {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-isTestCase",
+    "valueBoolean": true
+  } ],
+  "status": "complete",
+  "type": "individual",
+  "measure": "https://madie.cms.gov/Measure/NHSNAcuteCareHospitalMonthlyInitialPopulation2",
+  "period": {
+    "start": "2025-01-01",
+    "end": "2025-01-31"
+  },
+  "group": [ {
+    "id": "Group_1",
+    "population": [ {
+      "id": "InitialPopulation_1",
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "initial-population",
+          "display": "Initial Population"
+        } ]
+      },
+      "count": 1
+    } ],
+    "measureScore": {
+      "value": 0.0
+    }
+  } ],
+  "evaluatedResource": [ {
+    "reference": "Practitioner/6e7d14f4-5f26-41d1-91cd-a655dd7a7a21"
+  }, {
+    "reference": "Patient/776c8ddf-fe3a-59a6-96bb-bfd5ee465418"
+  }, {
+    "reference": "Location/e3134154-0c6c-465a-9119-3d272f16a392"
+  }, {
+    "reference": "Encounter/2468b354-c896-4a37-b356-002d562972ea"
+  }, {
+    "reference": "Coverage/c84cb7ff-03b6-4b69-b223-1460f3bbcebd"
+  }, {
+    "reference": "Practitioner/d2da325b-7e1a-4276-bd56-e6c27de3846c"
+  }, {
+    "reference": "ServiceRequest/a0162ae2-7e21-45ac-b849-5882c4e226a5"
+  }, {
+    "reference": "Specimen/8b42dc9c-a020-443f-a6d8-0f41e71c6ae1"
+  }, {
+    "reference": "Observation/b802f86c-bb28-485e-a94b-dc1edc9f3af2"
+  } ]
+}

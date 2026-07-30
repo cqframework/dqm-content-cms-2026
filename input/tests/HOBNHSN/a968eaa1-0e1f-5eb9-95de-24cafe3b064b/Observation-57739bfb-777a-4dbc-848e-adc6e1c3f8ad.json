@@ -1,0 +1,50 @@
+{
+  "resourceType": "Observation",
+  "id": "57739bfb-777a-4dbc-848e-adc6e1c3f8ad",
+  "meta": {
+    "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-observation-lab" ]
+  },
+  "basedOn": [ {
+    "reference": "ServiceRequest/c5d0270e-3238-47c5-a7b4-4dfe553734c1"
+  } ],
+  "status": "final",
+  "category": [ {
+    "coding": [ {
+      "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+      "code": "laboratory",
+      "display": "Laboratory"
+    } ]
+  } ],
+  "code": {
+    "coding": [ {
+      "system": "http://loinc.org",
+      "code": "600-7",
+      "display": "Bacteria identified in Blood by Culture"
+    } ]
+  },
+  "subject": {
+    "reference": "Patient/a968eaa1-0e1f-5eb9-95de-24cafe3b064b"
+  },
+  "encounter": {
+    "reference": "Encounter/d6454eb3-9480-4321-a5c7-964ba0775ea8"
+  },
+  "effectiveDateTime": "2025-01-05T10:05:00.000Z",
+  "issued": "2025-01-05T10:05:00.000Z",
+  "valueCodeableConcept": {
+    "coding": [ {
+      "system": "http://snomed.info/sct",
+      "code": "264868006",
+      "display": "No growth"
+    } ]
+  },
+  "interpretation": [ {
+    "coding": [ {
+      "system": "http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation",
+      "code": "POS",
+      "display": "Positive"
+    } ]
+  } ],
+  "specimen": {
+    "reference": "Specimen/1927541b-1703-47ad-8c32-dd49e2d239d5"
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "resourceType": "Observation",
+  "id": "9c2a0d9c-ce6e-475a-978f-39309ad7f2bd",
+  "meta": {
+    "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-observation-lab" ]
+  },
+  "basedOn": [ {
+    "reference": "ServiceRequest/015d9a6c-c117-448b-b817-6e62e92ac9cb"
+  } ],
+  "status": "final",
+  "category": [ {
+    "coding": [ {
+      "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+      "code": "laboratory",
+      "display": "Laboratory"
+    } ]
+  } ],
+  "code": {
+    "coding": [ {
+      "system": "http://loinc.org",
+      "code": "600-7",
+      "display": "Bacteria identified in Blood by Culture"
+    } ]
+  },
+  "subject": {
+    "reference": "Patient/767e83b2-9a68-5220-82ae-4037d362b64a"
+  },
+  "encounter": {
+    "reference": "Encounter/0fb43910-c240-4af5-914b-3357e635f656"
+  },
+  "effectiveDateTime": "2025-01-03T18:43:00.000Z",
+  "issued": "2025-01-03T18:43:00.000Z",
+  "valueCodeableConcept": {
+    "coding": [ {
+      "system": "http://snomed.info/sct",
+      "code": "52499004",
+      "display": "Pseudomonas aeruginosa"
+    } ]
+  },
+  "interpretation": [ {
+    "coding": [ {
+      "system": "http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation",
+      "code": "POS",
+      "display": "Positive"
+    } ]
+  } ],
+  "specimen": {
+    "reference": "Specimen/d1b7933d-a07d-4ef8-ba58-ce48f98b4894"
+  }
+}

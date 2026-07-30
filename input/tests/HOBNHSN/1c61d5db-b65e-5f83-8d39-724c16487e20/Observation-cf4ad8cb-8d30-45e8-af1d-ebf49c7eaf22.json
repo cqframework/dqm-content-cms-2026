@@ -1,0 +1,50 @@
+{
+  "resourceType": "Observation",
+  "id": "cf4ad8cb-8d30-45e8-af1d-ebf49c7eaf22",
+  "meta": {
+    "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-observation-lab" ]
+  },
+  "basedOn": [ {
+    "reference": "ServiceRequest/093283ba-c103-4581-bc80-a320378213f3"
+  } ],
+  "status": "final",
+  "category": [ {
+    "coding": [ {
+      "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+      "code": "laboratory",
+      "display": "Laboratory"
+    } ]
+  } ],
+  "code": {
+    "coding": [ {
+      "system": "http://loinc.org",
+      "code": "600-7",
+      "display": "Bacteria identified in Blood by Culture"
+    } ]
+  },
+  "subject": {
+    "reference": "Patient/1c61d5db-b65e-5f83-8d39-724c16487e20"
+  },
+  "encounter": {
+    "reference": "Encounter/f8e0762d-ac6f-4f66-b433-d0492899e01b"
+  },
+  "effectiveDateTime": "2025-01-05T10:00:00.000Z",
+  "issued": "2025-01-05T10:00:00.000Z",
+  "valueCodeableConcept": {
+    "coding": [ {
+      "system": "http://snomed.info/sct",
+      "code": "3092008",
+      "display": "Staphylococcus aureus"
+    } ]
+  },
+  "interpretation": [ {
+    "coding": [ {
+      "system": "http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation",
+      "code": "POS",
+      "display": "Positive"
+    } ]
+  } ],
+  "specimen": {
+    "reference": "Specimen/5a870fcf-c090-4c1a-bfc1-8775c60919bd"
+  }
+}

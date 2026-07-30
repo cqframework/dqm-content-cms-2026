@@ -1,0 +1,79 @@
+{
+  "resourceType": "MeasureReport",
+  "id": "6ac4b908-6a3e-49ab-89e7-1cfaf2d34404",
+  "meta": {
+    "profile": [ "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/test-case-cqfm" ]
+  },
+  "contained": [ {
+    "resourceType": "Parameters",
+    "id": "94008fb8-7fba-45c5-bcae-42962c5d764e-parameters",
+    "parameter": [ {
+      "name": "subject",
+      "valueString": "af355530-608c-5297-9d6d-0e18e18244de"
+    } ]
+  } ],
+  "extension": [ {
+    "url": "http://hl7.org/fhir/StructureDefinition/cqf-inputParameters",
+    "valueReference": {
+      "reference": "#94008fb8-7fba-45c5-bcae-42962c5d764e-parameters"
+    }
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-testCaseDescription",
+    "valueMarkdown": "HOB positive: E. coli on day 2 (COB), S. aureus on day 5 (HOB)"
+  } ],
+  "modifierExtension": [ {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-isTestCase",
+    "valueBoolean": true
+  } ],
+  "status": "complete",
+  "type": "individual",
+  "measure": "https://madie.cms.gov/Measure/NHSNAcuteCareHospitalMonthlyInitialPopulation2",
+  "period": {
+    "start": "2025-01-01",
+    "end": "2025-01-31"
+  },
+  "group": [ {
+    "id": "Group_1",
+    "population": [ {
+      "id": "InitialPopulation_1",
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "initial-population",
+          "display": "Initial Population"
+        } ]
+      },
+      "count": 1
+    } ],
+    "measureScore": {
+      "value": 0.0
+    }
+  } ],
+  "evaluatedResource": [ {
+    "reference": "Practitioner/22640963-5b1f-4819-a845-e621c1d65e72"
+  }, {
+    "reference": "Patient/af355530-608c-5297-9d6d-0e18e18244de"
+  }, {
+    "reference": "Location/fea96082-4168-464d-ab78-6049ed1a3cfc"
+  }, {
+    "reference": "Encounter/71c875b6-844e-4cc4-80bc-758553f277bf"
+  }, {
+    "reference": "Coverage/61cc90c5-1ab0-4e18-9242-302e156a0fc9"
+  }, {
+    "reference": "Practitioner/af4e3249-2e04-44ec-8242-d8623d455a01"
+  }, {
+    "reference": "ServiceRequest/901e4561-5ead-4d1d-8746-0c2ade2778c2"
+  }, {
+    "reference": "Specimen/543bed11-ff68-409a-a05f-2ee3019ccaf7"
+  }, {
+    "reference": "Observation/d6c8d65a-13e9-4e88-8b78-0de98dfddb5b"
+  }, {
+    "reference": "Practitioner/db983cd9-2e10-48c1-93d5-15ede48a1bf5"
+  }, {
+    "reference": "ServiceRequest/e60db051-6355-4add-80de-ead897c7bf44"
+  }, {
+    "reference": "Specimen/3c0925ef-663e-4961-8801-8c9da59043cf"
+  }, {
+    "reference": "Observation/49c3dd37-cba6-4ebc-94a2-a155ab78e3f9"
+  } ]
+}

@@ -1,0 +1,50 @@
+{
+  "resourceType": "Observation",
+  "id": "431d0b84-3d8a-4e80-a6cb-00b72b857ecf",
+  "meta": {
+    "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-observation-lab" ]
+  },
+  "basedOn": [ {
+    "reference": "ServiceRequest/57446199-02b5-4703-9b9f-77bb66490bcb"
+  } ],
+  "status": "final",
+  "category": [ {
+    "coding": [ {
+      "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+      "code": "laboratory",
+      "display": "Laboratory"
+    } ]
+  } ],
+  "code": {
+    "coding": [ {
+      "system": "http://loinc.org",
+      "code": "600-7",
+      "display": "Bacteria identified in Blood by Culture"
+    } ]
+  },
+  "subject": {
+    "reference": "Patient/767e83b2-9a68-5220-82ae-4037d362b64a"
+  },
+  "encounter": {
+    "reference": "Encounter/0fb43910-c240-4af5-914b-3357e635f656"
+  },
+  "effectiveDateTime": "2025-01-07T18:43:00.000Z",
+  "issued": "2025-01-07T18:43:00.000Z",
+  "valueCodeableConcept": {
+    "coding": [ {
+      "system": "http://snomed.info/sct",
+      "code": "726492000",
+      "display": "Carbapenem resistant Pseudomonas aeruginosa"
+    } ]
+  },
+  "interpretation": [ {
+    "coding": [ {
+      "system": "http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation",
+      "code": "POS",
+      "display": "Positive"
+    } ]
+  } ],
+  "specimen": {
+    "reference": "Specimen/7e2475b8-034f-4067-863f-97bec17d3e72"
+  }
+}

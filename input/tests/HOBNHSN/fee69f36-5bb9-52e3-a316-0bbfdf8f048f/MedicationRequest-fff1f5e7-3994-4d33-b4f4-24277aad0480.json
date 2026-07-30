@@ -1,0 +1,30 @@
+{
+  "resourceType": "MedicationRequest",
+  "id": "fff1f5e7-3994-4d33-b4f4-24277aad0480",
+  "meta": {
+    "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-medicationrequest" ]
+  },
+  "status": "active",
+  "intent": "order",
+  "category": [ {
+    "coding": [ {
+      "system": "http://terminology.hl7.org/CodeSystem/medicationrequest-category",
+      "code": "inpatient",
+      "display": "Inpatient"
+    } ]
+  } ],
+  "priority": "routine",
+  "medicationReference": {
+    "reference": "Medication/eb703041-327c-4f58-bfee-aff8dfa3fc81"
+  },
+  "subject": {
+    "reference": "Patient/fee69f36-5bb9-52e3-a316-0bbfdf8f048f"
+  },
+  "encounter": {
+    "reference": "Encounter/39d69b28-9c1f-48f7-b7bc-627630b5b410"
+  },
+  "authoredOn": "2025-01-06T11:00:00.000Z",
+  "requester": {
+    "reference": "Practitioner/a02a7e5a-5102-47af-bca6-11db2a518e81"
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "resourceType": "Observation",
+  "id": "d6c8d65a-13e9-4e88-8b78-0de98dfddb5b",
+  "meta": {
+    "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-observation-lab" ]
+  },
+  "basedOn": [ {
+    "reference": "ServiceRequest/901e4561-5ead-4d1d-8746-0c2ade2778c2"
+  } ],
+  "status": "final",
+  "category": [ {
+    "coding": [ {
+      "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+      "code": "laboratory",
+      "display": "Laboratory"
+    } ]
+  } ],
+  "code": {
+    "coding": [ {
+      "system": "http://loinc.org",
+      "code": "600-7",
+      "display": "Bacteria identified in Blood by Culture"
+    } ]
+  },
+  "subject": {
+    "reference": "Patient/af355530-608c-5297-9d6d-0e18e18244de"
+  },
+  "encounter": {
+    "reference": "Encounter/71c875b6-844e-4cc4-80bc-758553f277bf"
+  },
+  "effectiveDateTime": "2025-01-03T07:00:00.000Z",
+  "issued": "2025-01-03T07:00:00.000Z",
+  "valueCodeableConcept": {
+    "coding": [ {
+      "system": "http://snomed.info/sct",
+      "code": "112283007",
+      "display": "Escherichia coli"
+    } ]
+  },
+  "interpretation": [ {
+    "coding": [ {
+      "system": "http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation",
+      "code": "POS",
+      "display": "Positive"
+    } ]
+  } ],
+  "specimen": {
+    "reference": "Specimen/543bed11-ff68-409a-a05f-2ee3019ccaf7"
+  }
+}
