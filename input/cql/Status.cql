@@ -6,7 +6,7 @@ relevant for measures authored by NCQA.
 
 NOTE: For use by March 2026 US Realm Connectathon participants for internal use only. Not for use or distribution in commercial products.
 */
-library Status version '2.1.000'
+library Status version '2.2.000'
 
 using USQualityCore version '0.5.0'
 using USCore version '6.1.0-derived'

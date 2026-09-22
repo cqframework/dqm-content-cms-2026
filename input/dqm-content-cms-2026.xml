@@ -39,7 +39,7 @@
     <dependsOn id="uscql">
       <uri value="http://hl7.org/fhir/us/cql/ImplementationGuide/hl7.fhir.us.cql"/>
       <packageId value="hl7.fhir.us.cql"/>
-      <version value="2.0.0-ballot"/>
+      <version value="2.0.0"/>
     </dependsOn>    
     <dependsOn id="usqc">
       <uri value="http://fhir.org/guides/onc/us-quality-core/ImplementationGuide/fhir.onc.us-quality-core"/>

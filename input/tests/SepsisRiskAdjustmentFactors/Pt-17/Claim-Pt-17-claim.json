@@ -1,0 +1,489 @@
+{
+  "resourceType": "Claim",
+  "id": "Pt-17-claim",
+  "meta": {
+    "profile": [
+      "http://fhir.org/guides/onc/us-quality-core/StructureDefinition/us-quality-core-claim"
+    ]
+  },
+  "status": "active",
+  "type": {
+    "coding": [
+      {
+        "system": "http://terminology.hl7.org/CodeSystem/claim-type",
+        "code": "institutional"
+      }
+    ]
+  },
+  "use": "claim",
+  "patient": {
+    "reference": "Patient/Pt-17"
+  },
+  "created": "2026-01",
+  "provider": {
+    "reference": "Organization/org-10000"
+  },
+  "priority": {
+    "coding": [
+      {
+        "system": "http://terminology.hl7.org/CodeSystem/processpriority",
+        "code": "normal"
+      }
+    ]
+  },
+  "insurance": [
+    {
+      "sequence": 1,
+      "focal": true,
+      "coverage": {
+        "reference": "Coverage/Pt-17-coverage-1"
+      }
+    },
+    {
+      "sequence": 2,
+      "focal": false,
+      "coverage": {
+        "reference": "Coverage/Pt-17-coverage-2"
+      }
+    }
+  ],
+  "identifier": [
+    {
+      "value": "26676800",
+      "assigner": {
+        "reference": "Organization/org-10000"
+      }
+    }
+  ],
+  "billablePeriod": {
+    "start": "2026-01-28",
+    "end": "2026-01-28"
+  },
+  "supportingInfo": [
+    {
+      "sequence": 1,
+      "category": {
+        "coding": [
+          {
+            "system": "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType",
+            "code": "admissionperiod"
+          }
+        ]
+      },
+      "timingPeriod": {
+        "start": "2026-01-25T13:00:00",
+        "end": "2026-01-28T22:00:00"
+      }
+    },
+    {
+      "sequence": 2,
+      "category": {
+        "coding": [
+          {
+            "system": "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType",
+            "code": "pointoforigin"
+          }
+        ]
+      },
+      "code": {
+        "coding": [
+          {
+            "system": "https://www.nubc.org/CodeSystem/PointOfOrigin",
+            "code": "3"
+          }
+        ]
+      }
+    },
+    {
+      "sequence": 3,
+      "category": {
+        "coding": [
+          {
+            "system": "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType",
+            "code": "discharge-status"
+          }
+        ]
+      },
+      "code": {
+        "coding": [
+          {
+            "system": "https://www.nubc.org/CodeSystem/PatDischargeStatus",
+            "code": "01",
+            "display": "Discharged to home"
+          }
+        ]
+      }
+    },
+    {
+      "sequence": 4,
+      "category": {
+        "coding": [
+          {
+            "system": "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType",
+            "code": "medicalrecordnumber"
+          }
+        ]
+      },
+      "valueString": "95285363"
+    },
+    {
+      "sequence": 5,
+      "category": {
+        "coding": [
+          {
+            "system": "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType",
+            "code": "patientaccountnumber"
+          }
+        ]
+      },
+      "valueString": "31646108"
+    }
+  ],
+  "diagnosis": [
+    {
+      "sequence": 1,
+      "diagnosisCodeableConcept": {
+        "coding": [
+          {
+            "system": "http://hl7.org/fhir/sid/icd-10-cm",
+            "code": "A4101"
+          }
+        ]
+      },
+      "type": [
+        {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/ex-diagnosistype",
+              "code": "principal"
+            }
+          ]
+        }
+      ],
+      "onAdmission": {
+        "coding": [
+          {
+            "system": "https://www.cms.gov/Medicare/Medicare-Fee-for-Service-Payment/HospitalAcqCond/Coding",
+            "code": "Y"
+          }
+        ]
+      }
+    },
+    {
+      "sequence": 2,
+      "diagnosisCodeableConcept": {
+        "coding": [
+          {
+            "system": "http://hl7.org/fhir/sid/icd-10-cm",
+            "code": "R6521"
+          }
+        ]
+      },
+      "type": [
+        {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBClaimDiagnosisType",
+              "code": "other"
+            }
+          ]
+        }
+      ],
+      "onAdmission": {
+        "coding": [
+          {
+            "system": "https://www.cms.gov/Medicare/Medicare-Fee-for-Service-Payment/HospitalAcqCond/Coding",
+            "code": "Y"
+          }
+        ]
+      }
+    },
+    {
+      "sequence": 3,
+      "diagnosisCodeableConcept": {
+        "coding": [
+          {
+            "system": "http://hl7.org/fhir/sid/icd-10-cm",
+            "code": "I5023"
+          }
+        ]
+      },
+      "type": [
+        {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBClaimDiagnosisType",
+              "code": "other"
+            }
+          ]
+        }
+      ],
+      "onAdmission": {
+        "coding": [
+          {
+            "system": "https://www.cms.gov/Medicare/Medicare-Fee-for-Service-Payment/HospitalAcqCond/Coding",
+            "code": "N"
+          }
+        ]
+      }
+    },
+    {
+      "sequence": 4,
+      "diagnosisCodeableConcept": {
+        "coding": [
+          {
+            "system": "http://hl7.org/fhir/sid/icd-10-cm",
+            "code": "M60004"
+          }
+        ]
+      },
+      "type": [
+        {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBClaimDiagnosisType",
+              "code": "other"
+            }
+          ]
+        }
+      ],
+      "onAdmission": {
+        "coding": [
+          {
+            "system": "https://www.cms.gov/Medicare/Medicare-Fee-for-Service-Payment/HospitalAcqCond/Coding",
+            "code": "Y"
+          }
+        ]
+      }
+    },
+    {
+      "sequence": 5,
+      "diagnosisCodeableConcept": {
+        "coding": [
+          {
+            "system": "http://hl7.org/fhir/sid/icd-10-cm",
+            "code": "E876"
+          }
+        ]
+      },
+      "type": [
+        {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBClaimDiagnosisType",
+              "code": "other"
+            }
+          ]
+        }
+      ],
+      "onAdmission": {
+        "coding": [
+          {
+            "system": "https://www.cms.gov/Medicare/Medicare-Fee-for-Service-Payment/HospitalAcqCond/Coding",
+            "code": "N"
+          }
+        ]
+      }
+    }
+  ],
+  "procedure": [
+    {
+      "sequence": 1,
+      "procedureCodeableConcept": {
+        "coding": [
+          {
+            "system": "http://www.cms.gov/Medicare/Coding/ICD10",
+            "code": "10E0XZZ"
+          }
+        ]
+      },
+      "date": "2026-01-27"
+    },
+    {
+      "sequence": 2,
+      "procedureCodeableConcept": {
+        "coding": [
+          {
+            "system": "http://www.cms.gov/Medicare/Coding/ICD10",
+            "code": "8E0W4CZ"
+          }
+        ]
+      },
+      "date": "2026-01-27"
+    },
+    {
+      "sequence": 3,
+      "procedureCodeableConcept": {
+        "coding": [
+          {
+            "system": "http://www.cms.gov/Medicare/Coding/ICD10",
+            "code": "0VTTXZZ"
+          }
+        ]
+      },
+      "date": "2026-01-27"
+    },
+    {
+      "sequence": 4,
+      "procedureCodeableConcept": {
+        "coding": [
+          {
+            "system": "http://www.cms.gov/Medicare/Coding/ICD10",
+            "code": "03HY32Z"
+          }
+        ]
+      },
+      "date": "2026-01-27"
+    }
+  ],
+  "item": [
+    {
+      "sequence": 1,
+      "productOrService": {
+        "coding": [
+          {
+            "system": "https://bluebutton.cms.gov/resources/codesystem/hcpcs",
+            "code": "99288"
+          }
+        ]
+      },
+      "modifier": [
+        {
+          "coding": [
+            {
+              "system": "https://bluebutton.cms.gov/resources/codesystem/hcpcs",
+              "code": "25"
+            }
+          ]
+        }
+      ],
+      "servicedDate": "2026-01-26",
+      "quantity": {
+        "value": 75
+      },
+      "diagnosisSequence": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "encounter": [
+        {
+          "reference": "Encounter/Pt-17-encounter"
+        }
+      ]
+    },
+    {
+      "sequence": 2,
+      "productOrService": {
+        "coding": [
+          {
+            "system": "https://bluebutton.cms.gov/resources/codesystem/hcpcs",
+            "code": "99288"
+          }
+        ]
+      },
+      "modifier": [
+        {
+          "coding": [
+            {
+              "system": "https://bluebutton.cms.gov/resources/codesystem/hcpcs",
+              "code": "ER"
+            }
+          ]
+        }
+      ],
+      "servicedDate": "2026-01-26",
+      "quantity": {
+        "value": 75
+      },
+      "diagnosisSequence": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "encounter": [
+        {
+          "reference": "Encounter/Pt-17-encounter"
+        }
+      ]
+    },
+    {
+      "sequence": 3,
+      "productOrService": {
+        "coding": [
+          {
+            "system": "https://bluebutton.cms.gov/resources/codesystem/hcpcs",
+            "code": "99288"
+          }
+        ]
+      },
+      "modifier": [
+        {
+          "coding": [
+            {
+              "system": "https://bluebutton.cms.gov/resources/codesystem/hcpcs",
+              "code": "59"
+            }
+          ]
+        }
+      ],
+      "servicedDate": "2026-01-26",
+      "quantity": {
+        "value": 75
+      },
+      "diagnosisSequence": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "encounter": [
+        {
+          "reference": "Encounter/Pt-17-encounter"
+        }
+      ]
+    },
+    {
+      "sequence": 4,
+      "productOrService": {
+        "coding": [
+          {
+            "system": "https://bluebutton.cms.gov/resources/codesystem/hcpcs",
+            "code": "99288"
+          }
+        ]
+      },
+      "modifier": [
+        {
+          "coding": [
+            {
+              "system": "https://bluebutton.cms.gov/resources/codesystem/hcpcs",
+              "code": "TC"
+            }
+          ]
+        }
+      ],
+      "servicedDate": "2026-01-26",
+      "quantity": {
+        "value": 75
+      },
+      "diagnosisSequence": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "encounter": [
+        {
+          "reference": "Encounter/Pt-17-encounter"
+        }
+      ]
+    }
+  ]
+}

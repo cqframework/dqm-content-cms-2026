@@ -1,0 +1,11 @@
+{
+  "resourceType": "Organization",
+  "id": "payer-medicare",
+  "meta": {
+    "profile": [
+      "http://fhir.org/guides/onc/us-quality-core/StructureDefinition/us-quality-core-organization"
+    ]
+  },
+  "active": true,
+  "name": "Medicare"
+}

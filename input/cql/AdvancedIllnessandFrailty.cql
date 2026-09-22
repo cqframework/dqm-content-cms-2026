@@ -1,7 +1,7 @@
 /*
 NOTE: For use by March 2026 US Realm Connectathon participants for internal use only. Not for use or distribution in commercial products.
 */
-library AdvancedIllnessandFrailty version '2.1.000'
+library AdvancedIllnessandFrailty version '2.2.000'
 
 using USQualityCore version '0.5.0'
 using USCore version '6.1.0-derived'
@@ -9,9 +9,9 @@ using FHIR version '4.0.1'
 
 include hl7.fhir.uv.cql.FHIRHelpers version '4.0.1' called FHIRHelpers
 include hl7.fhir.uv.cql.FHIRCommon version '2.0.0' called FHIRCommon
-include hl7.fhir.us.cql.CumulativeMedicationDuration version '2.0.0-ballot' called CMD
+include hl7.fhir.us.cql.CumulativeMedicationDuration version '2.0.0' called CMD
 
-include Status version '2.1.000' called Status
+include Status version '2.2.000' called Status
 
 codesystem "LOINC": 'http://loinc.org'
 codesystem "SNOMEDCT": 'http://snomed.info/sct'

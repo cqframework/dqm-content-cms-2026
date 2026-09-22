@@ -5,20 +5,20 @@ library BreastCancerScreeningDQMDraft version '1.0.000'
 
 using USQualityCore version '0.5.0'
 using USCore version '6.1.0-derived'
-using C4BB version '2.1.1'
+using C4BB version '2.2.0'
 using FHIR version '4.0.1'
 
 include hl7.fhir.uv.cql.FHIRHelpers version '4.0.1' called FHIRHelpers
 include hl7.fhir.uv.cql.FHIRCommon version '2.0.0' called FHIRCommon
-include hl7.fhir.us.cql.USCoreCommon version '2.0.0-ballot' called USCommon
+include hl7.fhir.us.cql.USCoreCommon version '2.0.0' called USCommon
 include fhir.onc."us-quality-core".USQualityCoreCommon version '0.5.0' called USQCommon
 
-include AdultOutpatientEncounters version '5.1.000' called AdultOutpatientEncounters
-include AdvancedIllnessandFrailty version '2.1.000' called AIFrailLTCF
-include Hospice version '7.1.000' called Hospice
-include PalliativeCare version '2.1.000' called PalliativeCare
-include Status version '2.1.000' called Status
-include SupplementalDataElements version '6.1.000' called SDE
+include AdultOutpatientEncounters version '5.2.000' called AdultOutpatientEncounters
+include AdvancedIllnessandFrailty version '2.2.000' called AIFrailLTCF
+include Hospice version '7.2.000' called Hospice
+include PalliativeCare version '2.2.000' called PalliativeCare
+include Status version '2.2.000' called Status
+include SupplementalDataElements version '6.2.000' called SDE
 
 codesystem "ClaimTypeCodes": 'http://terminology.hl7.org/CodeSystem/claim-type'
 codesystem "SNOMEDCT": 'http://snomed.info/sct'

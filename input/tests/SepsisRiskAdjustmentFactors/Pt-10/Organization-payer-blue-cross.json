@@ -1,0 +1,11 @@
+{
+  "resourceType": "Organization",
+  "id": "payer-blue-cross",
+  "meta": {
+    "profile": [
+      "http://fhir.org/guides/onc/us-quality-core/StructureDefinition/us-quality-core-organization"
+    ]
+  },
+  "active": true,
+  "name": "Blue Cross"
+}

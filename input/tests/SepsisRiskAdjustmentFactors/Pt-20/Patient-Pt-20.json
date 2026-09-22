@@ -1,0 +1,94 @@
+{
+  "resourceType": "Patient",
+  "id": "Pt-20",
+  "meta": {
+    "profile": [
+      "http://fhir.org/guides/onc/us-quality-core/StructureDefinition/us-quality-core-patient"
+    ]
+  },
+  "extension": [
+    {
+      "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-race",
+      "extension": [
+        {
+          "url": "ombCategory",
+          "valueCoding": {
+            "system": "urn:oid:2.16.840.1.113883.6.238",
+            "code": "2076-8",
+            "display": "Native Hawaiian or Other Pacific Islander"
+          }
+        },
+        {
+          "url": "text",
+          "valueString": "Native Hawaiian or Other Pacific Islander"
+        }
+      ]
+    },
+    {
+      "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-ethnicity",
+      "extension": [
+        {
+          "url": "ombCategory",
+          "valueCoding": {
+            "system": "http://terminology.hl7.org/CodeSystem/v3-NullFlavor",
+            "code": "ASKU",
+            "display": "Asked but no answer"
+          }
+        },
+        {
+          "url": "text",
+          "valueString": "Asked but no answer"
+        }
+      ]
+    }
+  ],
+  "identifier": [
+    {
+      "type": {
+        "coding": [
+          {
+            "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+            "code": "MR",
+            "display": "Medical Record Number"
+          }
+        ]
+      },
+      "value": "65793704",
+      "assigner": {
+        "reference": "Organization/org-24680"
+      }
+    },
+    {
+      "type": {
+        "coding": [
+          {
+            "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+            "code": "AN",
+            "display": "Account number"
+          }
+        ]
+      },
+      "value": "31779869",
+      "assigner": {
+        "reference": "Organization/org-24680"
+      }
+    }
+  ],
+  "name": [
+    {
+      "text": "Mason, Kathleen, J."
+    }
+  ],
+  "gender": "male",
+  "birthDate": "1944-08-23",
+  "address": [
+    {
+      "line": [
+        "6452 Wendy Court"
+      ],
+      "city": "Atlanta",
+      "state": "GA",
+      "postalCode": "67901"
+    }
+  ]
+}

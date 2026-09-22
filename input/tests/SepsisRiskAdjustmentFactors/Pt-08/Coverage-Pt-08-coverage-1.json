@@ -1,0 +1,19 @@
+{
+  "resourceType": "Coverage",
+  "id": "Pt-08-coverage-1",
+  "meta": {
+    "profile": [
+      "http://fhir.org/guides/onc/us-quality-core/StructureDefinition/us-quality-core-coverage"
+    ]
+  },
+  "status": "active",
+  "beneficiary": {
+    "reference": "Patient/Pt-08"
+  },
+  "payor": [
+    {
+      "reference": "Organization/payer-united"
+    }
+  ],
+  "order": 1
+}

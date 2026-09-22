@@ -1,0 +1,16 @@
+{
+  "resourceType": "Organization",
+  "id": "org-24680",
+  "meta": {
+    "profile": [
+      "http://fhir.org/guides/onc/us-quality-core/StructureDefinition/us-quality-core-organization"
+    ]
+  },
+  "active": true,
+  "identifier": [
+    {
+      "system": "https://www.cdc.gov/nhsn/identifiers/orgid",
+      "value": "24680"
+    }
+  ]
+}

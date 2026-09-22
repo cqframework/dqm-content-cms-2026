@@ -9,7 +9,7 @@ using FHIR version '4.0.1'
 include hl7.fhir.uv.cql.FHIRHelpers version '4.0.1' called FHIRHelpers
 include hl7.fhir.uv.cql.FHIRCommon version '2.0.0' called FHIRCommon
 
-include CQMCommon version '5.1.000' called CQMCommon
+include CQMCommon version '5.2.000' called CQMCommon
 include HOBOrganismTaxonomy
 
 valueset "Bacteria and Fungi - HOB Specific": 'https://example.org/fhir/ValueSet/bacteria-and-fungi-hob-specific'

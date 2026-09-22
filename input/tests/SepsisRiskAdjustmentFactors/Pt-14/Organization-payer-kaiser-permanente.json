@@ -1,0 +1,11 @@
+{
+  "resourceType": "Organization",
+  "id": "payer-kaiser-permanente",
+  "meta": {
+    "profile": [
+      "http://fhir.org/guides/onc/us-quality-core/StructureDefinition/us-quality-core-organization"
+    ]
+  },
+  "active": true,
+  "name": "Kaiser Permanente"
+}

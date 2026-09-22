@@ -1,0 +1,33 @@
+{
+  "resourceType": "Encounter",
+  "id": "Pt-19-encounter",
+  "meta": {
+    "profile": [
+      "http://fhir.org/guides/onc/us-quality-core/StructureDefinition/us-quality-core-encounter"
+    ]
+  },
+  "status": "finished",
+  "subject": {
+    "reference": "Patient/Pt-19"
+  },
+  "identifier": [
+    {
+      "value": "28604214",
+      "assigner": {
+        "reference": "Organization/org-24680"
+      }
+    }
+  ],
+  "class": {
+    "system": "http://terminology.hl7.org/CodeSystem/v3-ActCode",
+    "code": "IMP",
+    "display": "inpatient encounter"
+  },
+  "period": {
+    "start": "2026-01-10T03:00:00",
+    "end": "2026-01-22T06:00:00"
+  },
+  "serviceProvider": {
+    "reference": "Organization/org-24680"
+  }
+}

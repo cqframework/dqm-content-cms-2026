@@ -1,0 +1,94 @@
+{
+  "resourceType": "Patient",
+  "id": "Pt-13",
+  "meta": {
+    "profile": [
+      "http://fhir.org/guides/onc/us-quality-core/StructureDefinition/us-quality-core-patient"
+    ]
+  },
+  "extension": [
+    {
+      "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-race",
+      "extension": [
+        {
+          "url": "ombCategory",
+          "valueCoding": {
+            "system": "urn:oid:2.16.840.1.113883.6.238",
+            "code": "1002-5",
+            "display": "American Indian or Alaska Native"
+          }
+        },
+        {
+          "url": "text",
+          "valueString": "American Indian or Alaska Native"
+        }
+      ]
+    },
+    {
+      "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-ethnicity",
+      "extension": [
+        {
+          "url": "ombCategory",
+          "valueCoding": {
+            "system": "urn:oid:2.16.840.1.113883.6.238",
+            "code": "2186-5",
+            "display": "Not Hispanic or Latino"
+          }
+        },
+        {
+          "url": "text",
+          "valueString": "Not Hispanic or Latino"
+        }
+      ]
+    }
+  ],
+  "identifier": [
+    {
+      "type": {
+        "coding": [
+          {
+            "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+            "code": "MR",
+            "display": "Medical Record Number"
+          }
+        ]
+      },
+      "value": "23920987",
+      "assigner": {
+        "reference": "Organization/org-24680"
+      }
+    },
+    {
+      "type": {
+        "coding": [
+          {
+            "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+            "code": "AN",
+            "display": "Account number"
+          }
+        ]
+      },
+      "value": "31566294",
+      "assigner": {
+        "reference": "Organization/org-24680"
+      }
+    }
+  ],
+  "name": [
+    {
+      "text": "Young, Paul, J."
+    }
+  ],
+  "gender": "male",
+  "birthDate": "2011-04-03",
+  "address": [
+    {
+      "line": [
+        "04409 Joan Stravenue Suite 024"
+      ],
+      "city": "Atlanta",
+      "state": "GA",
+      "postalCode": "87455"
+    }
+  ]
+}
