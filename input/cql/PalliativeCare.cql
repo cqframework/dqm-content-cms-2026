@@ -1,5 +1,5 @@
 /*
-NOTE: For use by March 2026 US Realm Connectathon participants for internal use only. Not for use or distribution in commercial products.
+NOTE: Proposed shared library content refactored to use USQualityCore 0.5.0
 */
 library PalliativeCare version '2.2.000'
 

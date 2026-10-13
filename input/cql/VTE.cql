@@ -1,8 +1,5 @@
 /*
-@description: VTE Common Functions
-
-NOTE: This library is not published in this IG, it is included here for convenience. The source of truth for
-this library will be the MADiE environment once it fully supports use of QICore STU6-derived.
+NOTE: Proposed shared library content refactored to use USQualityCore 0.5.0
 */
 library VTE version '9.2.000'
 

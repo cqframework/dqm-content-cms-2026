@@ -1,10 +1,5 @@
 /*
-@description: This library contains functions used to constrain FHIR resource elements for measures 
-authored by NCQA, based on QICore 7.0.0 resources then refactoring to use USQualityCore 0.1.0 including IG and authoring patterns. The functions 
-may appear similar to some QICoreCommon functions but differ in that they have constraints that are 
-relevant for measures authored by NCQA.
-
-NOTE: For use by March 2026 US Realm Connectathon participants for internal use only. Not for use or distribution in commercial products.
+NOTE: Proposed shared library content refactored to use USQualityCore 0.5.0
 */
 library Status version '2.2.000'
 
