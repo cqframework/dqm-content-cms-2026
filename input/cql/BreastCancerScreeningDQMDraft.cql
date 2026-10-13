@@ -5,7 +5,7 @@ library BreastCancerScreeningDQMDraft version '1.0.000'
 
 using USQualityCore version '0.5.0'
 using USCore version '6.1.0-derived'
-using C4BB version '2.2.0'
+using C4BB version '2.2.0-derived'
 using FHIR version '4.0.1'
 
 include hl7.fhir.uv.cql.FHIRHelpers version '4.0.1' called FHIRHelpers

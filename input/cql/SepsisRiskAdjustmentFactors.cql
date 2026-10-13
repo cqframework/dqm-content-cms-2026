@@ -16,8 +16,8 @@ valueset "Discharged to Home for Hospice Care": 'http://cts.nlm.nih.gov/fhir/Val
 valueset "Left Against Medical Advice": 'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.117.1.7.1.308'
 valueset "Patient Expired": 'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.117.1.7.1.309'
 
-include ClaimCommon version '0.2.000'
-include ClaimElements version '0.2.000'
+include ClaimCommon version '0.4.000-draft'
+include ClaimElements version '0.4.000-draft'
 include Status version '2.2.000'
 
 parameter "Measurement Period" Interval<DateTime>

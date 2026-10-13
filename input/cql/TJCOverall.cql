@@ -14,9 +14,11 @@ include hl7.fhir.uv.cql.FHIRHelpers version '4.0.1' called FHIRHelpers
 include hl7.fhir.uv.cql.FHIRCommon version '2.0.0' called FHIRCommon
 include hl7.fhir.us.cql.USCoreCommon version '2.0.0' called USCoreCommon
 include hl7.fhir.us.cql.USCoreElements version '2.0.0' called USCoreElements
+include fhir.onc."us-quality-core".USQualityCoreCommon version '0.5.0' called USQualityCoreCommon
 
 include CQMCommon version '5.2.000' called CQMCommon
-include USQualityCoreCommon version '0.5.0' called USQualityCoreCommon
+include ClaimCommon version '0.4.000-draft' called ClaimCommon
+include ClaimElements version '0.4.000-draft' called ClaimElements
 
 valueset "Comfort Measures": 'http://cts.nlm.nih.gov/fhir/ValueSet/1.3.6.1.4.1.33895.1.3.0.45'
 valueset "Discharge To Acute Care Facility": 'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.117.1.7.1.87'
@@ -39,7 +41,9 @@ define "Non Elective Inpatient Encounter With Age":
 
 define "Ischemic Stroke Encounter":
   "Non Elective Inpatient Encounter With Age" NonElectiveEncounterWithAge
-   where NonElectiveEncounterWithAge.hasPrincipalDiagnosisOf("Ischemic Stroke" )
+    with ClaimElements."Claim Item Diagnosis" ClaimDiagnosis
+      such that ClaimDiagnosis.isRelatedTo(NonElectiveEncounterWithAge)
+        and ClaimDiagnosis.diagnosis in "Ischemic Stroke"
 
 define "Ischemic Stroke Encounters With Discharge Disposition":
   "Ischemic Stroke Encounter" IschemicStrokeEncounter

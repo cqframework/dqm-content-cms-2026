@@ -1,12 +1,22 @@
-library ClaimElements version '0.2.000'
+/*
+@description: Claim element expressions that simplify access to the various
+aspects of a FHIR Claim resource by flattening the repeating elements into a
+more table-like structure. This flattening is done first for the `item` 
+element, and then using that as a basis, the flattening is provided for the
+`diagnosis` and `procedure` elements.
+@comment: Similar element expressions could be defined for the ExplanationOfBenefit
+resource to simplify access to the various aspects.
+*/
+library ClaimElements version '0.4.000-draft'
 
 using USQualityCore version '0.5.0'
 using USCore version '6.1.0-derived'
 using FHIR version '4.0.1'
 
 include hl7.fhir.uv.cql.FHIRHelpers version '4.0.1'
+include hl7.fhir.uv.cql.FHIRCommon version '2.0.0'
 
-include ClaimCommon version '0.2.000' called ClaimCommon
+include ClaimCommon version '0.4.000-draft' called ClaimCommon
 
 context Patient
 
@@ -37,7 +47,7 @@ define "Claim Encounter Item":
             productOrService: I.productOrService,
             modifier: I.modifier,
             programCode: I.programCode,
-            serviced: I.serviced as FHIR.date,
+            serviced: I.serviced.toInterval(),
             location: I.location,
             bodySite: I.bodySite,
             subSite: I.subSite,
@@ -66,7 +76,7 @@ define "Claim Item":
             productOrService: I.productOrService,
             modifier: I.modifier,
             programCode: I.programCode,
-            serviced: I.serviced(),
+            serviced: I.serviced.toInterval(),
             location: I.location,
             bodySite: I.bodySite,
             subSite: I.subSite,
@@ -121,6 +131,36 @@ define "Claim Item Diagnosis":
             onAdmission: claimDiagnosis.onAdmission
           }
   )
+
+/*
+@description: Determines whether the given claim diagnosis is related to the given encounter
+@comment: Returns true if the claim item diagnosis references the given encounter, has a serviced
+period during the encounter period, or the claim's billable period is during the encounter period.
+*/
+define fluent function isRelatedTo(
+  claimItemDiagnosis Tuple{
+    claim USQualityCore.Claim,
+    claimId FHIR.id,
+    itemSequence FHIR.positiveInt,
+    category FHIR.CodeableConcept,
+    productOrService FHIR.CodeableConcept,
+    modifier List<FHIR.CodeableConcept>,
+    programCode List<FHIR.CodeableConcept>,
+    serviced Interval<System.DateTime>,
+    location Choice<FHIR.Address,FHIR.CodeableConcept,FHIR.Reference>,
+    bodySite FHIR.CodeableConcept,
+    subSite List<FHIR.CodeableConcept>,
+    encounter List<FHIR.Reference>,
+    diagnosisSequence FHIR.positiveInt,
+    diagnosis Choice<FHIR.CodeableConcept,FHIR.Reference>,
+    diagnosisType List<FHIR.CodeableConcept>,
+    onAdmission FHIR.CodeableConcept
+  }, 
+  encounter FHIR.Encounter
+):
+  claimItemDiagnosis.encounter.references(encounter)
+    or claimItemDiagnosis.serviced during encounter.period
+    or claimItemDiagnosis.claim.billablePeriod during encounter.period
 
 /*
 @description: Claim procedures unfolded

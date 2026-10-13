@@ -50,7 +50,7 @@ define fluent function lengthInDays(Value Interval<DateTime> ):
 */
 define fluent function edVisit(TheEncounter Encounter ):
   Last(
-    [USQualityCore.Encounter: "Emergency Department Visit"] EDVisit
+    [Encounter: "Emergency Department Visit"] EDVisit
       where EDVisit.status = 'finished'
         and EDVisit.period ends 1 hour or less on or before start of TheEncounter.period
       sort by end of period

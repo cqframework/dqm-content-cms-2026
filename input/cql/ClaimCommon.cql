@@ -9,23 +9,24 @@ to get wrong.
 This library supplies those functions, following the conventions used in FHIRCommon: an `is` prefixed
 predicate that operates on a single resource, and an unprefixed function of the same meaning that
 filters a list. With one exception the functions here are universal realm, so the intent is to
-propose them for inclusion in FHIRCommon; the library lives in this guide only until that happens.
-See MedicationCommon for the equivalent proposal covering the medication resources.
+propose them for inclusion in FHIRCommon; the library lives in MADiE, with a convenience copy in this 
+guide only until that happens. See MedicationCommon for the equivalent proposal covering the medication 
+resources.
 
 The exception is isInpatient and isOutpatient, which test the CARIN Blue Button institutional claim
 subtype and are therefore US Realm specific. They are grouped separately at the end of the library
 and would need to be left behind, or rehomed in a US Realm library, if the rest is proposed upstream.
 
-@comment: Element-level access to claim items, diagnoses, procedures, and supporting information is
+Element-level access to claim items, diagnoses, procedures, and supporting information is
 in the ClaimElements library. This library is only concerned with selecting which Claim or
 ExplanationOfBenefit resources should be considered in the first place.
 
-@comment: An aggregate helper for the recurring combination - an active claim, with a use of claim,
+An aggregate helper for the recurring combination - an active claim, with a use of claim,
 of an institutional or professional type - is deliberately not defined here, for the same reason as
 in MedicationCommon: naming it requires agreement on what it means. For now callers compose the
 predicates, as in `C.isActive() and C.isClaim() and (C.isInstitutional() or C.isProfessional())`.
 */
-library ClaimCommon version '0.2.000'
+library ClaimCommon version '0.4.000-draft'
 
 using FHIR version '4.0.1'
 
@@ -238,18 +239,6 @@ define fluent function isOral(claim FHIR.Claim):
 */
 define fluent function isVision(claim FHIR.Claim):
   claim.type ~ "type-vision"
-
-define fluent function serviced(claimItem FHIR.Claim.Item):
-  case
-    when claimItem.serviced is FHIR.date then 
-      Interval[
-        FHIRHelpers.ToDate(claimItem.serviced as FHIR.date),
-        FHIRHelpers.ToDate(claimItem.serviced as FHIR.date)
-      ]
-    when claimItem.serviced is FHIR.Period then
-      FHIRHelpers.ToInterval(claimItem.serviced as FHIR.Period)
-    else null
-  end
 
 /*
  * ExplanationOfBenefit status
@@ -484,3 +473,20 @@ define fluent function isOutpatient(explanationOfBenefit FHIR.ExplanationOfBenef
 define fluent function outpatient(explanationOfBenefitList List<FHIR.ExplanationOfBenefit>):
   explanationOfBenefitList explanationOfBenefit
     where explanationOfBenefit.subType ~ "subtype-outpatient"
+
+/*
+@description: Returns an interval of DateTime covering the possible representations of FHIR.date and FHIR.Period
+@comment: This function is covering a gap in the FHIRCommon.toInterval() in 2.0.0, which does not include FHIR.date
+as a possible representation for the choice. Claim.serviced has possible representations of FHIR.date and FHIR.Period,
+so this function enables serviced.toInterval() to be called on a Claim. Once Using CQL version 3.0.0 is avialable, this
+function will no longer be required.
+*/
+define fluent function toInterval(choice Choice<FHIR.date, FHIR.Period>):
+  case
+    when choice is FHIR.date then
+      Interval[ToDateTime(FHIRHelpers.ToDate(choice as FHIR.date)), ToDateTime(FHIRHelpers.ToDate(choice as FHIR.date))]
+    when choice is FHIR.Period then
+      FHIRHelpers.ToInterval(choice as FHIR.Period)
+    else 
+      null as Interval<DateTime>
+  end
