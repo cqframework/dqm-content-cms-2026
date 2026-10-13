@@ -1,4 +1,7 @@
-library PCMaternal version '5.28.000'
+/*
+NOTE: For use by March 2026 US Realm Connectathon participants for internal use only. Not for use or distribution in commercial products.
+*/
+library PCMaternal version '6.2.000'
 
 using USQualityCore version '0.5.0'
 using USCore version '6.1.0-derived'
@@ -6,32 +9,37 @@ using FHIR version '4.0.1'
 
 include hl7.fhir.uv.cql.FHIRHelpers version '4.0.1' called FHIRHelpers
 include hl7.fhir.uv.cql.FHIRCommon version '2.0.0' called FHIRCommon
-include CQMInferences version '0.2.000' called CQMInferences
+include hl7.fhir.us.cql.USCoreCommon version '2.0.0' called USCoreCommon
+include hl7.fhir.us.cql.USCoreElements version '2.0.0' called USCoreElements
+
+include USQualityCoreCommon version '0.5.0' called USQualityCoreCommon
+include CQMCommon version '5.2.000' called CQMCommon
 
 codesystem "LOINC": 'http://loinc.org' 
 
 valueset "Delivery Procedures": 'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1045.59' 
-valueset "ED Visit and OB Triage": 'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1029.369'
+valueset "ED Visit and OB Triage": 'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1029.369' 
 valueset "Encounter Inpatient": 'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.666.5.307' 
-valueset "Estimated Gestational Age at Delivery": 'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1045.26'
-valueset "Observation Services": 'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1111.143'
+valueset "Estimated Gestational Age at Delivery": 'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1045.26' 
+valueset "Observation Services": 'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1111.143' 
 
 code "Date and time of obstetric delivery": '93857-1' from "LOINC" display 'Date and time of obstetric delivery'
 code "Delivery date Estimated": '11778-8' from "LOINC" display 'Delivery date Estimated'
 
 parameter "Measurement Period" Interval<DateTime>
+  default Interval[@2026-01-01T00:00:00.000Z, @2027-01-01T00:00:00.000Z)
 
 context Patient
 
 define "Delivery Encounter With Age Range":
   "Encounter With Age Range" EncounterWithAge
-                with ["Procedure": "Delivery Procedures"] DeliveryProcedure
-                such that DeliveryProcedure.status = 'completed'
-                and DeliveryProcedure.performed.toInterval  ( ) starts during EncounterWithAge.hospitalizationWithEDOBTriageObservation ()
+    with [USQualityCore."Procedure": "Delivery Procedures"] DeliveryProcedure
+      such that DeliveryProcedure.status = 'completed'
+        and DeliveryProcedure.performed.toInterval  ( ) starts during EncounterWithAge.hospitalizationWithEDOBTriageObservation ()
 
 define "Encounter With Age Range":
- CQMInferences."Inpatient Encounter During Measurement Period" InpatientEncounter
-                      where AgeInYearsAt(date from start of InpatientEncounter.period) in Interval[ 8, 65 )
+  CQMCommon."Inpatient Encounter" InpatientEncounter
+    where AgeInYearsAt(date from start of InpatientEncounter.period) in Interval[ 8, 65 )
                   
 
 define "Variable Calculated Gestational Age":
@@ -69,7 +77,7 @@ define fluent function hospitalizationWithEDOBTriageObservation (TheEncounter En
   
 
 define fluent function lastEstimatedDeliveryDate (TheEncounter Encounter ):
-  //This function identifies the last time the EDD was assessed 42 weeks or less prior to or on delivery and stores the result of that assessment.//
+  /*This function identifies the last time the EDD was assessed 42 weeks or less prior to or on delivery and stores the result of that assessment.*/
   Last(["SimpleObservation": "Delivery date Estimated"] EstimatedDateOfDelivery
       where EstimatedDateOfDelivery.value as FHIR.dateTime is not null
         and EstimatedDateOfDelivery.status in { 'final', 'amended', 'corrected' }

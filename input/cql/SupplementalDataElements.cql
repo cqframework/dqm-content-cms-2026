@@ -4,7 +4,7 @@
 NOTE: This library is not published in this IG, it is included here for convenience. The source of truth for
 this library will be the MADiE environment once it fully supports use of QICore STU6-derived.
 */
-library SupplementalDataElements version '6.1.000'
+library SupplementalDataElements version '6.2.000'
 
 using USQualityCore version '0.5.0'
 using USCore version '6.1.0-derived'

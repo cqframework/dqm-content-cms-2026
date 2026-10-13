@@ -1,10 +1,14 @@
-library AlaraCommonFunctions version '1.12.000'
+/*
+NOTE: For use by March 2026 US Realm Connectathon participants for internal use only. Not for use or distribution in commercial products.
+*/
+library AlaraCommonFunctions version '2.2.000'
 
 using USQualityCore version '0.5.0'
 using USCore version '6.1.0-derived'
 using FHIR version '4.0.1'
 
 include hl7.fhir.uv.cql.FHIRHelpers version '4.0.1' called FHIRHelpers
+include hl7.fhir.uv.cql.FHIRCommon version '2.0.0' called FHIRCommon
 
 codesystem "LOINC": 'http://loinc.org'
 
@@ -72,49 +76,47 @@ define fluent function "ctScanQualifies"(Result ObservationClinicalResult ):
     or Result.qualifies("Simultaneous Head and Neck High Dose", 25, 3092)
     
 define function "Qualifies"(Result ObservationClinicalResult, code System.Code, noiseThreshold Decimal, sizeDoseThreshold Decimal ):
- FHIRHelpers.ToConcept(Result.value as FHIR.CodeableConcept) ~ code
+  (Result.value as FHIR.CodeableConcept) ~ code
     and ( "Global Noise Value"(Result) >= noiseThreshold
         or "Size Adjusted Value"(Result) >= sizeDoseThreshold
     )
     
 define fluent function "qualifies"(Result ObservationClinicalResult, code System.Code, noiseThreshold Decimal, sizeDoseThreshold Decimal ):
-  FHIRHelpers.ToConcept(Result.value as FHIR.CodeableConcept) ~ code
+  (Result.value as FHIR.CodeableConcept) ~ code
     and ( Result.globalNoiseValue() >= noiseThreshold
         or Result.sizeAdjustedValue() >= sizeDoseThreshold
     )
 
 /* Note since the units has a special character in it this must be escaped in the CQL */
-define function "Global Noise Value"(Study ObservationClinicalResult ):
-  First (Study.component StudyComponents
-    where Study.status in { 'final', 'amended', 'corrected' }
-        and StudyComponents.code ~ "Calculated CT global noise"
-        and ( StudyComponents.value as Quantity ).unit = '[hnsf\'U]'
-      return (StudyComponents.value as Quantity).value 
-   )
-
+define function "Global Noise Value"(Result ObservationClinicalResult ):
+  singleton from ( Result.component C
+      where Result.status in { 'final', 'amended', 'corrected' }
+        and C.code ~ "Calculated CT global noise"
+        and ( C.value as Quantity ).unit = '[hnsf\'U]'
+      return (C.value as Quantity).value
+  )
   
 /* Note since the units has a special character in it this must be escaped in the CQL */
-define fluent function "globalNoiseValue"(Study ObservationClinicalResult ):
-  First (Study.component StudyComponents
-    where Study.status in { 'final', 'amended', 'corrected' }
-        and StudyComponents.code ~ "Calculated CT global noise"
-        and ( StudyComponents.value as Quantity ).unit = '[hnsf\'U]'
-      return (StudyComponents.value as Quantity).value 
-   )
+define fluent function "globalNoiseValue"(Result ObservationClinicalResult ):
+  singleton from ( Result.component C
+      where Result.status in { 'final', 'amended', 'corrected' }
+        and C.code ~ "Calculated CT global noise"
+        and ( C.value as Quantity ).unit = '[hnsf\'U]'
+      return (C.value as Quantity).value
+  )
 
-define function "Size Adjusted Value"(Study ObservationClinicalResult ):
-  First (Study.component StudyComponents
-    where Study.status in { 'final', 'amended', 'corrected' }
-        and StudyComponents.code ~ "Calculated CT size-adjusted dose"
-        and ( StudyComponents.value as Quantity ).unit = 'mGy.cm'
-      return (StudyComponents.value as Quantity).value 
-   )
-   
+define function "Size Adjusted Value"(Result ObservationClinicalResult ):
+  singleton from ( Result.component C
+      where Result.status in { 'final', 'amended', 'corrected' }
+        and C.code ~ "Calculated CT size-adjusted dose"
+        and ( C.value as Quantity ).unit = 'mGy.cm'
+      return (C.value as Quantity).value
+  )
   
-define fluent function "sizeAdjustedValue"(Study ObservationClinicalResult ):
-  First (Study.component StudyComponents
-    where Study.status in { 'final', 'amended', 'corrected' }
-        and StudyComponents.code ~ "Calculated CT size-adjusted dose"
-        and ( StudyComponents.value as Quantity ).unit = 'mGy.cm'
-      return (StudyComponents.value as Quantity).value 
-   )
+define fluent function "sizeAdjustedValue"(Result ObservationClinicalResult ):
+  singleton from ( Result.component C
+      where Result.status in { 'final', 'amended', 'corrected' }
+        and C.code ~ "Calculated CT size-adjusted dose"
+        and ( C.value as Quantity ).unit = 'mGy.cm'
+      return (C.value as Quantity).value
+  )
