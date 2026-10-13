@@ -1,5 +1,5 @@
 -------------------------------------------------------------------------------------
-{"hierarchical" : true, "valueSet" :{
+{"hierarchical" : false, "valueSet" :{
   "resourceType" : "ValueSet",
   "compose" : {
     "inactive" : false,
@@ -30,13 +30,13 @@ e: {
   "resourceType" : "ValueSet",
   "status" : "active",
   "expansion" : {
-    "identifier" : "urn:uuid:bba756b9-3420-46f2-8a2c-146ad86432ac",
-    "timestamp" : "2026-05-17T14:03:40.482Z",
+    "identifier" : "urn:uuid:6f926426-ec3d-4458-8b9f-8b2db946e8f1",
+    "timestamp" : "2026-10-12T21:41:45.903Z",
     "total" : 4,
     "offset" : 0,
     "parameter" : [{
       "name" : "excludeNested",
-      "valueBoolean" : false
+      "valueBoolean" : true
     },
     {
       "name" : "includeDefinition",
@@ -79,7 +79,7 @@ e: {
   "error" : ""
 }
 -------------------------------------------------------------------------------------
-{"hierarchical" : true, "valueSet" :{
+{"hierarchical" : false, "valueSet" :{
   "resourceType" : "ValueSet",
   "compose" : {
     "inactive" : false,
@@ -102,13 +102,13 @@ e: {
   "resourceType" : "ValueSet",
   "status" : "active",
   "expansion" : {
-    "identifier" : "urn:uuid:5fcebcee-1e59-4739-bdde-4c5622c43e41",
-    "timestamp" : "2026-05-17T14:03:42.342Z",
+    "identifier" : "urn:uuid:8a6c8e6a-b9c4-466a-915d-70cb0f0d4824",
+    "timestamp" : "2026-10-12T21:41:46.091Z",
     "total" : 2,
     "offset" : 0,
     "parameter" : [{
       "name" : "excludeNested",
-      "valueBoolean" : false
+      "valueBoolean" : true
     },
     {
       "name" : "includeDefinition",
@@ -145,7 +145,7 @@ e: {
   "system" : "http://www.ama-assn.org/go/cpt",
   "code" : "96401",
   "display" : "Chemotherapy administration, subcutaneous or intramuscular"
-}, "valueSet" :null, "langs":"en, en-US", "useServer":"true", "useClient":"true", "guessSystem":"false", "noAbstract":"false", "activeOnly":"false", "exampleOK":"true", "membershipOnly":"false", "displayWarningMode":"true", "versionFlexible":"true", "profile": {
+}, "valueSet" :null, "langs":"en-US", "useServer":"true", "useClient":"true", "guessSystem":"false", "noAbstract":"false", "activeOnly":"false", "exampleOK":"true", "membershipOnly":"false", "displayWarningMode":"true", "versionFlexible":"true", "externalSource":"ValueSet[https://example.org/fhir/ValueSet/chemo-radiation-breast-resection|1.0.0]", "profile": {
   "resourceType" : "Parameters",
   "id" : "manifest",
   "parameter" : [{
@@ -153,228 +153,292 @@ e: {
     "valueCanonical" : "http://snomed.info/sct|http://snomed.info/sct/731000124108"
   },
   {
-    "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.3.1240|20190315"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1016|20240110"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1001|20180310"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1089|20210224"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1025|20170504"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1023|20170504"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1080|20210220"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.110.12.1082|20190315"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.196.12.1510|20190315"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.118.12.1300|20200310"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.113.12.1074|20190315"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1088|20210224"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.113.12.1075|20190315"
+    "name" : "default-canonical-version",
+    "valueCanonical" : "http://hl7.org/fhir/StructureDefinition/shareablevalueset|4.0.2"
   },
   {
     "name" : "default-canonical-version",
-    "valueUri" : "http://hl7.org/fhir/StructureDefinition/Condition|4.0.1"
-  },
-  {
-    "name" : "default-canonical-version",
-    "valueUri" : "http://hl7.org/fhir/StructureDefinition/MedicationRequest|4.0.1"
-  },
-  {
-    "name" : "default-canonical-version",
-    "valueUri" : "http://hl7.org/fhir/StructureDefinition/Medication|4.0.1"
-  },
-  {
-    "name" : "default-canonical-version",
-    "valueUri" : "http://hl7.org/fhir/StructureDefinition/Procedure|4.0.1"
-  },
-  {
-    "name" : "default-canonical-version",
-    "valueUri" : "http://hl7.org/fhir/StructureDefinition/Observation|4.0.1"
-  },
-  {
-    "name" : "default-canonical-version",
-    "valueUri" : "http://hl7.org/fhir/StructureDefinition/Encounter|4.0.1"
-  },
-  {
-    "name" : "default-canonical-version",
-    "valueUri" : "https://madie.cms.gov/Library/CAUTIElements|2026.1.0"
-  },
-  {
-    "name" : "default-canonical-version",
-    "valueUri" : "http://hl7.org/fhir/StructureDefinition/Location|4.0.1"
-  },
-  {
-    "name" : "default-canonical-version",
-    "valueUri" : "https://madie.cms.gov/Library/CAUTIParameters|2026.1.0"
+    "valueCanonical" : "http://hl7.org/fhir/uv/cqm/ImplementationGuide/hl7.fhir.uv.cqm|1.0.0"
   },
   {
     "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.666.5.307|20200307"
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.3.1240|20190315"
   },
   {
     "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.3.1584|20210825"
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1016|20240110"
   },
   {
     "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.1003|20210820"
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1001|20180310"
   },
   {
     "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.1165|20220818"
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1089|20210224"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1025|20170504"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1023|20170504"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1080|20210220"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.110.12.1082|20190315"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.196.12.1510|20190315"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.118.12.1300|20200310"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.113.12.1074|20190315"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1088|20210224"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.113.12.1075|20190315"
   },
   {
     "name" : "system-version",
-    "valueUri" : "http://dicom.nema.org/resources/ontology/DCM|01"
+    "valueCanonical" : "http://terminology.hl7.org/CodeSystem/claim-type|1.0.1"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.198.12.1005|20240105"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.198.12.1068|20171219"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.108.12.1018|20210304"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.198.12.1069|20171216"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.198.12.1070|20171216"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.198.12.1133|20190315"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.198.12.1134|20190315"
   },
   {
     "name" : "default-canonical-version",
-    "valueUri" : "http://hl7.org/fhir/StructureDefinition/ImagingStudy|4.0.1"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "https://example.org/fhir/ValueSet/chemo-radiation-breast-resection|1.0.0"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "https://example.org/fhir/ValueSet/diabetes-hypercholesterolemia-medications|1.0.0"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "https://example.org/fhir/ValueSet/strong-cyp3a4-inhibitors|1.0.0"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "https://example.org/fhir/ValueSet/serum-creatinine|1.0.0"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "https://example.org/fhir/ValueSet/ast-lab-tests|1.0.0"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "https://example.org/fhir/ValueSet/alt-lab-tests|1.0.0"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "https://example.org/fhir/ValueSet/total-bilirubin|1.0.0"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "https://example.org/fhir/ValueSet/alkaline-phosphatase|1.0.0"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "https://example.org/fhir/ValueSet/core-needle-biopsy|1.0.0"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "https://example.org/fhir/ValueSet/histologic-test|1.0.0"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "https://example.org/fhir/ValueSet/tumor-size-observations|1.0.0"
+    "valueCanonical" : "https://madie.cms.gov/Library/CAUTIElements|2026.1.0"
   },
   {
     "name" : "default-canonical-version",
-    "valueUri" : "http://hl7.org/fhir/StructureDefinition/Consent|4.0.1"
+    "valueCanonical" : "http://hl7.org/fhir/StructureDefinition/Patient|4.0.1"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueCanonical" : "http://hl7.org/fhir/StructureDefinition/Location|4.0.1"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueCanonical" : "https://madie.cms.gov/Library/CAUTIParameters|2026.1.0"
   },
   {
     "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1090|20210224"
+    "valueCanonical" : "https://example.org/fhir/ValueSet/bacteria-and-fungi-hob-specific|0.1.0"
   },
   {
     "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.198.12.1135|20210224"
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.666.5.307|20200307"
   },
   {
     "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.1167|20220820"
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.3.1584|20210825"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.1003|20210820"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.1165|20220818"
   },
   {
     "name" : "system-version",
-    "valueUri" : "http://terminology.hl7.org/CodeSystem/observation-category|2.0.0"
+    "valueCanonical" : "http://dicom.nema.org/resources/ontology/DCM|01"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueCanonical" : "http://hl7.org/fhir/StructureDefinition/ImagingStudy|4.0.1"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "https://example.org/fhir/ValueSet/chemo-radiation-breast-resection|1.0.0"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "https://example.org/fhir/ValueSet/diabetes-hypercholesterolemia-medications|1.0.0"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "https://example.org/fhir/ValueSet/strong-cyp3a4-inhibitors|1.0.0"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "https://example.org/fhir/ValueSet/serum-creatinine|1.0.0"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "https://example.org/fhir/ValueSet/ast-lab-tests|1.0.0"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "https://example.org/fhir/ValueSet/alt-lab-tests|1.0.0"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "https://example.org/fhir/ValueSet/total-bilirubin|1.0.0"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "https://example.org/fhir/ValueSet/alkaline-phosphatase|1.0.0"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "https://example.org/fhir/ValueSet/core-needle-biopsy|1.0.0"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "https://example.org/fhir/ValueSet/histologic-test|1.0.0"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "https://example.org/fhir/ValueSet/tumor-size-observations|1.0.0"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueCanonical" : "http://hl7.org/fhir/StructureDefinition/Condition|4.0.1"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueCanonical" : "http://hl7.org/fhir/StructureDefinition/Procedure|4.0.1"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueCanonical" : "http://hl7.org/fhir/StructureDefinition/Observation|4.0.1"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueCanonical" : "http://hl7.org/fhir/StructureDefinition/Consent|4.0.1"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueCanonical" : "http://hl7.org/fhir/StructureDefinition/MedicationRequest|4.0.1"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1090|20210224"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.198.12.1135|20210224"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.1167|20220820"
   },
   {
     "name" : "system-version",
-    "valueUri" : "http://terminology.hl7.org/CodeSystem/condition-ver-status|2.0.1"
+    "valueCanonical" : "http://terminology.hl7.org/CodeSystem/observation-category|2.0.0"
+  },
+  {
+    "name" : "system-version",
+    "valueCanonical" : "http://terminology.hl7.org/CodeSystem/condition-ver-status|2.0.1"
   },
   {
     "name" : "default-canonical-version",
-    "valueUri" : "https://madie.cms.gov/Library/PatientCommon|2026.1.0"
+    "valueCanonical" : "https://madie.cms.gov/Library/PatientCommon|2026.1.0"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueCanonical" : "http://hl7.org/fhir/StructureDefinition/Encounter|4.0.1"
   },
   {
     "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.114222.4.11.837|20121025"
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.114222.4.11.837|20121025"
   },
   {
     "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.114222.4.11.3591|20221118"
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.114222.4.11.3591|20221118"
   },
   {
     "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.114222.4.11.836|20121025"
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.114222.4.11.836|20121025"
   },
   {
     "name" : "default-canonical-version",
-    "valueUri" : "https://madie.cms.gov/Library/BreastCancerScreeningDQMDraft|2026.1.0"
+    "valueCanonical" : "https://madie.cms.gov/Library/BreastCancerScreeningDQMDraft|2026.1.0"
   },
   {
     "name" : "default-canonical-version",
-    "valueUri" : "http://hl7.org/fhir/StructureDefinition/Patient|4.0.1"
+    "valueCanonical" : "https://madie.cms.gov/Library/CAUTIRate|2026.1.0"
   },
   {
     "name" : "default-canonical-version",
-    "valueUri" : "https://madie.cms.gov/Library/CAUTIRate|2026.1.0"
+    "valueCanonical" : "https://madie.cms.gov/Library/CAUTISIR|2026.1.0"
   },
   {
     "name" : "default-canonical-version",
-    "valueUri" : "https://madie.cms.gov/Library/CAUTISIR|2026.1.0"
+    "valueCanonical" : "https://madie.cms.gov/Library/HOBOrganismTaxonomy|2026.1.0"
+  },
+  {
+    "name" : "system-version",
+    "valueCanonical" : "http://hl7.org/fhir/observation-status|4.0.1"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1111.143|20210611"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.117.1.7.1.292|20210611"
   },
   {
     "name" : "default-canonical-version",
-    "valueUri" : "https://madie.cms.gov/Library/StratificationEncounterExample|2026.1.0"
+    "valueCanonical" : "http://hl7.org/fhir/StructureDefinition/Specimen|4.0.1"
   },
   {
     "name" : "default-canonical-version",
-    "valueUri" : "https://madie.cms.gov/Library/StratificationPatientExample|2026.1.0"
+    "valueCanonical" : "https://madie.cms.gov/Library/HOB|2026.1.0"
   },
   {
     "name" : "default-canonical-version",
-    "valueUri" : "https://madie.cms.gov/Library/SupportingEvidenceExample|2026.1.0"
+    "valueCanonical" : "https://madie.cms.gov/Library/StratificationEncounterExample|2026.1.0"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueCanonical" : "https://madie.cms.gov/Library/StratificationPatientExample|2026.1.0"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueCanonical" : "https://madie.cms.gov/Library/SupportingEvidenceExample|2026.1.0"
   }]
 }}####
 v: {
@@ -383,10 +447,9 @@ v: {
   "system" : "http://www.ama-assn.org/go/cpt",
   "version" : "2023",
   "severity" : "warning",
-  "error" : "Wrong Display Name 'Chemotherapy administration, subcutaneous or intramuscular' for http://www.ama-assn.org/go/cpt#96401. Valid display is one of 7 choices: 'Chemotherapy administration, subcutaneous or intramuscular; non-hormonal anti-neoplastic' (en), 'CHEMOTHERAPY ADMINISTRATION, SUBCUTANEOUS OR INTRAMUSCULAR; NON-HORMONAL ANTI-NEOPLASTIC' (en), 'CHEMOTX ADMN SUBQ/IM NON-HORMONAL ANTI-NEO' (en), 'CHEMO ANTI-NEOPL SQ/IM' (en), 'Administration of non-hormonal anti-neoplastic chemotherapy under skin or into muscle' (en), 'Nonhormonal antineoplastic intramuscular chemotherapy administration' (en) or 'Nonhormonal antineoplastic subcutaneous chemotherapy administration' (en) (for the language(s) 'en, en-US')",
+  "error" : "Wrong Display Name 'Chemotherapy administration, subcutaneous or intramuscular' for http://www.ama-assn.org/go/cpt#96401. Valid display is one of 7 choices: 'Chemotherapy administration, subcutaneous or intramuscular; non-hormonal anti-neoplastic' (en), 'CHEMOTHERAPY ADMINISTRATION, SUBCUTANEOUS OR INTRAMUSCULAR; NON-HORMONAL ANTI-NEOPLASTIC' (en), 'CHEMOTX ADMN SUBQ/IM NON-HORMONAL ANTI-NEO' (en), 'CHEMO ANTI-NEOPL SQ/IM' (en), 'Administration of non-hormonal anti-neoplastic chemotherapy under skin or into muscle' (en), 'Nonhormonal antineoplastic intramuscular chemotherapy administration' (en) or 'Nonhormonal antineoplastic subcutaneous chemotherapy administration' (en) (for the language(s) 'en-US')",
   "server" : "https://tx.fhir.org/r4",
-  "diagnostics" : "0ms tx-op\n1ms http://www.ama-assn.org/go/cpt/vs|2023: Validate \"[http://www.ama-assn.org/go/cpt#96401 (\"Chemotherapy administration, subcutaneous or intramuscular\")]\"\n1ms http://www.ama-assn.org/go/cpt/vs|2023: Check \"http://www.ama-assn.org/go/cpt#96401\"\n1ms http://www.ama-assn.org/go/cpt/vs|2023: CodeSystem found: http://www.ama-assn.org/go/cpt|2023 for http://www.ama-assn.org/go/cpt|2023\n1ms http://www.ama-assn.org/go/cpt/vs|2023: check code in (http://www.ama-assn.org/go/cpt) at Coding\n1ms http://www.ama-assn.org/go/cpt/vs|2023: Code \"96401\" found in http://www.ama-assn.org/go/cpt|2023",
-  "unknown-systems" : "",
+  "diagnostics" : "0ms tx-op\n0ms http://www.ama-assn.org/go/cpt/vs|2023: Validate \"[http://www.ama-assn.org/go/cpt#96401 (\"Chemotherapy administration, subcutaneous or intramuscular\")]\"\n0ms http://www.ama-assn.org/go/cpt/vs|2023: Check \"http://www.ama-assn.org/go/cpt#96401\"\n0ms http://www.ama-assn.org/go/cpt/vs|2023: CodeSystem found: http://www.ama-assn.org/go/cpt|2023 for http://www.ama-assn.org/go/cpt|2023\n0ms http://www.ama-assn.org/go/cpt/vs|2023: check code in (http://www.ama-assn.org/go/cpt) at Coding\n0ms http://www.ama-assn.org/go/cpt/vs|2023: Code \"96401\" found in http://www.ama-assn.org/go/cpt|2023",
   "issues" : {
   "resourceType" : "OperationOutcome",
   "issue" : [{
@@ -405,7 +468,7 @@ v: {
         "system" : "http://hl7.org/fhir/tools/CodeSystem/tx-issue-type",
         "code" : "invalid-display"
       }],
-      "text" : "Wrong Display Name 'Chemotherapy administration, subcutaneous or intramuscular' for http://www.ama-assn.org/go/cpt#96401. Valid display is one of 7 choices: 'Chemotherapy administration, subcutaneous or intramuscular; non-hormonal anti-neoplastic' (en), 'CHEMOTHERAPY ADMINISTRATION, SUBCUTANEOUS OR INTRAMUSCULAR; NON-HORMONAL ANTI-NEOPLASTIC' (en), 'CHEMOTX ADMN SUBQ/IM NON-HORMONAL ANTI-NEO' (en), 'CHEMO ANTI-NEOPL SQ/IM' (en), 'Administration of non-hormonal anti-neoplastic chemotherapy under skin or into muscle' (en), 'Nonhormonal antineoplastic intramuscular chemotherapy administration' (en) or 'Nonhormonal antineoplastic subcutaneous chemotherapy administration' (en) (for the language(s) 'en, en-US')"
+      "text" : "Wrong Display Name 'Chemotherapy administration, subcutaneous or intramuscular' for http://www.ama-assn.org/go/cpt#96401. Valid display is one of 7 choices: 'Chemotherapy administration, subcutaneous or intramuscular; non-hormonal anti-neoplastic' (en), 'CHEMOTHERAPY ADMINISTRATION, SUBCUTANEOUS OR INTRAMUSCULAR; NON-HORMONAL ANTI-NEOPLASTIC' (en), 'CHEMOTX ADMN SUBQ/IM NON-HORMONAL ANTI-NEO' (en), 'CHEMO ANTI-NEOPL SQ/IM' (en), 'Administration of non-hormonal anti-neoplastic chemotherapy under skin or into muscle' (en), 'Nonhormonal antineoplastic intramuscular chemotherapy administration' (en) or 'Nonhormonal antineoplastic subcutaneous chemotherapy administration' (en) (for the language(s) 'en-US')"
     },
     "expression" : ["Coding.display"]
   }]
@@ -417,7 +480,7 @@ v: {
   "system" : "http://www.ama-assn.org/go/cpt",
   "code" : "77385",
   "display" : "Intensity modulated radiation treatment delivery"
-}, "valueSet" :null, "langs":"en, en-US", "useServer":"true", "useClient":"true", "guessSystem":"false", "noAbstract":"false", "activeOnly":"false", "exampleOK":"true", "membershipOnly":"false", "displayWarningMode":"true", "versionFlexible":"true", "profile": {
+}, "valueSet" :null, "langs":"en-US", "useServer":"true", "useClient":"true", "guessSystem":"false", "noAbstract":"false", "activeOnly":"false", "exampleOK":"true", "membershipOnly":"false", "displayWarningMode":"true", "versionFlexible":"true", "externalSource":"ValueSet[https://example.org/fhir/ValueSet/chemo-radiation-breast-resection|1.0.0]", "profile": {
   "resourceType" : "Parameters",
   "id" : "manifest",
   "parameter" : [{
@@ -425,228 +488,292 @@ v: {
     "valueCanonical" : "http://snomed.info/sct|http://snomed.info/sct/731000124108"
   },
   {
-    "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.3.1240|20190315"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1016|20240110"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1001|20180310"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1089|20210224"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1025|20170504"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1023|20170504"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1080|20210220"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.110.12.1082|20190315"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.196.12.1510|20190315"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.118.12.1300|20200310"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.113.12.1074|20190315"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1088|20210224"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.113.12.1075|20190315"
+    "name" : "default-canonical-version",
+    "valueCanonical" : "http://hl7.org/fhir/StructureDefinition/shareablevalueset|4.0.2"
   },
   {
     "name" : "default-canonical-version",
-    "valueUri" : "http://hl7.org/fhir/StructureDefinition/Condition|4.0.1"
-  },
-  {
-    "name" : "default-canonical-version",
-    "valueUri" : "http://hl7.org/fhir/StructureDefinition/MedicationRequest|4.0.1"
-  },
-  {
-    "name" : "default-canonical-version",
-    "valueUri" : "http://hl7.org/fhir/StructureDefinition/Medication|4.0.1"
-  },
-  {
-    "name" : "default-canonical-version",
-    "valueUri" : "http://hl7.org/fhir/StructureDefinition/Procedure|4.0.1"
-  },
-  {
-    "name" : "default-canonical-version",
-    "valueUri" : "http://hl7.org/fhir/StructureDefinition/Observation|4.0.1"
-  },
-  {
-    "name" : "default-canonical-version",
-    "valueUri" : "http://hl7.org/fhir/StructureDefinition/Encounter|4.0.1"
-  },
-  {
-    "name" : "default-canonical-version",
-    "valueUri" : "https://madie.cms.gov/Library/CAUTIElements|2026.1.0"
-  },
-  {
-    "name" : "default-canonical-version",
-    "valueUri" : "http://hl7.org/fhir/StructureDefinition/Location|4.0.1"
-  },
-  {
-    "name" : "default-canonical-version",
-    "valueUri" : "https://madie.cms.gov/Library/CAUTIParameters|2026.1.0"
+    "valueCanonical" : "http://hl7.org/fhir/uv/cqm/ImplementationGuide/hl7.fhir.uv.cqm|1.0.0"
   },
   {
     "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.666.5.307|20200307"
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.3.1240|20190315"
   },
   {
     "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.3.1584|20210825"
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1016|20240110"
   },
   {
     "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.1003|20210820"
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1001|20180310"
   },
   {
     "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.1165|20220818"
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1089|20210224"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1025|20170504"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1023|20170504"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1080|20210220"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.110.12.1082|20190315"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.196.12.1510|20190315"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.118.12.1300|20200310"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.113.12.1074|20190315"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1088|20210224"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.113.12.1075|20190315"
   },
   {
     "name" : "system-version",
-    "valueUri" : "http://dicom.nema.org/resources/ontology/DCM|01"
+    "valueCanonical" : "http://terminology.hl7.org/CodeSystem/claim-type|1.0.1"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.198.12.1005|20240105"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.198.12.1068|20171219"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.108.12.1018|20210304"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.198.12.1069|20171216"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.198.12.1070|20171216"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.198.12.1133|20190315"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.198.12.1134|20190315"
   },
   {
     "name" : "default-canonical-version",
-    "valueUri" : "http://hl7.org/fhir/StructureDefinition/ImagingStudy|4.0.1"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "https://example.org/fhir/ValueSet/chemo-radiation-breast-resection|1.0.0"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "https://example.org/fhir/ValueSet/diabetes-hypercholesterolemia-medications|1.0.0"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "https://example.org/fhir/ValueSet/strong-cyp3a4-inhibitors|1.0.0"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "https://example.org/fhir/ValueSet/serum-creatinine|1.0.0"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "https://example.org/fhir/ValueSet/ast-lab-tests|1.0.0"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "https://example.org/fhir/ValueSet/alt-lab-tests|1.0.0"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "https://example.org/fhir/ValueSet/total-bilirubin|1.0.0"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "https://example.org/fhir/ValueSet/alkaline-phosphatase|1.0.0"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "https://example.org/fhir/ValueSet/core-needle-biopsy|1.0.0"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "https://example.org/fhir/ValueSet/histologic-test|1.0.0"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "https://example.org/fhir/ValueSet/tumor-size-observations|1.0.0"
+    "valueCanonical" : "https://madie.cms.gov/Library/CAUTIElements|2026.1.0"
   },
   {
     "name" : "default-canonical-version",
-    "valueUri" : "http://hl7.org/fhir/StructureDefinition/Consent|4.0.1"
+    "valueCanonical" : "http://hl7.org/fhir/StructureDefinition/Patient|4.0.1"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueCanonical" : "http://hl7.org/fhir/StructureDefinition/Location|4.0.1"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueCanonical" : "https://madie.cms.gov/Library/CAUTIParameters|2026.1.0"
   },
   {
     "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1090|20210224"
+    "valueCanonical" : "https://example.org/fhir/ValueSet/bacteria-and-fungi-hob-specific|0.1.0"
   },
   {
     "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.198.12.1135|20210224"
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.666.5.307|20200307"
   },
   {
     "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.1167|20220820"
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.3.1584|20210825"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.1003|20210820"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.1165|20220818"
   },
   {
     "name" : "system-version",
-    "valueUri" : "http://terminology.hl7.org/CodeSystem/observation-category|2.0.0"
+    "valueCanonical" : "http://dicom.nema.org/resources/ontology/DCM|01"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueCanonical" : "http://hl7.org/fhir/StructureDefinition/ImagingStudy|4.0.1"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "https://example.org/fhir/ValueSet/chemo-radiation-breast-resection|1.0.0"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "https://example.org/fhir/ValueSet/diabetes-hypercholesterolemia-medications|1.0.0"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "https://example.org/fhir/ValueSet/strong-cyp3a4-inhibitors|1.0.0"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "https://example.org/fhir/ValueSet/serum-creatinine|1.0.0"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "https://example.org/fhir/ValueSet/ast-lab-tests|1.0.0"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "https://example.org/fhir/ValueSet/alt-lab-tests|1.0.0"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "https://example.org/fhir/ValueSet/total-bilirubin|1.0.0"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "https://example.org/fhir/ValueSet/alkaline-phosphatase|1.0.0"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "https://example.org/fhir/ValueSet/core-needle-biopsy|1.0.0"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "https://example.org/fhir/ValueSet/histologic-test|1.0.0"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "https://example.org/fhir/ValueSet/tumor-size-observations|1.0.0"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueCanonical" : "http://hl7.org/fhir/StructureDefinition/Condition|4.0.1"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueCanonical" : "http://hl7.org/fhir/StructureDefinition/Procedure|4.0.1"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueCanonical" : "http://hl7.org/fhir/StructureDefinition/Observation|4.0.1"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueCanonical" : "http://hl7.org/fhir/StructureDefinition/Consent|4.0.1"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueCanonical" : "http://hl7.org/fhir/StructureDefinition/MedicationRequest|4.0.1"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1090|20210224"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.198.12.1135|20210224"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.1167|20220820"
   },
   {
     "name" : "system-version",
-    "valueUri" : "http://terminology.hl7.org/CodeSystem/condition-ver-status|2.0.1"
+    "valueCanonical" : "http://terminology.hl7.org/CodeSystem/observation-category|2.0.0"
+  },
+  {
+    "name" : "system-version",
+    "valueCanonical" : "http://terminology.hl7.org/CodeSystem/condition-ver-status|2.0.1"
   },
   {
     "name" : "default-canonical-version",
-    "valueUri" : "https://madie.cms.gov/Library/PatientCommon|2026.1.0"
+    "valueCanonical" : "https://madie.cms.gov/Library/PatientCommon|2026.1.0"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueCanonical" : "http://hl7.org/fhir/StructureDefinition/Encounter|4.0.1"
   },
   {
     "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.114222.4.11.837|20121025"
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.114222.4.11.837|20121025"
   },
   {
     "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.114222.4.11.3591|20221118"
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.114222.4.11.3591|20221118"
   },
   {
     "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.114222.4.11.836|20121025"
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.114222.4.11.836|20121025"
   },
   {
     "name" : "default-canonical-version",
-    "valueUri" : "https://madie.cms.gov/Library/BreastCancerScreeningDQMDraft|2026.1.0"
+    "valueCanonical" : "https://madie.cms.gov/Library/BreastCancerScreeningDQMDraft|2026.1.0"
   },
   {
     "name" : "default-canonical-version",
-    "valueUri" : "http://hl7.org/fhir/StructureDefinition/Patient|4.0.1"
+    "valueCanonical" : "https://madie.cms.gov/Library/CAUTIRate|2026.1.0"
   },
   {
     "name" : "default-canonical-version",
-    "valueUri" : "https://madie.cms.gov/Library/CAUTIRate|2026.1.0"
+    "valueCanonical" : "https://madie.cms.gov/Library/CAUTISIR|2026.1.0"
   },
   {
     "name" : "default-canonical-version",
-    "valueUri" : "https://madie.cms.gov/Library/CAUTISIR|2026.1.0"
+    "valueCanonical" : "https://madie.cms.gov/Library/HOBOrganismTaxonomy|2026.1.0"
+  },
+  {
+    "name" : "system-version",
+    "valueCanonical" : "http://hl7.org/fhir/observation-status|4.0.1"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1111.143|20210611"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.117.1.7.1.292|20210611"
   },
   {
     "name" : "default-canonical-version",
-    "valueUri" : "https://madie.cms.gov/Library/StratificationEncounterExample|2026.1.0"
+    "valueCanonical" : "http://hl7.org/fhir/StructureDefinition/Specimen|4.0.1"
   },
   {
     "name" : "default-canonical-version",
-    "valueUri" : "https://madie.cms.gov/Library/StratificationPatientExample|2026.1.0"
+    "valueCanonical" : "https://madie.cms.gov/Library/HOB|2026.1.0"
   },
   {
     "name" : "default-canonical-version",
-    "valueUri" : "https://madie.cms.gov/Library/SupportingEvidenceExample|2026.1.0"
+    "valueCanonical" : "https://madie.cms.gov/Library/StratificationEncounterExample|2026.1.0"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueCanonical" : "https://madie.cms.gov/Library/StratificationPatientExample|2026.1.0"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueCanonical" : "https://madie.cms.gov/Library/SupportingEvidenceExample|2026.1.0"
   }]
 }}####
 v: {
@@ -655,9 +782,8 @@ v: {
   "system" : "http://www.ama-assn.org/go/cpt",
   "version" : "2023",
   "severity" : "warning",
-  "error" : "Wrong Display Name 'Intensity modulated radiation treatment delivery' for http://www.ama-assn.org/go/cpt#77385. Valid display is one of 7 choices: 'Intensity modulated radiation treatment delivery (IMRT), includes guidance and tracking, when performed; simple' (en), 'INTENSITY MODULATED RADIATION TREATMENT DELIVERY (IMRT), INCLUDES GUIDANCE AND TRACKING, WHEN PERFORMED; SIMPLE' (en), 'INTENSITY MODULATED RADIATION TX DLVR SIMPLE' (en), 'NTSTY MODUL RAD TX DLVR SMPL' (en), 'Delivery of simple high precision radiation treatment' (en), 'Simple intensity modulated radiation treatment (IMRT) delivery' (en) or 'Simple intensity modulated radiation treatment (IMRT) delivery with guidance and tracking' (en) (for the language(s) 'en, en-US')",
+  "error" : "Wrong Display Name 'Intensity modulated radiation treatment delivery' for http://www.ama-assn.org/go/cpt#77385. Valid display is one of 7 choices: 'Intensity modulated radiation treatment delivery (IMRT), includes guidance and tracking, when performed; simple' (en), 'INTENSITY MODULATED RADIATION TREATMENT DELIVERY (IMRT), INCLUDES GUIDANCE AND TRACKING, WHEN PERFORMED; SIMPLE' (en), 'INTENSITY MODULATED RADIATION TX DLVR SIMPLE' (en), 'NTSTY MODUL RAD TX DLVR SMPL' (en), 'Delivery of simple high precision radiation treatment' (en), 'Simple intensity modulated radiation treatment (IMRT) delivery' (en) or 'Simple intensity modulated radiation treatment (IMRT) delivery with guidance and tracking' (en) (for the language(s) 'en-US')",
   "server" : "https://tx.fhir.org/r4",
-  "unknown-systems" : "",
   "issues" : {
   "resourceType" : "OperationOutcome",
   "issue" : [{
@@ -676,7 +802,7 @@ v: {
         "system" : "http://hl7.org/fhir/tools/CodeSystem/tx-issue-type",
         "code" : "invalid-display"
       }],
-      "text" : "Wrong Display Name 'Intensity modulated radiation treatment delivery' for http://www.ama-assn.org/go/cpt#77385. Valid display is one of 7 choices: 'Intensity modulated radiation treatment delivery (IMRT), includes guidance and tracking, when performed; simple' (en), 'INTENSITY MODULATED RADIATION TREATMENT DELIVERY (IMRT), INCLUDES GUIDANCE AND TRACKING, WHEN PERFORMED; SIMPLE' (en), 'INTENSITY MODULATED RADIATION TX DLVR SIMPLE' (en), 'NTSTY MODUL RAD TX DLVR SMPL' (en), 'Delivery of simple high precision radiation treatment' (en), 'Simple intensity modulated radiation treatment (IMRT) delivery' (en) or 'Simple intensity modulated radiation treatment (IMRT) delivery with guidance and tracking' (en) (for the language(s) 'en, en-US')"
+      "text" : "Wrong Display Name 'Intensity modulated radiation treatment delivery' for http://www.ama-assn.org/go/cpt#77385. Valid display is one of 7 choices: 'Intensity modulated radiation treatment delivery (IMRT), includes guidance and tracking, when performed; simple' (en), 'INTENSITY MODULATED RADIATION TREATMENT DELIVERY (IMRT), INCLUDES GUIDANCE AND TRACKING, WHEN PERFORMED; SIMPLE' (en), 'INTENSITY MODULATED RADIATION TX DLVR SIMPLE' (en), 'NTSTY MODUL RAD TX DLVR SMPL' (en), 'Delivery of simple high precision radiation treatment' (en), 'Simple intensity modulated radiation treatment (IMRT) delivery' (en) or 'Simple intensity modulated radiation treatment (IMRT) delivery with guidance and tracking' (en) (for the language(s) 'en-US')"
     },
     "expression" : ["Coding.display"]
   }]
@@ -688,7 +814,7 @@ v: {
   "system" : "http://www.ama-assn.org/go/cpt",
   "code" : "19301",
   "display" : "Partial mastectomy (lumpectomy)"
-}, "valueSet" :null, "langs":"en, en-US", "useServer":"true", "useClient":"true", "guessSystem":"false", "noAbstract":"false", "activeOnly":"false", "exampleOK":"true", "membershipOnly":"false", "displayWarningMode":"true", "versionFlexible":"true", "profile": {
+}, "valueSet" :null, "langs":"en-US", "useServer":"true", "useClient":"true", "guessSystem":"false", "noAbstract":"false", "activeOnly":"false", "exampleOK":"true", "membershipOnly":"false", "displayWarningMode":"true", "versionFlexible":"true", "externalSource":"ValueSet[https://example.org/fhir/ValueSet/chemo-radiation-breast-resection|1.0.0]", "profile": {
   "resourceType" : "Parameters",
   "id" : "manifest",
   "parameter" : [{
@@ -696,228 +822,292 @@ v: {
     "valueCanonical" : "http://snomed.info/sct|http://snomed.info/sct/731000124108"
   },
   {
-    "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.3.1240|20190315"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1016|20240110"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1001|20180310"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1089|20210224"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1025|20170504"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1023|20170504"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1080|20210220"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.110.12.1082|20190315"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.196.12.1510|20190315"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.118.12.1300|20200310"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.113.12.1074|20190315"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1088|20210224"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.113.12.1075|20190315"
+    "name" : "default-canonical-version",
+    "valueCanonical" : "http://hl7.org/fhir/StructureDefinition/shareablevalueset|4.0.2"
   },
   {
     "name" : "default-canonical-version",
-    "valueUri" : "http://hl7.org/fhir/StructureDefinition/Condition|4.0.1"
-  },
-  {
-    "name" : "default-canonical-version",
-    "valueUri" : "http://hl7.org/fhir/StructureDefinition/MedicationRequest|4.0.1"
-  },
-  {
-    "name" : "default-canonical-version",
-    "valueUri" : "http://hl7.org/fhir/StructureDefinition/Medication|4.0.1"
-  },
-  {
-    "name" : "default-canonical-version",
-    "valueUri" : "http://hl7.org/fhir/StructureDefinition/Procedure|4.0.1"
-  },
-  {
-    "name" : "default-canonical-version",
-    "valueUri" : "http://hl7.org/fhir/StructureDefinition/Observation|4.0.1"
-  },
-  {
-    "name" : "default-canonical-version",
-    "valueUri" : "http://hl7.org/fhir/StructureDefinition/Encounter|4.0.1"
-  },
-  {
-    "name" : "default-canonical-version",
-    "valueUri" : "https://madie.cms.gov/Library/CAUTIElements|2026.1.0"
-  },
-  {
-    "name" : "default-canonical-version",
-    "valueUri" : "http://hl7.org/fhir/StructureDefinition/Location|4.0.1"
-  },
-  {
-    "name" : "default-canonical-version",
-    "valueUri" : "https://madie.cms.gov/Library/CAUTIParameters|2026.1.0"
+    "valueCanonical" : "http://hl7.org/fhir/uv/cqm/ImplementationGuide/hl7.fhir.uv.cqm|1.0.0"
   },
   {
     "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.666.5.307|20200307"
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.3.1240|20190315"
   },
   {
     "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.3.1584|20210825"
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1016|20240110"
   },
   {
     "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.1003|20210820"
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1001|20180310"
   },
   {
     "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.1165|20220818"
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1089|20210224"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1025|20170504"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1023|20170504"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1080|20210220"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.110.12.1082|20190315"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.196.12.1510|20190315"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.118.12.1300|20200310"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.113.12.1074|20190315"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1088|20210224"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.113.12.1075|20190315"
   },
   {
     "name" : "system-version",
-    "valueUri" : "http://dicom.nema.org/resources/ontology/DCM|01"
+    "valueCanonical" : "http://terminology.hl7.org/CodeSystem/claim-type|1.0.1"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.198.12.1005|20240105"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.198.12.1068|20171219"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.108.12.1018|20210304"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.198.12.1069|20171216"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.198.12.1070|20171216"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.198.12.1133|20190315"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.198.12.1134|20190315"
   },
   {
     "name" : "default-canonical-version",
-    "valueUri" : "http://hl7.org/fhir/StructureDefinition/ImagingStudy|4.0.1"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "https://example.org/fhir/ValueSet/chemo-radiation-breast-resection|1.0.0"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "https://example.org/fhir/ValueSet/diabetes-hypercholesterolemia-medications|1.0.0"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "https://example.org/fhir/ValueSet/strong-cyp3a4-inhibitors|1.0.0"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "https://example.org/fhir/ValueSet/serum-creatinine|1.0.0"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "https://example.org/fhir/ValueSet/ast-lab-tests|1.0.0"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "https://example.org/fhir/ValueSet/alt-lab-tests|1.0.0"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "https://example.org/fhir/ValueSet/total-bilirubin|1.0.0"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "https://example.org/fhir/ValueSet/alkaline-phosphatase|1.0.0"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "https://example.org/fhir/ValueSet/core-needle-biopsy|1.0.0"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "https://example.org/fhir/ValueSet/histologic-test|1.0.0"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "https://example.org/fhir/ValueSet/tumor-size-observations|1.0.0"
+    "valueCanonical" : "https://madie.cms.gov/Library/CAUTIElements|2026.1.0"
   },
   {
     "name" : "default-canonical-version",
-    "valueUri" : "http://hl7.org/fhir/StructureDefinition/Consent|4.0.1"
+    "valueCanonical" : "http://hl7.org/fhir/StructureDefinition/Patient|4.0.1"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueCanonical" : "http://hl7.org/fhir/StructureDefinition/Location|4.0.1"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueCanonical" : "https://madie.cms.gov/Library/CAUTIParameters|2026.1.0"
   },
   {
     "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1090|20210224"
+    "valueCanonical" : "https://example.org/fhir/ValueSet/bacteria-and-fungi-hob-specific|0.1.0"
   },
   {
     "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.198.12.1135|20210224"
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.666.5.307|20200307"
   },
   {
     "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.1167|20220820"
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.3.1584|20210825"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.1003|20210820"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.1165|20220818"
   },
   {
     "name" : "system-version",
-    "valueUri" : "http://terminology.hl7.org/CodeSystem/observation-category|2.0.0"
+    "valueCanonical" : "http://dicom.nema.org/resources/ontology/DCM|01"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueCanonical" : "http://hl7.org/fhir/StructureDefinition/ImagingStudy|4.0.1"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "https://example.org/fhir/ValueSet/chemo-radiation-breast-resection|1.0.0"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "https://example.org/fhir/ValueSet/diabetes-hypercholesterolemia-medications|1.0.0"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "https://example.org/fhir/ValueSet/strong-cyp3a4-inhibitors|1.0.0"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "https://example.org/fhir/ValueSet/serum-creatinine|1.0.0"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "https://example.org/fhir/ValueSet/ast-lab-tests|1.0.0"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "https://example.org/fhir/ValueSet/alt-lab-tests|1.0.0"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "https://example.org/fhir/ValueSet/total-bilirubin|1.0.0"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "https://example.org/fhir/ValueSet/alkaline-phosphatase|1.0.0"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "https://example.org/fhir/ValueSet/core-needle-biopsy|1.0.0"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "https://example.org/fhir/ValueSet/histologic-test|1.0.0"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "https://example.org/fhir/ValueSet/tumor-size-observations|1.0.0"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueCanonical" : "http://hl7.org/fhir/StructureDefinition/Condition|4.0.1"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueCanonical" : "http://hl7.org/fhir/StructureDefinition/Procedure|4.0.1"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueCanonical" : "http://hl7.org/fhir/StructureDefinition/Observation|4.0.1"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueCanonical" : "http://hl7.org/fhir/StructureDefinition/Consent|4.0.1"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueCanonical" : "http://hl7.org/fhir/StructureDefinition/MedicationRequest|4.0.1"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1090|20210224"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.198.12.1135|20210224"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.1167|20220820"
   },
   {
     "name" : "system-version",
-    "valueUri" : "http://terminology.hl7.org/CodeSystem/condition-ver-status|2.0.1"
+    "valueCanonical" : "http://terminology.hl7.org/CodeSystem/observation-category|2.0.0"
+  },
+  {
+    "name" : "system-version",
+    "valueCanonical" : "http://terminology.hl7.org/CodeSystem/condition-ver-status|2.0.1"
   },
   {
     "name" : "default-canonical-version",
-    "valueUri" : "https://madie.cms.gov/Library/PatientCommon|2026.1.0"
+    "valueCanonical" : "https://madie.cms.gov/Library/PatientCommon|2026.1.0"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueCanonical" : "http://hl7.org/fhir/StructureDefinition/Encounter|4.0.1"
   },
   {
     "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.114222.4.11.837|20121025"
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.114222.4.11.837|20121025"
   },
   {
     "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.114222.4.11.3591|20221118"
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.114222.4.11.3591|20221118"
   },
   {
     "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.114222.4.11.836|20121025"
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.114222.4.11.836|20121025"
   },
   {
     "name" : "default-canonical-version",
-    "valueUri" : "https://madie.cms.gov/Library/BreastCancerScreeningDQMDraft|2026.1.0"
+    "valueCanonical" : "https://madie.cms.gov/Library/BreastCancerScreeningDQMDraft|2026.1.0"
   },
   {
     "name" : "default-canonical-version",
-    "valueUri" : "http://hl7.org/fhir/StructureDefinition/Patient|4.0.1"
+    "valueCanonical" : "https://madie.cms.gov/Library/CAUTIRate|2026.1.0"
   },
   {
     "name" : "default-canonical-version",
-    "valueUri" : "https://madie.cms.gov/Library/CAUTIRate|2026.1.0"
+    "valueCanonical" : "https://madie.cms.gov/Library/CAUTISIR|2026.1.0"
   },
   {
     "name" : "default-canonical-version",
-    "valueUri" : "https://madie.cms.gov/Library/CAUTISIR|2026.1.0"
+    "valueCanonical" : "https://madie.cms.gov/Library/HOBOrganismTaxonomy|2026.1.0"
+  },
+  {
+    "name" : "system-version",
+    "valueCanonical" : "http://hl7.org/fhir/observation-status|4.0.1"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1111.143|20210611"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.117.1.7.1.292|20210611"
   },
   {
     "name" : "default-canonical-version",
-    "valueUri" : "https://madie.cms.gov/Library/StratificationEncounterExample|2026.1.0"
+    "valueCanonical" : "http://hl7.org/fhir/StructureDefinition/Specimen|4.0.1"
   },
   {
     "name" : "default-canonical-version",
-    "valueUri" : "https://madie.cms.gov/Library/StratificationPatientExample|2026.1.0"
+    "valueCanonical" : "https://madie.cms.gov/Library/HOB|2026.1.0"
   },
   {
     "name" : "default-canonical-version",
-    "valueUri" : "https://madie.cms.gov/Library/SupportingEvidenceExample|2026.1.0"
+    "valueCanonical" : "https://madie.cms.gov/Library/StratificationEncounterExample|2026.1.0"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueCanonical" : "https://madie.cms.gov/Library/StratificationPatientExample|2026.1.0"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueCanonical" : "https://madie.cms.gov/Library/SupportingEvidenceExample|2026.1.0"
   }]
 }}####
 v: {
@@ -926,9 +1116,8 @@ v: {
   "system" : "http://www.ama-assn.org/go/cpt",
   "version" : "2023",
   "severity" : "warning",
-  "error" : "Wrong Display Name 'Partial mastectomy (lumpectomy)' for http://www.ama-assn.org/go/cpt#19301. Valid display is one of 10 choices: 'Mastectomy, partial (eg, lumpectomy, tylectomy, quadrantectomy, segmentectomy);' (en), 'MASTECTOMY, PARTIAL (EG, LUMPECTOMY, TYLECTOMY, QUADRANTECTOMY, SEGMENTECTOMY);' (en), 'MASTECTOMY PARTIAL' (en), 'PARTIAL MASTECTOMY' (en), 'Partial removal of breast' (en), 'Partial mastectomy' (en), 'Lumpectomy of breast' (en), 'Segmentectomy of breast' (en), 'Tylectomy of breast' (en) or 'Quadrantectomy of breast' (en) (for the language(s) 'en, en-US')",
+  "error" : "Wrong Display Name 'Partial mastectomy (lumpectomy)' for http://www.ama-assn.org/go/cpt#19301. Valid display is one of 10 choices: 'Mastectomy, partial (eg, lumpectomy, tylectomy, quadrantectomy, segmentectomy);' (en), 'MASTECTOMY, PARTIAL (EG, LUMPECTOMY, TYLECTOMY, QUADRANTECTOMY, SEGMENTECTOMY);' (en), 'MASTECTOMY PARTIAL' (en), 'PARTIAL MASTECTOMY' (en), 'Partial removal of breast' (en), 'Partial mastectomy' (en), 'Lumpectomy of breast' (en), 'Segmentectomy of breast' (en), 'Tylectomy of breast' (en) or 'Quadrantectomy of breast' (en) (for the language(s) 'en-US')",
   "server" : "https://tx.fhir.org/r4",
-  "unknown-systems" : "",
   "issues" : {
   "resourceType" : "OperationOutcome",
   "issue" : [{
@@ -947,7 +1136,7 @@ v: {
         "system" : "http://hl7.org/fhir/tools/CodeSystem/tx-issue-type",
         "code" : "invalid-display"
       }],
-      "text" : "Wrong Display Name 'Partial mastectomy (lumpectomy)' for http://www.ama-assn.org/go/cpt#19301. Valid display is one of 10 choices: 'Mastectomy, partial (eg, lumpectomy, tylectomy, quadrantectomy, segmentectomy);' (en), 'MASTECTOMY, PARTIAL (EG, LUMPECTOMY, TYLECTOMY, QUADRANTECTOMY, SEGMENTECTOMY);' (en), 'MASTECTOMY PARTIAL' (en), 'PARTIAL MASTECTOMY' (en), 'Partial removal of breast' (en), 'Partial mastectomy' (en), 'Lumpectomy of breast' (en), 'Segmentectomy of breast' (en), 'Tylectomy of breast' (en) or 'Quadrantectomy of breast' (en) (for the language(s) 'en, en-US')"
+      "text" : "Wrong Display Name 'Partial mastectomy (lumpectomy)' for http://www.ama-assn.org/go/cpt#19301. Valid display is one of 10 choices: 'Mastectomy, partial (eg, lumpectomy, tylectomy, quadrantectomy, segmentectomy);' (en), 'MASTECTOMY, PARTIAL (EG, LUMPECTOMY, TYLECTOMY, QUADRANTECTOMY, SEGMENTECTOMY);' (en), 'MASTECTOMY PARTIAL' (en), 'PARTIAL MASTECTOMY' (en), 'Partial removal of breast' (en), 'Partial mastectomy' (en), 'Lumpectomy of breast' (en), 'Segmentectomy of breast' (en), 'Tylectomy of breast' (en) or 'Quadrantectomy of breast' (en) (for the language(s) 'en-US')"
     },
     "expression" : ["Coding.display"]
   }]
@@ -959,7 +1148,7 @@ v: {
   "system" : "http://www.ama-assn.org/go/cpt",
   "code" : "19303",
   "display" : "Simple complete mastectomy"
-}, "valueSet" :null, "langs":"en, en-US", "useServer":"true", "useClient":"true", "guessSystem":"false", "noAbstract":"false", "activeOnly":"false", "exampleOK":"true", "membershipOnly":"false", "displayWarningMode":"true", "versionFlexible":"true", "profile": {
+}, "valueSet" :null, "langs":"en-US", "useServer":"true", "useClient":"true", "guessSystem":"false", "noAbstract":"false", "activeOnly":"false", "exampleOK":"true", "membershipOnly":"false", "displayWarningMode":"true", "versionFlexible":"true", "externalSource":"ValueSet[https://example.org/fhir/ValueSet/chemo-radiation-breast-resection|1.0.0]", "profile": {
   "resourceType" : "Parameters",
   "id" : "manifest",
   "parameter" : [{
@@ -967,228 +1156,292 @@ v: {
     "valueCanonical" : "http://snomed.info/sct|http://snomed.info/sct/731000124108"
   },
   {
-    "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.3.1240|20190315"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1016|20240110"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1001|20180310"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1089|20210224"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1025|20170504"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1023|20170504"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1080|20210220"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.110.12.1082|20190315"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.196.12.1510|20190315"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.118.12.1300|20200310"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.113.12.1074|20190315"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1088|20210224"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.113.12.1075|20190315"
+    "name" : "default-canonical-version",
+    "valueCanonical" : "http://hl7.org/fhir/StructureDefinition/shareablevalueset|4.0.2"
   },
   {
     "name" : "default-canonical-version",
-    "valueUri" : "http://hl7.org/fhir/StructureDefinition/Condition|4.0.1"
-  },
-  {
-    "name" : "default-canonical-version",
-    "valueUri" : "http://hl7.org/fhir/StructureDefinition/MedicationRequest|4.0.1"
-  },
-  {
-    "name" : "default-canonical-version",
-    "valueUri" : "http://hl7.org/fhir/StructureDefinition/Medication|4.0.1"
-  },
-  {
-    "name" : "default-canonical-version",
-    "valueUri" : "http://hl7.org/fhir/StructureDefinition/Procedure|4.0.1"
-  },
-  {
-    "name" : "default-canonical-version",
-    "valueUri" : "http://hl7.org/fhir/StructureDefinition/Observation|4.0.1"
-  },
-  {
-    "name" : "default-canonical-version",
-    "valueUri" : "http://hl7.org/fhir/StructureDefinition/Encounter|4.0.1"
-  },
-  {
-    "name" : "default-canonical-version",
-    "valueUri" : "https://madie.cms.gov/Library/CAUTIElements|2026.1.0"
-  },
-  {
-    "name" : "default-canonical-version",
-    "valueUri" : "http://hl7.org/fhir/StructureDefinition/Location|4.0.1"
-  },
-  {
-    "name" : "default-canonical-version",
-    "valueUri" : "https://madie.cms.gov/Library/CAUTIParameters|2026.1.0"
+    "valueCanonical" : "http://hl7.org/fhir/uv/cqm/ImplementationGuide/hl7.fhir.uv.cqm|1.0.0"
   },
   {
     "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.666.5.307|20200307"
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.3.1240|20190315"
   },
   {
     "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.3.1584|20210825"
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1016|20240110"
   },
   {
     "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.1003|20210820"
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1001|20180310"
   },
   {
     "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.1165|20220818"
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1089|20210224"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1025|20170504"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1023|20170504"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1080|20210220"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.110.12.1082|20190315"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.196.12.1510|20190315"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.118.12.1300|20200310"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.113.12.1074|20190315"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1088|20210224"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.113.12.1075|20190315"
   },
   {
     "name" : "system-version",
-    "valueUri" : "http://dicom.nema.org/resources/ontology/DCM|01"
+    "valueCanonical" : "http://terminology.hl7.org/CodeSystem/claim-type|1.0.1"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.198.12.1005|20240105"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.198.12.1068|20171219"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.108.12.1018|20210304"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.198.12.1069|20171216"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.198.12.1070|20171216"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.198.12.1133|20190315"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.198.12.1134|20190315"
   },
   {
     "name" : "default-canonical-version",
-    "valueUri" : "http://hl7.org/fhir/StructureDefinition/ImagingStudy|4.0.1"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "https://example.org/fhir/ValueSet/chemo-radiation-breast-resection|1.0.0"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "https://example.org/fhir/ValueSet/diabetes-hypercholesterolemia-medications|1.0.0"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "https://example.org/fhir/ValueSet/strong-cyp3a4-inhibitors|1.0.0"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "https://example.org/fhir/ValueSet/serum-creatinine|1.0.0"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "https://example.org/fhir/ValueSet/ast-lab-tests|1.0.0"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "https://example.org/fhir/ValueSet/alt-lab-tests|1.0.0"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "https://example.org/fhir/ValueSet/total-bilirubin|1.0.0"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "https://example.org/fhir/ValueSet/alkaline-phosphatase|1.0.0"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "https://example.org/fhir/ValueSet/core-needle-biopsy|1.0.0"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "https://example.org/fhir/ValueSet/histologic-test|1.0.0"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "https://example.org/fhir/ValueSet/tumor-size-observations|1.0.0"
+    "valueCanonical" : "https://madie.cms.gov/Library/CAUTIElements|2026.1.0"
   },
   {
     "name" : "default-canonical-version",
-    "valueUri" : "http://hl7.org/fhir/StructureDefinition/Consent|4.0.1"
+    "valueCanonical" : "http://hl7.org/fhir/StructureDefinition/Patient|4.0.1"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueCanonical" : "http://hl7.org/fhir/StructureDefinition/Location|4.0.1"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueCanonical" : "https://madie.cms.gov/Library/CAUTIParameters|2026.1.0"
   },
   {
     "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1090|20210224"
+    "valueCanonical" : "https://example.org/fhir/ValueSet/bacteria-and-fungi-hob-specific|0.1.0"
   },
   {
     "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.198.12.1135|20210224"
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.666.5.307|20200307"
   },
   {
     "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.1167|20220820"
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.3.1584|20210825"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.1003|20210820"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.1165|20220818"
   },
   {
     "name" : "system-version",
-    "valueUri" : "http://terminology.hl7.org/CodeSystem/observation-category|2.0.0"
+    "valueCanonical" : "http://dicom.nema.org/resources/ontology/DCM|01"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueCanonical" : "http://hl7.org/fhir/StructureDefinition/ImagingStudy|4.0.1"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "https://example.org/fhir/ValueSet/chemo-radiation-breast-resection|1.0.0"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "https://example.org/fhir/ValueSet/diabetes-hypercholesterolemia-medications|1.0.0"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "https://example.org/fhir/ValueSet/strong-cyp3a4-inhibitors|1.0.0"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "https://example.org/fhir/ValueSet/serum-creatinine|1.0.0"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "https://example.org/fhir/ValueSet/ast-lab-tests|1.0.0"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "https://example.org/fhir/ValueSet/alt-lab-tests|1.0.0"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "https://example.org/fhir/ValueSet/total-bilirubin|1.0.0"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "https://example.org/fhir/ValueSet/alkaline-phosphatase|1.0.0"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "https://example.org/fhir/ValueSet/core-needle-biopsy|1.0.0"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "https://example.org/fhir/ValueSet/histologic-test|1.0.0"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "https://example.org/fhir/ValueSet/tumor-size-observations|1.0.0"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueCanonical" : "http://hl7.org/fhir/StructureDefinition/Condition|4.0.1"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueCanonical" : "http://hl7.org/fhir/StructureDefinition/Procedure|4.0.1"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueCanonical" : "http://hl7.org/fhir/StructureDefinition/Observation|4.0.1"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueCanonical" : "http://hl7.org/fhir/StructureDefinition/Consent|4.0.1"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueCanonical" : "http://hl7.org/fhir/StructureDefinition/MedicationRequest|4.0.1"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1090|20210224"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.198.12.1135|20210224"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.1167|20220820"
   },
   {
     "name" : "system-version",
-    "valueUri" : "http://terminology.hl7.org/CodeSystem/condition-ver-status|2.0.1"
+    "valueCanonical" : "http://terminology.hl7.org/CodeSystem/observation-category|2.0.0"
+  },
+  {
+    "name" : "system-version",
+    "valueCanonical" : "http://terminology.hl7.org/CodeSystem/condition-ver-status|2.0.1"
   },
   {
     "name" : "default-canonical-version",
-    "valueUri" : "https://madie.cms.gov/Library/PatientCommon|2026.1.0"
+    "valueCanonical" : "https://madie.cms.gov/Library/PatientCommon|2026.1.0"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueCanonical" : "http://hl7.org/fhir/StructureDefinition/Encounter|4.0.1"
   },
   {
     "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.114222.4.11.837|20121025"
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.114222.4.11.837|20121025"
   },
   {
     "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.114222.4.11.3591|20221118"
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.114222.4.11.3591|20221118"
   },
   {
     "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.114222.4.11.836|20121025"
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.114222.4.11.836|20121025"
   },
   {
     "name" : "default-canonical-version",
-    "valueUri" : "https://madie.cms.gov/Library/BreastCancerScreeningDQMDraft|2026.1.0"
+    "valueCanonical" : "https://madie.cms.gov/Library/BreastCancerScreeningDQMDraft|2026.1.0"
   },
   {
     "name" : "default-canonical-version",
-    "valueUri" : "http://hl7.org/fhir/StructureDefinition/Patient|4.0.1"
+    "valueCanonical" : "https://madie.cms.gov/Library/CAUTIRate|2026.1.0"
   },
   {
     "name" : "default-canonical-version",
-    "valueUri" : "https://madie.cms.gov/Library/CAUTIRate|2026.1.0"
+    "valueCanonical" : "https://madie.cms.gov/Library/CAUTISIR|2026.1.0"
   },
   {
     "name" : "default-canonical-version",
-    "valueUri" : "https://madie.cms.gov/Library/CAUTISIR|2026.1.0"
+    "valueCanonical" : "https://madie.cms.gov/Library/HOBOrganismTaxonomy|2026.1.0"
+  },
+  {
+    "name" : "system-version",
+    "valueCanonical" : "http://hl7.org/fhir/observation-status|4.0.1"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1111.143|20210611"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.117.1.7.1.292|20210611"
   },
   {
     "name" : "default-canonical-version",
-    "valueUri" : "https://madie.cms.gov/Library/StratificationEncounterExample|2026.1.0"
+    "valueCanonical" : "http://hl7.org/fhir/StructureDefinition/Specimen|4.0.1"
   },
   {
     "name" : "default-canonical-version",
-    "valueUri" : "https://madie.cms.gov/Library/StratificationPatientExample|2026.1.0"
+    "valueCanonical" : "https://madie.cms.gov/Library/HOB|2026.1.0"
   },
   {
     "name" : "default-canonical-version",
-    "valueUri" : "https://madie.cms.gov/Library/SupportingEvidenceExample|2026.1.0"
+    "valueCanonical" : "https://madie.cms.gov/Library/StratificationEncounterExample|2026.1.0"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueCanonical" : "https://madie.cms.gov/Library/StratificationPatientExample|2026.1.0"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueCanonical" : "https://madie.cms.gov/Library/SupportingEvidenceExample|2026.1.0"
   }]
 }}####
 v: {
@@ -1197,7 +1450,6 @@ v: {
   "system" : "http://www.ama-assn.org/go/cpt",
   "version" : "2023",
   "server" : "https://tx.fhir.org/r4",
-  "unknown-systems" : "",
   "issues" : {
   "resourceType" : "OperationOutcome"
 }
@@ -1208,7 +1460,7 @@ v: {
   "system" : "http://www.ama-assn.org/go/cpt",
   "code" : "19100",
   "display" : "Biopsy of breast; percutaneous, needle core"
-}, "valueSet" :null, "langs":"en, en-US", "useServer":"true", "useClient":"true", "guessSystem":"false", "noAbstract":"false", "activeOnly":"false", "exampleOK":"true", "membershipOnly":"false", "displayWarningMode":"true", "versionFlexible":"true", "profile": {
+}, "valueSet" :null, "langs":"en-US", "useServer":"true", "useClient":"true", "guessSystem":"false", "noAbstract":"false", "activeOnly":"false", "exampleOK":"true", "membershipOnly":"false", "displayWarningMode":"true", "versionFlexible":"true", "externalSource":"ValueSet[https://example.org/fhir/ValueSet/core-needle-biopsy|1.0.0]", "profile": {
   "resourceType" : "Parameters",
   "id" : "manifest",
   "parameter" : [{
@@ -1216,228 +1468,292 @@ v: {
     "valueCanonical" : "http://snomed.info/sct|http://snomed.info/sct/731000124108"
   },
   {
-    "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.3.1240|20190315"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1016|20240110"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1001|20180310"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1089|20210224"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1025|20170504"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1023|20170504"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1080|20210220"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.110.12.1082|20190315"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.196.12.1510|20190315"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.118.12.1300|20200310"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.113.12.1074|20190315"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1088|20210224"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.113.12.1075|20190315"
+    "name" : "default-canonical-version",
+    "valueCanonical" : "http://hl7.org/fhir/StructureDefinition/shareablevalueset|4.0.2"
   },
   {
     "name" : "default-canonical-version",
-    "valueUri" : "http://hl7.org/fhir/StructureDefinition/Condition|4.0.1"
-  },
-  {
-    "name" : "default-canonical-version",
-    "valueUri" : "http://hl7.org/fhir/StructureDefinition/MedicationRequest|4.0.1"
-  },
-  {
-    "name" : "default-canonical-version",
-    "valueUri" : "http://hl7.org/fhir/StructureDefinition/Medication|4.0.1"
-  },
-  {
-    "name" : "default-canonical-version",
-    "valueUri" : "http://hl7.org/fhir/StructureDefinition/Procedure|4.0.1"
-  },
-  {
-    "name" : "default-canonical-version",
-    "valueUri" : "http://hl7.org/fhir/StructureDefinition/Observation|4.0.1"
-  },
-  {
-    "name" : "default-canonical-version",
-    "valueUri" : "http://hl7.org/fhir/StructureDefinition/Encounter|4.0.1"
-  },
-  {
-    "name" : "default-canonical-version",
-    "valueUri" : "https://madie.cms.gov/Library/CAUTIElements|2026.1.0"
-  },
-  {
-    "name" : "default-canonical-version",
-    "valueUri" : "http://hl7.org/fhir/StructureDefinition/Location|4.0.1"
-  },
-  {
-    "name" : "default-canonical-version",
-    "valueUri" : "https://madie.cms.gov/Library/CAUTIParameters|2026.1.0"
+    "valueCanonical" : "http://hl7.org/fhir/uv/cqm/ImplementationGuide/hl7.fhir.uv.cqm|1.0.0"
   },
   {
     "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.666.5.307|20200307"
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.3.1240|20190315"
   },
   {
     "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.3.1584|20210825"
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1016|20240110"
   },
   {
     "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.1003|20210820"
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1001|20180310"
   },
   {
     "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.1165|20220818"
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1089|20210224"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1025|20170504"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1023|20170504"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1080|20210220"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.110.12.1082|20190315"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.196.12.1510|20190315"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.118.12.1300|20200310"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.113.12.1074|20190315"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1088|20210224"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.113.12.1075|20190315"
   },
   {
     "name" : "system-version",
-    "valueUri" : "http://dicom.nema.org/resources/ontology/DCM|01"
+    "valueCanonical" : "http://terminology.hl7.org/CodeSystem/claim-type|1.0.1"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.198.12.1005|20240105"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.198.12.1068|20171219"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.108.12.1018|20210304"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.198.12.1069|20171216"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.198.12.1070|20171216"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.198.12.1133|20190315"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.198.12.1134|20190315"
   },
   {
     "name" : "default-canonical-version",
-    "valueUri" : "http://hl7.org/fhir/StructureDefinition/ImagingStudy|4.0.1"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "https://example.org/fhir/ValueSet/chemo-radiation-breast-resection|1.0.0"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "https://example.org/fhir/ValueSet/diabetes-hypercholesterolemia-medications|1.0.0"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "https://example.org/fhir/ValueSet/strong-cyp3a4-inhibitors|1.0.0"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "https://example.org/fhir/ValueSet/serum-creatinine|1.0.0"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "https://example.org/fhir/ValueSet/ast-lab-tests|1.0.0"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "https://example.org/fhir/ValueSet/alt-lab-tests|1.0.0"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "https://example.org/fhir/ValueSet/total-bilirubin|1.0.0"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "https://example.org/fhir/ValueSet/alkaline-phosphatase|1.0.0"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "https://example.org/fhir/ValueSet/core-needle-biopsy|1.0.0"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "https://example.org/fhir/ValueSet/histologic-test|1.0.0"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "https://example.org/fhir/ValueSet/tumor-size-observations|1.0.0"
+    "valueCanonical" : "https://madie.cms.gov/Library/CAUTIElements|2026.1.0"
   },
   {
     "name" : "default-canonical-version",
-    "valueUri" : "http://hl7.org/fhir/StructureDefinition/Consent|4.0.1"
+    "valueCanonical" : "http://hl7.org/fhir/StructureDefinition/Patient|4.0.1"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueCanonical" : "http://hl7.org/fhir/StructureDefinition/Location|4.0.1"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueCanonical" : "https://madie.cms.gov/Library/CAUTIParameters|2026.1.0"
   },
   {
     "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1090|20210224"
+    "valueCanonical" : "https://example.org/fhir/ValueSet/bacteria-and-fungi-hob-specific|0.1.0"
   },
   {
     "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.198.12.1135|20210224"
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.666.5.307|20200307"
   },
   {
     "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.1167|20220820"
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.3.1584|20210825"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.1003|20210820"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.1165|20220818"
   },
   {
     "name" : "system-version",
-    "valueUri" : "http://terminology.hl7.org/CodeSystem/observation-category|2.0.0"
+    "valueCanonical" : "http://dicom.nema.org/resources/ontology/DCM|01"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueCanonical" : "http://hl7.org/fhir/StructureDefinition/ImagingStudy|4.0.1"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "https://example.org/fhir/ValueSet/chemo-radiation-breast-resection|1.0.0"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "https://example.org/fhir/ValueSet/diabetes-hypercholesterolemia-medications|1.0.0"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "https://example.org/fhir/ValueSet/strong-cyp3a4-inhibitors|1.0.0"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "https://example.org/fhir/ValueSet/serum-creatinine|1.0.0"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "https://example.org/fhir/ValueSet/ast-lab-tests|1.0.0"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "https://example.org/fhir/ValueSet/alt-lab-tests|1.0.0"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "https://example.org/fhir/ValueSet/total-bilirubin|1.0.0"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "https://example.org/fhir/ValueSet/alkaline-phosphatase|1.0.0"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "https://example.org/fhir/ValueSet/core-needle-biopsy|1.0.0"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "https://example.org/fhir/ValueSet/histologic-test|1.0.0"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "https://example.org/fhir/ValueSet/tumor-size-observations|1.0.0"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueCanonical" : "http://hl7.org/fhir/StructureDefinition/Condition|4.0.1"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueCanonical" : "http://hl7.org/fhir/StructureDefinition/Procedure|4.0.1"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueCanonical" : "http://hl7.org/fhir/StructureDefinition/Observation|4.0.1"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueCanonical" : "http://hl7.org/fhir/StructureDefinition/Consent|4.0.1"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueCanonical" : "http://hl7.org/fhir/StructureDefinition/MedicationRequest|4.0.1"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1090|20210224"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.198.12.1135|20210224"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.1167|20220820"
   },
   {
     "name" : "system-version",
-    "valueUri" : "http://terminology.hl7.org/CodeSystem/condition-ver-status|2.0.1"
+    "valueCanonical" : "http://terminology.hl7.org/CodeSystem/observation-category|2.0.0"
+  },
+  {
+    "name" : "system-version",
+    "valueCanonical" : "http://terminology.hl7.org/CodeSystem/condition-ver-status|2.0.1"
   },
   {
     "name" : "default-canonical-version",
-    "valueUri" : "https://madie.cms.gov/Library/PatientCommon|2026.1.0"
+    "valueCanonical" : "https://madie.cms.gov/Library/PatientCommon|2026.1.0"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueCanonical" : "http://hl7.org/fhir/StructureDefinition/Encounter|4.0.1"
   },
   {
     "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.114222.4.11.837|20121025"
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.114222.4.11.837|20121025"
   },
   {
     "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.114222.4.11.3591|20221118"
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.114222.4.11.3591|20221118"
   },
   {
     "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.114222.4.11.836|20121025"
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.114222.4.11.836|20121025"
   },
   {
     "name" : "default-canonical-version",
-    "valueUri" : "https://madie.cms.gov/Library/BreastCancerScreeningDQMDraft|2026.1.0"
+    "valueCanonical" : "https://madie.cms.gov/Library/BreastCancerScreeningDQMDraft|2026.1.0"
   },
   {
     "name" : "default-canonical-version",
-    "valueUri" : "http://hl7.org/fhir/StructureDefinition/Patient|4.0.1"
+    "valueCanonical" : "https://madie.cms.gov/Library/CAUTIRate|2026.1.0"
   },
   {
     "name" : "default-canonical-version",
-    "valueUri" : "https://madie.cms.gov/Library/CAUTIRate|2026.1.0"
+    "valueCanonical" : "https://madie.cms.gov/Library/CAUTISIR|2026.1.0"
   },
   {
     "name" : "default-canonical-version",
-    "valueUri" : "https://madie.cms.gov/Library/CAUTISIR|2026.1.0"
+    "valueCanonical" : "https://madie.cms.gov/Library/HOBOrganismTaxonomy|2026.1.0"
+  },
+  {
+    "name" : "system-version",
+    "valueCanonical" : "http://hl7.org/fhir/observation-status|4.0.1"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1111.143|20210611"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.117.1.7.1.292|20210611"
   },
   {
     "name" : "default-canonical-version",
-    "valueUri" : "https://madie.cms.gov/Library/StratificationEncounterExample|2026.1.0"
+    "valueCanonical" : "http://hl7.org/fhir/StructureDefinition/Specimen|4.0.1"
   },
   {
     "name" : "default-canonical-version",
-    "valueUri" : "https://madie.cms.gov/Library/StratificationPatientExample|2026.1.0"
+    "valueCanonical" : "https://madie.cms.gov/Library/HOB|2026.1.0"
   },
   {
     "name" : "default-canonical-version",
-    "valueUri" : "https://madie.cms.gov/Library/SupportingEvidenceExample|2026.1.0"
+    "valueCanonical" : "https://madie.cms.gov/Library/StratificationEncounterExample|2026.1.0"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueCanonical" : "https://madie.cms.gov/Library/StratificationPatientExample|2026.1.0"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueCanonical" : "https://madie.cms.gov/Library/SupportingEvidenceExample|2026.1.0"
   }]
 }}####
 v: {
@@ -1446,10 +1762,9 @@ v: {
   "system" : "http://www.ama-assn.org/go/cpt",
   "version" : "2023",
   "severity" : "warning",
-  "error" : "Wrong Display Name 'Biopsy of breast; percutaneous, needle core' for http://www.ama-assn.org/go/cpt#19100. Valid display is one of 6 choices: 'Biopsy of breast; percutaneous, needle core, not using imaging guidance (separate procedure)' (en), 'BIOPSY OF BREAST; PERCUTANEOUS, NEEDLE CORE, NOT USING IMAGING GUIDANCE (SEPARATE PROCEDURE)' (en), 'BX BREAST NEEDLE CORE W/O IMAGING GUIDANCE SPX' (en), 'BX BREAST PERCUT W/O IMAGE' (en), 'Needle biopsy of breast' (en) or 'Percutaneous core needle biopsy of breast' (en) (for the language(s) 'en, en-US')",
+  "error" : "Wrong Display Name 'Biopsy of breast; percutaneous, needle core' for http://www.ama-assn.org/go/cpt#19100. Valid display is one of 6 choices: 'Biopsy of breast; percutaneous, needle core, not using imaging guidance (separate procedure)' (en), 'BIOPSY OF BREAST; PERCUTANEOUS, NEEDLE CORE, NOT USING IMAGING GUIDANCE (SEPARATE PROCEDURE)' (en), 'BX BREAST NEEDLE CORE W/O IMAGING GUIDANCE SPX' (en), 'BX BREAST PERCUT W/O IMAGE' (en), 'Needle biopsy of breast' (en) or 'Percutaneous core needle biopsy of breast' (en) (for the language(s) 'en-US')",
   "server" : "https://tx.fhir.org/r4",
-  "diagnostics" : "0ms tx-op\n1ms http://www.ama-assn.org/go/cpt/vs|2023: Validate \"[http://www.ama-assn.org/go/cpt#19100 (\"Biopsy of breast; percutaneous, needle core\")]\"\n1ms http://www.ama-assn.org/go/cpt/vs|2023: Check \"http://www.ama-assn.org/go/cpt#19100\"\n1ms http://www.ama-assn.org/go/cpt/vs|2023: CodeSystem found: http://www.ama-assn.org/go/cpt|2023 for http://www.ama-assn.org/go/cpt|2023\n1ms http://www.ama-assn.org/go/cpt/vs|2023: check code in (http://www.ama-assn.org/go/cpt) at Coding\n1ms http://www.ama-assn.org/go/cpt/vs|2023: Code \"19100\" found in http://www.ama-assn.org/go/cpt|2023",
-  "unknown-systems" : "",
+  "diagnostics" : "0ms tx-op\n0ms http://www.ama-assn.org/go/cpt/vs|2023: Validate \"[http://www.ama-assn.org/go/cpt#19100 (\"Biopsy of breast; percutaneous, needle core\")]\"\n0ms http://www.ama-assn.org/go/cpt/vs|2023: Check \"http://www.ama-assn.org/go/cpt#19100\"\n0ms http://www.ama-assn.org/go/cpt/vs|2023: CodeSystem found: http://www.ama-assn.org/go/cpt|2023 for http://www.ama-assn.org/go/cpt|2023\n0ms http://www.ama-assn.org/go/cpt/vs|2023: check code in (http://www.ama-assn.org/go/cpt) at Coding\n0ms http://www.ama-assn.org/go/cpt/vs|2023: Code \"19100\" found in http://www.ama-assn.org/go/cpt|2023",
   "issues" : {
   "resourceType" : "OperationOutcome",
   "issue" : [{
@@ -1468,7 +1783,7 @@ v: {
         "system" : "http://hl7.org/fhir/tools/CodeSystem/tx-issue-type",
         "code" : "invalid-display"
       }],
-      "text" : "Wrong Display Name 'Biopsy of breast; percutaneous, needle core' for http://www.ama-assn.org/go/cpt#19100. Valid display is one of 6 choices: 'Biopsy of breast; percutaneous, needle core, not using imaging guidance (separate procedure)' (en), 'BIOPSY OF BREAST; PERCUTANEOUS, NEEDLE CORE, NOT USING IMAGING GUIDANCE (SEPARATE PROCEDURE)' (en), 'BX BREAST NEEDLE CORE W/O IMAGING GUIDANCE SPX' (en), 'BX BREAST PERCUT W/O IMAGE' (en), 'Needle biopsy of breast' (en) or 'Percutaneous core needle biopsy of breast' (en) (for the language(s) 'en, en-US')"
+      "text" : "Wrong Display Name 'Biopsy of breast; percutaneous, needle core' for http://www.ama-assn.org/go/cpt#19100. Valid display is one of 6 choices: 'Biopsy of breast; percutaneous, needle core, not using imaging guidance (separate procedure)' (en), 'BIOPSY OF BREAST; PERCUTANEOUS, NEEDLE CORE, NOT USING IMAGING GUIDANCE (SEPARATE PROCEDURE)' (en), 'BX BREAST NEEDLE CORE W/O IMAGING GUIDANCE SPX' (en), 'BX BREAST PERCUT W/O IMAGE' (en), 'Needle biopsy of breast' (en) or 'Percutaneous core needle biopsy of breast' (en) (for the language(s) 'en-US')"
     },
     "expression" : ["Coding.display"]
   }]
@@ -1480,7 +1795,7 @@ v: {
   "system" : "http://www.ama-assn.org/go/cpt",
   "code" : "19081",
   "display" : "Biopsy, breast, with placement of breast localization device, mammographic guidance"
-}, "valueSet" :null, "langs":"en, en-US", "useServer":"true", "useClient":"true", "guessSystem":"false", "noAbstract":"false", "activeOnly":"false", "exampleOK":"true", "membershipOnly":"false", "displayWarningMode":"true", "versionFlexible":"true", "profile": {
+}, "valueSet" :null, "langs":"en-US", "useServer":"true", "useClient":"true", "guessSystem":"false", "noAbstract":"false", "activeOnly":"false", "exampleOK":"true", "membershipOnly":"false", "displayWarningMode":"true", "versionFlexible":"true", "externalSource":"ValueSet[https://example.org/fhir/ValueSet/core-needle-biopsy|1.0.0]", "profile": {
   "resourceType" : "Parameters",
   "id" : "manifest",
   "parameter" : [{
@@ -1488,228 +1803,292 @@ v: {
     "valueCanonical" : "http://snomed.info/sct|http://snomed.info/sct/731000124108"
   },
   {
-    "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.3.1240|20190315"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1016|20240110"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1001|20180310"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1089|20210224"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1025|20170504"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1023|20170504"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1080|20210220"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.110.12.1082|20190315"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.196.12.1510|20190315"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.118.12.1300|20200310"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.113.12.1074|20190315"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1088|20210224"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.113.12.1075|20190315"
+    "name" : "default-canonical-version",
+    "valueCanonical" : "http://hl7.org/fhir/StructureDefinition/shareablevalueset|4.0.2"
   },
   {
     "name" : "default-canonical-version",
-    "valueUri" : "http://hl7.org/fhir/StructureDefinition/Condition|4.0.1"
-  },
-  {
-    "name" : "default-canonical-version",
-    "valueUri" : "http://hl7.org/fhir/StructureDefinition/MedicationRequest|4.0.1"
-  },
-  {
-    "name" : "default-canonical-version",
-    "valueUri" : "http://hl7.org/fhir/StructureDefinition/Medication|4.0.1"
-  },
-  {
-    "name" : "default-canonical-version",
-    "valueUri" : "http://hl7.org/fhir/StructureDefinition/Procedure|4.0.1"
-  },
-  {
-    "name" : "default-canonical-version",
-    "valueUri" : "http://hl7.org/fhir/StructureDefinition/Observation|4.0.1"
-  },
-  {
-    "name" : "default-canonical-version",
-    "valueUri" : "http://hl7.org/fhir/StructureDefinition/Encounter|4.0.1"
-  },
-  {
-    "name" : "default-canonical-version",
-    "valueUri" : "https://madie.cms.gov/Library/CAUTIElements|2026.1.0"
-  },
-  {
-    "name" : "default-canonical-version",
-    "valueUri" : "http://hl7.org/fhir/StructureDefinition/Location|4.0.1"
-  },
-  {
-    "name" : "default-canonical-version",
-    "valueUri" : "https://madie.cms.gov/Library/CAUTIParameters|2026.1.0"
+    "valueCanonical" : "http://hl7.org/fhir/uv/cqm/ImplementationGuide/hl7.fhir.uv.cqm|1.0.0"
   },
   {
     "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.666.5.307|20200307"
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.3.1240|20190315"
   },
   {
     "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.3.1584|20210825"
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1016|20240110"
   },
   {
     "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.1003|20210820"
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1001|20180310"
   },
   {
     "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.1165|20220818"
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1089|20210224"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1025|20170504"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1023|20170504"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1080|20210220"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.110.12.1082|20190315"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.196.12.1510|20190315"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.118.12.1300|20200310"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.113.12.1074|20190315"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1088|20210224"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.113.12.1075|20190315"
   },
   {
     "name" : "system-version",
-    "valueUri" : "http://dicom.nema.org/resources/ontology/DCM|01"
+    "valueCanonical" : "http://terminology.hl7.org/CodeSystem/claim-type|1.0.1"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.198.12.1005|20240105"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.198.12.1068|20171219"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.108.12.1018|20210304"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.198.12.1069|20171216"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.198.12.1070|20171216"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.198.12.1133|20190315"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.198.12.1134|20190315"
   },
   {
     "name" : "default-canonical-version",
-    "valueUri" : "http://hl7.org/fhir/StructureDefinition/ImagingStudy|4.0.1"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "https://example.org/fhir/ValueSet/chemo-radiation-breast-resection|1.0.0"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "https://example.org/fhir/ValueSet/diabetes-hypercholesterolemia-medications|1.0.0"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "https://example.org/fhir/ValueSet/strong-cyp3a4-inhibitors|1.0.0"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "https://example.org/fhir/ValueSet/serum-creatinine|1.0.0"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "https://example.org/fhir/ValueSet/ast-lab-tests|1.0.0"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "https://example.org/fhir/ValueSet/alt-lab-tests|1.0.0"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "https://example.org/fhir/ValueSet/total-bilirubin|1.0.0"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "https://example.org/fhir/ValueSet/alkaline-phosphatase|1.0.0"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "https://example.org/fhir/ValueSet/core-needle-biopsy|1.0.0"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "https://example.org/fhir/ValueSet/histologic-test|1.0.0"
-  },
-  {
-    "name" : "default-valueset-version",
-    "valueUri" : "https://example.org/fhir/ValueSet/tumor-size-observations|1.0.0"
+    "valueCanonical" : "https://madie.cms.gov/Library/CAUTIElements|2026.1.0"
   },
   {
     "name" : "default-canonical-version",
-    "valueUri" : "http://hl7.org/fhir/StructureDefinition/Consent|4.0.1"
+    "valueCanonical" : "http://hl7.org/fhir/StructureDefinition/Patient|4.0.1"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueCanonical" : "http://hl7.org/fhir/StructureDefinition/Location|4.0.1"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueCanonical" : "https://madie.cms.gov/Library/CAUTIParameters|2026.1.0"
   },
   {
     "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1090|20210224"
+    "valueCanonical" : "https://example.org/fhir/ValueSet/bacteria-and-fungi-hob-specific|0.1.0"
   },
   {
     "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.198.12.1135|20210224"
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.666.5.307|20200307"
   },
   {
     "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.1167|20220820"
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.3.1584|20210825"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.1003|20210820"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.1165|20220818"
   },
   {
     "name" : "system-version",
-    "valueUri" : "http://terminology.hl7.org/CodeSystem/observation-category|2.0.0"
+    "valueCanonical" : "http://dicom.nema.org/resources/ontology/DCM|01"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueCanonical" : "http://hl7.org/fhir/StructureDefinition/ImagingStudy|4.0.1"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "https://example.org/fhir/ValueSet/chemo-radiation-breast-resection|1.0.0"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "https://example.org/fhir/ValueSet/diabetes-hypercholesterolemia-medications|1.0.0"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "https://example.org/fhir/ValueSet/strong-cyp3a4-inhibitors|1.0.0"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "https://example.org/fhir/ValueSet/serum-creatinine|1.0.0"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "https://example.org/fhir/ValueSet/ast-lab-tests|1.0.0"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "https://example.org/fhir/ValueSet/alt-lab-tests|1.0.0"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "https://example.org/fhir/ValueSet/total-bilirubin|1.0.0"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "https://example.org/fhir/ValueSet/alkaline-phosphatase|1.0.0"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "https://example.org/fhir/ValueSet/core-needle-biopsy|1.0.0"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "https://example.org/fhir/ValueSet/histologic-test|1.0.0"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "https://example.org/fhir/ValueSet/tumor-size-observations|1.0.0"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueCanonical" : "http://hl7.org/fhir/StructureDefinition/Condition|4.0.1"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueCanonical" : "http://hl7.org/fhir/StructureDefinition/Procedure|4.0.1"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueCanonical" : "http://hl7.org/fhir/StructureDefinition/Observation|4.0.1"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueCanonical" : "http://hl7.org/fhir/StructureDefinition/Consent|4.0.1"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueCanonical" : "http://hl7.org/fhir/StructureDefinition/MedicationRequest|4.0.1"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1090|20210224"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.198.12.1135|20210224"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.1167|20220820"
   },
   {
     "name" : "system-version",
-    "valueUri" : "http://terminology.hl7.org/CodeSystem/condition-ver-status|2.0.1"
+    "valueCanonical" : "http://terminology.hl7.org/CodeSystem/observation-category|2.0.0"
+  },
+  {
+    "name" : "system-version",
+    "valueCanonical" : "http://terminology.hl7.org/CodeSystem/condition-ver-status|2.0.1"
   },
   {
     "name" : "default-canonical-version",
-    "valueUri" : "https://madie.cms.gov/Library/PatientCommon|2026.1.0"
+    "valueCanonical" : "https://madie.cms.gov/Library/PatientCommon|2026.1.0"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueCanonical" : "http://hl7.org/fhir/StructureDefinition/Encounter|4.0.1"
   },
   {
     "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.114222.4.11.837|20121025"
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.114222.4.11.837|20121025"
   },
   {
     "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.114222.4.11.3591|20221118"
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.114222.4.11.3591|20221118"
   },
   {
     "name" : "default-valueset-version",
-    "valueUri" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.114222.4.11.836|20121025"
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.114222.4.11.836|20121025"
   },
   {
     "name" : "default-canonical-version",
-    "valueUri" : "https://madie.cms.gov/Library/BreastCancerScreeningDQMDraft|2026.1.0"
+    "valueCanonical" : "https://madie.cms.gov/Library/BreastCancerScreeningDQMDraft|2026.1.0"
   },
   {
     "name" : "default-canonical-version",
-    "valueUri" : "http://hl7.org/fhir/StructureDefinition/Patient|4.0.1"
+    "valueCanonical" : "https://madie.cms.gov/Library/CAUTIRate|2026.1.0"
   },
   {
     "name" : "default-canonical-version",
-    "valueUri" : "https://madie.cms.gov/Library/CAUTIRate|2026.1.0"
+    "valueCanonical" : "https://madie.cms.gov/Library/CAUTISIR|2026.1.0"
   },
   {
     "name" : "default-canonical-version",
-    "valueUri" : "https://madie.cms.gov/Library/CAUTISIR|2026.1.0"
+    "valueCanonical" : "https://madie.cms.gov/Library/HOBOrganismTaxonomy|2026.1.0"
+  },
+  {
+    "name" : "system-version",
+    "valueCanonical" : "http://hl7.org/fhir/observation-status|4.0.1"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1111.143|20210611"
+  },
+  {
+    "name" : "default-valueset-version",
+    "valueCanonical" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.117.1.7.1.292|20210611"
   },
   {
     "name" : "default-canonical-version",
-    "valueUri" : "https://madie.cms.gov/Library/StratificationEncounterExample|2026.1.0"
+    "valueCanonical" : "http://hl7.org/fhir/StructureDefinition/Specimen|4.0.1"
   },
   {
     "name" : "default-canonical-version",
-    "valueUri" : "https://madie.cms.gov/Library/StratificationPatientExample|2026.1.0"
+    "valueCanonical" : "https://madie.cms.gov/Library/HOB|2026.1.0"
   },
   {
     "name" : "default-canonical-version",
-    "valueUri" : "https://madie.cms.gov/Library/SupportingEvidenceExample|2026.1.0"
+    "valueCanonical" : "https://madie.cms.gov/Library/StratificationEncounterExample|2026.1.0"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueCanonical" : "https://madie.cms.gov/Library/StratificationPatientExample|2026.1.0"
+  },
+  {
+    "name" : "default-canonical-version",
+    "valueCanonical" : "https://madie.cms.gov/Library/SupportingEvidenceExample|2026.1.0"
   }]
 }}####
 v: {
@@ -1718,9 +2097,8 @@ v: {
   "system" : "http://www.ama-assn.org/go/cpt",
   "version" : "2023",
   "severity" : "warning",
-  "error" : "Wrong Display Name 'Biopsy, breast, with placement of breast localization device, mammographic guidance' for http://www.ama-assn.org/go/cpt#19081. Valid display is one of 8 choices: 'Biopsy, breast, with placement of breast localization device(s) (eg, clip, metallic pellet), when performed, and imaging of the biopsy specimen, when performed, percutaneous; first lesion, including stereotactic guidance' (en), 'BIOPSY, BREAST, WITH PLACEMENT OF BREAST LOCALIZATION DEVICE(S) (EG, CLIP, METALLIC PELLET), WHEN PERFORMED, AND IMAGING OF THE BIOPSY SPECIMEN, WHEN PERFORMED, PERCUTANEOUS; FIRST LESION, INCLUDING STEREOTACTIC GUIDANCE' (en), 'BX BREAST W/DEVICE 1ST LESION STEREOTACTIC GUID' (en), 'BX BREAST 1ST LESION STRTCTC' (en), 'Biopsy of breast and placement of locating device using X-ray with needle, first growth' (en), 'Percutaneous biopsy of first lesion of breast using stereotactic guidance' (en), 'Percutaneous biopsy of first lesion of breast with placement of localization device and imaging of biopsy specimen using stereotactic guidance' (en) or 'Percutaneous biopsy of first lesion of breast with placement of localization device using stereotactic guidance' (en) (for the language(s) 'en, en-US')",
+  "error" : "Wrong Display Name 'Biopsy, breast, with placement of breast localization device, mammographic guidance' for http://www.ama-assn.org/go/cpt#19081. Valid display is one of 8 choices: 'Biopsy, breast, with placement of breast localization device(s) (eg, clip, metallic pellet), when performed, and imaging of the biopsy specimen, when performed, percutaneous; first lesion, including stereotactic guidance' (en), 'BIOPSY, BREAST, WITH PLACEMENT OF BREAST LOCALIZATION DEVICE(S) (EG, CLIP, METALLIC PELLET), WHEN PERFORMED, AND IMAGING OF THE BIOPSY SPECIMEN, WHEN PERFORMED, PERCUTANEOUS; FIRST LESION, INCLUDING STEREOTACTIC GUIDANCE' (en), 'BX BREAST W/DEVICE 1ST LESION STEREOTACTIC GUID' (en), 'BX BREAST 1ST LESION STRTCTC' (en), 'Biopsy of breast and placement of locating device using X-ray with needle, first growth' (en), 'Percutaneous biopsy of first lesion of breast using stereotactic guidance' (en), 'Percutaneous biopsy of first lesion of breast with placement of localization device and imaging of biopsy specimen using stereotactic guidance' (en) or 'Percutaneous biopsy of first lesion of breast with placement of localization device using stereotactic guidance' (en) (for the language(s) 'en-US')",
   "server" : "https://tx.fhir.org/r4",
-  "unknown-systems" : "",
   "issues" : {
   "resourceType" : "OperationOutcome",
   "issue" : [{
@@ -1739,7 +2117,7 @@ v: {
         "system" : "http://hl7.org/fhir/tools/CodeSystem/tx-issue-type",
         "code" : "invalid-display"
       }],
-      "text" : "Wrong Display Name 'Biopsy, breast, with placement of breast localization device, mammographic guidance' for http://www.ama-assn.org/go/cpt#19081. Valid display is one of 8 choices: 'Biopsy, breast, with placement of breast localization device(s) (eg, clip, metallic pellet), when performed, and imaging of the biopsy specimen, when performed, percutaneous; first lesion, including stereotactic guidance' (en), 'BIOPSY, BREAST, WITH PLACEMENT OF BREAST LOCALIZATION DEVICE(S) (EG, CLIP, METALLIC PELLET), WHEN PERFORMED, AND IMAGING OF THE BIOPSY SPECIMEN, WHEN PERFORMED, PERCUTANEOUS; FIRST LESION, INCLUDING STEREOTACTIC GUIDANCE' (en), 'BX BREAST W/DEVICE 1ST LESION STEREOTACTIC GUID' (en), 'BX BREAST 1ST LESION STRTCTC' (en), 'Biopsy of breast and placement of locating device using X-ray with needle, first growth' (en), 'Percutaneous biopsy of first lesion of breast using stereotactic guidance' (en), 'Percutaneous biopsy of first lesion of breast with placement of localization device and imaging of biopsy specimen using stereotactic guidance' (en) or 'Percutaneous biopsy of first lesion of breast with placement of localization device using stereotactic guidance' (en) (for the language(s) 'en, en-US')"
+      "text" : "Wrong Display Name 'Biopsy, breast, with placement of breast localization device, mammographic guidance' for http://www.ama-assn.org/go/cpt#19081. Valid display is one of 8 choices: 'Biopsy, breast, with placement of breast localization device(s) (eg, clip, metallic pellet), when performed, and imaging of the biopsy specimen, when performed, percutaneous; first lesion, including stereotactic guidance' (en), 'BIOPSY, BREAST, WITH PLACEMENT OF BREAST LOCALIZATION DEVICE(S) (EG, CLIP, METALLIC PELLET), WHEN PERFORMED, AND IMAGING OF THE BIOPSY SPECIMEN, WHEN PERFORMED, PERCUTANEOUS; FIRST LESION, INCLUDING STEREOTACTIC GUIDANCE' (en), 'BX BREAST W/DEVICE 1ST LESION STEREOTACTIC GUID' (en), 'BX BREAST 1ST LESION STRTCTC' (en), 'Biopsy of breast and placement of locating device using X-ray with needle, first growth' (en), 'Percutaneous biopsy of first lesion of breast using stereotactic guidance' (en), 'Percutaneous biopsy of first lesion of breast with placement of localization device and imaging of biopsy specimen using stereotactic guidance' (en) or 'Percutaneous biopsy of first lesion of breast with placement of localization device using stereotactic guidance' (en) (for the language(s) 'en-US')"
     },
     "expression" : ["Coding.display"]
   }]
@@ -1778,8 +2156,8 @@ e: {
   "resourceType" : "ValueSet",
   "status" : "active",
   "expansion" : {
-    "identifier" : "urn:uuid:b40b9cdb-8646-485f-a6e2-1d68a3cfb47f",
-    "timestamp" : "2026-05-17T14:04:48.939Z",
+    "identifier" : "urn:uuid:23021282-8216-44a8-8011-4e9295a30351",
+    "timestamp" : "2026-10-12T21:42:46.811Z",
     "total" : 4,
     "offset" : 0,
     "parameter" : [{
@@ -1850,8 +2228,8 @@ e: {
   "resourceType" : "ValueSet",
   "status" : "active",
   "expansion" : {
-    "identifier" : "urn:uuid:91e317a1-59fc-4659-9aaf-e54612bec8d2",
-    "timestamp" : "2026-05-17T14:04:49.682Z",
+    "identifier" : "urn:uuid:fb6b9374-21cb-4209-93bc-04100a2950bc",
+    "timestamp" : "2026-10-12T21:42:47.254Z",
     "total" : 2,
     "offset" : 0,
     "parameter" : [{

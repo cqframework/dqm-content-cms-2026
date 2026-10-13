@@ -1,16 +1,13 @@
-/*
-NOTE: For use by March 2026 US Realm Connectathon participants for internal use only. Not for use or distribution in commercial products.
-*/
-library Hospice version '7.2.000'
+library Hospice version '6.18.000'
 
 using USQualityCore version '0.5.0'
 using USCore version '6.1.0-derived'
 using FHIR version '4.0.1'
 
-include hl7.fhir.uv.cql.FHIRHelpers version '4.0.1' called FHIRHelpers
-include hl7.fhir.uv.cql.FHIRCommon version '2.0.0' called FHIRCommon
+include FHIRHelpers version '4.4.000' called FHIRHelpers
+include USQualityCoreCommon version '0.1.000' called USQualityCoreCommon
+include Status version '1.16.000' called Status
 
-include Status version '2.2.000' called Status
 
 codesystem "LOINC": 'http://loinc.org'
 codesystem "SNOMEDCT": 'http://snomed.info/sct'
@@ -30,27 +27,26 @@ parameter "Measurement Period" Interval<DateTime>
 context Patient
 
 define "Has Hospice Services":
-  exists ((([USQualityCore.Encounter: "Encounter Inpatient"]).isEncounterPerformed()) InpatientEncounter
+  exists ((([Encounter: "Encounter Inpatient"]).isEncounterPerformed()) InpatientEncounter
       where (InpatientEncounter.hospitalization.dischargeDisposition ~ "Discharge to home for hospice care (procedure)"
           or InpatientEncounter.hospitalization.dischargeDisposition ~ "Discharge to healthcare facility for hospice care (procedure)"
       )
         and InpatientEncounter.period ends during day of "Measurement Period"
   )
-    or exists ((([USQualityCore.Encounter: "Hospice Encounter"]).isEncounterPerformed()) HospiceEncounter
+    or exists ((([Encounter: "Hospice Encounter"]).isEncounterPerformed()) HospiceEncounter
         where HospiceEncounter.period overlaps day of "Measurement Period"
     )
-    // TODO: Shouldn't need to specify a code path here (see https://jira.hl7.org/browse/FHIR-53941)
-    or exists ((([USQualityCore.ObservationScreeningAssessment: code ~ "Hospice care [Minimum Data Set]"]).isAssessmentPerformed()) HospiceAssessment
+    or exists ((([ObservationScreeningAssessment: "Hospice care [Minimum Data Set]"]).isAssessmentPerformed()) HospiceAssessment
         where HospiceAssessment.value ~ "Yes (qualifier value)"
           and HospiceAssessment.effective.toInterval() overlaps day of "Measurement Period"
     )
-    or exists ((([USQualityCore.ServiceRequest: "Hospice Care Ambulatory"]).isInterventionOrder()) HospiceOrder
+    or exists ((([ServiceRequest: "Hospice Care Ambulatory"]).isInterventionOrder()) HospiceOrder
         where HospiceOrder.authoredOn during day of "Measurement Period"
     )
-    or exists ((([USQualityCore.Procedure: "Hospice Care Ambulatory"]).isInterventionPerformed()) HospicePerformed
+    or exists ((([Procedure: "Hospice Care Ambulatory"]).isInterventionPerformed()) HospicePerformed
         where HospicePerformed.performed.toInterval() overlaps day of "Measurement Period"
     )
-    // TODO: Consider whether to keep this as the union of Problems and EncounterDiagnosis
-    or exists ((([FHIR.Condition: "Hospice Diagnosis"]).verified()) HospiceCareDiagnosis
+     or exists ((([ConditionProblemsHealthConcerns: "Hospice Diagnosis"])
+        union ([ConditionEncounterDiagnosis: "Hospice Diagnosis"])) HospiceCareDiagnosis
         where HospiceCareDiagnosis.prevalenceInterval() overlaps day of "Measurement Period"
     )
