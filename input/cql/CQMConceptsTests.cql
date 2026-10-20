@@ -18,8 +18,11 @@ left out of `_Passed` until then; see the comment on that test.
 The single-valued accessors (`flowRate()`, `concentration()`, `industry()`, `ccn()`, `ein()`) are
 documented to throw when more than one matching element is present. That behavior cannot be expressed
 as a passing Boolean test, so it is not covered here.
+
+NOTE: This is in the process of being established as the measure CQMConceptsTests in MADiE:
+https://madie.cms.gov/measures/6ad7e9421fbcbfc8d7e0c8d2/edit/details/
 */
-library CQMConceptsTests version '0.3.000-draft'
+library CQMConceptsTests version '0.3.000'
 
 using USQualityCore version '0.5.0'
 using USCore version '6.1.0-derived'
@@ -27,16 +30,17 @@ using FHIR version '4.0.1'
 
 include hl7.fhir.uv.cql.FHIRHelpers version '4.0.1'
 
-include CQMConcepts version '0.3.000-draft'
-include FHIRBuilders version '0.1.000-draft' called Build
+include CQMConcepts version '0.3.000'
+include FHIRBuilders version '0.1.000' called Build
 
 codesystem "SNOMEDCT": 'http://snomed.info/sct'
 codesystem "LOINC": 'http://loinc.org'
 codesystem "ActCode": 'http://terminology.hl7.org/CodeSystem/v3-ActCode'
 codesystem "RoleCode": 'http://terminology.hl7.org/CodeSystem/v3-RoleCode'
 codesystem "Industry CDC Census 2010": 'urn:oid:2.16.840.1.114222.4.11.7900'
-codesystem "DiagnosticServiceSectionCodes": 'http://terminology.hl7.org/CodeSystem/v2-0074'
-codesystem "USCoreCarePlanCategoryCodes": 'http://hl7.org/fhir/us/core/CodeSystem/careplan-category'
+// NOTE: Codesystems not found in MADiE:
+//codesystem "DiagnosticServiceSectionCodes": 'http://terminology.hl7.org/CodeSystem/v2-0074'
+//codesystem "USCoreCarePlanCategoryCodes": 'http://hl7.org/fhir/us/core/CodeSystem/careplan-category'
 codesystem "HSLOC": 'https://www.cdc.gov/nhsn/cdaportal/terminology/codesystem/hsloc.html'
 
 // Code systems that are deliberately not the ones the CQMConcepts terminology uses
@@ -45,9 +49,10 @@ codesystem "Example Section": 'http://example.org/section'
 codesystem "Example Codes": 'http://example.org/codes'
 
 // Category codes
-code "Laboratory": 'LAB' from "DiagnosticServiceSectionCodes" display 'Laboratory'
-code "Radiology": 'RAD' from "DiagnosticServiceSectionCodes" display 'Radiology'
-code "Assess and Plan": 'assess-plan' from "USCoreCarePlanCategoryCodes" display 'Assess and Plan'
+// NOTE: Codesystems not found in MADiE (see above):
+//code "Laboratory": 'LAB' from "DiagnosticServiceSectionCodes" display 'Laboratory'
+//code "Radiology": 'RAD' from "DiagnosticServiceSectionCodes" display 'Radiology'
+//code "Assess and Plan": 'assess-plan' from "USCoreCarePlanCategoryCodes" display 'Assess and Plan'
 code "Laboratory procedure": '108252007' from "SNOMEDCT" display 'Laboratory procedure'
 code "Imaging": '363679005' from "SNOMEDCT" display 'Imaging'
 
@@ -285,6 +290,8 @@ define TestLengthInDaysNull:
  * hasCategory(CarePlan)
  */
 
+/*
+CodeSystem not available in MADiE environment (see above)
 define TestCarePlanHasCategory:
   "Test CarePlan"({ Build.CodeableConcept(Code 'assess-plan' from "USCoreCarePlanCategoryCodes") })
     .hasCategory("Assess and Plan")
@@ -307,11 +314,14 @@ define TestCarePlanHasCategoryNoCategories:
 define TestCarePlanHasCategoryNullCategory:
   not "Test CarePlan"({ Build.CodeableConcept(Code 'assess-plan' from "USCoreCarePlanCategoryCodes") })
     .hasCategory(null as Code)
+*/
 
 /*
  * hasCategory(DiagnosticReport)
  */
 
+/*
+CodeSystem not available in MADiE environment (see above)
 define TestDiagnosticReportHasCategory:
   "Test DiagnosticReport"({ Build.CodeableConcept(Code 'LAB' from "DiagnosticServiceSectionCodes") })
     .hasCategory("Laboratory")
@@ -354,6 +364,7 @@ define TestDiagnosticReportHasCategoryNoCategories:
 
 define TestDiagnosticReportHasCategoryEmptyCategory:
   not "Test DiagnosticReport"({ "Concept Without Codings" }).hasCategory("Laboratory")
+*/
 
 /*
  * hasCategory(ServiceRequest)
@@ -574,11 +585,14 @@ define TestValueSetsExcludeOtherVisits:
  * are vacuously true with no data.
  */
 
+/*
+Codesystem not available in MADiE (see above)
 define TestProfiledCarePlanHasCategory:
   AllTrue([USQualityCore.CarePlan] C return C.hasCategory("Assess and Plan"))
 
 define TestProfiledDiagnosticReportLabHasCategory:
   AllTrue([USQualityCore.DiagnosticReportLab] R return R.hasCategory("Laboratory"))
+*/
 
 define TestProfiledServiceRequestHasCategory:
   AllTrue([USQualityCore.ServiceRequest] S return S.hasCategory("Laboratory procedure") is not null)
@@ -620,23 +634,24 @@ define _Passed:
     and TestLengthInDaysNullEnd
     and TestLengthInDaysUnknownEnd
     and TestLengthInDaysNull
-    and TestCarePlanHasCategory
-    and TestCarePlanHasCategoryAmongSeveral
-    and TestCarePlanHasCategoryWrongCode
-    and TestCarePlanHasCategoryWrongSystem
-    and TestCarePlanHasCategoryNoCategories
-    and TestCarePlanHasCategoryNullCategory
-    and TestDiagnosticReportHasCategory
-    and TestDiagnosticReportHasCategoryMatchesAnyCoding
-    and TestDiagnosticReportHasCategoryAmongSeveral
-    and TestDiagnosticReportHasCategoryWrongCode
-    and TestDiagnosticReportHasCategoryWrongSystem
+    // CodeSystem not available in MADiE (see above)
+    //and TestCarePlanHasCategory
+    //and TestCarePlanHasCategoryAmongSeveral
+    //and TestCarePlanHasCategoryWrongCode
+    //and TestCarePlanHasCategoryWrongSystem
+    //and TestCarePlanHasCategoryNoCategories
+    //and TestCarePlanHasCategoryNullCategory
+    //and TestDiagnosticReportHasCategory
+    //and TestDiagnosticReportHasCategoryMatchesAnyCoding
+    //and TestDiagnosticReportHasCategoryAmongSeveral
+    //and TestDiagnosticReportHasCategoryWrongCode
+    //and TestDiagnosticReportHasCategoryWrongSystem
     // Excluded: this test fails because of an engine issue, not a CQMConcepts defect (the engine compares
     // codes case-insensitively, regardless of the case sensitivity the code system declares; see the
     // comment on the test). Restore it here once the engine is fixed and the test passes.
     // and TestDiagnosticReportHasCategoryCodeCase
-    and TestDiagnosticReportHasCategoryNoCategories
-    and TestDiagnosticReportHasCategoryEmptyCategory
+    //and TestDiagnosticReportHasCategoryNoCategories
+    //and TestDiagnosticReportHasCategoryEmptyCategory
     and TestServiceRequestHasCategory
     and TestServiceRequestHasCategoryIgnoresDisplay
     and TestServiceRequestHasCategoryAmongSeveral
@@ -685,8 +700,9 @@ define _Passed:
     and TestOutpatientSurgeryServiceValueSet
     and TestIntensiveCareUnitValueSet
     and TestValueSetsExcludeOtherVisits
-    and TestProfiledCarePlanHasCategory
-    and TestProfiledDiagnosticReportLabHasCategory
+    // CodeSystem not available in MADiE (see above)
+    //and TestProfiledCarePlanHasCategory
+    //and TestProfiledDiagnosticReportLabHasCategory
     and TestProfiledServiceRequestHasCategory
     and TestProfiledOrganizationNpi
     and TestProfiledPractitionerNpi

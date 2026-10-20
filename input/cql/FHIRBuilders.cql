@@ -3,7 +3,7 @@
 expressions in CQL.
 @comment:
 
-NOTE: This library is current released in MADiE; this is the development copy
+NOTE: This library is currently released in MADiE; this is the development copy
 https://madie.cms.gov/cql-libraries/6ad7ddacbf531c0659c86b71/edit/details
 */
 library FHIRBuilders version '0.1.000'
