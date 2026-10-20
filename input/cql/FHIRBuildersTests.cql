@@ -21,13 +21,20 @@ string `''`, which the String-valued builders treat as null, since FHIR does not
 
 `Period()`, `Quantity()`, `Coding()`, and `CodeableConcept()` are also round-tripped through FHIRHelpers, since the reason they exist is to
 build FHIR elements that FHIRHelpers reads back as the original CQL value.
-*/
-library FHIRBuildersTests version '0.1.000-draft'
 
+NOTE: This is in the process of being established as the measure FHIRBuildersTests in MADiE:
+https://madie.cms.gov/measures/6ad7de9d1fbcbfc8d7e0c8bb/edit/details/
+*/
+library FHIRBuildersTests version '0.0.000-draft'
+
+using USQualityCore version '0.5.0'
+using USCore version '6.1.0-derived'
 using FHIR version '4.0.1'
 
 include hl7.fhir.uv.cql.FHIRHelpers version '4.0.1' called FHIRHelpers
-include FHIRBuilders version '0.1.000-draft' called Build
+include hl7.fhir.uv.cql.FHIRCommon version '2.0.0' called FHIRCommon
+
+include FHIRBuilders version '0.1.000' called Build
 
 context Patient
 
