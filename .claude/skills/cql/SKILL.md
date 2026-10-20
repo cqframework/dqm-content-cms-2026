@@ -39,6 +39,8 @@ Notes:
 - A file you have just created with Write is often not analysed yet: the result has no `linesInFile`
   and an empty `diagnostics` list. That is not a clean result. Make a real (non-identical) Edit to the
   file and query again; only trust an empty list that comes with a `linesInFile` matching the file.
+  The Edit tool rejects a change that only adds or removes whitespace (e.g. a trailing space) as a
+  no-op, so to force re-analysis change a word, e.g. in a comment.
 - An empty list for a file the editor has not analysed does not mean it is clean. If a file is missing
   from the results, ask the user to open it.
 - A change to a library can break the libraries that include it. After editing a shared library
@@ -74,14 +76,27 @@ that file after the user says they have run it.
 - Libraries with retrieves are tested with patient data, not inline fixtures: one folder per case in
   `input/tests/<Library>Tests/<case>/`, with `Patient.id` equal to the folder name, plus a README
   describing the cases (see `input/tests/HOB/README.md` and `input/tests/CQMElementsTests/README.md`).
-  Every expression is evaluated once per case, and the results file has a `Patient=Patient(id=...)`
-  header before each case's results. Write case tests as
-  `case "Case" when '<case>' then <assertion> ... else null end` (with
-  `define "Case": FHIRHelpers.ToString(Patient.id)`), so `null` means "not applicable", and mark
-  tests that must hold for every case as invariants. Non-compartment resources such as Location can go in the
+  Every expression is evaluated once per case. In the results file each case's results are a block
+  separated from the next by a blank line, sorted by expression name, so `Patient=Patient(id=...)`
+  is *not* a header; it falls among the P's. Identify the case by the `Case=` line (or the
+  `Patient=` line) anywhere in the block. Write case tests as
+  `case "Case" when '<case>' then <assertion> ... else true end` (with
+  `define "Case": FHIRHelpers.ToString(Patient.id)`), and mark tests that must hold for every case
+  as invariants. Then every test must be `true` on every case, and `false` or `null` is always a
+  failure. Don't use `else null` for "not applicable": a `null` from an assertion that couldn't be
+  evaluated (e.g. a serviced date that came back null) is then indistinguishable from "doesn't apply",
+  which hid a real bug in ClaimElements. Don't use `Coalesce(..., true)` either, for the same reason.
+  To assert that a value is null, write `X is null`. Helper defines (not `Test...`) can still use
+  `else null`. Non-compartment resources such as Location can go in the
   case folder; `[USQualityCore.Location]` in Patient context returns them. Use `meta.profile` URLs
   from the model's IG
   (e.g. `http://fhir.org/guides/onc/us-quality-core/StructureDefinition/us-quality-core-encounter`).
+- Check every results file with the checker, from the repo root:
+  `python .claude/skills/cql/check_results.py <Library>Tests`. It reports an aborted run (`Error=`),
+  and any `Test...` define that is missing from a case's results or isn't `true` there. For patient
+  data, it also checks that every case name in a `when '<case>' then` clause is a case folder:
+  with `else true`, a misspelled case name would otherwise pass silently. Don't read results files
+  by eye.
 
 ## Writing test libraries
 
@@ -90,7 +105,7 @@ comment explaining what needs data or terminology, fixture builders, fixtures, t
 function under test).
 
 - Build fixtures inline as FHIR resources, so most tests need no patient data. Use FHIRBuilders
-  (`include FHIRBuilders version '0.1.000' called Build`) for primitives: `Build.id`, `Build.string`,
+  (`include FHIRBuilders version '0.1.000-draft' called Build`) for primitives: `Build.id`, `Build.string`,
   `Build.uri`, `Build.code`, `Build.Period(Interval<DateTime>)`, `Build.Quantity(System.Quantity)`,
   `Build.Coding(System.Code)`, `Build.CodeableConcept(System.Code | System.Concept)`,
   `Build.Identifier(system, value)`, `Build.Reference('Patient/x')`. Single-argument builders other
@@ -99,7 +114,9 @@ function under test).
   test library.
 - Build fixture concepts from Code and Concept literals against code systems declared in the test
   library, e.g. `Build.CodeableConcept(Code '3151-8' from "LOINC")` or
-  `Build.CodeableConcept(Concept { Code 'a' from "LOINC", Code 'b' from "LOINC" })`.
+  `Build.CodeableConcept(Concept { Code 'a' from "LOINC", Code 'b' from "LOINC" })`. A `Concept { }`
+  selector takes only Code literals: a reference to a define holding a Code (`Concept { "My Code" }`)
+  is a syntax error at the reference, so write the `Code '...' from "X"` literal inline.
 - Build fixture codings from code systems and codes declared in the test library, not from the code
   declarations of the library under test. Otherwise a wrong system or code in the library is copied into the fixture and the
   test still passes. Test the declarations themselves separately against independently declared codes.
@@ -147,6 +164,13 @@ function under test).
   `Code 'lab' ~ Code 'LAB'` from v2-0074 comes back true even though the spec says false. Write tests
   to the spec, and mark any test that fails on an engine issue with a NOTE and a TODO to log it (see
   `TestDiagnosticReportHasCategoryCodeCase` in CQMConceptsTests).
+- `ToDateTime(Date)` (and anything built on it, e.g. ClaimCommon's `toServicedInterval()` for a
+  serviced date) gives a day-precision DateTime with the timezone offset of the evaluation, i.e. the
+  user's local zone. Compared with a UTC time on the same local day, the result is uncertain and so
+  null, and *which* day a UTC time falls on depends on the zone: `2024-03-02T00:00Z` is still 03-01
+  in US zones (confirmed: a test with that boundary came back null on ClaimCommonTests). In fixtures,
+  keep times at least a day away from dates they're compared with, and when a same-day comparison is
+  the point of the test, use 12:00Z, which is on the same date in effectively every zone.
 - An interval selector always has fixed closedness, so rebuilding an interval from `start of` / `end of`
   turns an open null boundary (unknown) into a closed null boundary (unbounded):
   `Interval[f(start of I), f(end of I)]` with `I = Interval[x, null)` gives `Interval[f(x), null]`, whose
@@ -156,8 +180,27 @@ function under test).
 
 - A function invocation used as a query source needs parentheses: `(F(x)) X where ...`, not
   `F(x) X where ...`. The same applies to fluent calls: `(E.includedEncounters()) I`, to a property
-  of a call result: `(Build.CodeableConcept(c).coding) C`, and to list literals:
-  `({ 'a', 'b' }) U return ...` (without the parentheses it is a syntax error at the alias).
+  of a call result: `(Build.CodeableConcept(c).coding) C`, to list literals:
+  `({ 'a', 'b' }) U return ...`, and to a property path used as a query source directly inside a
+  function call's parentheses: `flatten ((C.item) I return ...)`, not `flatten (C.item I return ...)`
+  (without the parentheses it is a syntax error at the alias). A retrieve followed by a fluent call
+  needs them too: `([USQualityCore.Claim]).active()`, not `[USQualityCore.Claim].active()`.
+- The sources of a multi-source query are independent, and a source can't refer to another source's
+  alias, so `from C.item I, C.item.encounter E` (or the same thing through `let`) is the cross
+  product of all the items with all the encounters any item references. To unfold a nested list per
+  parent, nest the queries:
+  `flatten ((C.item) I return I.encounter E return { item: I, encounter: E })` (confirmed: the cross
+  product gave six rows instead of two on ClaimElementsTests).
+- Fluent overloads in different included libraries are resolved **silently**: when two included
+  libraries both define a fluent function with the same name and compatible parameter types, the
+  translator reports no ambiguity and picks one. That is harmless when the definitions are identical
+  (MedicationCommon duplicating FHIRCommon's MedicationRequest category functions), but not otherwise:
+  ClaimCommon's `toInterval(Choice<FHIR.date, FHIR.Period>)` lost to FHIRCommon's `toInterval()` in
+  ClaimElements, which includes both, so every serviced date came back null (FHIRCommon 2.0.0's
+  `toInterval()` returns null for a `FHIR.date`), with no diagnostic. Don't add an overload of a
+  function name that FHIRCommon (or another library commonly included alongside yours) already
+  defines, unless it is identical; give it a distinct name (ClaimCommon's is now
+  `toServicedInterval()`).
 - Fluent functions can only be invoked with fluent syntax; `Lib.f(x)` fails with "is a fluent function
   and can only be invoked with fluent syntax".
 - CQL is case-sensitive, and system operators are not invocable as fluent functions. But a fluent call

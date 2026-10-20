@@ -1,0 +1,22 @@
+{
+  "resourceType": "Location",
+  "id": "ward-03",
+  "meta": {
+    "profile": [
+      "http://fhir.org/guides/onc/us-quality-core/StructureDefinition/us-quality-core-location"
+    ]
+  },
+  "status": "active",
+  "name": "ward-03",
+  "type": [
+    {
+      "coding": [
+        {
+          "system": "http://terminology.hl7.org/CodeSystem/v3-RoleCode",
+          "code": "HU",
+          "display": "Hospital unit"
+        }
+      ]
+    }
+  ]
+}

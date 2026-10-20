@@ -11,7 +11,7 @@ include hl7.fhir.uv.cql.FHIRHelpers version '4.0.1'
 include hl7.fhir.uv.cql.FHIRCommon version '2.0.0'
 
 include CQMConcepts version '0.3.000-draft'
-include FHIRBuilders version '0.1.000' called Build
+include FHIRBuilders version '0.1.000-draft' called Build
 
 context Patient
 
