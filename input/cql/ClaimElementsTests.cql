@@ -413,3 +413,41 @@ define TestClaimItemProcedureElements:
         and FHIRHelpers.ToConcept("Item Procedure"('clm-01:2:2').productOrService) ~ Code '93458' from "CPT"
     else true
   end
+
+/*
+ * Combined result
+ */
+
+// True only if every test in this library is true, for use as the population criteria of a Cohort
+// measure. It uses `and` rather than AllTrue(), which ignores nulls, so that a null test fails it.
+// It must list each Test define; .claude/skills/cql/check_results.py checks this.
+define _Passed:
+  TestClaimItem
+    and TestClaimItemElements
+    and TestClaimItemServicedPeriod
+    and TestClaimItemServicedDate
+    and TestClaimItemNoServiced
+    and TestClaimItemActiveClaims
+    and TestClaimItemIncludesEveryItem
+    and TestClaimEncounterItem
+    and TestClaimEncounterItemReferencesEncounter
+    and TestClaimDiagnosis
+    and TestClaimDiagnosisElements
+    and TestClaimItemDiagnosis
+    and TestClaimItemDiagnosisElements
+    and TestClaimItemDiagnosisItemElements
+    and TestClaimItemDiagnosisUnmatchedSequence
+    and TestClaimItemDiagnosisMatchesClaimDiagnosis
+    and TestIsRelatedToByReference
+    and TestIsRelatedToUnrelated
+    and TestIsRelatedToByServicedPeriod
+    and TestIsRelatedToByServicedDate
+    and TestIsRelatedToByBillablePeriod
+    and TestIsRelatedToServicedDateOnStartDay
+    and TestIsRelatedToNoServiced
+    and TestIsRelatedToNoBillablePeriod
+    and TestIsRelatedToNoBillablePeriodServicedDuring
+    and TestClaimProcedure
+    and TestClaimProcedureElements
+    and TestClaimItemProcedure
+    and TestClaimItemProcedureElements

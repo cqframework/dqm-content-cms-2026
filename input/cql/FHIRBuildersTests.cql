@@ -576,3 +576,108 @@ define TestReferenceBlank:
   Build.Reference('') is null
     and Build.Reference(' ') is null
     and ''.toFHIRReference() is null
+
+/*
+ * Combined result
+ */
+
+// True only if every test in this library is true, for use as the population criteria of a Cohort
+// measure. It uses `and` rather than AllTrue(), which ignores nulls, so that a null test fails it.
+// It must list each Test define; .claude/skills/cql/check_results.py checks this.
+define _Passed:
+  TestBase64Binary
+    and TestToFHIRBase64Binary
+    and TestBase64BinaryNull
+    and TestBoolean
+    and TestToFHIRBoolean
+    and TestBooleanFalse
+    and TestBooleanNull
+    and TestCanonical
+    and TestToFHIRCanonical
+    and TestCanonicalNull
+    and TestCode
+    and TestToFHIRCode
+    and TestCodeNull
+    and TestDate
+    and TestToFHIRDate
+    and TestDatePartial
+    and TestDateNull
+    and TestDateTime
+    and TestToFHIRDateTime
+    and TestDateTimeKeepsOffset
+    and TestDateTimePartial
+    and TestDateTimeNull
+    and TestDecimal
+    and TestToFHIRDecimal
+    and TestDecimalZeroAndNegative
+    and TestDecimalNull
+    and TestId
+    and TestToFHIRId
+    and TestIdNull
+    and TestInstant
+    and TestToFHIRInstant
+    and TestInstantNull
+    and TestInteger
+    and TestToFHIRInteger
+    and TestIntegerZeroAndNegative
+    and TestIntegerNull
+    and TestString
+    and TestToFHIRString
+    and TestStringEmpty
+    and TestStringWhitespace
+    and TestStringPaddedValue
+    and TestEmptyStringBuilders
+    and TestStringNull
+    and TestTime
+    and TestToFHIRTime
+    and TestTimeNull
+    and TestUri
+    and TestToFHIRUri
+    and TestUriNull
+    and TestUrl
+    and TestToFHIRUrl
+    and TestUrlNull
+    and TestXhtmlNull
+    and TestPeriod
+    and TestToFHIRPeriod
+    and TestPeriodRoundTrip
+    and TestPeriodPoint
+    and TestPeriodNullEnd
+    and TestPeriodUnknownEnd
+    and TestPeriodNullStart
+    and TestPeriodUnknownStart
+    and TestPeriodRoundTripNullEnd
+    and TestPeriodOpenBoundaries
+    and TestPeriodNull
+    and TestGetSystemCalendarUnits
+    and TestGetSystemUcum
+    and TestGetSystemUcumTimeUnits
+    and TestGetSystemCaseSensitive
+    and TestGetSystemIsUri
+    and TestQuantity
+    and TestQuantityCalendarUnit
+    and TestQuantityDecimalValue
+    and TestQuantityUnitless
+    and TestQuantityRoundTrip
+    and TestQuantityRoundTripCalendarUnit
+    and TestQuantityNull
+    and TestCoding
+    and TestToFHIRCoding
+    and TestCodingWithoutVersionOrDisplay
+    and TestCodingRoundTrip
+    and TestCodingNull
+    and TestCodeableConcept
+    and TestToFHIRCodeableConcept
+    and TestCodeableConceptRoundTrip
+    and TestCodeableConceptFromCode
+    and TestToFHIRCodeableConceptFromCode
+    and TestCodeableConceptFromCodeEquivalent
+    and TestCodeableConceptNull
+    and TestIdentifier
+    and TestIdentifierValueOnly
+    and TestIdentifierSystemOnly
+    and TestIdentifierNull
+    and TestReference
+    and TestToFHIRReference
+    and TestReferenceNull
+    and TestReferenceBlank

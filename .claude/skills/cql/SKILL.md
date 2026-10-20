@@ -72,7 +72,15 @@ that file after the user says they have run it.
   an IG publisher `path-resource`, so anything placed directly in it gets published; check with the
   user before adding ValueSet resources there.
 - Test libraries are named `<Library>Tests.cql` and use `define Test...: <Boolean>` expressions that
-  evaluate to `true` when they pass.
+  evaluate to `true` when they pass. End each test library with a combined result,
+  `define _Passed: TestA and TestB and ...`, listing every `Test...` define, for use as the
+  population criteria of a Cohort measure in MADiE. Use `and`, not `AllTrue({ ... })`: `AllTrue`
+  ignores nulls, so a null test would pass it. Add each new test to `_Passed`; the checker below
+  verifies that `_Passed` lists every test exactly once. The only exception is a test that fails
+  because of an engine issue rather than a defect in the library: comment it out in `_Passed` on a
+  line of its own (`// and TestX`), with a comment saying why and to restore it once the engine is
+  fixed (see `TestDiagnosticReportHasCategoryCodeCase` in CQMConceptsTests). The checker then reports
+  it as a known failure, and says when it starts passing.
 - Libraries with retrieves are tested with patient data, not inline fixtures: one folder per case in
   `input/tests/<Library>Tests/<case>/`, with `Patient.id` equal to the folder name, plus a README
   describing the cases (see `input/tests/HOB/README.md` and `input/tests/CQMElementsTests/README.md`).

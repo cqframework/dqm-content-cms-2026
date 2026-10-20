@@ -472,3 +472,52 @@ define TestOutpatientSurgeryVisit:
     when '01-ED-Observation-Inpatient' then "Inpatient Hospitalization".outpatientSurgeryVisit() is null
     else true
   end
+
+/*
+ * Combined result
+ */
+
+// True only if every test in this library is true, for use as the population criteria of a Cohort
+// measure. It uses `and` rather than AllTrue(), which ignores nulls, so that a null test fails it.
+// It must list each Test define; .claude/skills/cql/check_results.py checks this.
+define _Passed:
+  TestInpatientEncounter
+    and TestEmergencyDepartmentEncounter
+    and TestObservationEncounter
+    and TestOutpatientSurgeryEncounter
+    and TestRetrievedEncountersFinished
+    and TestHospitalizationEncounters
+    and TestHospitalizationEncountersContainedInOrder
+    and TestHospitalizationEncountersFilteredInput
+    and TestHospitalizationEncountersIncludedEncounterExtensions
+    and TestHospitalizationEncountersKeepsLastEncounterElements
+    and TestHospitalizationEncountersEmptyInput
+    and TestHospitalizationEncountersIncludeEveryEncounter
+    and TestNormalizeEncounters
+    and TestNormalizeEncountersPeriodSpansEpisode
+    and TestNormalizeEncountersKeepsLastEncounterElements
+    and TestNormalizeEncountersFlattensLocations
+    and TestNormalizeEncountersIncludedEncounters
+    and TestIncludedEncounters
+    and TestIncludedEncountersNoneOnRetrievedEncounter
+    and TestEncounterLocationEntries
+    and TestEncounterLocationEntriesElements
+    and TestEncounterLocationEntriesEmptyInput
+    and TestAllEncounterLocationEntries
+    and TestEncounterLocations
+    and TestEncounterLocationsDropsUnresolvedReferences
+    and TestAllEncounterLocationsReferenceRetrievedLocations
+    and TestEmergencyDepartmentLocations
+    and TestHospitalization
+    and TestHospitalizationLocations
+    and TestHospitalizationLengthOfStay
+    and TestHospitalAdmissionTime
+    and TestHospitalDischargeTime
+    and TestHospitalArrivalTime
+    and TestHospitalDepartureTime
+    and TestEmergencyDepartmentArrivalTime
+    and TestEmergencyDepartmentArrivalTimeDuringHospitalization
+    and TestFirstInpatientIntensiveCareUnit
+    and TestEdVisit
+    and TestObservationVisit
+    and TestOutpatientSurgeryVisit

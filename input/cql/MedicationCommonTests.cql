@@ -696,3 +696,101 @@ define TestProfileMedicationDispense:
 
 define TestProfileMedicationDispenseDeclined:
   AllTrue([USQualityCore.MedicationDispenseDeclined] MD return MD.isDeclined() implies MD.status = 'declined')
+
+/*
+ * Combined result
+ */
+
+// True only if every test in this library is true, for use as the population criteria of a Cohort
+// measure. It uses `and` rather than AllTrue(), which ignores nulls, so that a null test fails it.
+// It must list each Test define; .claude/skills/cql/check_results.py checks this.
+define _Passed:
+  TestMedicationRequestStatusDeclarations
+    and TestMedicationRequestIntentDeclarations
+    and TestMedicationRequestCategoryDeclarations
+    and TestMedicationAdministrationCategoryDeclarations
+    and TestMedicationAdministrationStatusDeclarations
+    and TestMedicationDispenseStatusDeclarations
+    and TestMedicationRequestIsActive
+    and TestMedicationRequestActive
+    and TestMedicationRequestActiveEmpty
+    and TestMedicationRequestIsOnHold
+    and TestMedicationRequestOnHold
+    and TestMedicationRequestIsCompleted
+    and TestMedicationRequestCompleted
+    and TestMedicationRequestActiveOrCompleted
+    and TestMedicationRequestIsCancelled
+    and TestMedicationRequestIsStopped
+    and TestMedicationRequestIsDraft
+    and TestMedicationRequestIsEnteredInError
+    and TestMedicationRequestStatusPredicatesExclusive
+    and TestMedicationRequestIsOrder
+    and TestMedicationRequestIsPlan
+    and TestMedicationRequestIsProposal
+    and TestMedicationRequestIsOrderIntent
+    and TestMedicationRequestOrderIntent
+    and TestMedicationRequestOrderIntentEmpty
+    and TestMedicationRequestHasCategory
+    and TestMedicationRequestHasCategoryAmongSeveral
+    and TestMedicationRequestHasCategoryMatchesAnyCoding
+    and TestMedicationRequestHasCategoryWrongSystem
+    and TestMedicationRequestHasCategoryNoCategories
+    and TestMedicationRequestHasCategoryNullCategory
+    and TestMedicationRequestIsInpatient
+    and TestMedicationRequestInpatient
+    and TestMedicationRequestIsOutpatient
+    and TestMedicationRequestOutpatient
+    and TestMedicationRequestIsCommunity
+    and TestMedicationRequestCommunity
+    and TestMedicationRequestIsDischarge
+    and TestMedicationRequestDischarge
+    and TestMedicationRequestCommunityOrDischarge
+    and TestMedicationRequestCategoryEmpty
+    and TestMedicationRequestMostRecent
+    and TestMedicationRequestMostRecentSameDay
+    and TestMedicationRequestMostRecentIgnoresNotAuthored
+    and TestMedicationRequestMostRecentOnlyNotAuthored
+    and TestMedicationRequestMostRecentSingle
+    and TestMedicationRequestMostRecentEmpty
+    and TestMedicationAdministrationIsCompleted
+    and TestMedicationAdministrationCompleted
+    and TestMedicationAdministrationCompletedEmpty
+    and TestMedicationAdministrationIsInProgress
+    and TestMedicationAdministrationIsOnHold
+    and TestMedicationAdministrationIsStopped
+    and TestMedicationAdministrationIsNotDone
+    and TestMedicationAdministrationIsEnteredInError
+    and TestMedicationAdministrationStatusPredicatesExclusive
+    and TestMedicationAdministrationHasCategory
+    and TestMedicationAdministrationHasCategoryMatchesAnyCoding
+    and TestMedicationAdministrationHasCategoryWrongSystem
+    and TestMedicationAdministrationHasCategoryNoCategory
+    and TestMedicationAdministrationHasCategoryNullCategory
+    and TestMedicationAdministrationIsInpatient
+    and TestMedicationAdministrationInpatient
+    and TestMedicationAdministrationIsOutpatient
+    and TestMedicationAdministrationOutpatient
+    and TestMedicationAdministrationIsCommunity
+    and TestMedicationAdministrationCommunity
+    and TestMedicationAdministrationCategoryEmpty
+    and TestMedicationDispenseIsCompleted
+    and TestMedicationDispenseCompleted
+    and TestMedicationDispenseCompletedEmpty
+    and TestMedicationDispenseIsInProgress
+    and TestMedicationDispenseIsPreparation
+    and TestMedicationDispenseIsOnHold
+    and TestMedicationDispenseIsCancelled
+    and TestMedicationDispenseIsStopped
+    and TestMedicationDispenseIsDeclined
+    and TestMedicationDispenseIsEnteredInError
+    and TestMedicationDispensePositiveEvent
+    and TestMedicationDispenseStatusPredicatesExclusive
+    and TestProfileMedicationRequest
+    and TestProfileMedicationRequestCategory
+    and TestProfileMedicationAdministrationCategory
+    and TestProfileMedicationRequestMostRecent
+    and TestProfileMedicationNotRequested
+    and TestProfileMedicationAdministration
+    and TestProfileMedicationAdministrationNotDone
+    and TestProfileMedicationDispense
+    and TestProfileMedicationDispenseDeclined

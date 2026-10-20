@@ -12,8 +12,8 @@ fail instead of being reproduced in the fixture. The exceptions are:
   FHIR-typed overloads resolve for profiled inputs, and are invariants that must hold for whatever data
   is loaded. With no data loaded they are vacuously true.
 
-`TestDiagnosticReportHasCategoryCodeCase` is expected to fail until an engine issue is fixed; see the
-comment on that test.
+`TestDiagnosticReportHasCategoryCodeCase` is expected to fail until an engine issue is fixed, and is
+left out of `_Passed` until then; see the comment on that test.
 
 The single-valued accessors (`flowRate()`, `concentration()`, `industry()`, `ccn()`, `ein()`) are
 documented to throw when more than one matching element is present. That behavior cannot be expressed
@@ -588,3 +588,105 @@ define TestProfiledOrganizationNpi:
 
 define TestProfiledPractitionerNpi:
   AllTrue([USQualityCore.Practitioner] P return Count(P.npi()) <= Count(P.identifier))
+
+/*
+ * Combined result
+ */
+
+// True only if every test in this library is true, for use as the population criteria of a Cohort
+// measure. It uses `and` rather than AllTrue(), which ignores nulls, so that a null test fails it.
+// It must list each Test define; .claude/skills/cql/check_results.py checks this.
+define _Passed:
+  TestToDateInterval
+    and TestToDateIntervalSameDay
+    and TestToDateIntervalEndOfDayBoundaries
+    and TestToDateIntervalLeapDay
+    and TestToDateIntervalIsClosed
+    and TestToDateIntervalOpenBoundariesAtDayEdge
+    and TestToDateIntervalKeepsLocalDate
+    and TestToDateIntervalNullEnd
+    and TestToDateIntervalUnknownStart
+    and TestToDateIntervalUnknownStartAndEnd
+    and TestToDateIntervalUnknownEnd
+    and TestToDateIntervalNull
+    and TestLengthInDays
+    and TestLengthInDaysSameDay
+    and TestLengthInDaysCrossesMidnight
+    and TestLengthInDaysNearlyTwoDays
+    and TestLengthInDaysLeapYear
+    and TestLengthInDaysNonLeapYear
+    and TestLengthInDaysYearBoundary
+    and TestLengthInDaysOpenEndAtMidnight
+    and TestLengthInDaysNullEnd
+    and TestLengthInDaysUnknownEnd
+    and TestLengthInDaysNull
+    and TestCarePlanHasCategory
+    and TestCarePlanHasCategoryAmongSeveral
+    and TestCarePlanHasCategoryWrongCode
+    and TestCarePlanHasCategoryWrongSystem
+    and TestCarePlanHasCategoryNoCategories
+    and TestCarePlanHasCategoryNullCategory
+    and TestDiagnosticReportHasCategory
+    and TestDiagnosticReportHasCategoryMatchesAnyCoding
+    and TestDiagnosticReportHasCategoryAmongSeveral
+    and TestDiagnosticReportHasCategoryWrongCode
+    and TestDiagnosticReportHasCategoryWrongSystem
+    // Excluded: this test fails because of an engine issue, not a CQMConcepts defect (the engine compares
+    // codes case-insensitively, regardless of the case sensitivity the code system declares; see the
+    // comment on the test). Restore it here once the engine is fixed and the test passes.
+    // and TestDiagnosticReportHasCategoryCodeCase
+    and TestDiagnosticReportHasCategoryNoCategories
+    and TestDiagnosticReportHasCategoryEmptyCategory
+    and TestServiceRequestHasCategory
+    and TestServiceRequestHasCategoryIgnoresDisplay
+    and TestServiceRequestHasCategoryAmongSeveral
+    and TestServiceRequestHasCategoryWrongCode
+    and TestServiceRequestHasCategoryNoCategories
+    and TestFlowRate
+    and TestFlowRateValue
+    and TestFlowRateMissing
+    and TestFlowRateNoComponents
+    and TestFlowRateWrongSystem
+    and TestConcentration
+    and TestConcentrationValue
+    and TestConcentrationMissing
+    and TestConcentrationNoComponents
+    and TestFlowRateNotPulseOximetry
+    and TestIndustry
+    and TestIndustryValue
+    and TestIndustryMissing
+    and TestIndustryNoComponents
+    and TestIsPulseOximetry
+    and TestIsPulseOximetryCodingOrder
+    and TestIsPulseOximetryWithAdditionalCoding
+    and TestIsPulseOximetryPulseOxOnly
+    and TestIsPulseOximetryO2SatOnly
+    and TestIsPulseOximetryOtherCode
+    and TestIsPulseOximetryWrongSystem
+    and TestIsPulseOximetryNoCodings
+    and TestOrganizationNpi
+    and TestOrganizationClia
+    and TestOrganizationNaic
+    and TestOrganizationCcn
+    and TestOrganizationEin
+    and TestOrganizationIdentifiersNone
+    and TestOrganizationIdentifiersOtherSystemOnly
+    and TestOrganizationNpiSystemIsExact
+    and TestOrganizationIdentifierWithoutSystem
+    and TestPractitionerNpi
+    and TestPractitionerEin
+    and TestPractitionerIdentifiersNone
+    and TestPractitionerNpiExcludesOtherSystems
+    and TestOxygenSaturationCodes
+    and TestEmergencyCodes
+    and TestEmergencyDepartmentVisitValueSet
+    and TestEncounterInpatientValueSet
+    and TestObservationServicesValueSet
+    and TestOutpatientSurgeryServiceValueSet
+    and TestIntensiveCareUnitValueSet
+    and TestValueSetsExcludeOtherVisits
+    and TestProfiledCarePlanHasCategory
+    and TestProfiledDiagnosticReportLabHasCategory
+    and TestProfiledServiceRequestHasCategory
+    and TestProfiledOrganizationNpi
+    and TestProfiledPractitionerNpi

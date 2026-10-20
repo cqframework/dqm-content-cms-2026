@@ -582,3 +582,89 @@ define TestProfileClaimUse:
 define TestProfileClaimType:
   AllTrue([USQualityCore.Claim] C return not (C.isInstitutional() and C.isProfessional()))
     and AllTrue([USQualityCore.Claim] C return not (C.isInpatient() and C.isOutpatient()))
+
+/*
+ * Combined result
+ */
+
+// True only if every test in this library is true, for use as the population criteria of a Cohort
+// measure. It uses `and` rather than AllTrue(), which ignores nulls, so that a null test fails it.
+// It must list each Test define; .claude/skills/cql/check_results.py checks this.
+define _Passed:
+  TestClaimStatusDeclarations
+    and TestExplanationOfBenefitStatusDeclarations
+    and TestUseDeclarations
+    and TestTypeDeclarations
+    and TestSubTypeDeclarations
+    and TestSupportingInfoTypeDeclarations
+    and TestDiagnosisRoleDeclarations
+    and TestDiagnosisTypeDeclarations
+    and TestProcedureTypeDeclarations
+    and TestPresentOnAdmissionDeclarations
+    and TestPresentOnAdmissionOrClinicallyUndetermined
+    and TestClaimIsActive
+    and TestClaimIsActiveNoStatus
+    and TestClaimActive
+    and TestClaimActiveEmpty
+    and TestClaimIsCancelled
+    and TestClaimIsDraft
+    and TestClaimIsEnteredInError
+    and TestClaimIsClaim
+    and TestClaimClaims
+    and TestClaimIsPreauthorization
+    and TestClaimIsPredetermination
+    and TestClaimIsInstitutional
+    and TestClaimIsInstitutionalWrongSystem
+    and TestClaimIsInstitutionalMatchesAnyCoding
+    and TestClaimInstitutional
+    and TestClaimIsProfessional
+    and TestClaimProfessional
+    and TestClaimIsPharmacy
+    and TestClaimIsOral
+    and TestClaimIsVision
+    and TestEOBIsActive
+    and TestEOBActive
+    and TestEOBIsCancelled
+    and TestEOBIsDraft
+    and TestEOBIsEnteredInError
+    and TestEOBIsClaim
+    and TestEOBClaims
+    and TestEOBIsPreauthorization
+    and TestEOBIsPredetermination
+    and TestEOBIsInstitutional
+    and TestEOBInstitutional
+    and TestEOBIsProfessional
+    and TestEOBProfessional
+    and TestEOBIsPharmacy
+    and TestEOBIsOral
+    and TestEOBIsVision
+    and TestDischargeStatus
+    and TestDischargeStatusMissing
+    and TestDischargeStatusNoSupportingInfo
+    and TestDischargeStatusWrongSystem
+    and TestPointOfOrigin
+    and TestPointOfOriginMissing
+    and TestPointOfOriginNoSupportingInfo
+    and TestIsPrincipalDiagnosis
+    and TestIsPrincipalDiagnosisWrongSystem
+    and TestIsPrincipalDiagnosisNoTypes
+    and TestIsAdmittingDiagnosis
+    and TestIsPrimaryProcedure
+    and TestIsSecondaryProcedure
+    and TestClaimIsInpatient
+    and TestClaimInpatient
+    and TestClaimIsOutpatient
+    and TestClaimOutpatient
+    and TestEOBIsInpatient
+    and TestEOBInpatient
+    and TestEOBIsOutpatient
+    and TestEOBOutpatient
+    and TestToServicedIntervalDate
+    and TestToServicedIntervalDateDuringDay
+    and TestToServicedIntervalDateDuringSameDayBoundary
+    and TestToServicedIntervalPeriod
+    and TestToServicedIntervalPeriodNoEnd
+    and TestToServicedIntervalNull
+    and TestProfileClaimStatus
+    and TestProfileClaimUse
+    and TestProfileClaimType
