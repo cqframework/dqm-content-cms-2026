@@ -25,7 +25,7 @@ context Patient
 
 // @deprecated: Use "Inpatient Encounter During Measurement Period" in the CQMInferences library instead
 define "Inpatient Encounter":
-  [USQualityCore.Encounter: "Encounter Inpatient"] EncounterInpatient
+  [Encounter: "Encounter Inpatient"] EncounterInpatient
     where EncounterInpatient.status = 'finished'
       and EncounterInpatient.period ends during day of "Measurement Period"
 
