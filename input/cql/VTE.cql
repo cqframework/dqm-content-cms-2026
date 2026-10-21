@@ -14,8 +14,8 @@ include hl7.fhir.us.cql.USCoreElements version '2.0.0' called USCoreElements
 include fhir.onc."us-quality-core".USQualityCoreCommon version '0.5.0' called USQualityCoreCommon
 
 include CQMCommon version '5.2.000' called CQMCommon
-include ClaimCommon version '0.4.000-draft' called ClaimCommon
-include ClaimElements version '0.4.000-draft' called ClaimElements
+include ClaimCommon version '0.4.000' called ClaimCommon
+include ClaimElements version '0.4.000' called ClaimElements
 
 valueset "Obstetrical or Pregnancy Related Conditions": 'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.117.1.7.1.263' 
 valueset "Obstetrics VTE": 'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.117.1.7.1.264'

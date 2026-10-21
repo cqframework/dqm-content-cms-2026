@@ -14,8 +14,8 @@ include hl7.fhir.us.cql.USCoreElements version '2.0.0' called USCoreElements
 include fhir.onc."us-quality-core".USQualityCoreCommon version '0.5.0' called USQualityCoreCommon
 
 include CQMCommon version '5.2.000' called CQMCommon
-include ClaimCommon version '0.4.000-draft' called ClaimCommon
-include ClaimElements version '0.4.000-draft' called ClaimElements
+include ClaimCommon version '0.4.000' called ClaimCommon
+include ClaimElements version '0.4.000' called ClaimElements
 
 valueset "Comfort Measures": 'http://cts.nlm.nih.gov/fhir/ValueSet/1.3.6.1.4.1.33895.1.3.0.45'
 valueset "Discharge To Acute Care Facility": 'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.117.1.7.1.87'
