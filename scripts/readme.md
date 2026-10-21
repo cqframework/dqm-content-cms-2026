@@ -40,3 +40,20 @@ This repository provides a workflow for comparing expected and actual results fo
 To quickly reproduce the comparison results without running the CQL plugin:
 - Extract `./scripts/results-connectathon-2025-09-13.zip` to `./input/tests/results`.
 - This will populate the results directory with sample data, allowing you to run the scripts and generate `./scripts/comparison/output_results.csv
+# Packaging test cases for MADiE
+
+`make_test_case_zip.py` packages a folder of CQL test cases (one subfolder per case, one FHIR
+resource per JSON file, as the CQL VS Code extension reads them) as a zip for MADiE's test case
+import, in the layout of a MADiE export: a folder per case named after its patient id, holding a
+single collection Bundle of all the case's resources, plus `.madie` and `README.txt`.
+
+```
+python scripts/make_test_case_zip.py input/tests/ClaimElementsTests
+```
+
+By default the zip is written into the test case folder, next to its README
+(`input/tests/ClaimElementsTests/ClaimElementsTests.zip`); use `-o` to write it elsewhere.
+
+It checks each case before packaging (exactly one Patient, no duplicate resources) and warns about
+a Patient id that doesn't match the folder name and references to resources the case doesn't
+contain. Run `python scripts/make_test_case_zip.py --help` for the options.

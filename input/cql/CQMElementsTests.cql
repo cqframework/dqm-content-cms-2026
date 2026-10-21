@@ -15,8 +15,11 @@ silently; `.claude/skills/cql/check_results.py` checks the names against the cas
 
 The retrieves and the visit functions need the CQMConcepts value set expansions, and the test data uses
 codes that are members of them.
+
+NOTE: This is in the process of being established as the measure CQMConceptsTests in MADiE:
+https://madie.cms.gov/measures/6ad7eeae1fbcbfc8d7e0c8de/edit/details/
 */
-library CQMElementsTests version '0.3.000-draft'
+library CQMElementsTests version '0.3.000'
 
 using USQualityCore version '0.5.0'
 using USCore version '6.1.0-derived'
@@ -25,8 +28,8 @@ using FHIR version '4.0.1'
 include hl7.fhir.uv.cql.FHIRHelpers version '4.0.1'
 include hl7.fhir.uv.cql.FHIRCommon version '2.0.0'
 
-include CQMConcepts version '0.3.000-draft'
-include CQMElements version '0.3.000-draft'
+include CQMConcepts version '0.3.000'
+include CQMElements version '0.3.000'
 
 codesystem "HSLOC": 'https://www.cdc.gov/nhsn/cdaportal/terminology/codesystem/hsloc.html'
 

@@ -1,7 +1,11 @@
 /*
 @description: Common data elements for use with clinical quality measures
+@comment: 
+
+NOTE: This library is currently released in MADiE; this is the development copy
+https://madie.cms.gov/cql-libraries/6ad7ed9abf531c0659c86b74/edit/details
 */
-library CQMElements version '0.3.000-draft'
+library CQMElements version '0.3.000'
 
 using USQualityCore version '0.5.0'
 using USCore version '6.1.0-derived'
@@ -10,8 +14,8 @@ using FHIR version '4.0.1'
 include hl7.fhir.uv.cql.FHIRHelpers version '4.0.1'
 include hl7.fhir.uv.cql.FHIRCommon version '2.0.0'
 
-include CQMConcepts version '0.3.000-draft'
-include FHIRBuilders version '0.1.000-draft' called Build
+include CQMConcepts version '0.3.000'
+include FHIRBuilders version '0.1.000' called Build
 
 context Patient
 
