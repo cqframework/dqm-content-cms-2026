@@ -16,8 +16,11 @@ independently declared codes. The exceptions are:
 `dischargeStatus()` and `pointOfOrigin()` use `single()`, which throws when more than one matching
 supporting info entry is present. That behavior cannot be expressed as a passing Boolean test, so it is
 not covered here.
+
+NOTE: This is in the process of being established as the measure ClaimCommonTests in MADiE:
+https://madie.cms.gov/measures/6ad8c9ff1fbcbfc8d7e0c9aa/edit/details/
 */
-library ClaimCommonTests version '0.4.000-draft'
+library ClaimCommonTests version '0.4.000'
 
 using USQualityCore version '0.5.0'
 using USCore version '6.1.0-derived'
@@ -25,8 +28,8 @@ using FHIR version '4.0.1'
 
 include hl7.fhir.uv.cql.FHIRHelpers version '4.0.1'
 
-include ClaimCommon version '0.4.000-draft'
-include FHIRBuilders version '0.1.000-draft' called Build
+include ClaimCommon version '0.4.000'
+include FHIRBuilders version '0.1.000' called Build
 
 codesystem "FMStatus": 'http://hl7.org/fhir/fm-status'
 codesystem "ExplanationOfBenefitStatus": 'http://hl7.org/fhir/explanationofbenefit-status'

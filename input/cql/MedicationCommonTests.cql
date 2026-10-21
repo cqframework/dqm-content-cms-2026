@@ -12,8 +12,11 @@ declared codes, so that a wrong system or code in MedicationCommon makes a test 
 The profile tests run the functions over retrieved US Quality Core medication resources. They check that
 the FHIR-typed overloads resolve for profiled inputs, and are invariants that must hold for whatever
 data is loaded. With no data loaded they are vacuously true.
+
+NOTE: This is in the process of being established as the measure MedicationCommonTests in MADiE:
+https://madie.cms.gov/measures/6ad8cdd11fbcbfc8d7e0c9bd/edit/details/
 */
-library MedicationCommonTests version '0.2.000-draft'
+library MedicationCommonTests version '0.2.000'
 
 using USQualityCore version '0.5.0'
 using USCore version '6.1.0-derived'
@@ -21,8 +24,8 @@ using FHIR version '4.0.1'
 
 include hl7.fhir.uv.cql.FHIRHelpers version '4.0.1'
 
-include MedicationCommon version '0.2.000-draft'
-include FHIRBuilders version '0.1.000-draft' called Build
+include MedicationCommon version '0.2.000'
+include FHIRBuilders version '0.1.000' called Build
 
 codesystem "RXNORM": 'http://www.nlm.nih.gov/research/umls/rxnorm'
 codesystem "MedicationRequestStatus": 'http://hl7.org/fhir/CodeSystem/medicationrequest-status'

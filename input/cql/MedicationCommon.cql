@@ -31,8 +31,11 @@ logic - `{ 'active', 'completed' }` for a MedicationRequest that is in force or 
 requires agreement on what they mean, so for now callers compose the individual predicates, as in
 `MR.isActive() or MR.isCompleted()`. Establishing whether those aggregates are worth naming, and what
 to call them, is part of what the upstream proposal should settle.
+
+NOTE: This library is currently released in MADiE; this is the development copy
+https://madie.cms.gov/cql-libraries/6ad8cd51bf531c0659c86b77/edit/details
 */
-library MedicationCommon version '0.2.000-draft'
+library MedicationCommon version '0.2.000'
 
 using FHIR version '4.0.1'
 

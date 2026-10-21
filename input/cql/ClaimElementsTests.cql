@@ -17,8 +17,11 @@ Rows of the flattened expressions are identified by a key built from the claim i
 numbers, e.g. `clm-01:1` for item 1 of claim clm-01, and `clm-01:1:2` for diagnosis 2 of that item.
 
 No terminology is needed: the tests compare codes directly, not by value set membership.
+
+NOTE: This is in the process of being established as the measure ClaimElementsTests in MADiE:
+https://madie.cms.gov/measures/6ad8ccb11fbcbfc8d7e0c9b5/edit/details/
 */
-library ClaimElementsTests version '0.4.000-draft'
+library ClaimElementsTests version '0.4.000'
 
 using USQualityCore version '0.5.0'
 using USCore version '6.1.0-derived'
@@ -27,8 +30,8 @@ using FHIR version '4.0.1'
 include hl7.fhir.uv.cql.FHIRHelpers version '4.0.1'
 include hl7.fhir.uv.cql.FHIRCommon version '2.0.0'
 
-include ClaimCommon version '0.4.000-draft'
-include ClaimElements version '0.4.000-draft'
+include ClaimCommon version '0.4.000'
+include ClaimElements version '0.4.000'
 
 codesystem "ICD10CM": 'http://hl7.org/fhir/sid/icd-10-cm'
 codesystem "ICD10PCS": 'http://www.cms.gov/Medicare/Coding/ICD10'

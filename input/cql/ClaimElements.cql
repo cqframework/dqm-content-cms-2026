@@ -13,8 +13,11 @@ function takes a row whose claim is a `USQualityCore.Claim`. As part of the prom
 be generalized to all claims: the US Quality Core and US Core models would be dropped in favor of FHIR
 alone, the retrieves would become `[FHIR.Claim]`, and the row types would use `FHIR.Claim`. Nothing in
 the logic depends on the US Quality Core profile, so no other change should be needed.
+
+NOTE: This library is currently released in MADiE; this is the development copy
+https://madie.cms.gov/cql-libraries/6ad8cc29bf531c0659c86b76/edit/details
 */
-library ClaimElements version '0.4.000-draft'
+library ClaimElements version '0.4.000'
 
 using USQualityCore version '0.5.0'
 using USCore version '6.1.0-derived'
@@ -23,7 +26,7 @@ using FHIR version '4.0.1'
 include hl7.fhir.uv.cql.FHIRHelpers version '4.0.1'
 include hl7.fhir.uv.cql.FHIRCommon version '2.0.0'
 
-include ClaimCommon version '0.4.000-draft' called ClaimCommon
+include ClaimCommon version '0.4.000' called ClaimCommon
 
 context Patient
 

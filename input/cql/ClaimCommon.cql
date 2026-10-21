@@ -25,8 +25,11 @@ An aggregate helper for the recurring combination - an active claim, with a use 
 of an institutional or professional type - is deliberately not defined here, for the same reason as
 in MedicationCommon: naming it requires agreement on what it means. For now callers compose the
 predicates, as in `C.isActive() and C.isClaim() and (C.isInstitutional() or C.isProfessional())`.
+
+NOTE: This library is currently released in MADiE; this is the development copy
+https://madie.cms.gov/cql-libraries/6ad8c979bf531c0659c86b75/edit/details
 */
-library ClaimCommon version '0.4.000-draft'
+library ClaimCommon version '0.4.000'
 
 using FHIR version '4.0.1'
 
