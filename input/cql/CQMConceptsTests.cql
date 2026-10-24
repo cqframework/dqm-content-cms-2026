@@ -19,10 +19,13 @@ The single-valued accessors (`flowRate()`, `concentration()`, `industry()`, `ccn
 documented to throw when more than one matching element is present. That behavior cannot be expressed
 as a passing Boolean test, so it is not covered here.
 
+NOTE: This library is developed in the dqm-content-cms-2026 repository:
+https://github.com/cqframework/dqm-content-cms-2026/blob/main/input/cql/CQMConceptsTests.cql
+
 NOTE: This is in the process of being established as the measure CQMConceptsTests in MADiE:
 https://madie.cms.gov/measures/6ad7e9421fbcbfc8d7e0c8d2/edit/details/
 */
-library CQMConceptsTests version '0.3.000'
+library CQMConceptsTests version '0.4.000'
 
 using USQualityCore version '0.5.0'
 using USCore version '6.1.0-derived'
@@ -30,7 +33,7 @@ using FHIR version '4.0.1'
 
 include hl7.fhir.uv.cql.FHIRHelpers version '4.0.1'
 
-include CQMConcepts version '0.3.000'
+include CQMConcepts version '0.4.000'
 include FHIRBuilders version '0.1.000' called Build
 
 codesystem "SNOMEDCT": 'http://snomed.info/sct'
@@ -42,6 +45,8 @@ codesystem "Industry CDC Census 2010": 'urn:oid:2.16.840.1.114222.4.11.7900'
 //codesystem "DiagnosticServiceSectionCodes": 'http://terminology.hl7.org/CodeSystem/v2-0074'
 //codesystem "USCoreCarePlanCategoryCodes": 'http://hl7.org/fhir/us/core/CodeSystem/careplan-category'
 codesystem "HSLOC": 'https://www.cdc.gov/nhsn/cdaportal/terminology/codesystem/hsloc.html'
+codesystem "ConditionClinicalStatusCodes": 'http://terminology.hl7.org/CodeSystem/condition-clinical'
+codesystem "AllergyIntoleranceClinicalStatusCodes": 'http://terminology.hl7.org/CodeSystem/allergyintolerance-clinical'
 
 // Code systems that are deliberately not the ones the CQMConcepts terminology uses
 codesystem "Example CarePlan Category": 'http://example.org/careplan-category'
@@ -62,6 +67,16 @@ code "Hospital admission": '32485007' from "SNOMEDCT" display 'Hospital admissio
 code "Admission to observation unit": '448951000124107' from "SNOMEDCT" display 'Admission to observation unit' // "Observation Services"
 code "Ambulatory surgery": '110468005' from "SNOMEDCT" display 'Ambulatory surgery' // "Outpatient Surgery Service"
 code "Medical Critical Care": '1027-2' from "HSLOC" display 'Medical Critical Care' // "Intensive Care Unit"
+
+// Clinical status codes
+code "Condition Active": 'active' from "ConditionClinicalStatusCodes"
+code "Condition Recurrence": 'recurrence' from "ConditionClinicalStatusCodes"
+code "Condition Relapse": 'relapse' from "ConditionClinicalStatusCodes"
+code "Condition Inactive": 'inactive' from "ConditionClinicalStatusCodes"
+code "Condition Resolved": 'resolved' from "ConditionClinicalStatusCodes"
+code "Allergy Active": 'active' from "AllergyIntoleranceClinicalStatusCodes"
+code "Allergy Inactive": 'inactive' from "AllergyIntoleranceClinicalStatusCodes"
+code "Allergy Resolved": 'resolved' from "AllergyIntoleranceClinicalStatusCodes"
 
 context Patient
 
@@ -127,6 +142,71 @@ define function "Values"(values List<FHIR.string>):
   values V
     return V.value
 
+define function "Asserted Date Extensions"(assertedDate DateTime):
+  if assertedDate is null then List<FHIR.Extension>{}
+  else {
+    FHIR.Extension {
+      url: Build.uri('http://hl7.org/fhir/StructureDefinition/condition-assertedDate'),
+      value: Build.dateTime(assertedDate)
+    }
+  }
+
+define function "Allergy Abatement Extensions"(abatement Choice<FHIR.dateTime, FHIR.Period>):
+  if abatement is null then List<FHIR.Extension>{}
+  else {
+    FHIR.Extension {
+      url: Build.uri('http://hl7.org/fhir/StructureDefinition/allergyintolerance-abatement'),
+      value: abatement
+    }
+  }
+
+// Pass null for any element the fixture should not have
+define function "Test Condition"(
+  clinicalStatus System.Code,
+  onset Choice<FHIR.dateTime, FHIR.Period>,
+  abatement Choice<FHIR.dateTime, FHIR.Period>,
+  assertedDate DateTime,
+  recordedDate DateTime
+):
+  FHIR.Condition {
+    id: Build.id('test-condition'),
+    extension: "Asserted Date Extensions"(assertedDate),
+    clinicalStatus: Build.CodeableConcept(clinicalStatus),
+    onset: onset,
+    abatement: abatement,
+    recordedDate: Build.dateTime(recordedDate),
+    subject: Build.Reference('Patient/test-patient')
+  }
+
+// AllergyIntolerance has no abatement element; FHIRCommon reads it from the allergyintolerance-abatement extension
+define function "Test AllergyIntolerance"(
+  clinicalStatus System.Code,
+  onset Choice<FHIR.dateTime, FHIR.Period>,
+  abatement Choice<FHIR.dateTime, FHIR.Period>,
+  assertedDate DateTime,
+  recordedDate DateTime
+):
+  FHIR.AllergyIntolerance {
+    id: Build.id('test-allergyintolerance'),
+    extension: "Asserted Date Extensions"(assertedDate) union "Allergy Abatement Extensions"(abatement),
+    clinicalStatus: Build.CodeableConcept(clinicalStatus),
+    onset: onset,
+    recordedDate: Build.dateTime(recordedDate),
+    patient: Build.Reference('Patient/test-patient')
+  }
+
+// A closed null end boundary: the period is ongoing, so end of returns the maximum DateTime
+define function "Is Ongoing From"(period Interval<DateTime>, start DateTime):
+  start of period = start
+    and period.highClosed
+    and end of period = maximum DateTime
+
+// An open null end boundary: the end is unknown, so end of returns null
+define function "Has Unknown End From"(period Interval<DateTime>, start DateTime):
+  start of period = start
+    and not period.highClosed
+    and end of period is null
+
 /*
  * Fixtures
  */
@@ -188,6 +268,20 @@ define "Practitioner With Identifiers":
     // A CLIA identifier on a practitioner is not one of its slices, and must not be read as an NPI or EIN
     Build.Identifier("CLIA System", '12D4567890')
   })
+
+// Dates for the Condition and AllergyIntolerance fixtures. Each is distinct, so a test can tell which
+// one a function picked.
+define "Onset Date": @2024-01-10T12:00:00.000Z
+define "Onset Period End": @2024-01-20T12:00:00.000Z
+define "Asserted Date": @2024-01-12T12:00:00.000Z
+define "Recorded Date": @2024-01-15T12:00:00.000Z
+define "Abatement Period Start": @2024-05-01T12:00:00.000Z
+define "Abatement Date": @2024-06-01T12:00:00.000Z
+
+define "Onset": Build.dateTime("Onset Date")
+define "Onset Period": Build.Period(Interval["Onset Date", "Onset Period End"])
+define "Abatement": Build.dateTime("Abatement Date")
+define "Abatement Period": Build.Period(Interval["Abatement Period Start", "Abatement Date"])
 
 /*
  * toDateInterval
@@ -542,6 +636,202 @@ define TestPractitionerNpiExcludesOtherSystems:
     and "Test Practitioner"({ Build.Identifier("CLIA System", '12D4567890') }).ein() is null
 
 /*
+ * Period
+ */
+
+// An active period is ongoing: the end boundary is closed and null, i.e. unbounded
+define TestPeriodActive:
+  "Is Ongoing From"(CQMConcepts.Period("Onset Date", null, true), "Onset Date")
+
+define TestPeriodActiveIgnoresEnd:
+  "Is Ongoing From"(CQMConcepts.Period("Onset Date", "Abatement Date", true), "Onset Date")
+
+define TestPeriodInactive:
+  CQMConcepts.Period("Onset Date", "Abatement Date", false) = Interval["Onset Date", "Abatement Date"]
+
+define TestPeriodInactiveIsClosed:
+  CQMConcepts.Period("Onset Date", "Abatement Date", false).lowClosed
+    and CQMConcepts.Period("Onset Date", "Abatement Date", false).highClosed
+
+// An inactive period with no end has ended at an unknown time: the end boundary is open and null
+define TestPeriodInactiveUnknownEnd:
+  "Has Unknown End From"(CQMConcepts.Period("Onset Date", null, false), "Onset Date")
+
+// An unknown active status is treated as not active
+define TestPeriodNullIsActive:
+  CQMConcepts.Period("Onset Date", "Abatement Date", null) = Interval["Onset Date", "Abatement Date"]
+
+define TestPeriodNullIsActiveUnknownEnd:
+  "Has Unknown End From"(CQMConcepts.Period("Onset Date", null, null), "Onset Date")
+
+// The start boundary is always closed, so a null start is unbounded, not unknown
+define TestPeriodNullStart:
+  start of CQMConcepts.Period(null, "Abatement Date", false) = minimum DateTime
+    and end of CQMConcepts.Period(null, "Abatement Date", false) = "Abatement Date"
+
+/*
+ * prevalencePeriod(Condition)
+ */
+
+define TestConditionPrevalencePeriodActive:
+  "Is Ongoing From"("Test Condition"("Condition Active", "Onset", null, null, null).prevalencePeriod(), "Onset Date")
+
+// An active condition is ongoing even if it has an abatement. FHIRCommon 2.0.0's prevalenceInterval()
+// ends at the abatement instead (FHIR-59708).
+define TestConditionPrevalencePeriodActiveIgnoresAbatement:
+  "Is Ongoing From"("Test Condition"("Condition Active", "Onset", "Abatement", null, null).prevalencePeriod(), "Onset Date")
+
+define TestConditionPrevalencePeriodRecurrence:
+  "Is Ongoing From"("Test Condition"("Condition Recurrence", "Onset", null, null, null).prevalencePeriod(), "Onset Date")
+
+define TestConditionPrevalencePeriodRelapse:
+  "Is Ongoing From"("Test Condition"("Condition Relapse", "Onset", null, null, null).prevalencePeriod(), "Onset Date")
+
+define TestConditionPrevalencePeriodResolved:
+  "Test Condition"("Condition Resolved", "Onset", "Abatement", null, null).prevalencePeriod()
+    = Interval["Onset Date", "Abatement Date"]
+
+define TestConditionPrevalencePeriodInactive:
+  "Test Condition"("Condition Inactive", "Onset", "Abatement", null, null).prevalencePeriod()
+    = Interval["Onset Date", "Abatement Date"]
+
+// Period-valued onset and abatement contribute their start and end respectively
+define TestConditionPrevalencePeriodPeriods:
+  "Test Condition"("Condition Resolved", "Onset Period", "Abatement Period", null, null).prevalencePeriod()
+    = Interval["Onset Date", "Abatement Date"]
+
+define TestConditionPrevalencePeriodResolvedUnknownAbatement:
+  "Has Unknown End From"("Test Condition"("Condition Resolved", "Onset", null, null, null).prevalencePeriod(), "Onset Date")
+
+define TestConditionPrevalencePeriodNoClinicalStatus:
+  "Test Condition"(null, "Onset", "Abatement", null, null).prevalencePeriod() = Interval["Onset Date", "Abatement Date"]
+    and "Has Unknown End From"("Test Condition"(null, "Onset", null, null, null).prevalencePeriod(), "Onset Date")
+
+// The clinical status is matched by system as well as code
+define TestConditionPrevalencePeriodStatusWrongSystem:
+  "Has Unknown End From"("Test Condition"(Code 'active' from "Example Codes", "Onset", null, null, null).prevalencePeriod(), "Onset Date")
+
+// The prevalence period starts at onset only; the asserted and recorded dates are not used, so with no
+// onset the start is unbounded
+define TestConditionPrevalencePeriodOnsetOnly:
+  start of "Test Condition"("Condition Resolved", null, "Abatement", "Asserted Date", "Recorded Date").prevalencePeriod()
+    = minimum DateTime
+
+/*
+ * relevantDate(Condition)
+ */
+
+define TestConditionRelevantDateOnset:
+  "Test Condition"("Condition Active", "Onset", null, "Asserted Date", "Recorded Date").relevantDate() = "Onset Date"
+
+define TestConditionRelevantDateOnsetPeriod:
+  "Test Condition"("Condition Active", "Onset Period", null, "Asserted Date", "Recorded Date").relevantDate() = "Onset Date"
+
+define TestConditionRelevantDateAsserted:
+  "Test Condition"("Condition Active", null, null, "Asserted Date", "Recorded Date").relevantDate() = "Asserted Date"
+
+define TestConditionRelevantDateRecorded:
+  "Test Condition"("Condition Active", null, null, null, "Recorded Date").relevantDate() = "Recorded Date"
+
+define TestConditionRelevantDateNone:
+  "Test Condition"("Condition Active", null, null, null, null).relevantDate() is null
+
+/*
+ * relevantPeriod(Condition)
+ */
+
+define TestConditionRelevantPeriodActive:
+  "Is Ongoing From"("Test Condition"("Condition Active", "Onset", "Abatement", null, null).relevantPeriod(), "Onset Date")
+
+define TestConditionRelevantPeriodActiveFromRecorded:
+  "Is Ongoing From"("Test Condition"("Condition Active", null, null, null, "Recorded Date").relevantPeriod(), "Recorded Date")
+
+define TestConditionRelevantPeriodResolved:
+  "Test Condition"("Condition Resolved", null, "Abatement", "Asserted Date", "Recorded Date").relevantPeriod()
+    = Interval["Asserted Date", "Abatement Date"]
+
+define TestConditionRelevantPeriodAbatementPeriod:
+  "Test Condition"("Condition Resolved", "Onset", "Abatement Period", null, null).relevantPeriod()
+    = Interval["Onset Date", "Abatement Date"]
+
+define TestConditionRelevantPeriodResolvedUnknownAbatement:
+  "Has Unknown End From"("Test Condition"("Condition Resolved", "Onset", null, null, null).relevantPeriod(), "Onset Date")
+
+define TestConditionRelevantPeriodNoDates:
+  start of "Test Condition"("Condition Resolved", null, "Abatement", null, null).relevantPeriod() = minimum DateTime
+    and end of "Test Condition"("Condition Resolved", null, "Abatement", null, null).relevantPeriod() = "Abatement Date"
+
+/*
+ * prevalencePeriod(AllergyIntolerance)
+ */
+
+define TestAllergyPrevalencePeriodActive:
+  "Is Ongoing From"("Test AllergyIntolerance"("Allergy Active", "Onset", null, null, null).prevalencePeriod(), "Onset Date")
+
+define TestAllergyPrevalencePeriodActiveIgnoresAbatement:
+  "Is Ongoing From"("Test AllergyIntolerance"("Allergy Active", "Onset", "Abatement", null, null).prevalencePeriod(), "Onset Date")
+
+define TestAllergyPrevalencePeriodResolved:
+  "Test AllergyIntolerance"("Allergy Resolved", "Onset", "Abatement", null, null).prevalencePeriod()
+    = Interval["Onset Date", "Abatement Date"]
+
+define TestAllergyPrevalencePeriodInactive:
+  "Test AllergyIntolerance"("Allergy Inactive", "Onset", "Abatement", null, null).prevalencePeriod()
+    = Interval["Onset Date", "Abatement Date"]
+
+define TestAllergyPrevalencePeriodPeriods:
+  "Test AllergyIntolerance"("Allergy Resolved", "Onset Period", "Abatement Period", null, null).prevalencePeriod()
+    = Interval["Onset Date", "Abatement Date"]
+
+define TestAllergyPrevalencePeriodResolvedUnknownAbatement:
+  "Has Unknown End From"("Test AllergyIntolerance"("Allergy Resolved", "Onset", null, null, null).prevalencePeriod(), "Onset Date")
+
+// An allergy's clinical status comes from the allergyintolerance-clinical code system; the condition
+// 'active' code does not make it active
+define TestAllergyPrevalencePeriodConditionStatus:
+  "Has Unknown End From"("Test AllergyIntolerance"("Condition Active", "Onset", null, null, null).prevalencePeriod(), "Onset Date")
+
+define TestAllergyPrevalencePeriodOnsetOnly:
+  start of "Test AllergyIntolerance"("Allergy Resolved", null, "Abatement", "Asserted Date", "Recorded Date").prevalencePeriod()
+    = minimum DateTime
+
+/*
+ * relevantDate(AllergyIntolerance)
+ */
+
+define TestAllergyRelevantDateOnset:
+  "Test AllergyIntolerance"("Allergy Active", "Onset", null, "Asserted Date", "Recorded Date").relevantDate() = "Onset Date"
+
+define TestAllergyRelevantDateOnsetPeriod:
+  "Test AllergyIntolerance"("Allergy Active", "Onset Period", null, "Asserted Date", "Recorded Date").relevantDate() = "Onset Date"
+
+define TestAllergyRelevantDateAsserted:
+  "Test AllergyIntolerance"("Allergy Active", null, null, "Asserted Date", "Recorded Date").relevantDate() = "Asserted Date"
+
+define TestAllergyRelevantDateRecorded:
+  "Test AllergyIntolerance"("Allergy Active", null, null, null, "Recorded Date").relevantDate() = "Recorded Date"
+
+define TestAllergyRelevantDateNone:
+  "Test AllergyIntolerance"("Allergy Active", null, null, null, null).relevantDate() is null
+
+/*
+ * relevantPeriod(AllergyIntolerance)
+ */
+
+define TestAllergyRelevantPeriodActive:
+  "Is Ongoing From"("Test AllergyIntolerance"("Allergy Active", "Onset", "Abatement", null, null).relevantPeriod(), "Onset Date")
+
+define TestAllergyRelevantPeriodActiveFromRecorded:
+  "Is Ongoing From"("Test AllergyIntolerance"("Allergy Active", null, null, null, "Recorded Date").relevantPeriod(), "Recorded Date")
+
+define TestAllergyRelevantPeriodResolved:
+  "Test AllergyIntolerance"("Allergy Resolved", null, "Abatement", "Asserted Date", "Recorded Date").relevantPeriod()
+    = Interval["Asserted Date", "Abatement Date"]
+
+define TestAllergyRelevantPeriodResolvedUnknownAbatement:
+  "Has Unknown End From"("Test AllergyIntolerance"("Allergy Resolved", "Onset", null, null, null).relevantPeriod(), "Onset Date")
+
+/*
  * Terminology
  * These check the CQMConcepts code declarations against independently declared values, and that a
  * known member is in each CQMConcepts value set. The value set tests require expansions.
@@ -602,6 +892,20 @@ define TestProfiledOrganizationNpi:
 
 define TestProfiledPractitionerNpi:
   AllTrue([USQualityCore.Practitioner] P return Count(P.npi()) <= Count(P.identifier))
+
+// Period() always returns an interval, even when every input is null
+define TestProfiledConditionPeriods:
+  AllTrue([USQualityCore.ConditionProblemsHealthConcerns] C
+    return C.prevalencePeriod() is not null and C.relevantPeriod() is not null
+  )
+    and AllTrue([USQualityCore.ConditionEncounterDiagnosis] C
+      return C.prevalencePeriod() is not null and C.relevantPeriod() is not null
+    )
+
+define TestProfiledAllergyIntolerancePeriods:
+  AllTrue([USQualityCore.AllergyIntolerance] A
+    return A.prevalencePeriod() is not null and A.relevantPeriod() is not null
+  )
 
 /*
  * Combined result
@@ -692,6 +996,53 @@ define _Passed:
     and TestPractitionerEin
     and TestPractitionerIdentifiersNone
     and TestPractitionerNpiExcludesOtherSystems
+    and TestPeriodActive
+    and TestPeriodActiveIgnoresEnd
+    and TestPeriodInactive
+    and TestPeriodInactiveIsClosed
+    and TestPeriodInactiveUnknownEnd
+    and TestPeriodNullIsActive
+    and TestPeriodNullIsActiveUnknownEnd
+    and TestPeriodNullStart
+    and TestConditionPrevalencePeriodActive
+    and TestConditionPrevalencePeriodActiveIgnoresAbatement
+    and TestConditionPrevalencePeriodRecurrence
+    and TestConditionPrevalencePeriodRelapse
+    and TestConditionPrevalencePeriodResolved
+    and TestConditionPrevalencePeriodInactive
+    and TestConditionPrevalencePeriodPeriods
+    and TestConditionPrevalencePeriodResolvedUnknownAbatement
+    and TestConditionPrevalencePeriodNoClinicalStatus
+    and TestConditionPrevalencePeriodStatusWrongSystem
+    and TestConditionPrevalencePeriodOnsetOnly
+    and TestConditionRelevantDateOnset
+    and TestConditionRelevantDateOnsetPeriod
+    and TestConditionRelevantDateAsserted
+    and TestConditionRelevantDateRecorded
+    and TestConditionRelevantDateNone
+    and TestConditionRelevantPeriodActive
+    and TestConditionRelevantPeriodActiveFromRecorded
+    and TestConditionRelevantPeriodResolved
+    and TestConditionRelevantPeriodAbatementPeriod
+    and TestConditionRelevantPeriodResolvedUnknownAbatement
+    and TestConditionRelevantPeriodNoDates
+    and TestAllergyPrevalencePeriodActive
+    and TestAllergyPrevalencePeriodActiveIgnoresAbatement
+    and TestAllergyPrevalencePeriodResolved
+    and TestAllergyPrevalencePeriodInactive
+    and TestAllergyPrevalencePeriodPeriods
+    and TestAllergyPrevalencePeriodResolvedUnknownAbatement
+    and TestAllergyPrevalencePeriodConditionStatus
+    and TestAllergyPrevalencePeriodOnsetOnly
+    and TestAllergyRelevantDateOnset
+    and TestAllergyRelevantDateOnsetPeriod
+    and TestAllergyRelevantDateAsserted
+    and TestAllergyRelevantDateRecorded
+    and TestAllergyRelevantDateNone
+    and TestAllergyRelevantPeriodActive
+    and TestAllergyRelevantPeriodActiveFromRecorded
+    and TestAllergyRelevantPeriodResolved
+    and TestAllergyRelevantPeriodResolvedUnknownAbatement
     and TestOxygenSaturationCodes
     and TestEmergencyCodes
     and TestEmergencyDepartmentVisitValueSet
@@ -706,3 +1057,5 @@ define _Passed:
     and TestProfiledServiceRequestHasCategory
     and TestProfiledOrganizationNpi
     and TestProfiledPractitionerNpi
+    and TestProfiledConditionPeriods
+    and TestProfiledAllergyIntolerancePeriods
