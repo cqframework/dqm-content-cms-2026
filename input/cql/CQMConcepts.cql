@@ -416,17 +416,17 @@ define function Period(start System.DateTime, end System.DateTime, isActive Syst
   if isActive or end is not null then
     Interval[start, if isActive then null else end]
   else
-    Interval[start, if isActive then null else end)
+    Interval[start, end)
 
 /*
 @description: Returns an interval representing the normalized prevalence period of a given Condition resource.
-@comment: Uses the toInterval and toAbatementInterval functions to determine the widest potential interval from
+@comment: Uses the toInterval and abatementInterval functions to determine the widest potential interval from
 onset to abatement as specified in the given Condition.
 
 NOTE: The prevalenceInterval function in FHIRCommon 2.0.0 has a known issue (https://jira.hl7.org/browse/FHIR-59708). 
 This function addresses that issue. The correction to prevalenceInterval is being added to FHIRCommon 3.0.0.
 */
-define fluent function prevalencePeriod(condition Condition):
+define fluent function prevalencePeriod(condition FHIR.Condition):
   Period(
     start of condition.onset.toInterval(),
     end of condition.abatementInterval(),
@@ -453,7 +453,7 @@ define fluent function relevantDate(condition FHIR.Condition):
 /*
 @description: Returns the relevant period for a condition, from relevant date through abatement
 @comment: This function returns a date time interval from the condition relevant date (as determined
-using the `relevantDate()` function)) through the end of the condition abatement interval (as 
+using the `relevantDate()` function) through the end of the condition abatement interval (as 
 determined using the `abatementInterval()` function). The resulting interval will have an open
 ending boundary only if the condition is not active (as determined by the `isActive()` function)
 and the abatement end date is null.
@@ -469,13 +469,13 @@ define fluent function relevantPeriod(condition FHIR.Condition):
 
 /*
 @description: Returns an interval representing the normalized prevalence period of a given AllergyIntolerance resource.
-@comment: Uses the toInterval and toAbatementInterval functions to determine the widest potential interval from
+@comment: Uses the toInterval and abatementInterval functions to determine the widest potential interval from
 onset to abatement as specified in the given AllergyIntolerance.
 
 NOTE: The prevalenceInterval function in FHIRCommon 2.0.0 has a known issue (https://jira.hl7.org/browse/FHIR-59708). 
 This function addresses that issue. The correction to prevalenceInterval is being added to FHIRCommon 3.0.0.
 */
-define fluent function prevalencePeriod(allergyIntolerance AllergyIntolerance):
+define fluent function prevalencePeriod(allergyIntolerance FHIR.AllergyIntolerance):
   Period(
     start of allergyIntolerance.onset.toInterval(),
     end of allergyIntolerance.abatementInterval(),
@@ -502,7 +502,7 @@ define fluent function relevantDate(allergyIntolerance FHIR.AllergyIntolerance):
 /*
 @description: Returns the relevant period for an allergy/intolerance, from relevant date through abatement
 @comment: This function returns a date time interval from the allergy/intolerance relevant date (as determined
-using the `relevantDate()` function)) through the end of the allergy/intolerance abatement interval (as 
+using the `relevantDate()` function) through the end of the allergy/intolerance abatement interval (as 
 determined using the `abatementInterval()` function). The resulting interval will have an open
 ending boundary only if the allergy/intolerance is not active (as determined by the `isActive()` function)
 and the abatement end date is null.
