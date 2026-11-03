@@ -5,8 +5,11 @@ Usage (from the repo root):  python .claude/skills/cql/check_results.py <Library
 Reads input/cql/<lib>.cql and input/tests/results/<lib>.txt, and fails unless:
 * the run didn't abort (no Error= line),
 * every `define Test...` in the library appears in every case's results, with the value true,
-* every case name used in a `when '<case>' then` clause of a Test define is one of the case folders in
-  input/tests/<lib>/ (a misspelled name would otherwise pass silently, since uncovered cases are true),
+* every case name used in a `when '<case>' then` clause of a Test define is the label of one of the case
+  folders in input/tests/<lib>/ (a misspelled name would otherwise pass silently, since uncovered cases
+  are true). A case's label is the given name of its Patient, or the folder name if the Patient has no
+  given name; with GUID patient ids (as MADiE expects), the label is what `Case=` reports,
+* the cases in the results are exactly the case labels,
 * if the library defines `_Passed` (the combined result, for a Cohort measure), it lists every Test
   define exactly once, and is true for every case.
 
@@ -18,9 +21,24 @@ Libraries with no patient data have a single block of results. With patient data
 case are separated by blank lines and sorted by name, so `Patient=` is not a header; the case is read
 from the `Case=` or `Patient=Patient(id=...)` line anywhere in the block.
 """
+import json
 import os
 import re
 import sys
+
+
+def case_label(case_dir):
+    """The case's label: the given name of its Patient, or the folder name if the Patient has none."""
+    for name in sorted(os.listdir(case_dir)):
+        if not name.lower().endswith('.json'):
+            continue
+        with open(os.path.join(case_dir, name), encoding='utf-8') as f:
+            resource = json.load(f)
+        if resource.get('resourceType') == 'Patient':
+            given = [g for n in resource.get('name', []) for g in n.get('given', [])]
+            if given:
+                return given[0]
+    return os.path.basename(case_dir)
 
 
 def main(lib):
@@ -28,7 +46,8 @@ def main(lib):
     results_path = os.path.join('input', 'tests', 'results', lib + '.txt')
     cases_dir = os.path.join('input', 'tests', lib)
 
-    src = open(cql_path, encoding='utf-8').read()
+    # Tests in block comments (e.g. ones that can't run in MADiE) aren't defined, so leave them out
+    src = re.sub(r'/\*.*?\*/', '', open(cql_path, encoding='utf-8').read(), flags=re.S)
     test_defines = {}
     for block in re.split(r'\n(?=define )', src):
         m = re.match(r'define (Test\w+)\s*:', block)
@@ -44,7 +63,9 @@ def main(lib):
     if passed:
         body = passed.group(1)
         listed = re.findall(r'\b(Test\w+)\b', re.sub(r'//[^\n]*', '', body))
-        excluded = set(re.findall(r'^\s*//\s*(?:and\s+)?(Test\w+)\s*$', body, re.M))
+        # A commented-out entry for a test that is itself commented out is a disabled test, not a
+        # known failure
+        excluded = set(re.findall(r'^\s*//\s*(?:and\s+)?(Test\w+)\s*$', body, re.M)) & set(test_defines)
         for test in test_defines:
             expected = 0 if test in excluded else 1
             if listed.count(test) != expected:
@@ -52,13 +73,14 @@ def main(lib):
         for test in (set(listed) | excluded) - set(test_defines):
             problems.append(f'_Passed lists {test}, which is not a Test define')
 
-    # Case names used in the tests must be case folders
+    # Case names used in the tests must be case labels
     folders = sorted(d for d in os.listdir(cases_dir) if os.path.isdir(os.path.join(cases_dir, d))) \
         if os.path.isdir(cases_dir) else []
+    labels = sorted(case_label(os.path.join(cases_dir, d)) for d in folders)
     for test, names in test_defines.items():
         for name in names:
-            if name not in folders:
-                problems.append(f'{test}: case {name!r} is not a folder in {cases_dir}')
+            if name not in labels:
+                problems.append(f'{test}: case {name!r} is not a case label in {cases_dir}')
 
     # Results, one block per case
     if not os.path.exists(results_path):
@@ -121,8 +143,8 @@ def main(lib):
                 problems.append(f'{label}: _Passed={value}' if value is not None
                                 else f'{label}: _Passed is missing from the results (re-run?)')
 
-    if folders and sorted(case_names) != folders:
-        problems.append(f'cases in the results {sorted(case_names)} do not match the folders {folders}')
+    if labels and sorted(case_names) != labels:
+        problems.append(f'cases in the results {sorted(case_names)} do not match the case labels {labels}')
 
     print(f'{lib}: {len(test_defines)} tests x {len(case_names)} case(s), {checked} results checked')
     for p in problems:

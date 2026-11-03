@@ -1,6 +1,6 @@
 ---
 name: cql
-description: How to validate and run CQL in this repo using the VS Code CQL extension. Use whenever writing, editing, reviewing, or validating .cql files (input/cql), or CQL snippets in narrative pages, and before claiming any CQL compiles.
+description: How to validate, run, and test CQL in this repo using the VS Code CQL extension. Use whenever writing, editing, reviewing, or validating .cql files (input/cql) or CQL snippets in narrative pages; when writing <Library>Tests libraries, their patient test cases (input/tests), or MADiE test case zips; and before claiming any CQL compiles.
 ---
 
 # CQL validation and execution in FHIR Content IGs
@@ -81,30 +81,175 @@ that file after the user says they have run it.
   line of its own (`// and TestX`), with a comment saying why and to restore it once the engine is
   fixed (see `TestDiagnosticReportHasCategoryCodeCase` in CQMConceptsTests). The checker then reports
   it as a known failure, and says when it starts passing.
-- Libraries with retrieves are tested with patient data, not inline fixtures: one folder per case in
-  `input/tests/<Library>Tests/<case>/`, with `Patient.id` equal to the folder name, plus a README
-  describing the cases (see `input/tests/HOB/README.md` and `input/tests/CQMElementsTests/README.md`).
-  Every expression is evaluated once per case. In the results file each case's results are a block
-  separated from the next by a blank line, sorted by expression name, so `Patient=Patient(id=...)`
-  is *not* a header; it falls among the P's. Identify the case by the `Case=` line (or the
-  `Patient=` line) anywhere in the block. Write case tests as
-  `case "Case" when '<case>' then <assertion> ... else true end` (with
-  `define "Case": FHIRHelpers.ToString(Patient.id)`), and mark tests that must hold for every case
-  as invariants. Then every test must be `true` on every case, and `false` or `null` is always a
-  failure. Don't use `else null` for "not applicable": a `null` from an assertion that couldn't be
-  evaluated (e.g. a serviced date that came back null) is then indistinguishable from "doesn't apply",
-  which hid a real bug in ClaimElements. Don't use `Coalesce(..., true)` either, for the same reason.
-  To assert that a value is null, write `X is null`. Helper defines (not `Test...`) can still use
-  `else null`. Non-compartment resources such as Location can go in the
-  case folder; `[USQualityCore.Location]` in Patient context returns them. Use `meta.profile` URLs
-  from the model's IG
-  (e.g. `http://fhir.org/guides/onc/us-quality-core/StructureDefinition/us-quality-core-encounter`).
+- Libraries with retrieves are tested with patient data rather than inline fixtures. See
+  [Patient test data](#patient-test-data-for-madie) below.
 - Check every results file with the checker, from the repo root:
-  `python .claude/skills/cql/check_results.py <Library>Tests`. It reports an aborted run (`Error=`),
-  and any `Test...` define that is missing from a case's results or isn't `true` there. For patient
-  data, it also checks that every case name in a `when '<case>' then` clause is a case folder:
-  with `else true`, a misspelled case name would otherwise pass silently. Don't read results files
-  by eye.
+  `python .claude/skills/cql/check_results.py <Library>Tests`. It reports:
+  - an aborted run (`Error=`),
+  - any `Test...` define that is missing from a case's results or isn't `true` there,
+  - a `_Passed` that doesn't list every test exactly once.
+
+  For patient data, it also checks that every case name in a `when '<case>' then` clause is a case
+  label. With `else true`, a misspelled case name would otherwise pass silently. Tests inside
+  `/* ... */` block comments are ignored, as are their commented-out `// and TestX` lines in
+  `_Passed`. Don't read results files by eye.
+
+## Patient test data (for MADiE)
+
+Every library with patient data follows the same layout (`input/tests/CQMElementsTests/` and
+`input/tests/ClaimElementsTests/` are the worked examples).
+
+**Shared libraries vs measures.** A `<Library>Tests` library, with `Test...` defines and `_Passed`
+as a Cohort measure in MADiE, is only for testing *shared* libraries (CQMConcepts, CQMElements,
+ClaimCommon, ...). A *measure* library (e.g. HOB) is tested directly: its cases go in
+`input/tests/<Measure>/`, with no test library, and each case's MeasureReport holds the expected
+population counts for every group of the measure instead of the Cohort group. See
+`input/tests/HOB/` (its README describes the groups):
+- Groups are `Group_1` ... `Group_N` in the measure's group order, with populations
+  `InitialPopulation_<n>`, `Denominator_<n>`, `Numerator_<n>` (counts of episodes, e.g. hospital
+  stays, for an episode-based measure). `new_test_case.py` writes the Cohort group, so replace it.
+- Everything else below applies unchanged: GUID patient ids, labels, keys, the README, and the zip.
+- Check a run with `python .claude/skills/cql/check_measure_results.py <Measure> input/tests/<Measure>/populations.json`.
+  `populations.json` maps each group's population codes to the defines, in group order. It compares
+  the number of resources each population define returns with the expected counts.
+- Don't change the measure logic to make it testable. Report defects to the user instead.
+
+- **One folder per case:** `input/tests/<Library>Tests/<guid>/`, where `Patient.id` equals the folder
+  name. MADiE requires GUID patient ids, so the informative case label (e.g. `03-Status-And-Use`)
+  goes in the Patient's `name.given`.
+- **Description and expected result:** each case's folder has a test case MeasureReport, in the form
+  MADiE exports (compare a MADiE export of one case when in doubt):
+  - `cqfm-isTestCase`, and the description in its `cqfm-testCaseDescription` extension;
+  - the input parameters extension URL `http://hl7.org/fhir/StructureDefinition/cqf-inputParameters`
+    (not `cqfm-inputParameters`), and a 2026 date `period`;
+  - a `group` with the ids MADiE gives a Cohort measure's first group, `Group_1`, and its population,
+    `InitialPopulation_1` (code `initial-population`), with `count: 1`, because `_Passed` is true on
+    every case when the tests pass. Without the group, MADiE imports the case but can't wire up its
+    expected values.
+- **Keys, not ids:** MADiE replaces every resource id that isn't a GUID with a new GUID on import,
+  and rewrites the references to match. So tests must never identify a resource by its id, or by a
+  `'Location/x'` reference string. Every resource has a readable **key** in an identifier with the
+  system `http://example.org/fhir/identifiers`: the case label for the Patient (MADiE also requires
+  a Patient identifier), and otherwise the resource's readable id (`inp-03`). The test library reads
+  it with one function per resource type (`"EncounterKey"(FHIR.Encounter)`,
+  `"LocationKey"(FHIR.Location)`, `"ClaimKey"(FHIR.Claim)`), and resolves a reference to a key with
+  `"ResolveKey"(reference)`, which uses FHIRCommon's `references()`. The MADiE engine has two runtime
+  problems that don't show up locally, so:
+  - Don't overload these functions under one name. MADiE resolved `"Key"(FHIR.Resource)` and
+    `"Key"(FHIR.Reference)` wrongly at runtime.
+  - Don't write one function over `FHIR.Resource` that branches with `is` / `as`, because MADiE
+    can't evaluate `is` at runtime.
+
+  Contained resources are typed `FHIR.Resource`, which has no `identifier`. To get their keys,
+  match each one by id to the retrieved resource it copies (`"ContainedKeys"` in CQMElementsTests),
+  rather than casting it. See CQMElementsTests and
+  ClaimElementsTests. Comparing one resource's id with another's (e.g.
+  `I.claim.id = I.claimId`) is fine. Constructed resources that don't copy `identifier` (CQMElements'
+  normalized encounters, with id `<id>-primary`) are found from the key of their source resource.
+- **Creating a case:** don't hand-write the Patient or the MeasureReport. Create them with
+  `python .claude/skills/cql/new_test_case.py <Library>Tests <label> "<description>"`, which prints
+  the new guid. Then add the case's other resources to the folder, with their subject or patient
+  references set to `Patient/<guid>`, and a key identifier each. Name each file
+  `<ResourceType>-<id>.json`, keep the ids (and keys) short and readable (`Encounter-inp-03.json`),
+  and make them unique across the library's cases.
+- **Labels:** labels are `NN-Short-Description`. Number them in order, so that the results blocks and
+  the `when` clauses read in sequence. Never change a label once tests refer to it.
+- **The "Case" define:** in the test library, write
+  `define "Case": FHIRHelpers.ToString(First(Patient.name.given))`. When an assertion needs the
+  patient reference, use `define "Patient Reference": 'Patient/' + FHIRHelpers.ToString(Patient.id)`.
+  Don't hard-code guids in the CQL. (MADiE keeps a patient id that is already a GUID.)
+- **README:** list the cases in the README with their folder, label, and what each covers.
+  `new_test_case.py <Library>Tests --list` prints the folders, labels, and descriptions. Keep the
+  README's description and the MeasureReport's description the same.
+- **MADiE zip:** after any change to the cases, rebuild the import zip with
+  `python scripts/make_test_case_zip.py input/tests/<Library>Tests`. It reads the titles and
+  descriptions from the Patient and the MeasureReport. Its testCaseIds are hashed from the labels,
+  so they stay stable across rebuilds. Its warnings about references to resources that are not in
+  the case are expected for references to Coverage or Organization that aren't retrieved.
+- **Which resources go in a case:** add only the resources the tests need, plus one deliberate
+  near-miss of each kind, to show that a filter excludes it (wrong status, outside the period, an
+  unrelated encounter). Also include a case with none of the resources the library retrieves (e.g.
+  `05-No-Claims`), so the invariants are checked on empty input.
+- **Non-compartment resources:** resources such as Location can go in the case folder, and
+  `[USQualityCore.Location]` in Patient context returns them.
+- **Profiles:** use `meta.profile` URLs from the model's IG, e.g.
+  `http://fhir.org/guides/onc/us-quality-core/StructureDefinition/us-quality-core-encounter`.
+
+How the results are laid out:
+- Every expression is evaluated once per case.
+- In the results file, each case's results are a block separated from the next by a blank line,
+  sorted by expression name. `Patient=Patient(id=...)` is therefore *not* a header: it falls among
+  the P's.
+- Identify the case by the `Case=` line anywhere in the block.
+
+How to write case tests:
+- Write them as `case "Case" when '<label>' then <assertion> ... else true end`.
+- Mark tests that must hold for every case as invariants.
+- Every test must then be `true` on every case, and `false` or `null` is always a failure.
+- Don't use `else null` for "not applicable". A `null` from an assertion that couldn't be evaluated
+  (e.g. a serviced date that came back null) is then indistinguishable from "doesn't apply", which
+  hid a real bug in ClaimElements.
+- Don't use `Coalesce(..., true)` either, for the same reason.
+- To assert that a value is null, write `X is null`.
+- Helper defines (not `Test...`) can still use `else null`.
+
+## Covering new or changed functions
+
+When a library gains functions (or a function changes), use this workflow to keep the coverage
+consistent. CQMConceptsTests' `prevalencePeriod` / `relevantDate` / `relevantPeriod` tests are a
+worked example.
+
+1. **List every branch.** Read each new function and the functions it calls in the included
+   libraries (FHIRCommon, USCoreCommon, CQMCommon), down to the element level. Write the branches
+   down:
+   - each type in a choice element (`dateTime` vs `Period` onset),
+   - an element present vs absent,
+   - every `if` / `case` arm and `Coalesce` fallback,
+   - each status value that changes the result, including a missing status,
+   - an open vs closed null boundary.
+
+   Pay particular attention to how a dependency treats null: FHIRCommon's `isActive()` uses `~`, so
+   a missing clinicalStatus gives false, not null.
+2. **Write one fixture builder that takes every varying element as a parameter.** Pass null for
+   elements the fixture should not have, e.g. `"Test Condition"(clinicalStatus, onset, abatement,
+   assertedDate, recordedDate)`. Then each test reads as one line of arguments, and the next agent
+   adds cases by changing arguments, not by copying resource selectors. Keep named fixture values
+   (`"Onset Date"`, `"Abatement Period"`) as defines, so the expected values in assertions refer to
+   the same values.
+3. **Write one test per branch.** Name it `Test<Resource><Function><Branch>`, e.g.
+   `TestConditionPrevalencePeriodActiveNoAbatement`. Group the tests under a block comment naming the
+   function, in the same order as the library under test.
+4. **Assert the whole result, not just one part of it.** For an interval, check the start, the end
+   and the closedness. Reusable predicates such as `"Is Ongoing From"(period, start)` (closed null
+   end, so `end of` is `maximum DateTime`) and `"Has Unknown End From"` (open null end, so `end of`
+   is null) make that one call.
+5. **Add a profiled-type test.** Add one invariant over a retrieve of each profiled type, so the
+   call is checked against the profile types measure logic uses. For example, see
+   `TestProfiledConditionPeriods`:
+   `AllTrue([USQualityCore.ConditionProblemsHealthConcerns] C return C.relevantPeriod() is not null)`.
+   Condition has two profiles, so cover both.
+6. **Update `_Passed`, then compile-check** both the library and the test library (see above).
+7. **Run and check.** Ask the user to run the test library, then run `check_results.py`. When a test
+   fails, decide whether the defect is in the library or in the test's expected value before changing
+   either. Report library defects to the user rather than silently fitting the test to them.
+8. **Report what isn't covered.** At the end, tell the user which functions are still untested, and
+   why.
+
+### Terminology available in MADiE
+
+MADiE doesn't have every code system. A test library that declares a code system MADiE lacks can't be
+imported, even when it compiles and runs locally. The known gaps are:
+- v2-0074 (`DiagnosticServiceSectionCodes`),
+- US Core careplan-category.
+
+To handle a missing code system:
+- Comment out its `codesystem` and `code` declarations with a `NOTE: Codesystems not found in MADiE`
+  comment.
+- Put the tests that use them in a `/* ... */` block comment, citing that note.
+- Remove the tests from `_Passed` as `// and TestX` lines.
+
+The checker ignores tests disabled this way. When you add a code system that MADiE might not have,
+tell the user, so they can confirm it's available before importing.
 
 ## Writing test libraries
 
@@ -209,6 +354,19 @@ function under test).
   function name that FHIRCommon (or another library commonly included alongside yours) already
   defines, unless it is identical; give it a distinct name (ClaimCommon's is now
   `toServicedInterval()`).
+  - **CQMCommon and CQMElements clash.** Both define `hospitalization()` and `edVisit()` on
+    `USQualityCore.Encounter` (CQMCommon's `Encounter` parameter means `USQualityCore.Encounter`
+    because it declares `using USQualityCore` first). In a library that includes both, the calls
+    silently go to CQMCommon's. CQMCommon's version looks for a prior ED visit and returns null when
+    there is none, so it doesn't work on CQMElements' "Hospitalization Encounters".
+  - Confirmed on HOB. Every stay without an ED visit just before its last encounter got a null
+    `hospitalization()`, so it dropped out of every population.
+  - Don't include CQMCommon alongside CQMElements just for the other functions.
+  - When a function works in a test library but not in a measure, compare their includes first.
+- The VS Code diagnostics can miss errors entirely. A new library came back with no diagnostics and a
+  `linesInFile`, even after an Edit, but failed to load at run time with "Syntax error at H". The
+  cause was an unparenthesized function call used as a query source. Check by eye against the pitfalls
+  here, especially for a new file.
 - Fluent functions can only be invoked with fluent syntax; `Lib.f(x)` fails with "is a fluent function
   and can only be invoked with fluent syntax".
 - CQL is case-sensitive, and system operators are not invocable as fluent functions. But a fluent call
@@ -247,3 +405,20 @@ function under test).
   quotes; double quotes are identifiers.
 - Before declaring a fluent function locally, check whether FHIRCommon, USCoreCommon, or CQMCommon
   already ships it.
+- `FHIR.Extension.url` is a `FHIR.uri`, so build it with `Build.uri('http://...')`. A bare string
+  literal is a type error, which then cascades as "could not determine result type" on every
+  expression that uses the fixture.
+- To give a fixture an optional extension, have a helper return `List<FHIR.Extension>{}` when the
+  value is null. Combine several of these with `union` (see `"Asserted Date Extensions"` in
+  CQMConceptsTests).
+- Extensions the libraries read:
+  - FHIRCommon's `abatementInterval()` for AllergyIntolerance reads the `allergyintolerance-abatement`
+    extension, because AllergyIntolerance has no abatement element.
+  - USCoreCommon's `assertedDate` reads `condition-assertedDate` for both Condition and
+    AllergyIntolerance.
+
+  Put these extensions on the fixture, not elements that don't exist.
+- AllergyIntolerance's subject is `patient`, not `subject`.
+- Overloads often share a body, e.g. the Condition and AllergyIntolerance versions of
+  `relevantPeriod`. An Edit `old_string` taken from the body alone then matches both, so include the
+  signature or comment line that is unique to the one you mean.
