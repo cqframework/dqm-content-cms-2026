@@ -1,0 +1,72 @@
+{
+  "resourceType": "MeasureReport",
+  "id": "5597eb5f-26ae-4c92-a6a6-0b3822cb4ed6",
+  "meta": {
+    "profile": [
+      "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/test-case-cqfm"
+    ]
+  },
+  "contained": [
+    {
+      "resourceType": "Parameters",
+      "id": "76dcbe31-5d57-4ecf-9a01-d11e38c85765-parameters",
+      "parameter": [
+        {
+          "name": "subject",
+          "valueString": "76dcbe31-5d57-4ecf-9a01-d11e38c85765"
+        }
+      ]
+    }
+  ],
+  "extension": [
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/cqf-inputParameters",
+      "valueReference": {
+        "reference": "#76dcbe31-5d57-4ecf-9a01-d11e38c85765-parameters"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-testCaseDescription",
+      "valueMarkdown": "Boundary: an ED visit and an inpatient encounter exactly 1 hour apart are joined into one hospitalization."
+    }
+  ],
+  "modifierExtension": [
+    {
+      "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-isTestCase",
+      "valueBoolean": true
+    }
+  ],
+  "status": "complete",
+  "type": "individual",
+  "measure": "https://madie.cms.gov/Measure/CQMElementsTests",
+  "subject": {
+    "reference": "Patient/76dcbe31-5d57-4ecf-9a01-d11e38c85765"
+  },
+  "period": {
+    "start": "2026-01-01",
+    "end": "2026-12-31"
+  },
+  "group": [
+    {
+      "id": "Group_1",
+      "population": [
+        {
+          "id": "InitialPopulation_1",
+          "code": {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+                "code": "initial-population",
+                "display": "Initial Population"
+              }
+            ]
+          },
+          "count": 1
+        }
+      ],
+      "measureScore": {
+        "value": 1.0
+      }
+    }
+  ]
+}

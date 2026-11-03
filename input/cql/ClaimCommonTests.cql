@@ -7,8 +7,9 @@ nor terminology. Fixture codings are built from code systems and codes declared 
 than from the ClaimCommon code declarations, so that a wrong system or code in ClaimCommon makes a test
 fail instead of being reproduced in the fixture. The code declarations are tested separately against
 independently declared codes. The exceptions are:
-* The value set test checks that the expected members are in the "Present on Admission or Clinically
-  Undetermined" value set, so it needs the expansion of that value set.
+* The value set tests check that the expected members are in the "Present on Admission or Clinically
+  Undetermined" value set, and that ClaimCommon's TESTING SUPPORT expression for it is true, so they
+  need the expansion of that value set.
 * The profile tests run the functions over retrieved US Quality Core claims. They check that the
   FHIR-typed overloads resolve for profiled inputs, and are invariants that must hold for whatever data
   is loaded. With no data loaded they are vacuously true.
@@ -20,7 +21,7 @@ not covered here.
 NOTE: This is in the process of being established as the measure ClaimCommonTests in MADiE:
 https://madie.cms.gov/measures/6ad8c9ff1fbcbfc8d7e0c9aa/edit/details/
 */
-library ClaimCommonTests version '0.4.000'
+library ClaimCommonTests version '0.5.000'
 
 using USQualityCore version '0.5.0'
 using USCore version '6.1.0-derived'
@@ -28,7 +29,7 @@ using FHIR version '4.0.1'
 
 include hl7.fhir.uv.cql.FHIRHelpers version '4.0.1'
 
-include ClaimCommon version '0.4.000'
+include ClaimCommon version '0.5.000'
 include FHIRBuilders version '0.1.000' called Build
 
 codesystem "FMStatus": 'http://hl7.org/fhir/fm-status'
@@ -253,6 +254,10 @@ define TestPresentOnAdmissionOrClinicallyUndetermined:
     and Code 'W' from "POA" in ClaimCommon."Present on Admission or Clinically Undetermined"
     and not (Code 'N' from "POA" in ClaimCommon."Present on Admission or Clinically Undetermined")
     and not (Code 'U' from "POA" in ClaimCommon."Present on Admission or Clinically Undetermined")
+
+// POA-Y is a member of the value set (see the test above), so the expression is true
+define TestSupportPresentOnAdmissionOrClinicallyUndetermined:
+  ClaimCommon."TESTING SUPPORT: Present on Admission or Clinically Undetermined"
 
 /*
  * Claim status
@@ -605,6 +610,7 @@ define _Passed:
     and TestProcedureTypeDeclarations
     and TestPresentOnAdmissionDeclarations
     and TestPresentOnAdmissionOrClinicallyUndetermined
+    and TestSupportPresentOnAdmissionOrClinicallyUndetermined
     and TestClaimIsActive
     and TestClaimIsActiveNoStatus
     and TestClaimActive

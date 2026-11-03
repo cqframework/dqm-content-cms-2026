@@ -1,0 +1,25 @@
+{
+  "resourceType": "Patient",
+  "id": "0d2d9432-a6a5-40a1-8108-433afb66dc16",
+  "meta": {
+    "profile": [
+      "http://fhir.org/guides/onc/us-quality-core/StructureDefinition/us-quality-core-patient"
+    ]
+  },
+  "identifier": [
+    {
+      "system": "http://example.org/fhir/identifiers",
+      "value": "01-Inpatient-Claim"
+    }
+  ],
+  "name": [
+    {
+      "family": "ClaimElementsTest",
+      "given": [
+        "01-Inpatient-Claim"
+      ]
+    }
+  ],
+  "gender": "female",
+  "birthDate": "1970-01-01"
+}

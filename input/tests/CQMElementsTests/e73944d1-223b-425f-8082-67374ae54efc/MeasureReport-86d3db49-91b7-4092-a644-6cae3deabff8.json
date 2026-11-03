@@ -1,0 +1,72 @@
+{
+  "resourceType": "MeasureReport",
+  "id": "86d3db49-91b7-4092-a644-6cae3deabff8",
+  "meta": {
+    "profile": [
+      "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/test-case-cqfm"
+    ]
+  },
+  "contained": [
+    {
+      "resourceType": "Parameters",
+      "id": "e73944d1-223b-425f-8082-67374ae54efc-parameters",
+      "parameter": [
+        {
+          "name": "subject",
+          "valueString": "e73944d1-223b-425f-8082-67374ae54efc"
+        }
+      ]
+    }
+  ],
+  "extension": [
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/cqf-inputParameters",
+      "valueReference": {
+        "reference": "#e73944d1-223b-425f-8082-67374ae54efc-parameters"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-testCaseDescription",
+      "valueMarkdown": "An ED visit and an inpatient encounter 2 hours apart give two hospitalizations. No ED visit for the inpatient encounter; an emergency trauma unit counts as an ED location; ED arrival only on the ED hospitalization."
+    }
+  ],
+  "modifierExtension": [
+    {
+      "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-isTestCase",
+      "valueBoolean": true
+    }
+  ],
+  "status": "complete",
+  "type": "individual",
+  "measure": "https://madie.cms.gov/Measure/CQMElementsTests",
+  "subject": {
+    "reference": "Patient/e73944d1-223b-425f-8082-67374ae54efc"
+  },
+  "period": {
+    "start": "2026-01-01",
+    "end": "2026-12-31"
+  },
+  "group": [
+    {
+      "id": "Group_1",
+      "population": [
+        {
+          "id": "InitialPopulation_1",
+          "code": {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+                "code": "initial-population",
+                "display": "Initial Population"
+              }
+            ]
+          },
+          "count": 1
+        }
+      ],
+      "measureScore": {
+        "value": 1.0
+      }
+    }
+  ]
+}

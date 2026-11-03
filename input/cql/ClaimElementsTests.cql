@@ -2,18 +2,23 @@
 @description: Tests for the ClaimElements library
 @comment: Each test expression is named `Test...` and evaluates to `true` when the test passes.
 
-The ClaimElements expressions are retrieves, so the test data is in `input/tests/ClaimElementsTests/<case>/`,
-one folder per patient, with the patient id equal to the folder name. See the README there for what
-each case contains. Every expression is evaluated once per case, so:
+The ClaimElements expressions are retrieves, so the test data is in
+`input/tests/ClaimElementsTests/<patient id>/`, one folder per patient. Patient ids are GUIDs, as MADiE
+expects, so each case is identified by its label, the patient's given name (e.g. `01-Inpatient-Claim`).
+See the README there for what each case contains. Every expression is evaluated once per case, so:
 * Case tests list the expected result for each case they cover, and are `true` for any other case.
 * Invariant tests (marked as such) must hold for every case.
 
 So every test must be `true` on every case: `false` or `null` is a failure. A `null` on a case a test
 covers means the assertion couldn't be evaluated, e.g. because an element it reads came back null.
 Because a case a test doesn't cover passes, a misspelled case name in a `when` clause would pass
-silently; `.claude/skills/cql/check_results.py` checks the names against the case folders.
+silently; `.claude/skills/cql/check_results.py` checks the names against the case labels.
 
-Rows of the flattened expressions are identified by a key built from the claim id and the sequence
+MADiE replaces resource ids that aren't GUIDs with new GUIDs on import, so the tests don't use
+resource ids. Each claim and encounter has a readable key (e.g. `clm-01`) in an identifier with the
+system `http://example.org/fhir/identifiers`, and the tests find resources by that key (`"ClaimKey"`, `"EncounterKey"`).
+
+Rows of the flattened expressions are identified by a key built from the claim's key and the sequence
 numbers, e.g. `clm-01:1` for item 1 of claim clm-01, and `clm-01:1:2` for diagnosis 2 of that item.
 
 No terminology is needed: the tests compare codes directly, not by value set membership.
@@ -21,7 +26,7 @@ No terminology is needed: the tests compare codes directly, not by value set mem
 NOTE: This is in the process of being established as the measure ClaimElementsTests in MADiE:
 https://madie.cms.gov/measures/6ad8ccb11fbcbfc8d7e0c9b5/edit/details/
 */
-library ClaimElementsTests version '0.4.000'
+library ClaimElementsTests version '0.5.000'
 
 using USQualityCore version '0.5.0'
 using USCore version '6.1.0-derived'
@@ -30,8 +35,8 @@ using FHIR version '4.0.1'
 include hl7.fhir.uv.cql.FHIRHelpers version '4.0.1'
 include hl7.fhir.uv.cql.FHIRCommon version '2.0.0'
 
-include ClaimCommon version '0.4.000'
-include ClaimElements version '0.4.000'
+include ClaimCommon version '0.5.000'
+include ClaimElements version '0.5.000'
 
 codesystem "ICD10CM": 'http://hl7.org/fhir/sid/icd-10-cm'
 codesystem "ICD10PCS": 'http://www.cms.gov/Medicare/Coding/ICD10'
@@ -44,8 +49,9 @@ context Patient
  * Helpers
  */
 
-// The case is the patient id, which is also the name of the test case folder
-define "Case": FHIRHelpers.ToString(Patient.id)
+// The case is the test case label, which is the patient's given name. The patient id (and the name of
+// the test case folder) is a GUID, as MADiE expects, so it doesn't say which case this is.
+define "Case": FHIRHelpers.ToString(First(Patient.name.given))
 
 define function "Key"(prefix String, sequence Integer):
   prefix + ':' + ToString(sequence)
@@ -55,8 +61,37 @@ define function "Has Keys"(keys List<String>, expected List<String>):
   Count(keys) = Count(expected)
     and keys includes expected
 
-define function "Encounter"(id String):
-  singleton from ([USQualityCore.Encounter] E where E.id = id)
+// Resources are identified by a readable key (e.g. `clm-01`) in an identifier with this system, not by
+// their ids: MADiE replaces resource ids that aren't GUIDs with new GUIDs on import
+define "Key System": 'http://example.org/fhir/identifiers'
+
+// The key functions are separate for each resource type, rather than one function over FHIR.Resource
+// with `is` / `as`, and are not overloads of one name: the MADiE engine resolves neither `is` nor
+// overloads like these correctly at runtime.
+define function "ClaimKey"(claim FHIR.Claim):
+  singleton from (
+    claim.identifier I
+      where I.system = "Key System"
+      return I.value.value
+  )
+
+define function "EncounterKey"(encounter FHIR.Encounter):
+  singleton from (
+    encounter.identifier I
+      where I.system = "Key System"
+      return I.value.value
+  )
+
+// The key of the retrieved encounter that a reference points to
+define function "ResolveKey"(reference FHIR.Reference):
+  "EncounterKey"(singleton from ([USQualityCore.Encounter] E where reference.references(E)))
+
+// The key of the claim with the given id (the claimId of a row element)
+define function "ClaimIdKey"(claimId String):
+  "ClaimKey"(singleton from ([USQualityCore.Claim] C where C.id = claimId))
+
+define function "Encounter"(key String):
+  singleton from ([USQualityCore.Encounter] E where "EncounterKey"(E) = key)
 
 define function "As Concept"(value Choice<FHIR.CodeableConcept, FHIR.Reference>):
   FHIRHelpers.ToConcept(value as FHIR.CodeableConcept)
@@ -67,41 +102,41 @@ define function "As Concept"(value Choice<FHIR.CodeableConcept, FHIR.Reference>)
 
 define "Item Keys":
   ClaimElements."Claim Item" I
-    return all "Key"(I.claimId, I.sequence)
+    return all "Key"("ClaimIdKey"(I.claimId), I.sequence)
 
 define "Encounter Item Keys":
   ClaimElements."Claim Encounter Item" I
-    return all "Key"(I.claimId, I.sequence) + ':' + I.encounter.reference.value
+    return all "Key"("ClaimIdKey"(I.claimId), I.sequence) + ':' + "ResolveKey"(I.encounter)
 
 define "Diagnosis Keys":
   ClaimElements."Claim Diagnosis" D
-    return all "Key"(D.claimId, D.sequence)
+    return all "Key"("ClaimIdKey"(D.claimId), D.sequence)
 
 define "Item Diagnosis Keys":
   ClaimElements."Claim Item Diagnosis" D
-    return all "Key"("Key"(D.claimId, D.itemSequence), D.diagnosisSequence)
+    return all "Key"("Key"("ClaimIdKey"(D.claimId), D.itemSequence), D.diagnosisSequence)
 
 define "Procedure Keys":
   ClaimElements."Claim Procedure" P
-    return all "Key"(P.claimId, P.sequence)
+    return all "Key"("ClaimIdKey"(P.claimId), P.sequence)
 
 define "Item Procedure Keys":
   ClaimElements."Claim Item Procedure" P
-    return all "Key"("Key"(P.claimId, P.itemSequence), P.procedureSequence)
+    return all "Key"("Key"("ClaimIdKey"(P.claimId), P.itemSequence), P.procedureSequence)
 
 define function "Item"(key String):
-  singleton from (ClaimElements."Claim Item" I where "Key"(I.claimId, I.sequence) = key)
+  singleton from (ClaimElements."Claim Item" I where "Key"("ClaimIdKey"(I.claimId), I.sequence) = key)
 
 define function "Item Diagnosis"(key String):
   singleton from (
     ClaimElements."Claim Item Diagnosis" D
-      where "Key"("Key"(D.claimId, D.itemSequence), D.diagnosisSequence) = key
+      where "Key"("Key"("ClaimIdKey"(D.claimId), D.itemSequence), D.diagnosisSequence) = key
   )
 
 define function "Item Procedure"(key String):
   singleton from (
     ClaimElements."Claim Item Procedure" P
-      where "Key"("Key"(P.claimId, P.itemSequence), P.procedureSequence) = key
+      where "Key"("Key"("ClaimIdKey"(P.claimId), P.itemSequence), P.procedureSequence) = key
   )
 
 /*
@@ -122,7 +157,7 @@ define TestClaimItem:
 define TestClaimItemElements:
   case "Case"
     when '01-Inpatient-Claim' then
-      "Item"('clm-01:1').claim.id = 'clm-01'
+      "ClaimKey"("Item"('clm-01:1').claim) = 'clm-01'
         and FHIRHelpers.ToConcept("Item"('clm-01:1').productOrService) ~ Code '99223' from "CPT"
         and (("Item"('clm-01:1').diagnosisSequence) S return all S.value) = { 1, 2 }
         and (("Item"('clm-01:1').procedureSequence) S return all S.value) = { 1 }
@@ -174,9 +209,9 @@ define TestClaimItemIncludesEveryItem:
 define TestClaimEncounterItem:
   case "Case"
     when '01-Inpatient-Claim' then
-      "Has Keys"("Encounter Item Keys", { 'clm-01:1:Encounter/enc-01', 'clm-01:2:Encounter/enc-01' })
+      "Has Keys"("Encounter Item Keys", { 'clm-01:1:enc-01', 'clm-01:2:enc-01' })
     when '02-Two-Items-Two-Encounters' then
-      "Has Keys"("Encounter Item Keys", { 'clm-02:1:Encounter/enc-02a', 'clm-02:2:Encounter/enc-02b' })
+      "Has Keys"("Encounter Item Keys", { 'clm-02:1:enc-02a', 'clm-02:2:enc-02b' })
     when '03-Status-And-Use' then not exists ClaimElements."Claim Encounter Item"
     when '04-Related-By-Date' then not exists ClaimElements."Claim Encounter Item"
     when '05-No-Claims' then not exists ClaimElements."Claim Encounter Item"
@@ -213,7 +248,7 @@ define TestClaimDiagnosisElements:
     when '01-Inpatient-Claim' then
       exists (
         ClaimElements."Claim Diagnosis" D
-          where D.claimId = 'clm-01'
+          where "ClaimIdKey"(D.claimId) = 'clm-01'
             and D.sequence = 1
             and "As Concept"(D.diagnosis) ~ Code 'I21.4' from "ICD10CM"
             and D.type.isPrincipalDiagnosis()
@@ -256,7 +291,7 @@ define TestClaimItemDiagnosisElements:
 define TestClaimItemDiagnosisItemElements:
   case "Case"
     when '01-Inpatient-Claim' then
-      "Item Diagnosis"('clm-01:2:1').claim.id = 'clm-01'
+      "ClaimKey"("Item Diagnosis"('clm-01:2:1').claim) = 'clm-01'
         and FHIRHelpers.ToConcept("Item Diagnosis"('clm-01:2:1').productOrService) ~ Code '93458' from "CPT"
         and "Item Diagnosis"('clm-01:2:1').serviced = Interval[ToDateTime(@2024-03-02), ToDateTime(@2024-03-02)]
         and "Item Diagnosis"('clm-01:2:1').encounter.references("Encounter"('enc-01'))
@@ -382,7 +417,7 @@ define TestClaimProcedureElements:
     when '01-Inpatient-Claim' then
       exists (
         ClaimElements."Claim Procedure" P
-          where P.claimId = 'clm-01'
+          where "ClaimIdKey"(P.claimId) = 'clm-01'
             and P.sequence = 1
             and "As Concept"(P.procedure) ~ Code '02703ZZ' from "ICD10PCS"
             and P.type.isPrimaryProcedure()

@@ -1,0 +1,25 @@
+{
+  "resourceType": "Patient",
+  "id": "041bd642-2389-4a74-8ab0-279d824a38ad",
+  "meta": {
+    "profile": [
+      "http://fhir.org/guides/onc/us-quality-core/StructureDefinition/us-quality-core-patient"
+    ]
+  },
+  "identifier": [
+    {
+      "system": "http://example.org/fhir/identifiers",
+      "value": "04-Related-By-Date"
+    }
+  ],
+  "name": [
+    {
+      "family": "ClaimElementsTest",
+      "given": [
+        "04-Related-By-Date"
+      ]
+    }
+  ],
+  "gender": "female",
+  "birthDate": "1970-01-01"
+}

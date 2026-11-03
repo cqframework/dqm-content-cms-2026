@@ -1,0 +1,25 @@
+{
+  "resourceType": "Patient",
+  "id": "351b809a-611a-4560-8268-4bc4339cd1ff",
+  "meta": {
+    "profile": [
+      "http://fhir.org/guides/onc/us-quality-core/StructureDefinition/us-quality-core-patient"
+    ]
+  },
+  "identifier": [
+    {
+      "system": "http://example.org/fhir/identifiers",
+      "value": "01-ED-Observation-Inpatient"
+    }
+  ],
+  "name": [
+    {
+      "family": "CQMElementsTest",
+      "given": [
+        "01-ED-Observation-Inpatient"
+      ]
+    }
+  ],
+  "gender": "female",
+  "birthDate": "1970-01-01"
+}

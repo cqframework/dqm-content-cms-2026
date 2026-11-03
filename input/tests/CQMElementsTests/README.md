@@ -4,6 +4,19 @@ Test data for the `CQMElementsTests` CQL library, evaluated by the CQL VS Code e
 (`CQL: Execute`). Each subfolder is one patient context (**`Patient.id` must equal the folder
 name**); results are written to [../results/CQMElementsTests.txt](../results/CQMElementsTests.txt).
 
+MADiE expects patient ids to be GUIDs, so the patient ids (and folder names) are GUIDs, and each case
+is identified by its **label**, kept in the Patient's given name (e.g. `01-ED-Observation-Inpatient`).
+The library's `Case` define reads the label from there, so the tests use the label, not the id. Each
+case also has a test case `MeasureReport` (`isTestCase`), whose `cqfm-testCaseDescription` extension
+holds the case's description. The table below maps each label to its folder.
+
+MADiE also replaces resource ids that aren't GUIDs with new GUIDs on import, so the tests don't rely
+on resource ids. Every resource, the Patient included, has a readable **key** in an identifier with the
+system `http://example.org/fhir/identifiers`: the label for the Patient, and the resource's id
+(e.g. `inp-01`) otherwise. The tests find resources by that key. Each MeasureReport also has the
+expected result for MADiE's Cohort group: `Group_1` / `InitialPopulation_1` with a count of 1, since
+`_Passed` is true for every case when the tests pass.
+
 Every test expression is evaluated for every case. A case test lists its expected result for
 each case it covers and is `true` for the others, and invariant tests (marked in the library)
 must hold for every case. So every test must be `true` for every case:
@@ -13,14 +26,15 @@ must hold for every case. So every test must be `true` for every case:
 - `null`: failed; the assertion couldn't be evaluated, e.g. because an element it reads came
   back null
 
-To check a run, including that every case name used in the tests is one of the case folders:
+To check a run, including that every case name used in the tests is one of the case labels:
 
 ```
 python .claude/skills/cql/check_results.py CQMElementsTests
 ```
 
 [CQMElementsTests.zip](CQMElementsTests.zip) packages these cases for import into MADiE: one folder per case, each
-holding a single collection Bundle of the case's resources. Rebuild it after changing the data:
+holding a single collection Bundle of the case's resources, with the labels and descriptions as the
+test case titles and descriptions. Rebuild it after changing the data:
 
 ```
 python scripts/make_test_case_zip.py input/tests/CQMElementsTests
@@ -50,20 +64,24 @@ its expansion.
 | `ward-*`, `obs-unit-*` | RoleCode `HU` | Hospital unit |
 | `icu-*` | HSLOC `1027-2` | Medical Critical Care (in Intensive Care Unit) |
 
-All times are UTC. Resource ids carry the case number (`ed-01`, `ward-02`, ...).
+All times are UTC. Other resource ids and keys carry the case number (`ed-01`, `ward-02`, ...). To add a
+case, run `python .claude/skills/cql/new_test_case.py CQMElementsTests <label> "<description>"` from the
+repo root, which creates the folder, Patient and MeasureReport, and prints the new GUID. Then add the
+case's resources with `subject` references to `Patient/<guid>` and a key identifier each, and rebuild
+the zip with `python scripts/make_test_case_zip.py input/tests/CQMElementsTests`.
 
 ## Cases
 
-| # | Case | Encounters | Point being tested |
-|---|------|------------|--------------------|
-| 01 | ED-Observation-Inpatient | ED 03-01 08:00→12:00 (`er-01`); OBS 12:30→20:00 (`obs-unit-01`); IP 20:45→03-05 10:00 (`ward-01`, `icu-01` 03-02 08:00→03-04 08:00, `ward-01`) | One hospitalization (`inp-01`) from a three-encounter chain; included encounters in order; normalized encounter; location entries and resolution; all timing functions; ED and observation visits; ED arrival; first ICU |
-| 02 | ED-Inpatient-Gap-Over-Hour | ED 06-01 03:00→07:00 (`etu-02`); IP 09:00→06-03 09:00 (`ward-02`) | A 2-hour gap gives two hospitalizations; no ED visit for the inpatient; ETU counts as an ED location; ED arrival only on the ED hospitalization |
-| 03 | Surgery-Inpatient | Surgery 08-01 06:00→10:00 (no locations); IP 10:30→08-03 10:00 (`ward-03`) | Outpatient surgery visit; admission time (06:00) earlier than arrival time (10:30, from the first location) |
-| 04 | Cancelled-ED-Inpatient | ED (`cancelled`) 09-01 06:00→08:00; IP 08:30→09-02 08:00 (`ward-04`) | Cancelled ED excluded from the ED retrieve and from `edVisit()`, but included by `Hospitalization Encounters` when it is in the input (see observation 1) |
-| 05 | Gap-Exactly-One-Hour | ED 10-01 08:00→10:00 (`er-05`); IP 11:00→10-02 10:00 (`ward-05`) | Boundary: a gap of exactly 1 hour joins the encounters |
-| 06 | Gap-One-Hour-One-Minute | ED 10-01 08:00→10:00 (`er-06`); IP 11:01→10-02 10:00 (`ward-06`) | Boundary: a gap of 1 hour 1 minute separates them; same-day length of stay is 0 |
-| 07 | Inpatient-Two-ICU-Stays | IP 11-01 10:00→11-10 10:00, locations listed out of order: `icu-c-07` (10-30→10-31, before the encounter), `icu-b-07` (11-06→11-08), `ward-07`, `icu-a-07` (11-03→11-05), ... | `firstInpatientIntensiveCareUnit()` picks the earliest ICU stay during the encounter (`icu-a-07`), whatever order the locations are listed in |
-| 08 | No-Encounters | none | Everything is empty; invariants hold trivially |
+| # | Case | Folder (patient id) | Encounters | Point being tested |
+|---|------|---------------------|------------|--------------------|
+| 01 | ED-Observation-Inpatient | `351b809a-611a-4560-8268-4bc4339cd1ff` | ED 03-01 08:00→12:00 (`er-01`); OBS 12:30→20:00 (`obs-unit-01`); IP 20:45→03-05 10:00 (`ward-01`, `icu-01` 03-02 08:00→03-04 08:00, `ward-01`) | One hospitalization (`inp-01`) from a three-encounter chain; included encounters in order; normalized encounter; location entries and resolution; all timing functions; ED and observation visits; ED arrival; first ICU |
+| 02 | ED-Inpatient-Gap-Over-Hour | `e73944d1-223b-425f-8082-67374ae54efc` | ED 06-01 03:00→07:00 (`etu-02`); IP 09:00→06-03 09:00 (`ward-02`) | A 2-hour gap gives two hospitalizations; no ED visit for the inpatient; ETU counts as an ED location; ED arrival only on the ED hospitalization |
+| 03 | Surgery-Inpatient | `9b355d5a-4e47-44fc-851a-77e98e2c9926` | Surgery 08-01 06:00→10:00 (no locations); IP 10:30→08-03 10:00 (`ward-03`) | Outpatient surgery visit; admission time (06:00) earlier than arrival time (10:30, from the first location) |
+| 04 | Cancelled-ED-Inpatient | `c5bc7aa4-968e-4774-a409-53c440af64fb` | ED (`cancelled`) 09-01 06:00→08:00; IP 08:30→09-02 08:00 (`ward-04`) | Cancelled ED excluded from the ED retrieve and from `edVisit()`, but included by `Hospitalization Encounters` when it is in the input (see observation 1) |
+| 05 | Gap-Exactly-One-Hour | `76dcbe31-5d57-4ecf-9a01-d11e38c85765` | ED 10-01 08:00→10:00 (`er-05`); IP 11:00→10-02 10:00 (`ward-05`) | Boundary: a gap of exactly 1 hour joins the encounters |
+| 06 | Gap-One-Hour-One-Minute | `e31c1934-2e12-4fcd-bf12-c2906b73ed43` | ED 10-01 08:00→10:00 (`er-06`); IP 11:01→10-02 10:00 (`ward-06`) | Boundary: a gap of 1 hour 1 minute separates them; same-day length of stay is 0 |
+| 07 | Inpatient-Two-ICU-Stays | `de9e218e-639b-4f12-917b-2aa3c3ce3f2d` | IP 11-01 10:00→11-10 10:00, locations listed out of order: `icu-c-07` (10-30→10-31, before the encounter), `icu-b-07` (11-06→11-08), `ward-07`, `icu-a-07` (11-03→11-05), ... | `firstInpatientIntensiveCareUnit()` picks the earliest ICU stay during the encounter (`icu-a-07`), whatever order the locations are listed in |
+| 08 | No-Encounters | `d25d47ed-a786-465b-8e59-c8b980029766` | none | Everything is empty; invariants hold trivially |
 
 ## Observations for review (not test failures)
 

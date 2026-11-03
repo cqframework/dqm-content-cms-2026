@@ -1,0 +1,25 @@
+{
+  "resourceType": "Patient",
+  "id": "e31c1934-2e12-4fcd-bf12-c2906b73ed43",
+  "meta": {
+    "profile": [
+      "http://fhir.org/guides/onc/us-quality-core/StructureDefinition/us-quality-core-patient"
+    ]
+  },
+  "identifier": [
+    {
+      "system": "http://example.org/fhir/identifiers",
+      "value": "06-Gap-One-Hour-One-Minute"
+    }
+  ],
+  "name": [
+    {
+      "family": "CQMElementsTest",
+      "given": [
+        "06-Gap-One-Hour-One-Minute"
+      ]
+    }
+  ],
+  "gender": "female",
+  "birthDate": "1970-01-01"
+}

@@ -1,0 +1,25 @@
+{
+  "resourceType": "Patient",
+  "id": "d25d47ed-a786-465b-8e59-c8b980029766",
+  "meta": {
+    "profile": [
+      "http://fhir.org/guides/onc/us-quality-core/StructureDefinition/us-quality-core-patient"
+    ]
+  },
+  "identifier": [
+    {
+      "system": "http://example.org/fhir/identifiers",
+      "value": "08-No-Encounters"
+    }
+  ],
+  "name": [
+    {
+      "family": "CQMElementsTest",
+      "given": [
+        "08-No-Encounters"
+      ]
+    }
+  ],
+  "gender": "female",
+  "birthDate": "1970-01-01"
+}

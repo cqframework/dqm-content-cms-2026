@@ -1,0 +1,25 @@
+{
+  "resourceType": "Patient",
+  "id": "030999a1-6dc3-4baa-b36a-0d3dfb2d0e7a",
+  "meta": {
+    "profile": [
+      "http://fhir.org/guides/onc/us-quality-core/StructureDefinition/us-quality-core-patient"
+    ]
+  },
+  "identifier": [
+    {
+      "system": "http://example.org/fhir/identifiers",
+      "value": "02-Two-Items-Two-Encounters"
+    }
+  ],
+  "name": [
+    {
+      "family": "ClaimElementsTest",
+      "given": [
+        "02-Two-Items-Two-Encounters"
+      ]
+    }
+  ],
+  "gender": "female",
+  "birthDate": "1970-01-01"
+}

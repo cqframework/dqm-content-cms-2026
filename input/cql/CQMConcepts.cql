@@ -27,9 +27,9 @@ NOTE: This library is developed in the dqm-content-cms-2026 repository:
 https://github.com/cqframework/dqm-content-cms-2026/blob/main/input/cql/CQMConcepts.cql
 
 NOTE: This library is currently released in MADiE; this is the development copy
-https://madie.cms.gov/cql-libraries/6add150147322f9f948a3dce/edit/details
+https://madie.cms.gov/cql-libraries/6ae8ffa1420d45ce089c0e71/edit/details
 */
-library CQMConcepts version '0.4.000'
+library CQMConcepts version '0.5.000'
 
 using USQualityCore version '0.5.0'
 using USCore version '6.1.0-derived'
@@ -404,19 +404,25 @@ define fluent function isReasonForVisit(condition FHIR.Condition, encounter FHIR
 @description: Returns a DateTime interval from start to end, with active (i.e. ongoing) semantics 
 as determined by the active parameter.
 @comment: The interval returned will be closed unless isActive is false and the end date is null.
-These semantics ensure that an unknown ending boundary is preserved. Note that this is not possible
-to represent in FHIR so conversion of an interval with an unknown ending boundary (i.e. null and 
-open) to a FHIR.Period should raise an error, not silently fail.
+These semantics ensure that an unknown ending boundary is preserved. 
+
+Note that the CQL Interval that this function returns differs from the 
+FHIR.Period datatype in that CQL intervals may have open boundaries while 
+a FHIR.Period always has closed boundaries.
 
 As well, if isActive is true, the end date is ignored, as an "active" period is one that is ongoing.
 
 NOTE: This function is being promoted to FHIRCommon in 3.0.0
+
+NOTE: This function has two minor differences that are included in the FHIRCommon 3.0.0
+version, but have not been applied to the 0.4.000 version of this Library. These will be
+included in the next release of CQMConcepts.
 */
 define function Period(start System.DateTime, end System.DateTime, isActive System.Boolean):
   if isActive or end is not null then
     Interval[start, if isActive then null else end]
   else
-    Interval[start, end)
+    Interval[start, null)
 
 /*
 @description: Returns an interval representing the normalized prevalence period of a given Condition resource.
@@ -515,4 +521,39 @@ define fluent function relevantPeriod(allergyIntolerance FHIR.AllergyIntolerance
     end of allergyIntolerance.abatementInterval(),
     allergyIntolerance.isActive()
   )
+
+/*
+@description: TESTING SUPPORT ONLY
+@comment: This definition exists only to support testing of the Emergency Department Visit value set.
+*/
+define "TESTING SUPPORT: Emergency Department Visit":
+  [Encounter: "Emergency Department Visit"]
+
+/*
+@description: TESTING SUPPORT ONLY
+@comment: This definition exists only to support testing of the Encounter Inpatient value set.
+*/
+define "TESTING SUPPORT: Encounter Inpatient":
+  [Encounter: "Encounter Inpatient"]
+
+/*
+@description: TESTING SUPPORT ONLY
+@comment: This definition exists only to support testing of the Intensive Care Unit value set.
+*/
+define "TESTING SUPPORT: Intensive Care Unit":
+  [Encounter: "Intensive Care Unit"]
+
+/*
+@description: TESTING SUPPORT ONLY
+@comment: This definition exists only to support testing of the Observation Services value set.
+*/
+define "TESTING SUPPORT: Observation Services":
+  [Encounter: "Observation Services"]
+
+/*
+@description: TESTING SUPPORT ONLY
+@comment: This definition exists only to support testing of the Outpatient Surgery Service value set.
+*/
+define "TESTING SUPPORT: Outpatient Surgery Service":
+  [Encounter: "Outpatient Surgery Service"]
 

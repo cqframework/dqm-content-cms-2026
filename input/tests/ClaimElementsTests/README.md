@@ -4,6 +4,19 @@ Test data for the `ClaimElementsTests` CQL library, evaluated by the CQL VS Code
 (`CQL: Execute`). Each subfolder is one patient context (**`Patient.id` must equal the folder
 name**); results are written to [../results/ClaimElementsTests.txt](../results/ClaimElementsTests.txt).
 
+MADiE expects patient ids to be GUIDs, so the patient ids (and folder names) are GUIDs, and each case
+is identified by its **label**, kept in the Patient's given name (e.g. `01-Inpatient-Claim`).
+The library's `Case` define reads the label from there, so the tests use the label, not the id. Each
+case also has a test case `MeasureReport` (`isTestCase`), whose `cqfm-testCaseDescription` extension
+holds the case's description. The table below maps each label to its folder.
+
+MADiE also replaces resource ids that aren't GUIDs with new GUIDs on import, so the tests don't rely
+on resource ids. Every resource, the Patient included, has a readable **key** in an identifier with the
+system `http://example.org/fhir/identifiers`: the label for the Patient, and the resource's id
+(e.g. `clm-01`) otherwise. The tests find resources by that key. Each MeasureReport also has the
+expected result for MADiE's Cohort group: `Group_1` / `InitialPopulation_1` with a count of 1, since
+`_Passed` is true for every case when the tests pass.
+
 Every test expression is evaluated for every case. A case test lists its expected result for
 each case it covers and is `true` for the others, and invariant tests (marked in the library)
 must hold for every case. So every test must be `true` for every case:
@@ -13,14 +26,15 @@ must hold for every case. So every test must be `true` for every case:
 - `null`: failed; the assertion couldn't be evaluated, e.g. because an element it reads came
   back null
 
-To check a run, including that every case name used in the tests is one of the case folders:
+To check a run, including that every case name used in the tests is one of the case labels:
 
 ```
 python .claude/skills/cql/check_results.py ClaimElementsTests
 ```
 
 [ClaimElementsTests.zip](ClaimElementsTests.zip) packages these cases for import into MADiE: one folder per case, each
-holding a single collection Bundle of the case's resources. Rebuild it after changing the data:
+holding a single collection Bundle of the case's resources, with the labels and descriptions as the
+test case titles and descriptions. Rebuild it after changing the data:
 
 ```
 python scripts/make_test_case_zip.py input/tests/ClaimElementsTests
@@ -44,18 +58,22 @@ references don't resolve, and nothing reads them).
 | `procedure.type` | `ex-procedure-type` | `primary`, `secondary` |
 | `item.productOrService` | CPT | `99223`, `93458`, `99213`, `99214`, `36415`, `99232` |
 
-All times are UTC. Resource ids carry the case number (`clm-01`, `enc-02a`, ...). Rows are
+All times are UTC. Other resource ids and keys carry the case number (`clm-01`, `enc-02a`, ...). To add
+a case, run `python .claude/skills/cql/new_test_case.py ClaimElementsTests <label> "<description>"` from
+the repo root, which creates the folder, Patient and MeasureReport, and prints the new GUID. Then add
+the case's resources with `patient` and `subject` references to `Patient/<guid>` and a key identifier
+each, and rebuild the zip with `python scripts/make_test_case_zip.py input/tests/ClaimElementsTests`. Rows are
 identified in the tests by `claim:item` or `claim:item:diagnosis` (or `:procedure`) sequence keys.
 
 ## Cases
 
-| # | Case | Data | Point being tested |
-|---|------|------|--------------------|
-| 01 | Inpatient-Claim | `enc-01` 03-01 08:00→03-05 10:00. Institutional `clm-01`, billable period equal to the encounter. Diagnoses 1 `I21.4` (principal, POA Y), 2 `E11.9` (admitting, POA N). Procedures 1 `02703ZZ` (primary), 2 `B2111ZZ` (secondary). Item 1: diagnoses 1, 2; procedure 1; `enc-01`; serviced period. Item 2: diagnosis 1; procedure 2; `enc-01`; serviced date 03-02 | All six expressions and their elements; a serviced period and a serviced date; `isRelatedTo()` by reference |
-| 02 | Two-Items-Two-Encounters | `enc-02a` 06-01 08:00→12:00, `enc-02b` 06-10 09:00→10:00. Professional `clm-02`, billable 06-01 08:00→06-10 10:00, diagnosis 1 only. Item 1: `enc-02a`, no serviced. Item 2: `enc-02b`, diagnoses 1 and 9 (no diagnosis 9 on the claim), serviced during `enc-02b`. Item 3: no encounter, no serviced | Items are paired only with their own encounters (see observation 1); an unmatched diagnosis sequence gives a row with no diagnosis; `isRelatedTo()` false, and null with no serviced element |
-| 03 | Status-And-Use | Five claims with one item, diagnosis, and procedure each: active, cancelled, draft, entered-in-error, and an active preauthorization | Only the active claim with a use of claim (`clm-03-active`) appears in any expression |
-| 04 | Related-By-Date | `enc-04` 04-01 12:00→04-05 10:00. Seven claims with one item each and no encounter references: `04a` billable during the encounter, serviced after; `04b` billable spanning it, serviced during; `04c` billable spanning it, serviced after; `04d` serviced date 04-01; `04e` serviced date 04-03; `04f` no billable period, serviced after; `04g` no billable period, serviced during | `isRelatedTo()` by billable period, serviced period, and serviced date; the day-precision boundary (observation 2); a missing billable period (observation 3) |
-| 05 | No-Claims | none | Everything is empty; invariants hold trivially |
+| # | Case | Folder (patient id) | Data | Point being tested |
+|---|------|---------------------|------|--------------------|
+| 01 | Inpatient-Claim | `0d2d9432-a6a5-40a1-8108-433afb66dc16` | `enc-01` 03-01 08:00→03-05 10:00. Institutional `clm-01`, billable period equal to the encounter. Diagnoses 1 `I21.4` (principal, POA Y), 2 `E11.9` (admitting, POA N). Procedures 1 `02703ZZ` (primary), 2 `B2111ZZ` (secondary). Item 1: diagnoses 1, 2; procedure 1; `enc-01`; serviced period. Item 2: diagnosis 1; procedure 2; `enc-01`; serviced date 03-02 | All six expressions and their elements; a serviced period and a serviced date; `isRelatedTo()` by reference |
+| 02 | Two-Items-Two-Encounters | `030999a1-6dc3-4baa-b36a-0d3dfb2d0e7a` | `enc-02a` 06-01 08:00→12:00, `enc-02b` 06-10 09:00→10:00. Professional `clm-02`, billable 06-01 08:00→06-10 10:00, diagnosis 1 only. Item 1: `enc-02a`, no serviced. Item 2: `enc-02b`, diagnoses 1 and 9 (no diagnosis 9 on the claim), serviced during `enc-02b`. Item 3: no encounter, no serviced | Items are paired only with their own encounters (see observation 1); an unmatched diagnosis sequence gives a row with no diagnosis; `isRelatedTo()` false, and null with no serviced element |
+| 03 | Status-And-Use | `973bdec0-2ce7-4138-8de9-e113a3ca2981` | Five claims with one item, diagnosis, and procedure each: active, cancelled, draft, entered-in-error, and an active preauthorization | Only the active claim with a use of claim (`clm-03-active`) appears in any expression |
+| 04 | Related-By-Date | `041bd642-2389-4a74-8ab0-279d824a38ad` | `enc-04` 04-01 12:00→04-05 10:00. Seven claims with one item each and no encounter references: `04a` billable during the encounter, serviced after; `04b` billable spanning it, serviced during; `04c` billable spanning it, serviced after; `04d` serviced date 04-01; `04e` serviced date 04-03; `04f` no billable period, serviced after; `04g` no billable period, serviced during | `isRelatedTo()` by billable period, serviced period, and serviced date; the day-precision boundary (observation 2); a missing billable period (observation 3) |
+| 05 | No-Claims | `662c1084-2f33-4556-be36-7c000335514d` | none | Everything is empty; invariants hold trivially |
 
 ## Observations for review
 

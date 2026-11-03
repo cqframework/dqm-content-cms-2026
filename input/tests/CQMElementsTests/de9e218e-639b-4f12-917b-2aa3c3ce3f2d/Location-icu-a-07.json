@@ -1,0 +1,28 @@
+{
+  "resourceType": "Location",
+  "id": "icu-a-07",
+  "meta": {
+    "profile": [
+      "http://fhir.org/guides/onc/us-quality-core/StructureDefinition/us-quality-core-location"
+    ]
+  },
+  "identifier": [
+    {
+      "system": "http://example.org/fhir/identifiers",
+      "value": "icu-a-07"
+    }
+  ],
+  "status": "active",
+  "name": "icu-a-07",
+  "type": [
+    {
+      "coding": [
+        {
+          "system": "https://www.cdc.gov/nhsn/cdaportal/terminology/codesystem/hsloc.html",
+          "code": "1027-2",
+          "display": "Medical Critical Care"
+        }
+      ]
+    }
+  ]
+}

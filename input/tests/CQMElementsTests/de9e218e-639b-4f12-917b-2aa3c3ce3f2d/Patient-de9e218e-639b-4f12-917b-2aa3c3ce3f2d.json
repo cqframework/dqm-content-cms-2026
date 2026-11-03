@@ -1,0 +1,25 @@
+{
+  "resourceType": "Patient",
+  "id": "de9e218e-639b-4f12-917b-2aa3c3ce3f2d",
+  "meta": {
+    "profile": [
+      "http://fhir.org/guides/onc/us-quality-core/StructureDefinition/us-quality-core-patient"
+    ]
+  },
+  "identifier": [
+    {
+      "system": "http://example.org/fhir/identifiers",
+      "value": "07-Inpatient-Two-ICU-Stays"
+    }
+  ],
+  "name": [
+    {
+      "family": "CQMElementsTest",
+      "given": [
+        "07-Inpatient-Two-ICU-Stays"
+      ]
+    }
+  ],
+  "gender": "female",
+  "birthDate": "1970-01-01"
+}

@@ -11,6 +11,12 @@ fail instead of being reproduced in the fixture. The exceptions are:
 * The profile tests run the functions over retrieved US Quality Core resources. They check that the
   FHIR-typed overloads resolve for profiled inputs, and are invariants that must hold for whatever data
   is loaded. With no data loaded they are vacuously true.
+* The TESTING SUPPORT tests check the CQMConcepts retrieves by value set, so they need patient data:
+  `input/tests/CQMConceptsTests/<patient id>/`, one folder per case (see the README there). Patient ids
+  are GUIDs, as MADiE expects, so each case is identified by its label, the patient's given name, and
+  resources by a readable key in an identifier, since MADiE replaces resource ids. These are case tests,
+  `true` for any case they don't cover. Every other test is evaluated, with the same result, for every
+  case.
 
 `TestDiagnosticReportHasCategoryCodeCase` is expected to fail until an engine issue is fixed, and is
 left out of `_Passed` until then; see the comment on that test.
@@ -25,7 +31,7 @@ https://github.com/cqframework/dqm-content-cms-2026/blob/main/input/cql/CQMConce
 NOTE: This is in the process of being established as the measure CQMConceptsTests in MADiE:
 https://madie.cms.gov/measures/6ad7e9421fbcbfc8d7e0c8d2/edit/details/
 */
-library CQMConceptsTests version '0.4.000'
+library CQMConceptsTests version '0.5.000'
 
 using USQualityCore version '0.5.0'
 using USCore version '6.1.0-derived'
@@ -33,7 +39,7 @@ using FHIR version '4.0.1'
 
 include hl7.fhir.uv.cql.FHIRHelpers version '4.0.1'
 
-include CQMConcepts version '0.4.000'
+include CQMConcepts version '0.5.000'
 include FHIRBuilders version '0.1.000' called Build
 
 codesystem "SNOMEDCT": 'http://snomed.info/sct'
@@ -79,6 +85,31 @@ code "Allergy Inactive": 'inactive' from "AllergyIntoleranceClinicalStatusCodes"
 code "Allergy Resolved": 'resolved' from "AllergyIntoleranceClinicalStatusCodes"
 
 context Patient
+
+/*
+ * Patient data helpers
+ */
+
+// The case is the test case label, which is the patient's given name. The patient id (and the name of
+// the test case folder) is a GUID, as MADiE expects, so it doesn't say which case this is.
+define "Case": FHIRHelpers.ToString(First(Patient.name.given))
+
+// Resources are identified by a readable key (e.g. `inp-01`) in an identifier with this system, not by
+// their ids: MADiE replaces resource ids that aren't GUIDs with new GUIDs on import
+define "Key System": 'http://example.org/fhir/identifiers'
+
+define function "EncounterKey"(encounter FHIR.Encounter):
+  singleton from (
+    encounter.identifier I
+      where I.system = "Key System"
+      return I.value.value
+  )
+
+// True if the encounters have exactly the given keys, in any order. (Key functions are named per
+// resource type, e.g. "EncounterKey", rather than overloaded, for the MADiE engine.)
+define function "HasEncounterKeys"(encounters List<FHIR.Encounter>, keys List<String>):
+  Count(encounters) = Count(keys)
+    and (encounters E return all "EncounterKey"(E)) includes keys
 
 /*
  * Fixture builders
@@ -869,6 +900,66 @@ define TestValueSetsExcludeOtherVisits:
     and not ("Emergency department patient visit" in CQMConcepts."Encounter Inpatient")
 
 /*
+ * TESTING SUPPORT retrieves
+ * These run over the patient data in input/tests/CQMConceptsTests/. Case 01 has one encounter typed
+ * with a member code of each value set, plus an encounter for check up (checkup-01), which is in none
+ * of them, so each retrieve must return exactly its own encounter. Case 02 has no encounters.
+ */
+
+define TestSupportEmergencyDepartmentVisit:
+  case "Case"
+    when '01-Value-Set-Encounters' then
+      "HasEncounterKeys"(CQMConcepts."TESTING SUPPORT: Emergency Department Visit", { 'ed-01' })
+    when '02-No-Encounters' then not exists CQMConcepts."TESTING SUPPORT: Emergency Department Visit"
+    else true
+  end
+
+define TestSupportEncounterInpatient:
+  case "Case"
+    when '01-Value-Set-Encounters' then
+      "HasEncounterKeys"(CQMConcepts."TESTING SUPPORT: Encounter Inpatient", { 'inp-01' })
+    when '02-No-Encounters' then not exists CQMConcepts."TESTING SUPPORT: Encounter Inpatient"
+    else true
+  end
+
+define TestSupportIntensiveCareUnit:
+  case "Case"
+    when '01-Value-Set-Encounters' then
+      "HasEncounterKeys"(CQMConcepts."TESTING SUPPORT: Intensive Care Unit", { 'icu-01' })
+    when '02-No-Encounters' then not exists CQMConcepts."TESTING SUPPORT: Intensive Care Unit"
+    else true
+  end
+
+define TestSupportObservationServices:
+  case "Case"
+    when '01-Value-Set-Encounters' then
+      "HasEncounterKeys"(CQMConcepts."TESTING SUPPORT: Observation Services", { 'obs-01' })
+    when '02-No-Encounters' then not exists CQMConcepts."TESTING SUPPORT: Observation Services"
+    else true
+  end
+
+define TestSupportOutpatientSurgeryService:
+  case "Case"
+    when '01-Value-Set-Encounters' then
+      "HasEncounterKeys"(CQMConcepts."TESTING SUPPORT: Outpatient Surgery Service", { 'surg-01' })
+    when '02-No-Encounters' then not exists CQMConcepts."TESTING SUPPORT: Outpatient Surgery Service"
+    else true
+  end
+
+// Invariant: an encounter whose type is in none of the value sets is returned by none of the retrieves
+define TestSupportExcludesOtherEncounters:
+  not exists (
+    (
+      CQMConcepts."TESTING SUPPORT: Emergency Department Visit"
+        union CQMConcepts."TESTING SUPPORT: Encounter Inpatient"
+        union CQMConcepts."TESTING SUPPORT: Intensive Care Unit"
+        union CQMConcepts."TESTING SUPPORT: Observation Services"
+        union CQMConcepts."TESTING SUPPORT: Outpatient Surgery Service"
+    ) E
+      where "EncounterKey"(E) = 'checkup-01'
+  )
+
+/*
  * Profiled inputs
  * These run the functions over retrieved US Quality Core resources, so they check that the FHIR-typed
  * overloads resolve for profiled types. They are invariants over whatever patient data is loaded, and
@@ -1051,6 +1142,12 @@ define _Passed:
     and TestOutpatientSurgeryServiceValueSet
     and TestIntensiveCareUnitValueSet
     and TestValueSetsExcludeOtherVisits
+    and TestSupportEmergencyDepartmentVisit
+    and TestSupportEncounterInpatient
+    and TestSupportIntensiveCareUnit
+    and TestSupportObservationServices
+    and TestSupportOutpatientSurgeryService
+    and TestSupportExcludesOtherEncounters
     // CodeSystem not available in MADiE (see above)
     //and TestProfiledCarePlanHasCategory
     //and TestProfiledDiagnosticReportLabHasCategory

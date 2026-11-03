@@ -1,0 +1,25 @@
+{
+  "resourceType": "Patient",
+  "id": "662c1084-2f33-4556-be36-7c000335514d",
+  "meta": {
+    "profile": [
+      "http://fhir.org/guides/onc/us-quality-core/StructureDefinition/us-quality-core-patient"
+    ]
+  },
+  "identifier": [
+    {
+      "system": "http://example.org/fhir/identifiers",
+      "value": "05-No-Claims"
+    }
+  ],
+  "name": [
+    {
+      "family": "ClaimElementsTest",
+      "given": [
+        "05-No-Claims"
+      ]
+    }
+  ],
+  "gender": "female",
+  "birthDate": "1970-01-01"
+}

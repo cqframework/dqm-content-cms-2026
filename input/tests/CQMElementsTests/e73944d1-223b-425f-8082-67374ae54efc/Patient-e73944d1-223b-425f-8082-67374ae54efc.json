@@ -1,0 +1,25 @@
+{
+  "resourceType": "Patient",
+  "id": "e73944d1-223b-425f-8082-67374ae54efc",
+  "meta": {
+    "profile": [
+      "http://fhir.org/guides/onc/us-quality-core/StructureDefinition/us-quality-core-patient"
+    ]
+  },
+  "identifier": [
+    {
+      "system": "http://example.org/fhir/identifiers",
+      "value": "02-ED-Inpatient-Gap-Over-Hour"
+    }
+  ],
+  "name": [
+    {
+      "family": "CQMElementsTest",
+      "given": [
+        "02-ED-Inpatient-Gap-Over-Hour"
+      ]
+    }
+  ],
+  "gender": "female",
+  "birthDate": "1970-01-01"
+}

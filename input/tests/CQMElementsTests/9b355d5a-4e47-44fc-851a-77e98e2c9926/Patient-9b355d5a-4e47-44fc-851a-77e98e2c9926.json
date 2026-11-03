@@ -1,0 +1,25 @@
+{
+  "resourceType": "Patient",
+  "id": "9b355d5a-4e47-44fc-851a-77e98e2c9926",
+  "meta": {
+    "profile": [
+      "http://fhir.org/guides/onc/us-quality-core/StructureDefinition/us-quality-core-patient"
+    ]
+  },
+  "identifier": [
+    {
+      "system": "http://example.org/fhir/identifiers",
+      "value": "03-Surgery-Inpatient"
+    }
+  ],
+  "name": [
+    {
+      "family": "CQMElementsTest",
+      "given": [
+        "03-Surgery-Inpatient"
+      ]
+    }
+  ],
+  "gender": "female",
+  "birthDate": "1970-01-01"
+}
