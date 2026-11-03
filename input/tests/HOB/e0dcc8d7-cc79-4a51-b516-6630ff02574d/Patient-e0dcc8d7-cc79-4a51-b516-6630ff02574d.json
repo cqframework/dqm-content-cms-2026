@@ -1,0 +1,25 @@
+{
+  "resourceType": "Patient",
+  "id": "e0dcc8d7-cc79-4a51-b516-6630ff02574d",
+  "meta": {
+    "profile": [
+      "http://fhir.org/guides/onc/us-quality-core/StructureDefinition/us-quality-core-patient"
+    ]
+  },
+  "identifier": [
+    {
+      "system": "http://example.org/fhir/identifiers",
+      "value": "22-Prior-HOB-Before-MP"
+    }
+  ],
+  "name": [
+    {
+      "family": "HOBTest",
+      "given": [
+        "22-Prior-HOB-Before-MP"
+      ]
+    }
+  ],
+  "gender": "female",
+  "birthDate": "1970-01-01"
+}

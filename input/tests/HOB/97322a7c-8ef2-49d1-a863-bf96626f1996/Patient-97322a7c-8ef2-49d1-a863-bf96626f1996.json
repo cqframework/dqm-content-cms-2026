@@ -1,0 +1,25 @@
+{
+  "resourceType": "Patient",
+  "id": "97322a7c-8ef2-49d1-a863-bf96626f1996",
+  "meta": {
+    "profile": [
+      "http://fhir.org/guides/onc/us-quality-core/StructureDefinition/us-quality-core-patient"
+    ]
+  },
+  "identifier": [
+    {
+      "system": "http://example.org/fhir/identifiers",
+      "value": "09-Discharged-Day-4"
+    }
+  ],
+  "name": [
+    {
+      "family": "HOBTest",
+      "given": [
+        "09-Discharged-Day-4"
+      ]
+    }
+  ],
+  "gender": "female",
+  "birthDate": "1970-01-01"
+}

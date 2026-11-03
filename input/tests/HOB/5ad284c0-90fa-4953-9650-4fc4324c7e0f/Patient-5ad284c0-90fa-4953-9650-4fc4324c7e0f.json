@@ -1,0 +1,25 @@
+{
+  "resourceType": "Patient",
+  "id": "5ad284c0-90fa-4953-9650-4fc4324c7e0f",
+  "meta": {
+    "profile": [
+      "http://fhir.org/guides/onc/us-quality-core/StructureDefinition/us-quality-core-patient"
+    ]
+  },
+  "identifier": [
+    {
+      "system": "http://example.org/fhir/identifiers",
+      "value": "03-OBS-Only"
+    }
+  ],
+  "name": [
+    {
+      "family": "HOBTest",
+      "given": [
+        "03-OBS-Only"
+      ]
+    }
+  ],
+  "gender": "female",
+  "birthDate": "1970-01-01"
+}

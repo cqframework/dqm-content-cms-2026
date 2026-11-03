@@ -1,0 +1,25 @@
+{
+  "resourceType": "Patient",
+  "id": "fca52ba3-d56d-4e38-a9fc-2cab1a726b9d",
+  "meta": {
+    "profile": [
+      "http://fhir.org/guides/onc/us-quality-core/StructureDefinition/us-quality-core-patient"
+    ]
+  },
+  "identifier": [
+    {
+      "system": "http://example.org/fhir/identifiers",
+      "value": "20-Specimen-Collection-Time"
+    }
+  ],
+  "name": [
+    {
+      "family": "HOBTest",
+      "given": [
+        "20-Specimen-Collection-Time"
+      ]
+    }
+  ],
+  "gender": "female",
+  "birthDate": "1970-01-01"
+}

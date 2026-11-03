@@ -1,6 +1,29 @@
-library HOBOrganismTaxonomy
+/*
+@description: 
 
-// TODO: Need to construct more concise tables here
+NOTE: This library is developed in the dqm-content-cms-2026 repository:
+https://github.com/cqframework/dqm-content-cms-2026/blob/main/input/cql/HOBOrganismTaxonomy.cql
+
+NOTE: This library is currently released in MADiE; this is the development copy
+https://madie.cms.gov/cql-libraries/6ae9ecdc420d45ce089c0e76/edit/details
+*/
+library HOBOrganismTaxonomy version 0.1.000
+
+using USQualityCore version '0.5.0'
+using USCore version '6.1.0-derived'
+using FHIR version '4.0.1'
+
+include hl7.fhir.uv.cql.FHIRHelpers version '4.0.1' called FHIRHelpers
+include hl7.fhir.uv.cql.FHIRCommon version '2.0.0' called FHIRCommon
+
+context Patient
+
+/*
+@description: Organism species and genus information
+@comment: This definition is a subset of the complete organism taxonomy for the
+HOB measure for illustration purposes. For the complete taxonomy, refer to the
+HOB measure guidance.
+*/
 define "OrganismTaxonomy":
 {
   { "snomed_preferred_term": '(Cholera) or (Vibrio cholerae)', "snomed_concept_id": '186087007', "roll_up_genus_level": '1', "roll_up_genus_name": 'Vibrio', "roll_up_genus_conceptid": '34872001', "roll_up_species_level": '1', "roll_up_species_name": 'Vibrio cholerae', "roll_up_species_conceptid": '75953000', "nhsn_community_associated": '0', "nhsn_skin_commensal": '0', "snomed_status": '0', "L": null as String },

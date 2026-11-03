@@ -1,0 +1,25 @@
+{
+  "resourceType": "Patient",
+  "id": "745c7428-d787-493c-8652-5af34a811f97",
+  "meta": {
+    "profile": [
+      "http://fhir.org/guides/onc/us-quality-core/StructureDefinition/us-quality-core-patient"
+    ]
+  },
+  "identifier": [
+    {
+      "system": "http://example.org/fhir/identifiers",
+      "value": "21-No-Specimen"
+    }
+  ],
+  "name": [
+    {
+      "family": "HOBTest",
+      "given": [
+        "21-No-Specimen"
+      ]
+    }
+  ],
+  "gender": "female",
+  "birthDate": "1970-01-01"
+}

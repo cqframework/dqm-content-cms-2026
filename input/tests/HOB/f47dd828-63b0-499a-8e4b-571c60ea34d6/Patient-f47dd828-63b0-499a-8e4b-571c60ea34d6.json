@@ -1,0 +1,25 @@
+{
+  "resourceType": "Patient",
+  "id": "f47dd828-63b0-499a-8e4b-571c60ea34d6",
+  "meta": {
+    "profile": [
+      "http://fhir.org/guides/onc/us-quality-core/StructureDefinition/us-quality-core-patient"
+    ]
+  },
+  "identifier": [
+    {
+      "system": "http://example.org/fhir/identifiers",
+      "value": "02-ED-Outside-MP"
+    }
+  ],
+  "name": [
+    {
+      "family": "HOBTest",
+      "given": [
+        "02-ED-Outside-MP"
+      ]
+    }
+  ],
+  "gender": "female",
+  "birthDate": "1970-01-01"
+}

@@ -3,12 +3,15 @@ Draft CQL representation of Hospital Onset Bacteremia and Fungemia Surveillance 
 */
 library HOB
 
+using USQualityCore version '0.5.0'
+using USCore version '6.1.0-derived'
 using FHIR version '4.0.1'
 
 include hl7.fhir.uv.cql.FHIRHelpers version '4.0.1' called FHIRHelpers
 include hl7.fhir.uv.cql.FHIRCommon version '2.0.0' called FHIRCommon
 
-include CQMCommon version '5.2.000' called CQMCommon
+include CQMConcepts version '0.5.000' called CQMConcepts
+include CQMElements version '0.5.000' called CQMElements
 include HOBOrganismTaxonomy
 
 valueset "Bacteria and Fungi - HOB Specific": 'https://example.org/fhir/ValueSet/bacteria-and-fungi-hob-specific'
@@ -28,24 +31,13 @@ parameter "Measurement Period" Interval<DateTime>
 
 context Patient
 
-/*
-ED/OBS encounter: Any patient visit to an emergency department (ED) or observation (OBS) location. One patient visit equals one encounter. ED/OBS are considered outpatient locations.
-Hospital Stay: NHSN defines a hospital stay to be inclusive of any: (a) ED/OBS encounters, (b) inpatient admissions, or (c) ED/OBS encounters that lead to inpatient admissions (within 1 hour of ED/OBS encounters).
-Inpatient admission: For NHSN reporting purposes, the ‘date admitted to the facility’ is hospital day (HD) 1. NHSN defines an inpatient as any patient cared for or housed on an inpatient location. Local status may differ from NHSN definition; all days spent in an inpatient unit, regardless of local admission status and/or billing status are included in the counts of admissions and inpatient days. For NHSN reporting purposes, the date admitted to the facility is the calendar date that the patient physically locates to an inpatient location.
-Measurement Period: Time period selected for report generation/metric calculation
-Adult: Patients who are ≥18 years old on the calendar day of the start of the Hospital Stay
-Pediatric: Patients who are < 18 years old on the calendar day of the start of the Hospital Stay
-NICU: Patients who are housed in a NICU location at the time of index blood culture collection
-Oncology/Neutropenia: Patient either 1) located in an Oncology ward, or 2) with neutropenia define an absolute neutrophil count (ANC) <1000 cell/microL observed for ≥2 days in a +/- 7-day window period around the index blood culture
-O-COB: Outpatient Community-onset Bacteremia & Fungemia Event
-COB: Community-onset Bacteremia & Fungemia Event
-HOB: Hospital-onset Bacteremia & Fungemia Event
-*/
-
 define "Bacterial and Fungal Blood Culture Test Results":
-  [Observation: "Bacterial and Fungal Blood Culture Tests"] O
-    where O.isLaboratory()
-      and O.isResulted()
+  [USQualityCore.LaboratoryResultObservation: "Bacterial and Fungal Blood Culture Tests"] O
+    where O.isResulted()
+
+define "Blood Specimen":
+  [USCore.SpecimenProfile: "Specimen Type - Blood"] S
+    where S.status = 'available'
 
 define "Bacteremia or Fungemia Result":
   "Bacterial and Fungal Blood Culture Test Results" R
@@ -53,145 +45,120 @@ define "Bacteremia or Fungemia Result":
       and not ((R.value as CodeableConcept) in "Bacterial Skin Commensals")
 
 define "Bacteremia or Fungemia Result With Specimen":
-  from
-    "Bacteremia or Fungemia Result" R,
-    [Specimen: "Specimen Type - Blood"] S
-    where R.specimen.references(S)
+  "Bacteremia or Fungemia Result" R
+    let specimen: singleton from ("Blood Specimen" S where R.specimen.references(S))
     return {
       result: R,
-      specimen: S
+      specimen: specimen
     }
 
-// Assertion is that there is never more than one ED/Observation preceding an inpatient stay
-// i.e. ED -> ED -> Inpatient, ED -> Observation -> ED -> Inpatient, Observation -> Inpatient are all combinations that will never appear
-// TODO: This does not currently hold for real-world data, need to build encounter normalization logic
-// Note also that Encounter.classHistory is not defined, so Encounter.hospitalization.location will have a more accurate representation of class over time
-define "Outpatient Encounter":
-  [Encounter: CQMCommon."Emergency Department Visit"] ED
-    let observationEncounter: First(
-      [Encounter: CQMCommon."Observation Services"] O
-        where O.period starts 1 hour or less on or before end of ED.period
-        sort by start of period
-    ),
-    endOfStay: Coalesce(end of observationEncounter.period, end of ED.period),
-    inpatientEncounter: First(
-      [Encounter: CQMCommon."Encounter Inpatient"] E
-        where E.period starts 1 hour or less on or before endOfStay
-    )
-  return {
-    edEncounter: ED,
-    observationEncounter: observationEncounter,
-    inpatientEncounter: inpatientEncounter,
-    outpatientStay: Interval[start of ED.period, Coalesce(start of inpatientEncounter.period, endOfStay)],
-    inpatientStay: inpatientEncounter.period
+/*
+@description: Returns the specimen collection time if available, falling back to the effective time
+@comment: Note that specimen collection time is not a USCI+Qualtiy or USCDI element
+*/
+define fluent function collectionTime(
+  resultWithSpecimen Tuple { 
+    result USQualityCore.LaboratoryResultObservation, 
+    specimen USCore.SpecimenProfile
   }
+):
+  Coalesce(
+    resultWithSpecimen.specimen.collection.collected.toInterval(), 
+    resultWithSpecimen.result.effective.toInterval()
+  )
+
+// TODO: Consider this IP:
+// https://measures-ci.nhsnlink.org/Library-NHSNAcuteCareHospitalMonthlyInitialPopulation.html
+
+// TODO: Consider "Outpatient Surgery Encounter"?
+define "Hospital Stays":
+  CQMElements."Hospitalization Encounters"(
+    CQMElements."Inpatient Encounter"
+      union CQMElements."Emergency Department Encounter"
+      union CQMElements."Observation Encounter"
+  )
 
 define "Inpatient Encounter":
-  [Encounter: CQMCommon."Encounter Inpatient"] E
-    let observationEncounter: Last(
-      [Encounter: CQMCommon."Observation Services"] O
-        where O.period ends 1 hour or less on or before start of E.period
-        sort by end of period
-    ),
-    visitStart: Coalesce(start of observationEncounter.period, start of E.period),
-    edEncounter: Last(
-      [Encounter: CQMCommon."Emergency Department Visit"] ED
-        where ED.period ends 1 hour or less on or before visitStart
-        sort by end of period
-    ),
-    outpatientStay:
-      if observationEncounter is null and edEncounter is null then
-        null
-      else
-        Interval[Coalesce(start of edEncounter.period, start of observationEncounter.period), start of E.period]
-    return {
-      edEncounter: edEncounter,
-      observationEncounter: observationEncounter,
-      inpatientEncounter: E,
-      outpatientStay: outpatientStay,
-      inpatientStay: E.period
-    }
+  "Hospital Stays" Stay
+    where Stay.type in CQMConcepts."Encounter Inpatient"
 
-// TODO: USCDI+ Quality/USCDI Gap (Specimen Collection Time)
-// NOTE: Can we use effectiveTime here rather than Specimen Collection Time
-define "Encounter With O-COB Result":
+define "Outpatient Encounter":
+  "Hospital Stays"
+    except "Inpatient Encounter"
+
+/*
+An O-COB event occurs when a patient has a bacterial or fungal organism identified 
+from a blood culture performed on a blood specimen collected during an ED/Observation-only 
+Hospital Stay that does not include an inpatient admission.
+*/
+define "O-COB Event":
   "Outpatient Encounter" E
     let results: (
       "Bacteremia or Fungemia Result With Specimen" RS 
-        where RS.specimen.collection.collected.toInterval()
-          during E.outpatientStay
+        where RS.collectionTime() during E.hospitalization()
     )
     where exists (results)
     return {
-      edEncounter: E.edEncounter,
-      observationEncounter: E.observationEncounter,
-      inpatientEncounter: E.inpatientEncounter,
-      outpatientStay: E.outpatientStay,
-      inpatientStay: E.inpatientStay,
-      indexDate: Min(results R return start of R.specimen.collection.collected.toInterval()),
+      encounter: E,
+      indexDate: Min(results R return start of R.collectionTime()),
       organisms: results R return R.result.value as CodeableConcept
     }
 
-define "Encounter With COB Result":
+/*
+@description: Returns the community onset window, hospital days 1 to 3
+*/
+define fluent function communityOnsetWindow(encounter USQualityCore.Encounter):
+  encounter.hospitalization().hospitalDays(1, 3)
+
+/*
+A COB event occurs when a patient has a bacterial or fungal organism identified from a blood 
+culture performed on a blood specimen collected on Hospital Stay days 1 through 3 of a Hospital 
+Stay that includes an inpatient admission.
+*/
+define "COB Event":
   "Inpatient Encounter" E
-    let 
-      oCOB: "Encounter With O-COB Result" oCOBEncounter where E.inpatientEncounter.id = oCOBEncounter.inpatientEncounter.id,
-      results: (
-        "Bacteremia or Fungemia Result With Specimen" RS
-          where RS.specimen.collection.collected.toInterval()
-            during day of Interval[start of E.inpatientStay, start of E.inpatientStay + 3 days]
-            and not exists (
-              oCOB.organisms O
-                where O.organismMatches(RS.result.value as CodeableConcept)
-            )
+    let results: (
+      "Bacteremia or Fungemia Result With Specimen" RS
+        where RS.collectionTime() during E.hospitalization().hospitalDays(1, 3)
     )
     where exists (results)
     return {
-      edEncounter: E.edEncounter,
-      observationEncounter: E.observationEncounter,
-      inpatientEncounter: E.inpatientEncounter,
-      outpatientStay: E.outpatientStay,
-      inpatientStay: E.inpatientStay,
-      indexDate: Min(results R return start of R.specimen.collection.collected.toInterval()),
+      encounter: E,
+      indexDate: Min(results R return start of R.collectionTime()),
       organisms: results R return R.result.value as CodeableConcept
     }
 
-define "Encounter With HOB Result":
+/*
+@description: Returns the hospital onset window, hospital day 4 to the end of the hospitalization
+*/
+define fluent function hospitalOnsetWindow(encounter USQualityCore.Encounter):
+  (encounter.hospitalization()) H
+    let day4Start: DateTimeWithSamePrecision(date from start of H + 3 days, start of H)
+    return if day4Start <= H.high then Interval[start of H.hospitalDay(4), H.high] else null
+  
+/*
+An HOB event occurs when a patient has a bacterial or fungal organism identified from a blood
+culture performed on a blood specimen collected on Hospital Stay day 4 or later of a Hospital 
+Stay that includes an inpatient admission.
+*/
+define "HOB Event":
   "Inpatient Encounter" E
     let 
-      oCOB: "Encounter With O-COB Result" oCOBEncounter where E.inpatientEncounter.id = oCOBEncounter.inpatientEncounter.id,
-      COB: "Encounter With COB Result" COBEncounter where E.inpatientEncounter.id = COBEncounter.inpatientEncounter.id,
-      // Guard the interval: for stays of 3 days or fewer, start + 4 days is after the
-      // stay end, which would construct an inverted (invalid) interval and error.
-      hospitalOnsetWindow:
-        if duration in days of E.inpatientStay > 3
-          then Interval[start of E.inpatientStay + 4 days, end of E.inpatientStay]
-          else null as Interval<DateTime>,
+      COB: singleton from ("COB Event" COBEvent where E.id = COBEvent.encounter.id),
       results: (
         "Bacteremia or Fungemia Result With Specimen" RS
-          where RS.specimen.collection.collected.toInterval()
-            during day of hospitalOnsetWindow
-            and not exists (
-              oCOB.organisms O
-                where O.organismMatches(RS.result.value as CodeableConcept)
-            )
+          where RS.collectionTime() during E.hospitalOnsetWindow()
             and not exists (
               COB.organisms O
                 where O.organismMatches(RS.result.value as CodeableConcept)
             )
     )
-    where duration in days of E.inpatientStay > 3
-      and exists (results)
+    where exists (results)
     return {
-      edEncounter: E.edEncounter,
-      observationEncounter: E.observationEncounter,
-      inpatientEncounter: E.inpatientEncounter,
-      outpatientStay: E.outpatientStay,
-      inpatientStay: E.inpatientStay,
-      indexDate: Min(results R return start of R.specimen.collection.collected.toInterval()),
+      encounter: E,
+      indexDate: Min(results R return start of R.collectionTime()),
       organisms: results R return R.result.value as CodeableConcept
     }
-
 
 /*
 Metric: O-COB Prevalence Rate
@@ -202,20 +169,18 @@ Denominator: Number of outpatient (ED/OBS) encounters occurring within the measu
 
 define "Outpatient Encounter During Measurement Period":
   "Outpatient Encounter" O
-    where O.outpatientStay overlaps "Measurement Period"
+    where O.hospitalization() overlaps "Measurement Period"
 
 define "O-COB Prevalence Rate Initial Population":
-  "Outpatient Encounter During Measurement Period" O
-    return O.edEncounter
+  "Outpatient Encounter During Measurement Period"
 
 define "O-COB Prevalence Rate Denominator":
-  "Outpatient Encounter During Measurement Period" O
-    return O.edEncounter
+  "Outpatient Encounter During Measurement Period"
 
 define "O-COB Prevlanece Rate Numerator":
-  "Encounter With O-COB Result" OCOBEvent
+  "O-COB Event" OCOBEvent
     where OCOBEvent.indexDate during "Measurement Period"
-    return OCOBEvent.edEncounter
+    return OCOBEvent.encounter
 
 /*
 Metric: Inpatient COB Prevalence Rate
@@ -226,21 +191,18 @@ Denominator: Number of inpatient stays where at least one of the first three inp
 
 define "Community Eligible Inpatient Encounter During Measurement Period":
   "Inpatient Encounter" I
-    let communityEligible: Interval[start of I.inpatientStay, Min({ start of I.inpatientStay + 3 days, end of I.inpatientStay })]
-    where communityEligible overlaps "Measurement Period"
+    where I.communityOnsetWindow() overlaps "Measurement Period"
 
 define "COB Prevalence Rate Initial Population":
-  "Community Eligible Inpatient Encounter During Measurement Period" I
-    return I.inpatientEncounter // Tricky... encounter normalization will address this
+  "Community Eligible Inpatient Encounter During Measurement Period"
 
 define "COB Prevalence Rate Denominator":
-  "Community Eligible Inpatient Encounter During Measurement Period" I
-    return I.inpatientEncounter // Tricky... encounter normalization will address this
+  "Community Eligible Inpatient Encounter During Measurement Period"
 
 define "COB Prevalence Rate Numerator":
-  "Encounter With COB Result" COBEvent
+  "COB Event" COBEvent
     where COBEvent.indexDate during "Measurement Period"
-    return COBEvent.inpatientEncounter  
+    return COBEvent.encounter
 
 /*
 Metric: HOB Crude Risk
@@ -254,32 +216,23 @@ Notes: The denominator for HOB admission risk will include only those inpatient 
 
 define "Hospital Eligible Inpatient Encounter During Measurement Period":
   "Inpatient Encounter" I
-    // Guard the interval: for stays of 3 days or fewer, start + 4 days is after the
-    // stay end, which would construct an inverted (invalid) interval and error. The
-    // conditional also subsumes the duration > 3 eligibility check.
-    let hospitalEligible:
-      if duration in days of I.inpatientStay > 3
-        then Interval[start of I.inpatientStay + 4 days, end of I.inpatientStay]
-        else null as Interval<DateTime>
-    where hospitalEligible overlaps "Measurement Period"
+    where I.hospitalOnsetWindow() overlaps "Measurement Period"
       and not exists (
-        "Encounter With HOB Result" HOBEvent
-          where HOBEvent.inpatientEncounter ~ I.inpatientEncounter
+        "HOB Event" HOBEvent
+          where HOBEvent.encounter.id = I.id
             and HOBEvent.indexDate before start of "Measurement Period"
       )
 
 define "HOB Crude Risk Initial Population":
-  "Hospital Eligible Inpatient Encounter During Measurement Period" I
-    return I.inpatientEncounter
+  "Hospital Eligible Inpatient Encounter During Measurement Period"
 
 define "HOB Crude Risk Denominator":
-  "Hospital Eligible Inpatient Encounter During Measurement Period" I
-    return I.inpatientEncounter
+  "Hospital Eligible Inpatient Encounter During Measurement Period"
 
 define "HOB Crude Risk Numerator":
-  "Encounter With HOB Result" HOBEvent
+  "HOB Event" HOBEvent
     where HOBEvent.indexDate during "Measurement Period"
-    return HOBEvent.inpatientEncounter
+    return HOBEvent.encounter
 
 /*
 Metric: HOB Incidence Density
@@ -290,25 +243,78 @@ Notes: Eligible patient days are defined as: Inpatient day 4 until discharge or 
 */
 
 define "HOB Incidence Density Initial Population":
-  "Hospital Eligible Inpatient Encounter During Measurement Period" I
-    return I.inpatientEncounter
+  "Hospital Eligible Inpatient Encounter During Measurement Period"
 
 define "HOB Incidence Density Denominator":
-  "Hospital Eligible Inpatient Encounter During Measurement Period" I
-    return I.inpatientEncounter
+  "Hospital Eligible Inpatient Encounter During Measurement Period"
 
-define function "HOB Incidence Density Denominator Observation"(encounter Encounter):
-  days between start of encounter.period + 4 days
+define function "HOB Incidence Density Denominator Observation"(encounter USQualityCore.Encounter):
+  days between start of encounter.hospitalOnsetWindow()
     and Min({
-      ("Encounter With HOB Result" HOBEvent where HOBEvent.inpatientEncounter ~ encounter).single().indexDate,
+      ("HOB Event" HOBEvent where HOBEvent.encounter.id = encounter.id).single().indexDate,
       end of encounter.period
     })
 
 define "HOB Incidence Density Numerator":
-  "Encounter With HOB Result" I
-    return I.inpatientEncounter
+  "HOB Event" HOBEvent
+    where HOBEvent.indexDate during "Measurement Period"
+    return HOBEvent.encounter
 
 // Just counting, so return 1
-define function "HOB Incidence Density Numerator Observation"(encounter Encounter):
+define function "HOB Incidence Density Numerator Observation"(encounter USQualityCore.Encounter):
   1
 
+/*
+@description: Returns a DateTime constructed with the same precision as
+the given date time. This is effectively a ToDateTime operation but setting
+the time components to 0 (i.e. starting at midnight on the given date)
+@comment: Proposed for inclusion in CQMConcepts
+*/
+define function DateTimeWithSamePrecision(_date Date, _dateTime DateTime):
+  DateTime(
+    year from _date,
+    month from _date,
+    day from _date,
+    if hour from _dateTime is not null then 0 else null,
+    if minute from _dateTime is not null then 0 else null,
+    if second from _dateTime is not null then 0 else null
+  )
+
+/*
+@description: Returns the interval of time covering the given hospital day
+@comment: The interval will be a full day unless it is the first or last day
+of the hospital stay, in which case it will start or end with the hospitalization
+start or end.
+
+NOTE: Proposed for inclusion in CQMConcepts
+*/
+define fluent function hospitalDay(hospitalization Interval<DateTime>, dayNumber Integer):
+  hospitalization H
+    let 
+      hospitalDate: date from start of H + ((dayNumber - 1) * 1 day),
+      hospitalDateTime: DateTimeWithSamePrecision(hospitalDate, start of H)
+    return Interval[
+      Max({ start of H, hospitalDateTime }),
+      Min({ hospitalDateTime + 1 day, H.high })
+    )
+
+/*
+@description: Returns the interval of time covering the given hospital days
+@comment: The interval will start at midnight on the starting day, unless it is
+the first day, in which case it will start with the hospitalization start. The
+interval will end just before midnight on the ending day, unless it is the last
+day or later, in which case it will end with the hospitalization end.
+
+NOTE: Proposed for inclusion in CQMConcepts
+*/
+define fluent function hospitalDays(hospitalization Interval<DateTime>, startDayNumber Integer, endDayNumber Integer):
+  hospitalization H
+    let 
+      hospitalDate: date from start of H + ((startDayNumber - 1) * 1 day),
+      hospitalDateTime: DateTimeWithSamePrecision(hospitalDate, start of H),
+      numberOfDays: (endDayNumber - startDayNumber) + 1
+    return Interval[
+      Max({ start of H, hospitalDateTime }),
+      Min({ hospitalDateTime + (numberOfDays * 1 day), H.high })
+    )
+    

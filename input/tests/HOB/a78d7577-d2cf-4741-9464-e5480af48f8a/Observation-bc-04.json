@@ -1,0 +1,52 @@
+{
+  "resourceType": "Observation",
+  "id": "bc-04",
+  "meta": {
+    "profile": [
+      "http://fhir.org/guides/onc/us-quality-core/StructureDefinition/us-quality-core-observation-lab"
+    ]
+  },
+  "identifier": [
+    {
+      "system": "http://example.org/fhir/identifiers",
+      "value": "bc-04"
+    }
+  ],
+  "status": "final",
+  "category": [
+    {
+      "coding": [
+        {
+          "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+          "code": "laboratory",
+          "display": "Laboratory"
+        }
+      ]
+    }
+  ],
+  "code": {
+    "coding": [
+      {
+        "system": "http://loinc.org",
+        "code": "600-7",
+        "display": "Bacteria identified in Blood by Culture"
+      }
+    ]
+  },
+  "effectiveDateTime": "2026-01-15T12:00:00.000+00:00",
+  "valueCodeableConcept": {
+    "coding": [
+      {
+        "system": "http://snomed.info/sct",
+        "code": "113714003",
+        "display": "Abiotrophia defectiva"
+      }
+    ]
+  },
+  "specimen": {
+    "reference": "Specimen/sp-04"
+  },
+  "subject": {
+    "reference": "Patient/a78d7577-d2cf-4741-9464-e5480af48f8a"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "resourceType": "Patient",
+  "id": "c3c71a9a-f6dd-4efd-adf8-0417ad5ba727",
+  "meta": {
+    "profile": [
+      "http://fhir.org/guides/onc/us-quality-core/StructureDefinition/us-quality-core-patient"
+    ]
+  },
+  "identifier": [
+    {
+      "system": "http://example.org/fhir/identifiers",
+      "value": "19-Excluded-Results"
+    }
+  ],
+  "name": [
+    {
+      "family": "HOBTest",
+      "given": [
+        "19-Excluded-Results"
+      ]
+    }
+  ],
+  "gender": "female",
+  "birthDate": "1970-01-01"
+}

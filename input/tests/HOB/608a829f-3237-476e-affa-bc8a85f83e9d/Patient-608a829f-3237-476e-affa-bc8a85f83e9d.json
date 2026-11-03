@@ -1,0 +1,25 @@
+{
+  "resourceType": "Patient",
+  "id": "608a829f-3237-476e-affa-bc8a85f83e9d",
+  "meta": {
+    "profile": [
+      "http://fhir.org/guides/onc/us-quality-core/StructureDefinition/us-quality-core-patient"
+    ]
+  },
+  "identifier": [
+    {
+      "system": "http://example.org/fhir/identifiers",
+      "value": "11-COB-Window-Before-MP"
+    }
+  ],
+  "name": [
+    {
+      "family": "HOBTest",
+      "given": [
+        "11-COB-Window-Before-MP"
+      ]
+    }
+  ],
+  "gender": "female",
+  "birthDate": "1970-01-01"
+}

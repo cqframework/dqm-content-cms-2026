@@ -1,0 +1,52 @@
+{
+  "resourceType": "Observation",
+  "id": "bc-17-a",
+  "meta": {
+    "profile": [
+      "http://fhir.org/guides/onc/us-quality-core/StructureDefinition/us-quality-core-observation-lab"
+    ]
+  },
+  "identifier": [
+    {
+      "system": "http://example.org/fhir/identifiers",
+      "value": "bc-17-a"
+    }
+  ],
+  "status": "final",
+  "category": [
+    {
+      "coding": [
+        {
+          "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+          "code": "laboratory",
+          "display": "Laboratory"
+        }
+      ]
+    }
+  ],
+  "code": {
+    "coding": [
+      {
+        "system": "http://loinc.org",
+        "code": "600-7",
+        "display": "Bacteria identified in Blood by Culture"
+      }
+    ]
+  },
+  "effectiveDateTime": "2026-01-06T12:00:00.000+00:00",
+  "valueCodeableConcept": {
+    "coding": [
+      {
+        "system": "http://snomed.info/sct",
+        "code": "266186009",
+        "display": "(Legionella) or (Legionnaire's disease)"
+      }
+    ]
+  },
+  "specimen": {
+    "reference": "Specimen/sp-17-a"
+  },
+  "subject": {
+    "reference": "Patient/f2b6ce03-5652-4bb9-a50b-762c201549c1"
+  }
+}

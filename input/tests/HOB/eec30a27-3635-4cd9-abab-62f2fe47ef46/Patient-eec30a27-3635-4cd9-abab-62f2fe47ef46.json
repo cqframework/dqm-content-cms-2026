@@ -1,0 +1,25 @@
+{
+  "resourceType": "Patient",
+  "id": "eec30a27-3635-4cd9-abab-62f2fe47ef46",
+  "meta": {
+    "profile": [
+      "http://fhir.org/guides/onc/us-quality-core/StructureDefinition/us-quality-core-patient"
+    ]
+  },
+  "identifier": [
+    {
+      "system": "http://example.org/fhir/identifiers",
+      "value": "15-HOB-Excluded-Matching-COB"
+    }
+  ],
+  "name": [
+    {
+      "family": "HOBTest",
+      "given": [
+        "15-HOB-Excluded-Matching-COB"
+      ]
+    }
+  ],
+  "gender": "female",
+  "birthDate": "1970-01-01"
+}

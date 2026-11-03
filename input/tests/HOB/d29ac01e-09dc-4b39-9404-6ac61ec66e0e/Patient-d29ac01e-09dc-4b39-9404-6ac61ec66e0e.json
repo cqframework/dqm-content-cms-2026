@@ -1,0 +1,25 @@
+{
+  "resourceType": "Patient",
+  "id": "d29ac01e-09dc-4b39-9404-6ac61ec66e0e",
+  "meta": {
+    "profile": [
+      "http://fhir.org/guides/onc/us-quality-core/StructureDefinition/us-quality-core-patient"
+    ]
+  },
+  "identifier": [
+    {
+      "system": "http://example.org/fhir/identifiers",
+      "value": "10-Culture-After-Discharge"
+    }
+  ],
+  "name": [
+    {
+      "family": "HOBTest",
+      "given": [
+        "10-Culture-After-Discharge"
+      ]
+    }
+  ],
+  "gender": "female",
+  "birthDate": "1970-01-01"
+}

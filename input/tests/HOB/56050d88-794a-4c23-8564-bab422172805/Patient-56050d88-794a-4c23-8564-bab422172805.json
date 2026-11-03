@@ -1,0 +1,25 @@
+{
+  "resourceType": "Patient",
+  "id": "56050d88-794a-4c23-8564-bab422172805",
+  "meta": {
+    "profile": [
+      "http://fhir.org/guides/onc/us-quality-core/StructureDefinition/us-quality-core-patient"
+    ]
+  },
+  "identifier": [
+    {
+      "system": "http://example.org/fhir/identifiers",
+      "value": "14-Day-3-COB-Day-4-HOB"
+    }
+  ],
+  "name": [
+    {
+      "family": "HOBTest",
+      "given": [
+        "14-Day-3-COB-Day-4-HOB"
+      ]
+    }
+  ],
+  "gender": "female",
+  "birthDate": "1970-01-01"
+}
