@@ -1,0 +1,14 @@
+{
+  "extraKnownMarketplaces": {
+    "cqf-skills": {
+      "source": {
+        "source": "github",
+        "repo": "cqframework/cqf-skills"
+      }
+    }
+  },
+  "enabledPlugins": {
+    "cql@cqf-skills": true,
+    "fhir@cqf-skills": true
+  }
+}
