@@ -1,0 +1,29 @@
+{
+  "resourceType": "MedicationAdministration",
+  "id": "ma-05-stopped",
+  "meta": {
+    "profile": [
+      "http://fhir.org/guides/onc/us-quality-core/StructureDefinition/us-quality-core-medicationadministration"
+    ]
+  },
+  "identifier": [
+    {
+      "system": "http://example.org/fhir/identifiers",
+      "value": "ma-05-stopped"
+    }
+  ],
+  "status": "stopped",
+  "medicationCodeableConcept": {
+    "coding": [
+      {
+        "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+        "code": "243670",
+        "display": "aspirin 81 MG Oral Tablet"
+      }
+    ]
+  },
+  "subject": {
+    "reference": "Patient/40cdcb61-ef2f-4a7c-91c5-633ec79c2fea"
+  },
+  "effectiveDateTime": "2026-03-01T12:00:00.000+00:00"
+}

@@ -1,0 +1,30 @@
+{
+  "resourceType": "MedicationRequest",
+  "id": "mr-02-filler-order",
+  "meta": {
+    "profile": [
+      "http://fhir.org/guides/onc/us-quality-core/StructureDefinition/us-quality-core-medicationrequest"
+    ]
+  },
+  "identifier": [
+    {
+      "system": "http://example.org/fhir/identifiers",
+      "value": "mr-02-filler-order"
+    }
+  ],
+  "status": "active",
+  "intent": "filler-order",
+  "medicationCodeableConcept": {
+    "coding": [
+      {
+        "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+        "code": "243670",
+        "display": "aspirin 81 MG Oral Tablet"
+      }
+    ]
+  },
+  "subject": {
+    "reference": "Patient/8adc9a27-2c9c-47ae-8999-ffab80a7d591"
+  },
+  "authoredOn": "2026-03-01T12:00:00.000+00:00"
+}

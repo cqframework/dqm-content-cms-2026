@@ -1,0 +1,25 @@
+{
+  "resourceType": "Patient",
+  "id": "f710f472-4961-4c25-9e14-e706af5e2fe9",
+  "meta": {
+    "profile": [
+      "http://fhir.org/guides/onc/us-quality-core/StructureDefinition/us-quality-core-patient"
+    ]
+  },
+  "identifier": [
+    {
+      "system": "http://example.org/fhir/identifiers",
+      "value": "08-Negation-Profiles"
+    }
+  ],
+  "name": [
+    {
+      "family": "MedicationCommonTest",
+      "given": [
+        "08-Negation-Profiles"
+      ]
+    }
+  ],
+  "gender": "female",
+  "birthDate": "1970-01-01"
+}

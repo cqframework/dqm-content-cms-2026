@@ -1,0 +1,25 @@
+{
+  "resourceType": "Patient",
+  "id": "b06e66e8-f1c4-4a5d-8f16-a954f808908c",
+  "meta": {
+    "profile": [
+      "http://fhir.org/guides/onc/us-quality-core/StructureDefinition/us-quality-core-patient"
+    ]
+  },
+  "identifier": [
+    {
+      "system": "http://example.org/fhir/identifiers",
+      "value": "07-Dispense-Status"
+    }
+  ],
+  "name": [
+    {
+      "family": "MedicationCommonTest",
+      "given": [
+        "07-Dispense-Status"
+      ]
+    }
+  ],
+  "gender": "female",
+  "birthDate": "1970-01-01"
+}

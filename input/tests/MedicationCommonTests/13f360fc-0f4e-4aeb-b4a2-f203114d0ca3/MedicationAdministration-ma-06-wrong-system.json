@@ -1,0 +1,37 @@
+{
+  "resourceType": "MedicationAdministration",
+  "id": "ma-06-wrong-system",
+  "meta": {
+    "profile": [
+      "http://fhir.org/guides/onc/us-quality-core/StructureDefinition/us-quality-core-medicationadministration"
+    ]
+  },
+  "identifier": [
+    {
+      "system": "http://example.org/fhir/identifiers",
+      "value": "ma-06-wrong-system"
+    }
+  ],
+  "status": "completed",
+  "medicationCodeableConcept": {
+    "coding": [
+      {
+        "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+        "code": "243670",
+        "display": "aspirin 81 MG Oral Tablet"
+      }
+    ]
+  },
+  "subject": {
+    "reference": "Patient/13f360fc-0f4e-4aeb-b4a2-f203114d0ca3"
+  },
+  "effectiveDateTime": "2026-03-01T12:00:00.000+00:00",
+  "category": {
+    "coding": [
+      {
+        "system": "http://example.org/codes",
+        "code": "community"
+      }
+    ]
+  }
+}

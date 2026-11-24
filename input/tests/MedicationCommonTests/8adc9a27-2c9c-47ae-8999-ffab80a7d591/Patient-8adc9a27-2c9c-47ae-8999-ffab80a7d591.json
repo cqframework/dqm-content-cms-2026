@@ -1,0 +1,25 @@
+{
+  "resourceType": "Patient",
+  "id": "8adc9a27-2c9c-47ae-8999-ffab80a7d591",
+  "meta": {
+    "profile": [
+      "http://fhir.org/guides/onc/us-quality-core/StructureDefinition/us-quality-core-patient"
+    ]
+  },
+  "identifier": [
+    {
+      "system": "http://example.org/fhir/identifiers",
+      "value": "02-Request-Intent"
+    }
+  ],
+  "name": [
+    {
+      "family": "MedicationCommonTest",
+      "given": [
+        "02-Request-Intent"
+      ]
+    }
+  ],
+  "gender": "female",
+  "birthDate": "1970-01-01"
+}

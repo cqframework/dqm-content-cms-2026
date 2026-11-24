@@ -2,16 +2,32 @@
 @description: Tests for the MedicationCommon library
 @comment: Each test expression is named `Test...` and evaluates to `true` when the test passes.
 
-The fixtures build their resources inline with FHIRBuilders, so most tests need neither patient data
-nor terminology. The status and intent functions compare only the code value of the status or intent
-element, so the fixtures set those elements directly. The category functions compare codings, so the
-category fixtures are built from code systems and codes declared in this library rather than from the
-MedicationCommon code declarations. The code declarations are tested separately against independently
-declared codes, so that a wrong system or code in MedicationCommon makes a test fail.
+The test data is in `input/tests/MedicationCommonTests/<patient id>/`, one folder per patient. Patient
+ids are GUIDs, as MADiE expects, so each case is identified by its label, the patient's given name (e.g.
+`01-Request-Status`). See the README there for what each case contains. Every expression is evaluated
+once per case, so case tests list the expected result for each case they cover, and are `true` for any
+other case. So every test must be `true` on every case: `false` or `null` is a failure. Because a case a
+test doesn't cover passes, a misspelled case name in a `when` clause would pass silently;
+`.claude/skills/cql/check_results.py` checks the names against the case labels.
 
-The profile tests run the functions over retrieved US Quality Core medication resources. They check that
-the FHIR-typed overloads resolve for profiled inputs, and are invariants that must hold for whatever
-data is loaded. With no data loaded they are vacuously true.
+The resources are retrieved as US Quality Core profiles, so every test also checks that the FHIR-typed
+MedicationCommon functions resolve and run for the profiled types measure logic uses. The negation
+profiles (MedicationNotRequested, MedicationAdministrationNotDone, MedicationDispenseDeclined) have their
+own case.
+
+MADiE replaces resource ids that aren't GUIDs with new GUIDs on import, so the tests don't use resource
+ids. Each resource has a readable key (e.g. `mr-01-active`) in an identifier with the system
+`http://example.org/fhir/identifiers`, and the tests find resources, and compare the results of the
+list functions, by key.
+
+The status and intent functions compare only the code value of the element. The category functions
+compare codings, so the category tests pass codes declared in this library rather than the
+MedicationCommon code declarations, and the case data codes its categories independently. The code
+declarations are tested separately against independently declared codes, so that a wrong system or
+code in MedicationCommon makes a test fail.
+
+The case data is valid, conformant FHIR (MADiE rejects invalid resources), so a missing status or
+intent is not tested: both elements are required.
 
 NOTE: This is in the process of being established as the measure MedicationCommonTests in MADiE:
 https://madie.cms.gov/measures/6ad8cdd11fbcbfc8d7e0c9bd/edit/details/
@@ -23,11 +39,8 @@ using USCore version '6.1.0-derived'
 using FHIR version '4.0.1'
 
 include hl7.fhir.uv.cql.FHIRHelpers version '4.0.1'
-
 include MedicationCommon version '0.2.000'
-include FHIRBuilders version '0.1.000' called Build
 
-codesystem "RXNORM": 'http://www.nlm.nih.gov/research/umls/rxnorm'
 codesystem "MedicationRequestStatus": 'http://hl7.org/fhir/CodeSystem/medicationrequest-status'
 codesystem "MedicationRequestIntent": 'http://hl7.org/fhir/CodeSystem/medicationrequest-intent'
 codesystem "MedicationAdministrationStatus": 'http://terminology.hl7.org/CodeSystem/medication-admin-status'
@@ -35,185 +48,83 @@ codesystem "MedicationDispenseStatus": 'http://terminology.hl7.org/CodeSystem/me
 codesystem "MedicationRequestCategory": 'http://terminology.hl7.org/CodeSystem/medicationrequest-category'
 codesystem "MedicationAdministrationCategory": 'http://terminology.hl7.org/CodeSystem/medication-admin-category'
 
-// A code system that is deliberately not one the MedicationCommon terminology uses
-codesystem "Example Codes": 'http://example.org/codes'
-
 context Patient
 
 /*
- * Fixture builders
+ * Helpers
  */
 
-define function "Test MedicationRequest"(status String, intent String):
-  FHIR.MedicationRequest {
-    id: Build.id(Coalesce(status, 'no-status') + '-' + Coalesce(intent, 'no-intent')),
-    status: FHIR.MedicationRequestStatus { value: status },
-    intent: FHIR.MedicationRequestIntent { value: intent },
-    medication: "Aspirin",
-    subject: Build.Reference('Patient/test-patient')
-  }
+// The case is the test case label, which is the patient's given name. The patient id (and the name of
+// the test case folder) is a GUID, as MADiE expects, so it doesn't say which case this is.
+define "Case": FHIRHelpers.ToString(First(Patient.name.given))
 
-define function "Test MedicationAdministration"(status String):
-  FHIR.MedicationAdministration {
-    id: Build.id(Coalesce(status, 'no-status')),
-    status: FHIR.MedicationAdministrationStatus { value: status },
-    medication: "Aspirin",
-    subject: Build.Reference('Patient/test-patient'),
-    effective: Build.dateTime(@2024-03-01T08:00:00.000Z)
-  }
+// Resources are identified by a readable key (e.g. `mr-01-active`) in an identifier with this system,
+// not by their ids: MADiE replaces resource ids that aren't GUIDs with new GUIDs on import
+define "Key System": 'http://example.org/fhir/identifiers'
 
-define function "Test MedicationDispense"(status String):
-  FHIR.MedicationDispense {
-    id: Build.id(Coalesce(status, 'no-status')),
-    status: FHIR.MedicationDispenseStatus { value: status },
-    medication: "Aspirin",
-    subject: Build.Reference('Patient/test-patient')
-  }
+// The key functions are separate for each resource type, rather than one function over FHIR.Resource
+// with `is` / `as`, and are not overloads of one name: the MADiE engine resolves neither `is` nor
+// overloads like these correctly at runtime.
+define function "MedicationRequestKey"(request FHIR.MedicationRequest):
+  singleton from (
+    request.identifier I
+      where I.system = "Key System"
+      return I.value.value
+  )
 
-define function "Categorized MedicationRequest"(id String, categories List<FHIR.CodeableConcept>):
-  FHIR.MedicationRequest {
-    id: Build.id(id),
-    status: FHIR.MedicationRequestStatus { value: 'active' },
-    intent: FHIR.MedicationRequestIntent { value: 'order' },
-    category: categories,
-    medication: "Aspirin",
-    subject: Build.Reference('Patient/test-patient')
-  }
+define function "MedicationAdministrationKey"(administration FHIR.MedicationAdministration):
+  singleton from (
+    administration.identifier I
+      where I.system = "Key System"
+      return I.value.value
+  )
 
-define function "Categorized MedicationAdministration"(id String, category FHIR.CodeableConcept):
-  FHIR.MedicationAdministration {
-    id: Build.id(id),
-    status: FHIR.MedicationAdministrationStatus { value: 'completed' },
-    category: category,
-    medication: "Aspirin",
-    subject: Build.Reference('Patient/test-patient'),
-    effective: Build.dateTime(@2024-03-01T08:00:00.000Z)
-  }
+define function "MedicationDispenseKey"(dispense FHIR.MedicationDispense):
+  singleton from (
+    dispense.identifier I
+      where I.system = "Key System"
+      return I.value.value
+  )
 
-define function "Ids"(resources List<FHIR.Resource>):
-  resources R
-    return R.id.value
+define function "Request Keys"(requests List<FHIR.MedicationRequest>):
+  requests R
+    return all "MedicationRequestKey"(R)
 
-// True if the resources have exactly the given ids, in any order
-define function "Has Ids"(resources List<FHIR.Resource>, ids List<String>):
-  Count(resources) = Count(ids)
-    and "Ids"(resources) includes ids
+define function "Administration Keys"(administrations List<FHIR.MedicationAdministration>):
+  administrations A
+    return all "MedicationAdministrationKey"(A)
 
-/*
- * Fixtures
- */
+define function "Dispense Keys"(dispenses List<FHIR.MedicationDispense>):
+  dispenses D
+    return all "MedicationDispenseKey"(D)
 
-define "Aspirin":
-  Build.CodeableConcept(Code '243670' from "RXNORM" display 'aspirin 81 MG Oral Tablet')
+// True if the keys are exactly the expected keys, in any order
+define function "SameKeys"(keys List<String>, expected List<String>):
+  Count(keys) = Count(expected)
+    and keys includes expected
 
-// One request for each status, all with an intent of order
-define "Requests By Status":
-  ({ 'active', 'on-hold', 'cancelled', 'completed', 'entered-in-error', 'stopped', 'draft', 'unknown' }) S
-    return "Test MedicationRequest"(S, 'order')
+define "Requests": [USQualityCore.MedicationRequest]
+define "Administrations": [USQualityCore.MedicationAdministration]
+define "Dispenses": [USQualityCore.MedicationDispense]
 
-// One request for each intent, all with a status of active
-define "Requests By Intent":
-  ({ 'proposal', 'plan', 'order', 'original-order', 'reflex-order', 'filler-order', 'instance-order', 'option' }) I
-    return "Test MedicationRequest"('active', I)
+// The retrieved resource with the given key. A key that isn't in the case gives null, so an assertion
+// on it is null and fails.
+define function "Request"(key String):
+  singleton from ("Requests" R where "MedicationRequestKey"(R) = key)
 
-define "Request Without Status Or Intent": "Test MedicationRequest"(null, null)
+define function "Administration"(key String):
+  singleton from ("Administrations" A where "MedicationAdministrationKey"(A) = key)
 
-define "Administrations":
-  ({ 'in-progress', 'not-done', 'on-hold', 'completed', 'entered-in-error', 'stopped', 'unknown' }) S
-    return "Test MedicationAdministration"(S)
+define function "Dispense"(key String):
+  singleton from ("Dispenses" D where "MedicationDispenseKey"(D) = key)
 
-define "Administration Without Status": "Test MedicationAdministration"(null)
-
-define "Dispenses":
-  ({ 'preparation', 'in-progress', 'cancelled', 'on-hold', 'completed', 'entered-in-error', 'stopped', 'declined', 'unknown' }) S
-    return "Test MedicationDispense"(S)
-
-define "Dispense Without Status": "Test MedicationDispense"(null)
-
-define function "Request"(status String): "Test MedicationRequest"(status, 'order')
-define function "Order"(intent String): "Test MedicationRequest"('active', intent)
-define function "Administration"(status String): "Test MedicationAdministration"(status)
-define function "Dispense"(status String): "Test MedicationDispense"(status)
-
+// Category codes to test for, declared independently of the MedicationCommon code declarations
 define "Request Inpatient": Code 'inpatient' from "MedicationRequestCategory"
 define "Request Outpatient": Code 'outpatient' from "MedicationRequestCategory"
 define "Request Community": Code 'community' from "MedicationRequestCategory"
 define "Request Discharge": Code 'discharge' from "MedicationRequestCategory"
 define "Administration Inpatient": Code 'inpatient' from "MedicationAdministrationCategory"
-define "Administration Outpatient": Code 'outpatient' from "MedicationAdministrationCategory"
 define "Administration Community": Code 'community' from "MedicationAdministrationCategory"
-
-define "Inpatient Request": "Categorized MedicationRequest"('inpatient', { Build.CodeableConcept("Request Inpatient") })
-define "Outpatient Request": "Categorized MedicationRequest"('outpatient', { Build.CodeableConcept("Request Outpatient") })
-define "Community Request": "Categorized MedicationRequest"('community', { Build.CodeableConcept("Request Community") })
-define "Discharge Request": "Categorized MedicationRequest"('discharge', { Build.CodeableConcept("Request Discharge") })
-define "Community And Discharge Request":
-  "Categorized MedicationRequest"('community-discharge', {
-    Build.CodeableConcept("Request Community"),
-    Build.CodeableConcept("Request Discharge")
-  })
-// A category is matched by any of its codings
-define "Discharge Among Codings Request":
-  "Categorized MedicationRequest"('discharge-among-codings', {
-    Build.CodeableConcept(Concept { Code 'discharge-meds' from "Example Codes", Code 'discharge' from "MedicationRequestCategory" })
-  })
-define "Uncategorized Request": "Categorized MedicationRequest"('uncategorized', List<FHIR.CodeableConcept>{})
-define "Wrong System Request": "Categorized MedicationRequest"('wrong-system', { Build.CodeableConcept(Code 'community' from "Example Codes") })
-// The MedicationAdministration category code system has the same codes, but is a different code system
-define "Administration Category Request":
-  "Categorized MedicationRequest"('administration-category', { Build.CodeableConcept("Administration Community") })
-
-define function "Authored MedicationRequest"(id String, authoredOn DateTime):
-  FHIR.MedicationRequest {
-    id: Build.id(id),
-    status: FHIR.MedicationRequestStatus { value: 'active' },
-    intent: FHIR.MedicationRequestIntent { value: 'order' },
-    medication: "Aspirin",
-    subject: Build.Reference('Patient/test-patient'),
-    authoredOn: Build.dateTime(authoredOn)
-  }
-
-define "Authored March 1": "Authored MedicationRequest"('march-1', @2024-03-01T08:00:00.000Z)
-define "Authored March 5": "Authored MedicationRequest"('march-5', @2024-03-05T08:00:00.000Z)
-define "Authored March 5 Later": "Authored MedicationRequest"('march-5-later', @2024-03-05T09:00:00.000Z)
-define "Not Authored": "Authored MedicationRequest"('not-authored', null)
-
-define "Categorized Requests":
-  {
-    "Inpatient Request",
-    "Outpatient Request",
-    "Community Request",
-    "Discharge Request",
-    "Community And Discharge Request",
-    "Discharge Among Codings Request",
-    "Uncategorized Request",
-    "Wrong System Request",
-    "Administration Category Request"
-  }
-
-define "Inpatient Administration": "Categorized MedicationAdministration"('inpatient', Build.CodeableConcept("Administration Inpatient"))
-define "Outpatient Administration": "Categorized MedicationAdministration"('outpatient', Build.CodeableConcept("Administration Outpatient"))
-define "Community Administration": "Categorized MedicationAdministration"('community', Build.CodeableConcept("Administration Community"))
-define "Community Among Codings Administration":
-  "Categorized MedicationAdministration"('community-among-codings',
-    Build.CodeableConcept(Concept { Code 'home' from "Example Codes", Code 'community' from "MedicationAdministrationCategory" })
-  )
-define "Uncategorized Administration": "Categorized MedicationAdministration"('uncategorized', null)
-define "Wrong System Administration": "Categorized MedicationAdministration"('wrong-system', Build.CodeableConcept(Code 'community' from "Example Codes"))
-// The MedicationRequest category code system has the same codes, but is a different code system
-define "Request Category Administration":
-  "Categorized MedicationAdministration"('request-category', Build.CodeableConcept("Request Inpatient"))
-
-define "Categorized Administrations":
-  {
-    "Inpatient Administration",
-    "Outpatient Administration",
-    "Community Administration",
-    "Community Among Codings Administration",
-    "Uncategorized Administration",
-    "Wrong System Administration",
-    "Request Category Administration"
-  }
 
 /*
  * Code declarations
@@ -275,430 +186,645 @@ define TestMedicationDispenseStatusDeclarations:
  */
 
 define TestMedicationRequestIsActive:
-  "Request"('active').isActive()
-    and not "Request"('completed').isActive()
-    and not "Request"('on-hold').isActive()
-    and not "Request Without Status Or Intent".isActive()
+  case "Case"
+    when '01-Request-Status' then
+      "Request"('mr-01-active').isActive()
+        and not "Request"('mr-01-completed').isActive()
+        and not "Request"('mr-01-on-hold').isActive()
+    else true
+  end
 
 define TestMedicationRequestActive:
-  "Has Ids"("Requests By Status".active(), { 'active-order' })
-
-define TestMedicationRequestActiveEmpty:
-  not exists (List<FHIR.MedicationRequest>{}).active()
+  case "Case"
+    when '01-Request-Status' then "SameKeys"("Request Keys"("Requests".active()), { 'mr-01-active' })
+    when '09-No-Medications' then not exists "Requests".active()
+    else true
+  end
 
 define TestMedicationRequestIsOnHold:
-  "Request"('on-hold').isOnHold()
-    and not "Request"('active').isOnHold()
-    and not "Request Without Status Or Intent".isOnHold()
+  case "Case"
+    when '01-Request-Status' then
+      "Request"('mr-01-on-hold').isOnHold()
+        and not "Request"('mr-01-active').isOnHold()
+    else true
+  end
 
 define TestMedicationRequestOnHold:
-  "Has Ids"("Requests By Status".onHold(), { 'on-hold-order' })
+  case "Case"
+    when '01-Request-Status' then "SameKeys"("Request Keys"("Requests".onHold()), { 'mr-01-on-hold' })
+    when '09-No-Medications' then not exists "Requests".onHold()
+    else true
+  end
 
 define TestMedicationRequestIsCompleted:
-  "Request"('completed').isCompleted()
-    and not "Request"('active').isCompleted()
-    and not "Request Without Status Or Intent".isCompleted()
+  case "Case"
+    when '01-Request-Status' then
+      "Request"('mr-01-completed').isCompleted()
+        and not "Request"('mr-01-active').isCompleted()
+    else true
+  end
 
 define TestMedicationRequestCompleted:
-  "Has Ids"("Requests By Status".completed(), { 'completed-order' })
+  case "Case"
+    when '01-Request-Status' then "SameKeys"("Request Keys"("Requests".completed()), { 'mr-01-completed' })
+    when '09-No-Medications' then not exists "Requests".completed()
+    else true
+  end
 
 // The composition the library header recommends in place of an aggregate helper
 define TestMedicationRequestActiveOrCompleted:
-  "Has Ids"(
-    "Requests By Status" MR where MR.isActive() or MR.isCompleted(),
-    { 'active-order', 'completed-order' }
-  )
+  case "Case"
+    when '01-Request-Status' then
+      "SameKeys"(
+        "Request Keys"("Requests" MR where MR.isActive() or MR.isCompleted()),
+        { 'mr-01-active', 'mr-01-completed' }
+      )
+    else true
+  end
 
 define TestMedicationRequestIsCancelled:
-  "Request"('cancelled').isCancelled()
-    and not "Request"('stopped').isCancelled()
-    and not "Request Without Status Or Intent".isCancelled()
+  case "Case"
+    when '01-Request-Status' then
+      "Request"('mr-01-cancelled').isCancelled()
+        and not "Request"('mr-01-stopped').isCancelled()
+    else true
+  end
 
 define TestMedicationRequestIsStopped:
-  "Request"('stopped').isStopped()
-    and not "Request"('cancelled').isStopped()
-    and not "Request Without Status Or Intent".isStopped()
+  case "Case"
+    when '01-Request-Status' then
+      "Request"('mr-01-stopped').isStopped()
+        and not "Request"('mr-01-cancelled').isStopped()
+    else true
+  end
 
 define TestMedicationRequestIsDraft:
-  "Request"('draft').isDraft()
-    and not "Request"('active').isDraft()
-    and not "Request Without Status Or Intent".isDraft()
+  case "Case"
+    when '01-Request-Status' then
+      "Request"('mr-01-draft').isDraft()
+        and not "Request"('mr-01-active').isDraft()
+    else true
+  end
 
 define TestMedicationRequestIsEnteredInError:
-  "Request"('entered-in-error').isEnteredInError()
-    and not "Request"('active').isEnteredInError()
-    and not "Request Without Status Or Intent".isEnteredInError()
+  case "Case"
+    when '01-Request-Status' then
+      "Request"('mr-01-entered-in-error').isEnteredInError()
+        and not "Request"('mr-01-active').isEnteredInError()
+    else true
+  end
 
-// Invariant: each status predicate holds for exactly one status
+// Each status predicate holds for exactly the request with that status
 define TestMedicationRequestStatusPredicatesExclusive:
-  Count("Requests By Status" MR where MR.isActive()) = 1
-    and Count("Requests By Status" MR where MR.isOnHold()) = 1
-    and Count("Requests By Status" MR where MR.isCompleted()) = 1
-    and Count("Requests By Status" MR where MR.isCancelled()) = 1
-    and Count("Requests By Status" MR where MR.isStopped()) = 1
-    and Count("Requests By Status" MR where MR.isDraft()) = 1
-    and Count("Requests By Status" MR where MR.isEnteredInError()) = 1
+  case "Case"
+    when '01-Request-Status' then
+      "SameKeys"("Request Keys"("Requests" MR where MR.isActive()), { 'mr-01-active' })
+        and "SameKeys"("Request Keys"("Requests" MR where MR.isOnHold()), { 'mr-01-on-hold' })
+        and "SameKeys"("Request Keys"("Requests" MR where MR.isCompleted()), { 'mr-01-completed' })
+        and "SameKeys"("Request Keys"("Requests" MR where MR.isCancelled()), { 'mr-01-cancelled' })
+        and "SameKeys"("Request Keys"("Requests" MR where MR.isStopped()), { 'mr-01-stopped' })
+        and "SameKeys"("Request Keys"("Requests" MR where MR.isDraft()), { 'mr-01-draft' })
+        and "SameKeys"("Request Keys"("Requests" MR where MR.isEnteredInError()), { 'mr-01-entered-in-error' })
+    else true
+  end
 
 /*
  * MedicationRequest intent
  */
 
 define TestMedicationRequestIsOrder:
-  "Order"('order').isOrder()
-    // Only the order intent, not the other order intents
-    and not "Order"('original-order').isOrder()
-    and not "Order"('plan').isOrder()
-    and not "Request Without Status Or Intent".isOrder()
+  case "Case"
+    when '02-Request-Intent' then
+      "Request"('mr-02-order').isOrder()
+        // Only the order intent, not the other order intents
+        and not "Request"('mr-02-original-order').isOrder()
+        and not "Request"('mr-02-plan').isOrder()
+    else true
+  end
 
 define TestMedicationRequestIsPlan:
-  "Order"('plan').isPlan()
-    and not "Order"('order').isPlan()
-    and not "Request Without Status Or Intent".isPlan()
+  case "Case"
+    when '02-Request-Intent' then
+      "Request"('mr-02-plan').isPlan()
+        and not "Request"('mr-02-order').isPlan()
+    else true
+  end
 
 define TestMedicationRequestIsProposal:
-  "Order"('proposal').isProposal()
-    and not "Order"('order').isProposal()
-    and not "Request Without Status Or Intent".isProposal()
+  case "Case"
+    when '02-Request-Intent' then
+      "Request"('mr-02-proposal').isProposal()
+        and not "Request"('mr-02-order').isProposal()
+    else true
+  end
 
 define TestMedicationRequestIsOrderIntent:
-  "Order"('order').isOrderIntent()
-    and "Order"('original-order').isOrderIntent()
-    and "Order"('reflex-order').isOrderIntent()
-    and "Order"('filler-order').isOrderIntent()
-    and "Order"('instance-order').isOrderIntent()
-    and not "Order"('proposal').isOrderIntent()
-    and not "Order"('plan').isOrderIntent()
-    and not "Order"('option').isOrderIntent()
-    and not "Request Without Status Or Intent".isOrderIntent()
+  case "Case"
+    when '02-Request-Intent' then
+      "Request"('mr-02-order').isOrderIntent()
+        and "Request"('mr-02-original-order').isOrderIntent()
+        and "Request"('mr-02-reflex-order').isOrderIntent()
+        and "Request"('mr-02-filler-order').isOrderIntent()
+        and "Request"('mr-02-instance-order').isOrderIntent()
+        and not "Request"('mr-02-proposal').isOrderIntent()
+        and not "Request"('mr-02-plan').isOrderIntent()
+        and not "Request"('mr-02-option').isOrderIntent()
+    else true
+  end
 
 define TestMedicationRequestOrderIntent:
-  "Has Ids"(
-    "Requests By Intent".orderIntent(),
-    { 'active-order', 'active-original-order', 'active-reflex-order', 'active-filler-order', 'active-instance-order' }
-  )
-
-define TestMedicationRequestOrderIntentEmpty:
-  not exists (List<FHIR.MedicationRequest>{}).orderIntent()
+  case "Case"
+    when '02-Request-Intent' then
+      "SameKeys"(
+        "Request Keys"("Requests".orderIntent()),
+        { 'mr-02-order', 'mr-02-original-order', 'mr-02-reflex-order', 'mr-02-filler-order', 'mr-02-instance-order' }
+      )
+    when '09-No-Medications' then not exists "Requests".orderIntent()
+    else true
+  end
 
 /*
  * MedicationRequest category
  */
 
 define TestMedicationRequestHasCategory:
-  "Community Request".hasCategory("Request Community")
-    and not "Community Request".hasCategory("Request Discharge")
+  case "Case"
+    when '03-Request-Category' then
+      "Request"('mr-03-community').hasCategory("Request Community")
+        and not "Request"('mr-03-community').hasCategory("Request Discharge")
+    else true
+  end
 
 define TestMedicationRequestHasCategoryAmongSeveral:
-  "Community And Discharge Request".hasCategory("Request Community")
-    and "Community And Discharge Request".hasCategory("Request Discharge")
+  case "Case"
+    when '03-Request-Category' then
+      "Request"('mr-03-community-discharge').hasCategory("Request Community")
+        and "Request"('mr-03-community-discharge').hasCategory("Request Discharge")
+    else true
+  end
 
+// A category is matched by any of its codings
 define TestMedicationRequestHasCategoryMatchesAnyCoding:
-  "Discharge Among Codings Request".hasCategory("Request Discharge")
+  case "Case"
+    when '03-Request-Category' then "Request"('mr-03-discharge-among-codings').hasCategory("Request Discharge")
+    else true
+  end
 
+// The same code in another code system doesn't match, including the MedicationAdministration category
+// code system, which has the same codes
 define TestMedicationRequestHasCategoryWrongSystem:
-  not "Wrong System Request".hasCategory("Request Community")
-    and not "Administration Category Request".hasCategory("Request Community")
+  case "Case"
+    when '03-Request-Category' then
+      not "Request"('mr-03-wrong-system').hasCategory("Request Community")
+        and not "Request"('mr-03-administration-category').hasCategory("Request Community")
+    else true
+  end
 
 define TestMedicationRequestHasCategoryNoCategories:
-  not "Uncategorized Request".hasCategory("Request Community")
+  case "Case"
+    when '03-Request-Category' then not "Request"('mr-03-uncategorized').hasCategory("Request Community")
+    else true
+  end
 
 define TestMedicationRequestHasCategoryNullCategory:
-  not "Community Request".hasCategory(null as Code)
+  case "Case"
+    when '03-Request-Category' then not "Request"('mr-03-community').hasCategory(null as Code)
+    else true
+  end
 
 define TestMedicationRequestIsInpatient:
-  "Inpatient Request".isInpatient()
-    and not "Outpatient Request".isInpatient()
-    and not "Uncategorized Request".isInpatient()
+  case "Case"
+    when '03-Request-Category' then
+      "Request"('mr-03-inpatient').isInpatient()
+        and not "Request"('mr-03-outpatient').isInpatient()
+        and not "Request"('mr-03-uncategorized').isInpatient()
+    else true
+  end
 
 define TestMedicationRequestInpatient:
-  "Has Ids"("Categorized Requests".inpatient(), { 'inpatient' })
+  case "Case"
+    when '03-Request-Category' then "SameKeys"("Request Keys"("Requests".inpatient()), { 'mr-03-inpatient' })
+    when '09-No-Medications' then not exists "Requests".inpatient()
+    else true
+  end
 
 define TestMedicationRequestIsOutpatient:
-  "Outpatient Request".isOutpatient()
-    and not "Inpatient Request".isOutpatient()
-    and not "Uncategorized Request".isOutpatient()
+  case "Case"
+    when '03-Request-Category' then
+      "Request"('mr-03-outpatient').isOutpatient()
+        and not "Request"('mr-03-inpatient').isOutpatient()
+        and not "Request"('mr-03-uncategorized').isOutpatient()
+    else true
+  end
 
 define TestMedicationRequestOutpatient:
-  "Has Ids"("Categorized Requests".outpatient(), { 'outpatient' })
+  case "Case"
+    when '03-Request-Category' then "SameKeys"("Request Keys"("Requests".outpatient()), { 'mr-03-outpatient' })
+    when '09-No-Medications' then not exists "Requests".outpatient()
+    else true
+  end
 
 define TestMedicationRequestIsCommunity:
-  "Community Request".isCommunity()
-    and "Community And Discharge Request".isCommunity()
-    and not "Discharge Request".isCommunity()
-    and not "Uncategorized Request".isCommunity()
-    and not "Wrong System Request".isCommunity()
-    and not "Administration Category Request".isCommunity()
+  case "Case"
+    when '03-Request-Category' then
+      "Request"('mr-03-community').isCommunity()
+        and "Request"('mr-03-community-discharge').isCommunity()
+        and not "Request"('mr-03-discharge').isCommunity()
+        and not "Request"('mr-03-uncategorized').isCommunity()
+        and not "Request"('mr-03-wrong-system').isCommunity()
+        and not "Request"('mr-03-administration-category').isCommunity()
+    else true
+  end
 
 define TestMedicationRequestCommunity:
-  "Has Ids"("Categorized Requests".community(), { 'community', 'community-discharge' })
+  case "Case"
+    when '03-Request-Category' then
+      "SameKeys"("Request Keys"("Requests".community()), { 'mr-03-community', 'mr-03-community-discharge' })
+    when '09-No-Medications' then not exists "Requests".community()
+    else true
+  end
 
 define TestMedicationRequestIsDischarge:
-  "Discharge Request".isDischarge()
-    and "Community And Discharge Request".isDischarge()
-    and "Discharge Among Codings Request".isDischarge()
-    and not "Community Request".isDischarge()
-    and not "Uncategorized Request".isDischarge()
+  case "Case"
+    when '03-Request-Category' then
+      "Request"('mr-03-discharge').isDischarge()
+        and "Request"('mr-03-community-discharge').isDischarge()
+        and "Request"('mr-03-discharge-among-codings').isDischarge()
+        and not "Request"('mr-03-community').isDischarge()
+        and not "Request"('mr-03-uncategorized').isDischarge()
+    else true
+  end
 
 define TestMedicationRequestDischarge:
-  "Has Ids"("Categorized Requests".discharge(), { 'discharge', 'community-discharge', 'discharge-among-codings' })
+  case "Case"
+    when '03-Request-Category' then
+      "SameKeys"(
+        "Request Keys"("Requests".discharge()),
+        { 'mr-03-discharge', 'mr-03-community-discharge', 'mr-03-discharge-among-codings' }
+      )
+    when '09-No-Medications' then not exists "Requests".discharge()
+    else true
+  end
 
 // The composition used for discharge medications in CMS measure logic
 define TestMedicationRequestCommunityOrDischarge:
-  "Has Ids"(
-    "Categorized Requests" MR where MR.isCommunity() or MR.isDischarge(),
-    { 'community', 'discharge', 'community-discharge', 'discharge-among-codings' }
-  )
-
-define TestMedicationRequestCategoryEmpty:
-  not exists (List<FHIR.MedicationRequest>{}).community()
+  case "Case"
+    when '03-Request-Category' then
+      "SameKeys"(
+        "Request Keys"("Requests" MR where MR.isCommunity() or MR.isDischarge()),
+        { 'mr-03-community', 'mr-03-discharge', 'mr-03-community-discharge', 'mr-03-discharge-among-codings' }
+      )
+    else true
+  end
 
 /*
  * MedicationRequest selection
  */
 
-// The order of the input doesn't matter
 define TestMedicationRequestMostRecent:
-  ({ "Authored March 5", "Authored March 1" }).mostRecent().id = 'march-5'
-    and ({ "Authored March 1", "Authored March 5" }).mostRecent().id = 'march-5'
+  case "Case"
+    // The time of day is taken into account, not just the date, and a request with no authoredOn is
+    // not the most recent
+    when '04-Request-Most-Recent' then "MedicationRequestKey"("Requests".mostRecent()) = 'mr-04-march-5-later'
+    else true
+  end
 
-// The time of day is taken into account, not just the date
-define TestMedicationRequestMostRecentSameDay:
-  ({ "Authored March 5 Later", "Authored March 5", "Authored March 1" }).mostRecent().id = 'march-5-later'
+// The order of the input doesn't matter
+define TestMedicationRequestMostRecentOrder:
+  case "Case"
+    when '04-Request-Most-Recent' then
+      "MedicationRequestKey"(({ "Request"('mr-04-march-5'), "Request"('mr-04-march-1') }).mostRecent()) = 'mr-04-march-5'
+        and "MedicationRequestKey"(({ "Request"('mr-04-march-1'), "Request"('mr-04-march-5') }).mostRecent()) = 'mr-04-march-5'
+    else true
+  end
 
-// Nulls sort first, so a request with no authoredOn is not the most recent
+// Nulls sort first, so a request with no authoredOn is not the most recent, whatever the input order
 define TestMedicationRequestMostRecentIgnoresNotAuthored:
-  ({ "Authored March 1", "Not Authored" }).mostRecent().id = 'march-1'
-    and ({ "Not Authored", "Authored March 1" }).mostRecent().id = 'march-1'
+  case "Case"
+    when '04-Request-Most-Recent' then
+      "MedicationRequestKey"(({ "Request"('mr-04-march-1'), "Request"('mr-04-not-authored') }).mostRecent()) = 'mr-04-march-1'
+        and "MedicationRequestKey"(({ "Request"('mr-04-not-authored'), "Request"('mr-04-march-1') }).mostRecent()) = 'mr-04-march-1'
+    else true
+  end
 
 define TestMedicationRequestMostRecentOnlyNotAuthored:
-  ({ "Not Authored" }).mostRecent().id = 'not-authored'
-
-define TestMedicationRequestMostRecentSingle:
-  ({ "Authored March 1" }).mostRecent().id = 'march-1'
+  case "Case"
+    when '04-Request-Most-Recent' then
+      "MedicationRequestKey"(({ "Request"('mr-04-not-authored') }).mostRecent()) = 'mr-04-not-authored'
+    else true
+  end
 
 define TestMedicationRequestMostRecentEmpty:
-  (List<FHIR.MedicationRequest>{}).mostRecent() is null
+  case "Case"
+    when '09-No-Medications' then "Requests".mostRecent() is null
+    else true
+  end
 
 /*
  * MedicationAdministration status
  */
 
 define TestMedicationAdministrationIsCompleted:
-  "Administration"('completed').isCompleted()
-    and not "Administration"('in-progress').isCompleted()
-    and not "Administration Without Status".isCompleted()
+  case "Case"
+    when '05-Administration-Status' then
+      "Administration"('ma-05-completed').isCompleted()
+        and not "Administration"('ma-05-in-progress').isCompleted()
+    else true
+  end
 
 define TestMedicationAdministrationCompleted:
-  "Has Ids"("Administrations".completed(), { 'completed' })
-
-define TestMedicationAdministrationCompletedEmpty:
-  not exists (List<FHIR.MedicationAdministration>{}).completed()
+  case "Case"
+    when '05-Administration-Status' then
+      "SameKeys"("Administration Keys"("Administrations".completed()), { 'ma-05-completed' })
+    when '09-No-Medications' then not exists "Administrations".completed()
+    else true
+  end
 
 define TestMedicationAdministrationIsInProgress:
-  "Administration"('in-progress').isInProgress()
-    and not "Administration"('completed').isInProgress()
-    and not "Administration Without Status".isInProgress()
+  case "Case"
+    when '05-Administration-Status' then
+      "Administration"('ma-05-in-progress').isInProgress()
+        and not "Administration"('ma-05-completed').isInProgress()
+    else true
+  end
 
 define TestMedicationAdministrationIsOnHold:
-  "Administration"('on-hold').isOnHold()
-    and not "Administration"('in-progress').isOnHold()
-    and not "Administration Without Status".isOnHold()
+  case "Case"
+    when '05-Administration-Status' then
+      "Administration"('ma-05-on-hold').isOnHold()
+        and not "Administration"('ma-05-in-progress').isOnHold()
+    else true
+  end
 
 define TestMedicationAdministrationIsStopped:
-  "Administration"('stopped').isStopped()
-    and not "Administration"('completed').isStopped()
-    and not "Administration Without Status".isStopped()
+  case "Case"
+    when '05-Administration-Status' then
+      "Administration"('ma-05-stopped').isStopped()
+        and not "Administration"('ma-05-completed').isStopped()
+    else true
+  end
 
 define TestMedicationAdministrationIsNotDone:
-  "Administration"('not-done').isNotDone()
-    and not "Administration"('completed').isNotDone()
-    and not "Administration Without Status".isNotDone()
+  case "Case"
+    when '05-Administration-Status' then
+      "Administration"('ma-05-not-done').isNotDone()
+        and not "Administration"('ma-05-completed').isNotDone()
+    else true
+  end
 
 define TestMedicationAdministrationIsEnteredInError:
-  "Administration"('entered-in-error').isEnteredInError()
-    and not "Administration"('completed').isEnteredInError()
-    and not "Administration Without Status".isEnteredInError()
+  case "Case"
+    when '05-Administration-Status' then
+      "Administration"('ma-05-entered-in-error').isEnteredInError()
+        and not "Administration"('ma-05-completed').isEnteredInError()
+    else true
+  end
 
-// Invariant: each status predicate holds for exactly one status
+// Each status predicate holds for exactly the administration with that status
 define TestMedicationAdministrationStatusPredicatesExclusive:
-  Count("Administrations" MA where MA.isCompleted()) = 1
-    and Count("Administrations" MA where MA.isInProgress()) = 1
-    and Count("Administrations" MA where MA.isOnHold()) = 1
-    and Count("Administrations" MA where MA.isStopped()) = 1
-    and Count("Administrations" MA where MA.isNotDone()) = 1
-    and Count("Administrations" MA where MA.isEnteredInError()) = 1
+  case "Case"
+    when '05-Administration-Status' then
+      "SameKeys"("Administration Keys"("Administrations" MA where MA.isCompleted()), { 'ma-05-completed' })
+        and "SameKeys"("Administration Keys"("Administrations" MA where MA.isInProgress()), { 'ma-05-in-progress' })
+        and "SameKeys"("Administration Keys"("Administrations" MA where MA.isOnHold()), { 'ma-05-on-hold' })
+        and "SameKeys"("Administration Keys"("Administrations" MA where MA.isStopped()), { 'ma-05-stopped' })
+        and "SameKeys"("Administration Keys"("Administrations" MA where MA.isNotDone()), { 'ma-05-not-done' })
+        and "SameKeys"("Administration Keys"("Administrations" MA where MA.isEnteredInError()), { 'ma-05-entered-in-error' })
+    else true
+  end
 
 /*
  * MedicationAdministration category
  */
 
 define TestMedicationAdministrationHasCategory:
-  "Community Administration".hasCategory("Administration Community")
-    and not "Community Administration".hasCategory("Administration Inpatient")
+  case "Case"
+    when '06-Administration-Category' then
+      "Administration"('ma-06-community').hasCategory("Administration Community")
+        and not "Administration"('ma-06-community').hasCategory("Administration Inpatient")
+    else true
+  end
 
+// A category is matched by any of its codings
 define TestMedicationAdministrationHasCategoryMatchesAnyCoding:
-  "Community Among Codings Administration".hasCategory("Administration Community")
+  case "Case"
+    when '06-Administration-Category' then
+      "Administration"('ma-06-community-among-codings').hasCategory("Administration Community")
+    else true
+  end
 
+// The same code in another code system doesn't match, including the MedicationRequest category code
+// system, which has the same codes
 define TestMedicationAdministrationHasCategoryWrongSystem:
-  not "Wrong System Administration".hasCategory("Administration Community")
-    and not "Request Category Administration".hasCategory("Administration Inpatient")
+  case "Case"
+    when '06-Administration-Category' then
+      not "Administration"('ma-06-wrong-system').hasCategory("Administration Community")
+        and not "Administration"('ma-06-request-category').hasCategory("Administration Inpatient")
+    else true
+  end
 
 define TestMedicationAdministrationHasCategoryNoCategory:
-  not "Uncategorized Administration".hasCategory("Administration Community")
+  case "Case"
+    when '06-Administration-Category' then
+      not "Administration"('ma-06-uncategorized').hasCategory("Administration Community")
+    else true
+  end
 
 define TestMedicationAdministrationHasCategoryNullCategory:
-  not "Community Administration".hasCategory(null as Code)
+  case "Case"
+    when '06-Administration-Category' then not "Administration"('ma-06-community').hasCategory(null as Code)
+    else true
+  end
 
 define TestMedicationAdministrationIsInpatient:
-  "Inpatient Administration".isInpatient()
-    and not "Outpatient Administration".isInpatient()
-    and not "Uncategorized Administration".isInpatient()
-    and not "Request Category Administration".isInpatient()
+  case "Case"
+    when '06-Administration-Category' then
+      "Administration"('ma-06-inpatient').isInpatient()
+        and not "Administration"('ma-06-outpatient').isInpatient()
+        and not "Administration"('ma-06-uncategorized').isInpatient()
+        and not "Administration"('ma-06-request-category').isInpatient()
+    else true
+  end
 
 define TestMedicationAdministrationInpatient:
-  "Has Ids"("Categorized Administrations".inpatient(), { 'inpatient' })
+  case "Case"
+    when '06-Administration-Category' then
+      "SameKeys"("Administration Keys"("Administrations".inpatient()), { 'ma-06-inpatient' })
+    when '09-No-Medications' then not exists "Administrations".inpatient()
+    else true
+  end
 
 define TestMedicationAdministrationIsOutpatient:
-  "Outpatient Administration".isOutpatient()
-    and not "Inpatient Administration".isOutpatient()
-    and not "Uncategorized Administration".isOutpatient()
+  case "Case"
+    when '06-Administration-Category' then
+      "Administration"('ma-06-outpatient').isOutpatient()
+        and not "Administration"('ma-06-inpatient').isOutpatient()
+        and not "Administration"('ma-06-uncategorized').isOutpatient()
+    else true
+  end
 
 define TestMedicationAdministrationOutpatient:
-  "Has Ids"("Categorized Administrations".outpatient(), { 'outpatient' })
+  case "Case"
+    when '06-Administration-Category' then
+      "SameKeys"("Administration Keys"("Administrations".outpatient()), { 'ma-06-outpatient' })
+    when '09-No-Medications' then not exists "Administrations".outpatient()
+    else true
+  end
 
 define TestMedicationAdministrationIsCommunity:
-  "Community Administration".isCommunity()
-    and "Community Among Codings Administration".isCommunity()
-    and not "Inpatient Administration".isCommunity()
-    and not "Uncategorized Administration".isCommunity()
-    and not "Wrong System Administration".isCommunity()
+  case "Case"
+    when '06-Administration-Category' then
+      "Administration"('ma-06-community').isCommunity()
+        and "Administration"('ma-06-community-among-codings').isCommunity()
+        and not "Administration"('ma-06-inpatient').isCommunity()
+        and not "Administration"('ma-06-uncategorized').isCommunity()
+        and not "Administration"('ma-06-wrong-system').isCommunity()
+    else true
+  end
 
 define TestMedicationAdministrationCommunity:
-  "Has Ids"("Categorized Administrations".community(), { 'community', 'community-among-codings' })
-
-define TestMedicationAdministrationCategoryEmpty:
-  not exists (List<FHIR.MedicationAdministration>{}).inpatient()
+  case "Case"
+    when '06-Administration-Category' then
+      "SameKeys"("Administration Keys"("Administrations".community()), { 'ma-06-community', 'ma-06-community-among-codings' })
+    when '09-No-Medications' then not exists "Administrations".community()
+    else true
+  end
 
 /*
  * MedicationDispense status
  */
 
 define TestMedicationDispenseIsCompleted:
-  "Dispense"('completed').isCompleted()
-    and not "Dispense"('in-progress').isCompleted()
-    and not "Dispense Without Status".isCompleted()
+  case "Case"
+    when '07-Dispense-Status' then
+      "Dispense"('md-07-completed').isCompleted()
+        and not "Dispense"('md-07-in-progress').isCompleted()
+    else true
+  end
 
 define TestMedicationDispenseCompleted:
-  "Has Ids"("Dispenses".completed(), { 'completed' })
-
-define TestMedicationDispenseCompletedEmpty:
-  not exists (List<FHIR.MedicationDispense>{}).completed()
+  case "Case"
+    when '07-Dispense-Status' then "SameKeys"("Dispense Keys"("Dispenses".completed()), { 'md-07-completed' })
+    when '09-No-Medications' then not exists "Dispenses".completed()
+    else true
+  end
 
 define TestMedicationDispenseIsInProgress:
-  "Dispense"('in-progress').isInProgress()
-    and not "Dispense"('preparation').isInProgress()
-    and not "Dispense Without Status".isInProgress()
+  case "Case"
+    when '07-Dispense-Status' then
+      "Dispense"('md-07-in-progress').isInProgress()
+        and not "Dispense"('md-07-preparation').isInProgress()
+    else true
+  end
 
 define TestMedicationDispenseIsPreparation:
-  "Dispense"('preparation').isPreparation()
-    and not "Dispense"('in-progress').isPreparation()
-    and not "Dispense Without Status".isPreparation()
+  case "Case"
+    when '07-Dispense-Status' then
+      "Dispense"('md-07-preparation').isPreparation()
+        and not "Dispense"('md-07-in-progress').isPreparation()
+    else true
+  end
 
 define TestMedicationDispenseIsOnHold:
-  "Dispense"('on-hold').isOnHold()
-    and not "Dispense"('in-progress').isOnHold()
-    and not "Dispense Without Status".isOnHold()
+  case "Case"
+    when '07-Dispense-Status' then
+      "Dispense"('md-07-on-hold').isOnHold()
+        and not "Dispense"('md-07-in-progress').isOnHold()
+    else true
+  end
 
 define TestMedicationDispenseIsCancelled:
-  "Dispense"('cancelled').isCancelled()
-    and not "Dispense"('stopped').isCancelled()
-    and not "Dispense Without Status".isCancelled()
+  case "Case"
+    when '07-Dispense-Status' then
+      "Dispense"('md-07-cancelled').isCancelled()
+        and not "Dispense"('md-07-stopped').isCancelled()
+    else true
+  end
 
 define TestMedicationDispenseIsStopped:
-  "Dispense"('stopped').isStopped()
-    and not "Dispense"('cancelled').isStopped()
-    and not "Dispense Without Status".isStopped()
+  case "Case"
+    when '07-Dispense-Status' then
+      "Dispense"('md-07-stopped').isStopped()
+        and not "Dispense"('md-07-cancelled').isStopped()
+    else true
+  end
 
 define TestMedicationDispenseIsDeclined:
-  "Dispense"('declined').isDeclined()
-    and not "Dispense"('cancelled').isDeclined()
-    and not "Dispense Without Status".isDeclined()
+  case "Case"
+    when '07-Dispense-Status' then
+      "Dispense"('md-07-declined').isDeclined()
+        and not "Dispense"('md-07-cancelled').isDeclined()
+    else true
+  end
 
 define TestMedicationDispenseIsEnteredInError:
-  "Dispense"('entered-in-error').isEnteredInError()
-    and not "Dispense"('completed').isEnteredInError()
-    and not "Dispense Without Status".isEnteredInError()
+  case "Case"
+    when '07-Dispense-Status' then
+      "Dispense"('md-07-entered-in-error').isEnteredInError()
+        and not "Dispense"('md-07-completed').isEnteredInError()
+    else true
+  end
 
 // The composition the library header gives for a positive dispensing event
 define TestMedicationDispensePositiveEvent:
-  "Has Ids"(
-    "Dispenses" MD where MD.isInProgress() or MD.isCompleted() or MD.isOnHold(),
-    { 'in-progress', 'completed', 'on-hold' }
-  )
+  case "Case"
+    when '07-Dispense-Status' then
+      "SameKeys"(
+        "Dispense Keys"("Dispenses" MD where MD.isInProgress() or MD.isCompleted() or MD.isOnHold()),
+        { 'md-07-in-progress', 'md-07-completed', 'md-07-on-hold' }
+      )
+    else true
+  end
 
-// Invariant: each status predicate holds for exactly one status
+// Each status predicate holds for exactly the dispense with that status
 define TestMedicationDispenseStatusPredicatesExclusive:
-  Count("Dispenses" MD where MD.isCompleted()) = 1
-    and Count("Dispenses" MD where MD.isInProgress()) = 1
-    and Count("Dispenses" MD where MD.isPreparation()) = 1
-    and Count("Dispenses" MD where MD.isOnHold()) = 1
-    and Count("Dispenses" MD where MD.isCancelled()) = 1
-    and Count("Dispenses" MD where MD.isStopped()) = 1
-    and Count("Dispenses" MD where MD.isDeclined()) = 1
-    and Count("Dispenses" MD where MD.isEnteredInError()) = 1
+  case "Case"
+    when '07-Dispense-Status' then
+      "SameKeys"("Dispense Keys"("Dispenses" MD where MD.isCompleted()), { 'md-07-completed' })
+        and "SameKeys"("Dispense Keys"("Dispenses" MD where MD.isInProgress()), { 'md-07-in-progress' })
+        and "SameKeys"("Dispense Keys"("Dispenses" MD where MD.isPreparation()), { 'md-07-preparation' })
+        and "SameKeys"("Dispense Keys"("Dispenses" MD where MD.isOnHold()), { 'md-07-on-hold' })
+        and "SameKeys"("Dispense Keys"("Dispenses" MD where MD.isCancelled()), { 'md-07-cancelled' })
+        and "SameKeys"("Dispense Keys"("Dispenses" MD where MD.isStopped()), { 'md-07-stopped' })
+        and "SameKeys"("Dispense Keys"("Dispenses" MD where MD.isDeclined()), { 'md-07-declined' })
+        and "SameKeys"("Dispense Keys"("Dispenses" MD where MD.isEnteredInError()), { 'md-07-entered-in-error' })
+    else true
+  end
 
 /*
- * Profiles
+ * Negation profiles
  *
- * Invariants: the FHIR-typed functions resolve for US Quality Core medication resources, and agree with
- * the elements they test.
+ * The functions also resolve and run for the negation profiles, which fix the element the predicate
+ * tests (MedicationNotRequested fixes doNotPerform, the other two fix the status).
  */
 
-define TestProfileMedicationRequest:
-  AllTrue([USQualityCore.MedicationRequest] MR return MR.isActive() implies MR.status = 'active')
-    and AllTrue([USQualityCore.MedicationRequest] MR return MR.isOrderIntent() implies MR.intent in { 'order', 'original-order', 'reflex-order', 'filler-order', 'instance-order' })
-    and Count(([USQualityCore.MedicationRequest]).active()) = Count([USQualityCore.MedicationRequest] MR where MR.status = 'active')
-
-define TestProfileMedicationRequestCategory:
-  AllTrue(
-    [USQualityCore.MedicationRequest] MR
-      return (MR.isCommunity() implies exists (MR.category C where C ~ Code 'community' from "MedicationRequestCategory"))
-        and (MR.isDischarge() implies exists (MR.category C where C ~ Code 'discharge' from "MedicationRequestCategory"))
-  )
-    and Count(([USQualityCore.MedicationRequest]).inpatient())
-      = Count([USQualityCore.MedicationRequest] MR where MR.hasCategory(Code 'inpatient' from "MedicationRequestCategory"))
-
-define TestProfileMedicationAdministrationCategory:
-  AllTrue(
-    [USQualityCore.MedicationAdministration] MA
-      return MA.isInpatient() implies MA.category ~ Code 'inpatient' from "MedicationAdministrationCategory"
-  )
-    and Count(([USQualityCore.MedicationAdministration]).community())
-      = Count([USQualityCore.MedicationAdministration] MA where MA.hasCategory(Code 'community' from "MedicationAdministrationCategory"))
-
-// No retrieved request was authored after the most recent one
-define TestProfileMedicationRequestMostRecent:
-  AllTrue(
-    [USQualityCore.MedicationRequest] MR
-      return not (MR.authoredOn after ([USQualityCore.MedicationRequest]).mostRecent().authoredOn)
-  )
-
 define TestProfileMedicationNotRequested:
-  AllTrue([USQualityCore.MedicationNotRequested] MR return MR.isCompleted() implies MR.status = 'completed')
-
-define TestProfileMedicationAdministration:
-  AllTrue([USQualityCore.MedicationAdministration] MA return MA.isCompleted() implies MA.status = 'completed')
-    and Count(([USQualityCore.MedicationAdministration]).completed()) = Count([USQualityCore.MedicationAdministration] MA where MA.status = 'completed')
+  case "Case"
+    when '08-Negation-Profiles' then
+      "SameKeys"("Request Keys"([USQualityCore.MedicationNotRequested]), { 'mr-08-not-requested' })
+        and "SameKeys"("Request Keys"(([USQualityCore.MedicationNotRequested]).completed()), { 'mr-08-not-requested' })
+        and not exists ([USQualityCore.MedicationNotRequested]).active()
+    when '09-No-Medications' then not exists [USQualityCore.MedicationNotRequested]
+    else true
+  end
 
 define TestProfileMedicationAdministrationNotDone:
-  AllTrue([USQualityCore.MedicationAdministrationNotDone] MA return MA.isNotDone() implies MA.status = 'not-done')
-
-define TestProfileMedicationDispense:
-  AllTrue([USQualityCore.MedicationDispense] MD return MD.isCompleted() implies MD.status = 'completed')
-    and Count(([USQualityCore.MedicationDispense]).completed()) = Count([USQualityCore.MedicationDispense] MD where MD.status = 'completed')
+  case "Case"
+    when '08-Negation-Profiles' then
+      "SameKeys"("Administration Keys"([USQualityCore.MedicationAdministrationNotDone] MA where MA.isNotDone()), { 'ma-08-not-done' })
+        and not exists ([USQualityCore.MedicationAdministrationNotDone]).completed()
+    when '09-No-Medications' then not exists [USQualityCore.MedicationAdministrationNotDone]
+    else true
+  end
 
 define TestProfileMedicationDispenseDeclined:
-  AllTrue([USQualityCore.MedicationDispenseDeclined] MD return MD.isDeclined() implies MD.status = 'declined')
+  case "Case"
+    when '08-Negation-Profiles' then
+      "SameKeys"("Dispense Keys"([USQualityCore.MedicationDispenseDeclined] MD where MD.isDeclined()), { 'md-08-declined' })
+        and not exists ([USQualityCore.MedicationDispenseDeclined]).completed()
+    when '09-No-Medications' then not exists [USQualityCore.MedicationDispenseDeclined]
+    else true
+  end
 
 /*
  * Combined result
@@ -716,7 +842,6 @@ define _Passed:
     and TestMedicationDispenseStatusDeclarations
     and TestMedicationRequestIsActive
     and TestMedicationRequestActive
-    and TestMedicationRequestActiveEmpty
     and TestMedicationRequestIsOnHold
     and TestMedicationRequestOnHold
     and TestMedicationRequestIsCompleted
@@ -732,7 +857,6 @@ define _Passed:
     and TestMedicationRequestIsProposal
     and TestMedicationRequestIsOrderIntent
     and TestMedicationRequestOrderIntent
-    and TestMedicationRequestOrderIntentEmpty
     and TestMedicationRequestHasCategory
     and TestMedicationRequestHasCategoryAmongSeveral
     and TestMedicationRequestHasCategoryMatchesAnyCoding
@@ -748,16 +872,13 @@ define _Passed:
     and TestMedicationRequestIsDischarge
     and TestMedicationRequestDischarge
     and TestMedicationRequestCommunityOrDischarge
-    and TestMedicationRequestCategoryEmpty
     and TestMedicationRequestMostRecent
-    and TestMedicationRequestMostRecentSameDay
+    and TestMedicationRequestMostRecentOrder
     and TestMedicationRequestMostRecentIgnoresNotAuthored
     and TestMedicationRequestMostRecentOnlyNotAuthored
-    and TestMedicationRequestMostRecentSingle
     and TestMedicationRequestMostRecentEmpty
     and TestMedicationAdministrationIsCompleted
     and TestMedicationAdministrationCompleted
-    and TestMedicationAdministrationCompletedEmpty
     and TestMedicationAdministrationIsInProgress
     and TestMedicationAdministrationIsOnHold
     and TestMedicationAdministrationIsStopped
@@ -775,10 +896,8 @@ define _Passed:
     and TestMedicationAdministrationOutpatient
     and TestMedicationAdministrationIsCommunity
     and TestMedicationAdministrationCommunity
-    and TestMedicationAdministrationCategoryEmpty
     and TestMedicationDispenseIsCompleted
     and TestMedicationDispenseCompleted
-    and TestMedicationDispenseCompletedEmpty
     and TestMedicationDispenseIsInProgress
     and TestMedicationDispenseIsPreparation
     and TestMedicationDispenseIsOnHold
@@ -788,12 +907,6 @@ define _Passed:
     and TestMedicationDispenseIsEnteredInError
     and TestMedicationDispensePositiveEvent
     and TestMedicationDispenseStatusPredicatesExclusive
-    and TestProfileMedicationRequest
-    and TestProfileMedicationRequestCategory
-    and TestProfileMedicationAdministrationCategory
-    and TestProfileMedicationRequestMostRecent
     and TestProfileMedicationNotRequested
-    and TestProfileMedicationAdministration
     and TestProfileMedicationAdministrationNotDone
-    and TestProfileMedicationDispense
     and TestProfileMedicationDispenseDeclined

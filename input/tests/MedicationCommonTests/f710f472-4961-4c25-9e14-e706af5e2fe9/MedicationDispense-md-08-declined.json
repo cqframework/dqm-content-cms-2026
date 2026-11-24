@@ -1,0 +1,43 @@
+{
+  "resourceType": "MedicationDispense",
+  "id": "md-08-declined",
+  "meta": {
+    "profile": [
+      "http://fhir.org/guides/onc/us-quality-core/StructureDefinition/us-quality-core-medicationdispensedeclined"
+    ]
+  },
+  "extension": [
+    {
+      "url": "http://fhir.org/guides/onc/us-quality-core/StructureDefinition/us-quality-core-recorded",
+      "valueDateTime": "2026-03-01T12:00:00.000+00:00"
+    }
+  ],
+  "identifier": [
+    {
+      "system": "http://example.org/fhir/identifiers",
+      "value": "md-08-declined"
+    }
+  ],
+  "status": "declined",
+  "medicationCodeableConcept": {
+    "coding": [
+      {
+        "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+        "code": "243670",
+        "display": "aspirin 81 MG Oral Tablet"
+      }
+    ]
+  },
+  "subject": {
+    "reference": "Patient/f710f472-4961-4c25-9e14-e706af5e2fe9"
+  },
+  "statusReasonCodeableConcept": {
+    "coding": [
+      {
+        "system": "http://snomed.info/sct",
+        "code": "183966005",
+        "display": "Drug treatment not indicated"
+      }
+    ]
+  }
+}

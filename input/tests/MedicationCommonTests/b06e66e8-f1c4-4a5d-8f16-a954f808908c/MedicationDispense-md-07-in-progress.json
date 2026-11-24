@@ -1,0 +1,28 @@
+{
+  "resourceType": "MedicationDispense",
+  "id": "md-07-in-progress",
+  "meta": {
+    "profile": [
+      "http://fhir.org/guides/onc/us-quality-core/StructureDefinition/us-quality-core-medicationdispense"
+    ]
+  },
+  "identifier": [
+    {
+      "system": "http://example.org/fhir/identifiers",
+      "value": "md-07-in-progress"
+    }
+  ],
+  "status": "in-progress",
+  "medicationCodeableConcept": {
+    "coding": [
+      {
+        "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+        "code": "243670",
+        "display": "aspirin 81 MG Oral Tablet"
+      }
+    ]
+  },
+  "subject": {
+    "reference": "Patient/b06e66e8-f1c4-4a5d-8f16-a954f808908c"
+  }
+}

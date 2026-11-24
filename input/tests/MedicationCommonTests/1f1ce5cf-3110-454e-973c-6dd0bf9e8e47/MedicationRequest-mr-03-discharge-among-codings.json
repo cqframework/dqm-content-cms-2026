@@ -1,0 +1,44 @@
+{
+  "resourceType": "MedicationRequest",
+  "id": "mr-03-discharge-among-codings",
+  "meta": {
+    "profile": [
+      "http://fhir.org/guides/onc/us-quality-core/StructureDefinition/us-quality-core-medicationrequest"
+    ]
+  },
+  "identifier": [
+    {
+      "system": "http://example.org/fhir/identifiers",
+      "value": "mr-03-discharge-among-codings"
+    }
+  ],
+  "status": "active",
+  "intent": "order",
+  "medicationCodeableConcept": {
+    "coding": [
+      {
+        "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+        "code": "243670",
+        "display": "aspirin 81 MG Oral Tablet"
+      }
+    ]
+  },
+  "subject": {
+    "reference": "Patient/1f1ce5cf-3110-454e-973c-6dd0bf9e8e47"
+  },
+  "authoredOn": "2026-03-01T12:00:00.000+00:00",
+  "category": [
+    {
+      "coding": [
+        {
+          "system": "http://example.org/codes",
+          "code": "discharge-meds"
+        },
+        {
+          "system": "http://terminology.hl7.org/CodeSystem/medicationrequest-category",
+          "code": "discharge"
+        }
+      ]
+    }
+  ]
+}
