@@ -25,11 +25,13 @@ the ones MADiE gives a measure's groups (`Group_1`, `InitialPopulation_1`, `Deno
 | 3 | HOB Crude Risk | `HOB Crude Risk Initial Population` / `Denominator` / `Numerator` |
 | 4 | HOB Incidence Density | `HOB Incidence Density Initial Population` / `Denominator` / `Numerator` |
 
-[populations.json](populations.json) maps each group's population codes to these defines. To check a
-run against the expected counts:
+[populations.json](populations.json) maps each group's population codes to these defines (each group
+counts encounters, so its basis is `Encounter`). To check an Execute CQL run against the expected
+counts the way MADiE does, applying the measure's population rules, use the cqf-skills `madie`
+skill's checker:
 
 ```
-python .claude/skills/cql/check_measure_results.py HOB input/tests/HOB/populations.json
+python scripts/madie_skill.py check_results input/tests/HOB input/tests/results/HOB.txt --populations input/tests/HOB/populations.json
 ```
 
 [HOB.zip](HOB.zip) packages these cases for import into MADiE. Rebuild it after changing the data:

@@ -1,22 +1,40 @@
-[
-  {
-    "initial-population": "O-COB Prevalence Rate Initial Population",
-    "denominator": "O-COB Prevalence Rate Denominator",
-    "numerator": "O-COB Prevlanece Rate Numerator"
-  },
-  {
-    "initial-population": "COB Prevalence Rate Initial Population",
-    "denominator": "COB Prevalence Rate Denominator",
-    "numerator": "COB Prevalence Rate Numerator"
-  },
-  {
-    "initial-population": "HOB Crude Risk Initial Population",
-    "denominator": "HOB Crude Risk Denominator",
-    "numerator": "HOB Crude Risk Numerator"
-  },
-  {
-    "initial-population": "HOB Incidence Density Initial Population",
-    "denominator": "HOB Incidence Density Denominator",
-    "numerator": "HOB Incidence Density Numerator"
-  }
-]
+{
+  "groups": [
+    {
+      "basis": "Encounter",
+      "scoring": "proportion",
+      "populations": {
+        "initial-population": "O-COB Prevalence Rate Initial Population",
+        "denominator": "O-COB Prevalence Rate Denominator",
+        "numerator": "O-COB Prevlanece Rate Numerator"
+      }
+    },
+    {
+      "basis": "Encounter",
+      "scoring": "proportion",
+      "populations": {
+        "initial-population": "COB Prevalence Rate Initial Population",
+        "denominator": "COB Prevalence Rate Denominator",
+        "numerator": "COB Prevalence Rate Numerator"
+      }
+    },
+    {
+      "basis": "Encounter",
+      "scoring": "proportion",
+      "populations": {
+        "initial-population": "HOB Crude Risk Initial Population",
+        "denominator": "HOB Crude Risk Denominator",
+        "numerator": "HOB Crude Risk Numerator"
+      }
+    },
+    {
+      "basis": "Encounter",
+      "scoring": "proportion",
+      "populations": {
+        "initial-population": "HOB Incidence Density Initial Population",
+        "denominator": "HOB Incidence Density Denominator",
+        "numerator": "HOB Incidence Density Numerator"
+      }
+    }
+  ]
+}

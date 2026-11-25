@@ -1,6 +1,6 @@
 ---
 name: cql
-description: How CQL is checked, run and tested in the dqm-content-cms-2026 repository - its folders, its checker and test-case scripts, the run loop with the VS Code CQL extension, and its test-library conventions. Use alongside the cqf-skills plugins whenever writing, editing or validating .cql files in input/cql, writing <Library>Tests libraries or their patient test cases in input/tests, testing a measure such as HOB, or building MADiE test case zips here.
+description: How CQL is validated, run and tested in the dqm-content-cms-2026 repository - running test libraries with cql-mcp and checking them, checking measures, its test-case scripts and MADiE zips, and its test-library conventions. Use alongside the cqf-skills plugins whenever writing, editing or validating .cql files in input/cql, writing <Library>Tests libraries or their patient test cases in input/tests, testing a measure such as HOB, or building MADiE test case zips here.
 ---
 
 # CQL in this repository
@@ -20,59 +20,37 @@ cqf-skills plugins enabled in `.claude/settings.json`:
 Read those first. When something learned here is true in general, contribute it to
 cqframework/cqf-skills rather than adding it below.
 
-## Checking for errors
+## Validating and running
 
-Prefer `cql_validate` (see [Running and checking](#running-and-checking)). The VS Code extension's
-diagnostics give the same answer and are the fallback when cql-mcp isn't available. Both resolve the
-model infos and dependencies from `~/.fhir/packages`. To use the editor's diagnostics:
+Use the `cql-mcp` tools (enabled in `.claude/settings.json`; see the `cql-mcp` skill). They run the
+same language server as the VS Code CQL extension 1.0.0 (translator and engine 5.5.0).
 
-1. Load the deferred tool: `ToolSearch` with `select:mcp__claude-vscode__getDiagnostics`.
-2. Call it with the file's `file:///` URI. Treat `Error` as blocking and read the `Warning`s.
-3. Don't report a CQL change as done until every file you touched, and the libraries that include
-   a changed shared library (such as its `*Tests.cql`), come back without errors.
-
-The diagnostics can be wrong in both directions:
-- After an edit from a shell (sed, Python, heredoc), or to a file just created with Write, the
-  results are stale or missing: no `linesInFile`, ranges past the end of the file, or errors in code
-  that is gone. Make a real Edit (change a word; whitespace-only edits are rejected) and query again.
-  Only trust an empty list that comes with a `linesInFile` matching the file.
-- A library that includes a changed library keeps its old errors until it is edited itself.
-- They have missed a syntax error entirely: a new library with no diagnostics failed to load at run
-  time ("Syntax error at H") because of an unparenthesized function call used as a query source.
-  Check new files by eye against the `cql` skill's pitfalls.
-- If the tool isn't available (not running in VS Code), ask the user what the Problems panel shows,
-  naming each file.
-
-## Running and checking
-
-The `cql-mcp` plugin (enabled in `.claude/settings.json`) lets Claude validate and run CQL itself,
-with the same language server (5.0.0, translator and engine 5.5.0) as the VS Code extension 1.0.0.
-See the `cql-mcp` skill for its tools. In this repo:
-
-- **Validate:** `cql_validate` with `cqlFile`. Pass `timeoutMs: 30000` on the first call of a
-  session, while the language server starts. Check a deliberate mistake once if a clean result
-  seems too quick. This is the same check as the editor's diagnostics, without the staleness.
+- **Validate** every library you change, and the libraries that include a changed shared library
+  (such as its `*Tests.cql`): `cql_validate` with `cqlFile`. Pass `timeoutMs: 30000` on the first
+  call of a session, while the language server starts. Don't report a CQL change as done until it
+  is clean.
 - **Run a test library:** `cql_test_run_suite` with `cqlFile` (`input/cql/<Library>Tests.cql`),
-  `suiteRoot` (`input/tests`) and `suiteName` (`<Library>Tests`). Its `status` per case only says
-  whether the run errored, not whether the tests passed, so then run
-  `py -3 .claude/skills/cql/check_results.py --mcp <Library>Tests`. A run takes a couple of minutes.
-- Run history is kept in `.cql-debug/test-runs/` (git-ignored); `cql_test_diff` compares two runs.
+  `suiteRoot` (`input/tests`) and `suiteName` (`<Library>Tests`); a run takes a couple of minutes.
+  Its per-case `status` only says whether the run errored, so then check the results with
+  `python .claude/skills/cql/check_results.py --mcp <Library>Tests`. It reports a run error, every
+  `Test…` that isn't `true` on a case, a `_Passed` that doesn't list each test exactly once, and case
+  labels in `when` clauses that don't exist. A test commented out of `_Passed` (`// and TestX`, with
+  the reason) is reported as a known failure.
+- **Check a measure:** the user runs **Execute CQL**, which writes `input/tests/results/<Measure>.txt`
+  (cql-mcp runs aren't supported here yet). Then
+  `python scripts/madie_skill.py check_results input/tests/<Measure> input/tests/results/<Measure>.txt --populations input/tests/<Measure>/populations.json`
+  compares each case with its MeasureReport the way MADiE does, applying the population rules.
+- An Execute CQL results file for a test library is checked with `check_results.py` without `--mcp`.
+  Read results with the checkers, never by eye.
 
-The user can also run **Execute CQL**, which writes `input/tests/results/<Library>.txt`; check it
-with the same script without `--mcp`. Read results with the checkers, from the repo root, never by eye:
+Run history is kept in `.cql-debug/test-runs/` (git-ignored); `cql_test_diff` compares two runs. A
+run-time error in a define stops that case's results (`Error=...`): find the expression, take it out
+with a comment saying why, and run again.
 
-- Test library: `check_results.py [--mcp] <Library>Tests`. It reports a run error (`Error=`), every
-  `Test…` that isn't `true` on a case, a `_Passed` that doesn't list each test exactly once, and
-  case labels in `when` clauses that don't exist. A test commented out of `_Passed`
-  (`// and TestX`, with the reason) is reported as a known failure.
-- Measure: `py -3 .claude/skills/cql/check_measure_results.py <Measure> input/tests/<Measure>/populations.json`,
-  which compares each population define's count with the MeasureReport's expected counts in the
-  Execute CQL results file.
-
-A run-time error in a define stops that case's results (`Error=...`). Find the expression, take it
-out with a comment saying why, and run again.
-
-Use `py -3` for the scripts: the `python` on PATH here may be another program's bundled interpreter.
+Without cql-mcp, fall back to the editor's diagnostics (`mcp__claude-vscode__getDiagnostics`, a
+deferred tool). They go stale after edits made outside the editor (from a shell, or a new file from
+Write): only trust a result whose `linesInFile` matches the file, and make a real Edit to force
+re-analysis.
 
 ## Test cases
 
@@ -80,8 +58,8 @@ Test libraries (`<Library>Tests.cql`, `define Test…` plus `_Passed`, run in MA
 measure) are only for **shared** libraries. A **measure** (e.g. HOB) has no test library: its cases
 go in `input/tests/<Measure>/`, and each MeasureReport holds the expected count for every group
 (`Group_1`…`Group_N`, populations `InitialPopulation_<n>`, `Denominator_<n>`, `Numerator_<n>`),
-with `populations.json` mapping them to the defines. Don't change measure logic to make it testable;
-report defects to the user.
+with `populations.json` mapping them to the defines in the `madie` skill's `--populations` format
+(see `input/tests/HOB/`). Don't change measure logic to make it testable; report defects to the user.
 
 - **Create a case** with `python .claude/skills/cql/new_test_case.py <Library>Tests <NN-Label> "<description>"`.
   It writes the Patient (GUID id = folder name, the label in `name.given` and as its key) and the
@@ -99,8 +77,9 @@ report defects to the user.
 - **README:** each test folder has a README listing the cases (folder, label, data, point tested);
   keep its descriptions and the MeasureReports' the same.
 - **Zip for MADiE:** `python scripts/make_test_case_zip.py input/tests/<Library>Tests` after any
-  change. Then check it with the `madie` skill's `check_test_cases.py`; its warnings about
-  unresolved references are real (MADiE leaves those resources out).
+  change. It runs the `madie` skill's `vscode_to_madie.py`, writes the zip next to the README, and
+  checks it against MADiE's import rules. Its warnings about unresolved references are real (MADiE
+  leaves those resources out). `scripts/madie_skill.py <script> …` runs the skill's other scripts.
 
 Worked examples: MedicationCommonTests and MedicationElementsTests (resources from case data),
 CQMElementsTests and ClaimElementsTests (keys, contained resources), CQMConceptsTests (inline
@@ -118,7 +97,3 @@ fixtures for element-level functions), and `input/tests/HOB/` (a measure).
   (`ValueSet-<oid>-<date>.json`, with expansions); confirm a code is a member there before using it
   in test data. The top-level `input/vocabulary/valueset` folder is published by the IG, so ask
   before adding ValueSets there.
-- **USQualityCore type names** are in the model info at
-  `~/.fhir/packages/fhir.onc.us-quality-core#0.5.0/package/Library-USQualityCore-ModelInfo.json`
-  (base64 content).
-- `cql-options.json` changes aren't picked up until the language server restarts.

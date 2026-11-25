@@ -12,3 +12,6 @@
 
 # cql-mcp test run history
 .cql-debug/
+
+# Python bytecode
+__pycache__/

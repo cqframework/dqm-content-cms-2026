@@ -1,4 +1,9 @@
 {
+  "enabledPlugins": {
+    "cql@cqf-skills": true,
+    "fhir@cqf-skills": true,
+    "cql-mcp@cqf-skills": true
+  },
   "extraKnownMarketplaces": {
     "cqf-skills": {
       "source": {
@@ -6,10 +11,5 @@
         "repo": "cqframework/cqf-skills"
       }
     }
-  },
-  "enabledPlugins": {
-    "cql@cqf-skills": true,
-    "fhir@cqf-skills": true,
-    "cql-mcp@cqf-skills": true
   }
 }
