@@ -52,12 +52,19 @@ def mcp_run_lines(lib):
         return None, latest
     with open(latest, encoding='utf-8') as f:
         run_hash = json.load(f)['hash']
-    matches = [n for n in os.listdir(runs) if n.endswith('-' + run_hash[:8] + '.json')]
-    if not matches:
+    # A re-run of the same cases gets the same hash (it covers the suite, the library and the patient
+    # ids, not the results), so take the newest run file with that hash. Run file names start with
+    # their timestamp, so they sort in time order.
+    run = path = None
+    for name in sorted(os.listdir(runs), reverse=True):
+        if name.endswith('-' + run_hash[:8] + '.json') and not name.startswith(('latest-', 'previous-')):
+            with open(os.path.join(runs, name), encoding='utf-8') as f:
+                candidate = json.load(f)
+            if candidate.get('hash') == run_hash:
+                run, path = candidate, os.path.join(runs, name)
+                break
+    if run is None:
         return None, os.path.join(runs, '*-' + run_hash[:8] + '.json')
-    path = os.path.join(runs, matches[0])
-    with open(path, encoding='utf-8') as f:
-        run = json.load(f)
     lines = []
     for case in run.get('cases', []):
         for error in case.get('errors') or []:
