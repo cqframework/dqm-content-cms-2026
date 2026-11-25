@@ -40,10 +40,10 @@ This repository provides a workflow for comparing expected and actual results fo
 To quickly reproduce the comparison results without running the CQL plugin:
 - Extract `./scripts/results-connectathon-2025-09-13.zip` to `./input/tests/results`.
 - This will populate the results directory with sample data, allowing you to run the scripts and generate `./scripts/comparison/output_results.csv
-# Packaging and checking test cases for MADiE
+# Packaging and checking test cases
 
-These use the cqf-skills `madie` skill's scripts, found in the Claude Code plugin cache or in a
-cqf-skills clone named by the `CQF_SKILLS` environment variable (see `madie_skill.py`).
+These use the cqf-skills skills' scripts, found in the Claude Code plugin cache or in a cqf-skills
+clone named by the `CQF_SKILLS` environment variable (see `cqf_skill.py`).
 
 `make_test_case_zip.py` packages a folder of CQL test cases (one subfolder per case, one FHIR
 resource per JSON file, as the CQL VS Code extension reads them) as a zip for MADiE's test case
@@ -57,9 +57,9 @@ python scripts/make_test_case_zip.py input/tests/ClaimElementsTests
 Its warnings about references to resources the case doesn't contain are real: MADiE leaves those
 resources out of execution.
 
-`madie_skill.py` runs any of the `madie` skill's scripts, for example checking a measure's Execute
-CQL results against its test cases' expected counts the way MADiE does:
+`cqf_skill.py <skill> <script>` runs any of the skills' scripts, for example checking a measure's
+results against its test cases' expected counts the way MADiE does:
 
 ```
-python scripts/madie_skill.py check_results input/tests/HOB input/tests/results/HOB.txt --populations input/tests/HOB/populations.json
+python scripts/cqf_skill.py madie check_results input/tests/HOB input/tests/results/HOB.txt --populations input/tests/HOB/populations.json
 ```

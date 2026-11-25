@@ -32,15 +32,17 @@ same language server as the VS Code CQL extension 1.0.0 (translator and engine 5
 - **Run a test library:** `cql_test_run_suite` with `cqlFile` (`input/cql/<Library>Tests.cql`),
   `suiteRoot` (`input/tests`) and `suiteName` (`<Library>Tests`); a run takes a couple of minutes.
   Its per-case `status` only says whether the run errored, so then check the results with
-  `python .claude/skills/cql/check_results.py --mcp <Library>Tests`. It reports a run error, every
-  `Test…` that isn't `true` on a case, a `_Passed` that doesn't list each test exactly once, and case
-  labels in `when` clauses that don't exist. A test commented out of `_Passed` (`// and TestX`, with
-  the reason) is reported as a known failure.
-- **Check a measure:** the user runs **Execute CQL**, which writes `input/tests/results/<Measure>.txt`
-  (cql-mcp runs aren't supported here yet). Then
-  `python scripts/madie_skill.py check_results input/tests/<Measure> input/tests/results/<Measure>.txt --populations input/tests/<Measure>/populations.json`
-  compares each case with its MeasureReport the way MADiE does, applying the population rules.
-- An Execute CQL results file for a test library is checked with `check_results.py` without `--mcp`.
+  `python .claude/skills/cql/check_results.py --mcp <Library>Tests`, which runs the `cql` skill's
+  `check_test_library.py` with this repo's paths. It reports a run error, every `Test…` that isn't
+  `true` on a case, a `_Passed` that doesn't list each test exactly once, and case labels in `when`
+  clauses that don't exist. A test commented out of `_Passed` (`// and TestX`, with the reason) is
+  reported as a known failure.
+- **Run and check a measure:** `cql_test_run_suite` the same way (`suiteName` `<Measure>`); with large
+  measures, don't read the run's output, go straight to the checker:
+  `python scripts/cqf_skill.py madie check_results input/tests/<Measure> .cql-debug/test-runs/latest-<Measure>.json --populations input/tests/<Measure>/populations.json`.
+  It compares each case with its MeasureReport the way MADiE does, applying the population rules.
+- Execute CQL results (`input/tests/results/<Library>.txt`, written when the user runs it) are
+  checked the same way: `check_results.py` without `--mcp`, or the results file in place of the run.
   Read results with the checkers, never by eye.
 
 Run history is kept in `.cql-debug/test-runs/` (git-ignored); `cql_test_diff` compares two runs. A
@@ -61,10 +63,12 @@ go in `input/tests/<Measure>/`, and each MeasureReport holds the expected count 
 with `populations.json` mapping them to the defines in the `madie` skill's `--populations` format
 (see `input/tests/HOB/`). Don't change measure logic to make it testable; report defects to the user.
 
-- **Create a case** with `python .claude/skills/cql/new_test_case.py <Library>Tests <NN-Label> "<description>"`.
-  It writes the Patient (GUID id = folder name, the label in `name.given` and as its key) and the
-  test case MeasureReport (Cohort group, count 1), and prints the GUID. `--list` lists the cases. For
-  a measure, replace the MeasureReport's group with the measure's groups.
+- **Create a case** with `python .claude/skills/cql/new_test_case.py <Library>Tests <NN-Label> "<description>"`,
+  which runs the `madie` skill's `new_test_case.py` with this repo's 2026 measurement period. It
+  writes the Patient (GUID id = folder name, the label in `name.given` and as its key) and the test
+  case MeasureReport in MADiE's export form (Cohort group, count 1), and prints the GUID. `--list`
+  lists the cases. For a measure, add `--populations input/tests/<Measure>/populations.json`, which
+  writes the measure's groups without counts, then fill in each expected count.
 - **Add resources** as `<ResourceType>-<id>.json`, with `subject` / `patient` set to
   `Patient/<guid>`, `meta.profile` set to the US Quality Core profile the logic retrieves, and a key
   identifier with the system `http://example.org/fhir/identifiers` (usually the id, e.g. `mr-01-active`).
@@ -79,7 +83,8 @@ with `populations.json` mapping them to the defines in the `madie` skill's `--po
 - **Zip for MADiE:** `python scripts/make_test_case_zip.py input/tests/<Library>Tests` after any
   change. It runs the `madie` skill's `vscode_to_madie.py`, writes the zip next to the README, and
   checks it against MADiE's import rules. Its warnings about unresolved references are real (MADiE
-  leaves those resources out). `scripts/madie_skill.py <script> …` runs the skill's other scripts.
+  leaves those resources out). `python scripts/cqf_skill.py <skill> <script> …` runs any of the
+  cqf-skills scripts directly.
 
 Worked examples: MedicationCommonTests and MedicationElementsTests (resources from case data),
 CQMElementsTests and ClaimElementsTests (keys, contained resources), CQMConceptsTests (inline

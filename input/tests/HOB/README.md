@@ -31,7 +31,7 @@ counts the way MADiE does, applying the measure's population rules, use the cqf-
 skill's checker:
 
 ```
-python scripts/madie_skill.py check_results input/tests/HOB input/tests/results/HOB.txt --populations input/tests/HOB/populations.json
+python scripts/cqf_skill.py madie check_results input/tests/HOB input/tests/results/HOB.txt --populations input/tests/HOB/populations.json
 ```
 
 [HOB.zip](HOB.zip) packages these cases for import into MADiE. Rebuild it after changing the data:
