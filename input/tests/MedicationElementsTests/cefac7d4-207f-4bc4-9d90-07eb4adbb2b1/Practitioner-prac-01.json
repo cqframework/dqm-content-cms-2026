@@ -1,0 +1,27 @@
+{
+  "resourceType": "Practitioner",
+  "id": "prac-01",
+  "meta": {
+    "profile": [
+      "http://fhir.org/guides/onc/us-quality-core/StructureDefinition/us-quality-core-practitioner"
+    ]
+  },
+  "identifier": [
+    {
+      "system": "http://hl7.org/fhir/sid/us-npi",
+      "value": "1234567893"
+    },
+    {
+      "system": "http://example.org/fhir/identifiers",
+      "value": "prac-01"
+    }
+  ],
+  "name": [
+    {
+      "family": "Prescriber",
+      "given": [
+        "Test"
+      ]
+    }
+  ]
+}

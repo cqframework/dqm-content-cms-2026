@@ -1,6 +1,6 @@
 {
   "resourceType": "MedicationRequest",
-  "id": "mr-01-missing",
+  "id": "mr-02-prescription",
   "meta": {
     "profile": [
       "http://fhir.org/guides/onc/us-quality-core/StructureDefinition/us-quality-core-medicationrequest"
@@ -9,16 +9,22 @@
   "identifier": [
     {
       "system": "http://example.org/fhir/identifiers",
-      "value": "mr-01-missing"
+      "value": "mr-02-prescription"
     }
   ],
   "status": "active",
   "intent": "order",
-  "medicationReference": {
-    "reference": "Medication/med-missing"
+  "medicationCodeableConcept": {
+    "coding": [
+      {
+        "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+        "code": "314076",
+        "display": "lisinopril 10 MG Oral Tablet"
+      }
+    ]
   },
   "subject": {
-    "reference": "Patient/cefac7d4-207f-4bc4-9d90-07eb4adbb2b1"
+    "reference": "Patient/29c6dee9-b918-4f79-8146-8bcd971559e7"
   },
   "authoredOn": "2026-03-01T12:00:00.000+00:00"
 }

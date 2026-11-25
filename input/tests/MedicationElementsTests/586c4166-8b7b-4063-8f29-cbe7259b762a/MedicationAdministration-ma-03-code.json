@@ -39,7 +39,7 @@
     "reference": "Encounter/enc-03"
   },
   "request": {
-    "reference": "MedicationRequest/mr-elsewhere"
+    "reference": "MedicationRequest/mr-03-order"
   },
   "dosage": {
     "text": "1 tablet by mouth",

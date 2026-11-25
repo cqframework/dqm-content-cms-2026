@@ -27,7 +27,7 @@
     },
     {
       "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-testCaseDescription",
-      "valueMarkdown": "Four medication requests: one with an inline medication code and every copied element populated, one referencing a Medication in the case, one referencing a contained Medication, and one referencing a Medication that is not in the case."
+      "valueMarkdown": "Three medication requests: one with an inline medication code and every copied element populated (its encounter and requester are in the case), one referencing a Medication in the case, and one referencing a contained Medication."
     }
   ],
   "modifierExtension": [

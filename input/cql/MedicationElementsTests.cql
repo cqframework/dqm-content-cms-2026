@@ -22,9 +22,9 @@ found by the same key as the resource it was built from (`"Request Element"`, ..
 Each element definition is tested for:
 * one element per retrieved resource (invariant),
 * the medication: an inline code is kept, a reference is replaced by the referenced Medication's code
-  (a Medication in the data, or one contained in the resource), and a reference to a Medication that
-  isn't loaded gives a null medication. The normalized medication is compared as a whole concept, with
-  the declared RxNorm code and with the source concept (the inline code or the Medication's code),
+  (a Medication in the data, or one contained in the resource). The normalized medication is compared
+  as a whole concept, with the declared RxNorm code and with the source concept (the inline code or
+  the Medication's code),
 * downstream use: one predicate on the normalized medication (`~` an RxNorm code) selects every
   resource for that drug, whichever way the source identified it, and none of the others,
 * the elements it copies, compared with the retrieved resource. `null ~ null` is true, so each copied
@@ -32,6 +32,10 @@ Each element definition is tested for:
 * the subject being the patient (invariant).
 
 The medication codes are RxNorm codes, declared here, so the tests need no value sets.
+
+Not covered: a reference to a Medication that isn't in the data, which MedicationElements gives a null
+medication. MADiE leaves a resource whose reference doesn't resolve out of execution, so the case
+can't be run there; every reference in the test data resolves within its case.
 
 NOTE: This library is developed in the dqm-content-cms-2026 repository:
 https://github.com/cqframework/dqm-content-cms-2026/blob/main/input/cql/MedicationElementsTests.cql
@@ -159,9 +163,6 @@ define TestMedicationRequestMedication:
         and "Request Medication"('mr-01-ref') ~ "Medication"('med-01').code
         // A reference to a contained Medication is replaced by its code
         and "Request Medication"('mr-01-contained') ~ "Ibuprofen 200 MG Oral Tablet"
-        // A reference to a Medication that isn't loaded gives no medication
-        and "Request Element"('mr-01-missing') is not null
-        and "Request Element"('mr-01-missing').medication is null
     when '04-Shared-Medications' then "Request Medication"('mr-04') ~ "Medication"('med-04-a').code
     else true
   end
@@ -215,8 +216,6 @@ define TestMedicationDispenseMedication:
         and "Dispense Medication"('md-02-ref') ~ "Ibuprofen 200 MG Oral Tablet"
         and "Dispense Medication"('md-02-ref') ~ "Medication"('med-02').code
         and "Dispense Medication"('md-02-contained') ~ "Amlodipine 5 MG Oral Tablet"
-        and "Dispense Element"('md-02-missing') is not null
-        and "Dispense Element"('md-02-missing').medication is null
     when '04-Shared-Medications' then
       "Dispense Medication"('md-04') ~ "Medication"('med-04-a').code
         and "Dispense Medication"('md-04-other') ~ "Medication"('med-04-b').code
@@ -267,8 +266,6 @@ define TestMedicationAdministrationMedication:
         and "Administration Medication"('ma-03-ref') ~ "Amlodipine 5 MG Oral Tablet"
         and "Administration Medication"('ma-03-ref') ~ "Medication"('med-03').code
         and "Administration Medication"('ma-03-contained') ~ "Ibuprofen 200 MG Oral Tablet"
-        and "Administration Element"('ma-03-missing') is not null
-        and "Administration Element"('ma-03-missing').medication is null
     when '04-Shared-Medications' then "Administration Medication"('ma-04') ~ "Medication"('med-04-b').code
     else true
   end

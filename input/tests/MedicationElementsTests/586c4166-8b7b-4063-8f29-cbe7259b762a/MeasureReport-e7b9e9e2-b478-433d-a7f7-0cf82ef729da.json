@@ -27,7 +27,7 @@
     },
     {
       "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-testCaseDescription",
-      "valueMarkdown": "Four medication administrations: one with an inline medication code and every copied element populated (effective dateTime), one not done with a status reason and an effective period, referencing a Medication in the case, one referencing a contained Medication, and one referencing a Medication that is not in the case."
+      "valueMarkdown": "Three medication administrations: one with an inline medication code and every copied element populated (effective dateTime; its encounter and request are in the case), one not done with a status reason and an effective period, referencing a Medication in the case, and one referencing a contained Medication."
     }
   ],
   "modifierExtension": [
