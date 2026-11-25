@@ -1,0 +1,25 @@
+{
+  "resourceType": "Patient",
+  "id": "586c4166-8b7b-4063-8f29-cbe7259b762a",
+  "meta": {
+    "profile": [
+      "http://fhir.org/guides/onc/us-quality-core/StructureDefinition/us-quality-core-patient"
+    ]
+  },
+  "identifier": [
+    {
+      "system": "http://example.org/fhir/identifiers",
+      "value": "03-Administration-Medication-Forms"
+    }
+  ],
+  "name": [
+    {
+      "family": "MedicationElementsTest",
+      "given": [
+        "03-Administration-Medication-Forms"
+      ]
+    }
+  ],
+  "gender": "female",
+  "birthDate": "1970-01-01"
+}

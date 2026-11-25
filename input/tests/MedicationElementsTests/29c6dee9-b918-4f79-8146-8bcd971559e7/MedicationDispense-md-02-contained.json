@@ -1,0 +1,38 @@
+{
+  "resourceType": "MedicationDispense",
+  "id": "md-02-contained",
+  "meta": {
+    "profile": [
+      "http://fhir.org/guides/onc/us-quality-core/StructureDefinition/us-quality-core-medicationdispense"
+    ]
+  },
+  "contained": [
+    {
+      "resourceType": "Medication",
+      "id": "med-02-contained",
+      "code": {
+        "coding": [
+          {
+            "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+            "code": "197361",
+            "display": "amlodipine 5 MG Oral Tablet"
+          }
+        ]
+      }
+    }
+  ],
+  "identifier": [
+    {
+      "system": "http://example.org/fhir/identifiers",
+      "value": "md-02-contained"
+    }
+  ],
+  "status": "completed",
+  "medicationReference": {
+    "reference": "#med-02-contained"
+  },
+  "subject": {
+    "reference": "Patient/29c6dee9-b918-4f79-8146-8bcd971559e7"
+  },
+  "whenHandedOver": "2026-03-02T12:00:00.000+00:00"
+}

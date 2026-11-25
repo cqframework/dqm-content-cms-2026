@@ -1,0 +1,25 @@
+{
+  "resourceType": "Patient",
+  "id": "52a9747a-63de-4745-a59f-6ddf0a904345",
+  "meta": {
+    "profile": [
+      "http://fhir.org/guides/onc/us-quality-core/StructureDefinition/us-quality-core-patient"
+    ]
+  },
+  "identifier": [
+    {
+      "system": "http://example.org/fhir/identifiers",
+      "value": "04-Shared-Medications"
+    }
+  ],
+  "name": [
+    {
+      "family": "MedicationElementsTest",
+      "given": [
+        "04-Shared-Medications"
+      ]
+    }
+  ],
+  "gender": "female",
+  "birthDate": "1970-01-01"
+}

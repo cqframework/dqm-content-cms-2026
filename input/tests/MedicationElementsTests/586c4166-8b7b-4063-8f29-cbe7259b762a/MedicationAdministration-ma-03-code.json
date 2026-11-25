@@ -1,0 +1,67 @@
+{
+  "resourceType": "MedicationAdministration",
+  "id": "ma-03-code",
+  "meta": {
+    "profile": [
+      "http://fhir.org/guides/onc/us-quality-core/StructureDefinition/us-quality-core-medicationadministration"
+    ]
+  },
+  "identifier": [
+    {
+      "system": "http://example.org/fhir/identifiers",
+      "value": "ma-03-code"
+    }
+  ],
+  "status": "completed",
+  "medicationCodeableConcept": {
+    "coding": [
+      {
+        "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+        "code": "314076",
+        "display": "lisinopril 10 MG Oral Tablet"
+      }
+    ]
+  },
+  "subject": {
+    "reference": "Patient/586c4166-8b7b-4063-8f29-cbe7259b762a"
+  },
+  "effectiveDateTime": "2026-03-03T12:00:00.000+00:00",
+  "category": {
+    "coding": [
+      {
+        "system": "http://terminology.hl7.org/CodeSystem/medication-admin-category",
+        "code": "inpatient",
+        "display": "Inpatient"
+      }
+    ]
+  },
+  "context": {
+    "reference": "Encounter/enc-03"
+  },
+  "request": {
+    "reference": "MedicationRequest/mr-elsewhere"
+  },
+  "dosage": {
+    "text": "1 tablet by mouth",
+    "route": {
+      "coding": [
+        {
+          "system": "http://snomed.info/sct",
+          "code": "26643006",
+          "display": "Oral route"
+        }
+      ]
+    },
+    "dose": {
+      "value": 1,
+      "unit": "tablet",
+      "system": "http://unitsofmeasure.org",
+      "code": "{tbl}"
+    }
+  },
+  "note": [
+    {
+      "text": "Not copied"
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "resourceType": "MedicationAdministration",
+  "id": "ma-03-missing",
+  "meta": {
+    "profile": [
+      "http://fhir.org/guides/onc/us-quality-core/StructureDefinition/us-quality-core-medicationadministration"
+    ]
+  },
+  "identifier": [
+    {
+      "system": "http://example.org/fhir/identifiers",
+      "value": "ma-03-missing"
+    }
+  ],
+  "status": "completed",
+  "medicationReference": {
+    "reference": "Medication/med-missing"
+  },
+  "subject": {
+    "reference": "Patient/586c4166-8b7b-4063-8f29-cbe7259b762a"
+  },
+  "effectiveDateTime": "2026-03-03T12:00:00.000+00:00"
+}

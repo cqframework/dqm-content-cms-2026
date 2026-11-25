@@ -1,0 +1,38 @@
+{
+  "resourceType": "MedicationAdministration",
+  "id": "ma-03-contained",
+  "meta": {
+    "profile": [
+      "http://fhir.org/guides/onc/us-quality-core/StructureDefinition/us-quality-core-medicationadministration"
+    ]
+  },
+  "contained": [
+    {
+      "resourceType": "Medication",
+      "id": "med-03-contained",
+      "code": {
+        "coding": [
+          {
+            "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+            "code": "310965",
+            "display": "ibuprofen 200 MG Oral Tablet"
+          }
+        ]
+      }
+    }
+  ],
+  "identifier": [
+    {
+      "system": "http://example.org/fhir/identifiers",
+      "value": "ma-03-contained"
+    }
+  ],
+  "status": "completed",
+  "medicationReference": {
+    "reference": "#med-03-contained"
+  },
+  "subject": {
+    "reference": "Patient/586c4166-8b7b-4063-8f29-cbe7259b762a"
+  },
+  "effectiveDateTime": "2026-03-03T12:00:00.000+00:00"
+}

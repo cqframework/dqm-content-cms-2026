@@ -170,10 +170,19 @@ population counts for every group of the measure instead of the Cohort group. Se
   near-miss of each kind, to show that a filter excludes it (wrong status, outside the period, an
   unrelated encounter). Also include a case with none of the resources the library retrieves (e.g.
   `05-No-Claims`), so the invariants are checked on empty input.
+- **Valid resources only:** MADiE rejects invalid resources, and the libraries assume conformant
+  data, so every resource must be valid against its profile, including required elements the tests
+  don't read (e.g. the `us-quality-core-recorded` extension on MedicationAdministrationNotDone and
+  MedicationDispenseDeclined). Don't add resources that omit a required element to test null
+  handling; a missing required element is not a case to test.
 - **Non-compartment resources:** resources such as Location can go in the case folder, and
   `[USQualityCore.Location]` in Patient context returns them.
 - **Profiles:** use `meta.profile` URLs from the model's IG, e.g.
   `http://fhir.org/guides/onc/us-quality-core/StructureDefinition/us-quality-core-encounter`.
+  The local engine filters a profile retrieve by `meta.profile`: a MedicationRequest declaring only
+  the MedicationNotRequested profile is not returned by `[USQualityCore.MedicationRequest]`
+  (confirmed on MedicationCommonTests case 08). So declare the profile the logic under test
+  retrieves.
 
 How the results are laid out:
 - Every expression is evaluated once per case.
@@ -257,7 +266,11 @@ tell the user, so they can confirm it's available before importing.
 comment explaining what needs data or terminology, fixture builders, fixtures, then tests grouped by the
 function under test).
 
-- Build fixtures inline as FHIR resources, so most tests need no patient data. Use FHIRBuilders
+- Functions over FHIR resources are tested with resources in the case data (input/tests), retrieved
+  as their US Quality Core profiles and found by key, not with resources built in the test library
+  (MedicationCommonTests and MedicationElementsTests are the worked examples). Build inline fixtures
+  only for values that aren't resources (codes, intervals, quantities, FHIR primitives and data
+  types), e.g. for FHIRBuilders or CQMConcepts element-level functions. Use FHIRBuilders
   (`include FHIRBuilders version '0.1.000-draft' called Build`) for primitives: `Build.id`, `Build.string`,
   `Build.uri`, `Build.code`, `Build.Period(Interval<DateTime>)`, `Build.Quantity(System.Quantity)`,
   `Build.Coding(System.Code)`, `Build.CodeableConcept(System.Code | System.Concept)`,
@@ -291,9 +304,12 @@ function under test).
 - A Boolean test can't assert that an expression raises an error (e.g. `singleton from` over more than
   one match). Say in the library header that the case is not covered rather than writing a test that
   always fails.
-- Functions that take `FHIR.*` types are usually called with profiled types in measure logic. To check
-  that they resolve, add invariant tests over retrieves (`AllTrue([USQualityCore.Organization] O return
-  ...)`). These are vacuously true with no data, but they still compile-check the call. The
+- Functions that take `FHIR.*` types are usually called with profiled types in measure logic. Test
+  them on retrieved profiled resources from case data, with exact expected keys per case, rather than
+  only with invariants over retrieves (`AllTrue([USQualityCore.Organization] O return ...)`): with no
+  data loaded an invariant is vacuously true (`Count({}) = Count({})`), so it checks only that the call
+  compiles, and no data goes through the function. Resource-level functions (status, category,
+  selection) are best tested this way throughout; see MedicationCommonTests. The
   USQualityCore profile type names are in the model info at
   `~/.fhir/packages/fhir.onc.us-quality-core#0.5.0/package/Library-USQualityCore-ModelInfo.json`
   (base64 content; decode it, then look for `typeInfo` names). Examples: `CarePlan`,
@@ -419,6 +435,12 @@ function under test).
 
   Put these extensions on the fixture, not elements that don't exist.
 - AllergyIntolerance's subject is `patient`, not `subject`.
+- FHIRCommon's `references()` doesn't resolve a reference to a contained resource. The engine reports
+  a parsed contained resource's id without the `#` (`med-1`), while the reference is `#med-1`.
+  `references()` compares the id with the last path segment of the reference, which is still
+  `#med-1`, so it never matches. Match with `'#' + C.id = R.medication.reference` instead.
+  (Confirmed on MedicationElementsTests. A cast of the contained resource to its profile type,
+  `C as USQualityCore.Medication`, works.)
 - Overloads often share a body, e.g. the Condition and AllergyIntolerance versions of
   `relevantPeriod`. An Edit `old_string` taken from the body alone then matches both, so include the
   signature or comment line that is unique to the one you mean.

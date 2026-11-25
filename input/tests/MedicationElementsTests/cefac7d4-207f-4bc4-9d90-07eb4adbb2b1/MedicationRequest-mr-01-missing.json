@@ -1,0 +1,24 @@
+{
+  "resourceType": "MedicationRequest",
+  "id": "mr-01-missing",
+  "meta": {
+    "profile": [
+      "http://fhir.org/guides/onc/us-quality-core/StructureDefinition/us-quality-core-medicationrequest"
+    ]
+  },
+  "identifier": [
+    {
+      "system": "http://example.org/fhir/identifiers",
+      "value": "mr-01-missing"
+    }
+  ],
+  "status": "active",
+  "intent": "order",
+  "medicationReference": {
+    "reference": "Medication/med-missing"
+  },
+  "subject": {
+    "reference": "Patient/cefac7d4-207f-4bc4-9d90-07eb4adbb2b1"
+  },
+  "authoredOn": "2026-03-01T12:00:00.000+00:00"
+}

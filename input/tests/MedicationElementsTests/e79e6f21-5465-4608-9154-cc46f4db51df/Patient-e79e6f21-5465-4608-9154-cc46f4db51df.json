@@ -1,0 +1,25 @@
+{
+  "resourceType": "Patient",
+  "id": "e79e6f21-5465-4608-9154-cc46f4db51df",
+  "meta": {
+    "profile": [
+      "http://fhir.org/guides/onc/us-quality-core/StructureDefinition/us-quality-core-patient"
+    ]
+  },
+  "identifier": [
+    {
+      "system": "http://example.org/fhir/identifiers",
+      "value": "05-No-Medications"
+    }
+  ],
+  "name": [
+    {
+      "family": "MedicationElementsTest",
+      "given": [
+        "05-No-Medications"
+      ]
+    }
+  ],
+  "gender": "female",
+  "birthDate": "1970-01-01"
+}

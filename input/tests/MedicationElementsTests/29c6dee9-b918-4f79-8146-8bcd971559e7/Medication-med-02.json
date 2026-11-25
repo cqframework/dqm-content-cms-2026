@@ -1,0 +1,24 @@
+{
+  "resourceType": "Medication",
+  "id": "med-02",
+  "meta": {
+    "profile": [
+      "http://fhir.org/guides/onc/us-quality-core/StructureDefinition/us-quality-core-medication"
+    ]
+  },
+  "identifier": [
+    {
+      "system": "http://example.org/fhir/identifiers",
+      "value": "med-02"
+    }
+  ],
+  "code": {
+    "coding": [
+      {
+        "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+        "code": "310965",
+        "display": "ibuprofen 200 MG Oral Tablet"
+      }
+    ]
+  }
+}
