@@ -1,8 +1,10 @@
 """Check a CQL test library's results file.
 
-Usage (from the repo root):  python .claude/skills/cql/check_results.py <Library>Tests
+Usage (from the repo root):  python .claude/skills/cql/check_results.py [--mcp] <Library>Tests
 
-Reads input/cql/<lib>.cql and input/tests/results/<lib>.txt, and fails unless:
+Reads input/cql/<lib>.cql and input/tests/results/<lib>.txt (the Execute CQL output), or with --mcp
+the latest cql-mcp run of the library (`cql_test_run_suite`, stored under .cql-debug/test-runs/), and
+fails unless:
 * the run didn't abort (no Error= line),
 * every `define Test...` in the library appears in every case's results, with the value true,
 * every case name used in a `when '<case>' then` clause of a Test define is the label of one of the case
@@ -41,7 +43,32 @@ def case_label(case_dir):
     return os.path.basename(case_dir)
 
 
-def main(lib):
+def mcp_run_lines(lib):
+    """The latest cql-mcp run of the library as Execute CQL result lines: one block per case, an
+    `Error=` line for each case error. Returns (lines, path), or (None, path) if there is no run."""
+    runs = os.path.join('.cql-debug', 'test-runs')
+    latest = os.path.join(runs, 'latest-' + lib + '.json')
+    if not os.path.exists(latest):
+        return None, latest
+    with open(latest, encoding='utf-8') as f:
+        run_hash = json.load(f)['hash']
+    matches = [n for n in os.listdir(runs) if n.endswith('-' + run_hash[:8] + '.json')]
+    if not matches:
+        return None, os.path.join(runs, '*-' + run_hash[:8] + '.json')
+    path = os.path.join(runs, matches[0])
+    with open(path, encoding='utf-8') as f:
+        run = json.load(f)
+    lines = []
+    for case in run.get('cases', []):
+        for error in case.get('errors') or []:
+            lines.append('Error=' + case.get('patientId', '?') + ': ' + json.dumps(error))
+        for e in case.get('expressions') or []:
+            lines.append(e.get('name', '') + '=' + str(e.get('value')).replace('\n', ' '))
+        lines.append('')
+    return lines, path
+
+
+def main(lib, mcp=False):
     cql_path = os.path.join('input', 'cql', lib + '.cql')
     results_path = os.path.join('input', 'tests', 'results', lib + '.txt')
     cases_dir = os.path.join('input', 'tests', lib)
@@ -83,12 +110,16 @@ def main(lib):
                 problems.append(f'{test}: case {name!r} is not a case label in {cases_dir}')
 
     # Results, one block per case
-    if not os.path.exists(results_path):
-        print(f'{lib}: no results file at {results_path} (run the library first)')
+    if mcp:
+        lines, results_path = mcp_run_lines(lib)
+    else:
+        lines = open(results_path, encoding='utf-8').read().splitlines() \
+            if os.path.exists(results_path) else None
+    if lines is None:
+        print(f'{lib}: no results at {results_path} (run the library first)')
         for p in problems:
             print('  ' + p)
         return 1
-    lines = open(results_path, encoding='utf-8').read().splitlines()
     errors = [l for l in lines if l.startswith('Error=')]
     if errors:
         print(f'{lib}: the run aborted:')
@@ -159,7 +190,8 @@ def main(lib):
 
 
 if __name__ == '__main__':
-    if len(sys.argv) != 2:
+    args = [a for a in sys.argv[1:] if a != '--mcp']
+    if len(args) != 1:
         print(__doc__)
         sys.exit(2)
-    sys.exit(main(sys.argv[1]))
+    sys.exit(main(args[0], mcp='--mcp' in sys.argv[1:]))

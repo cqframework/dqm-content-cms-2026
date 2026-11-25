@@ -9,6 +9,7 @@
   },
   "enabledPlugins": {
     "cql@cqf-skills": true,
-    "fhir@cqf-skills": true
+    "fhir@cqf-skills": true,
+    "cql-mcp@cqf-skills": true
   }
 }

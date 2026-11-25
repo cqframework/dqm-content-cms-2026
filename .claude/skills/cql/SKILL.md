@@ -22,8 +22,9 @@ cqframework/cqf-skills rather than adding it below.
 
 ## Checking for errors
 
-The CQL extension (`cqframework.cql`) resolves the model infos and dependencies from
-`~/.fhir/packages`. Use its diagnostics:
+Prefer `cql_validate` (see [Running and checking](#running-and-checking)). The VS Code extension's
+diagnostics give the same answer and are the fallback when cql-mcp isn't available. Both resolve the
+model infos and dependencies from `~/.fhir/packages`. To use the editor's diagnostics:
 
 1. Load the deferred tool: `ToolSearch` with `select:mcp__claude-vscode__getDiagnostics`.
 2. Call it with the file's `file:///` URI. Treat `Error` as blocking and read the `Warning`s.
@@ -44,20 +45,34 @@ The diagnostics can be wrong in both directions:
 
 ## Running and checking
 
-Claude can't run CQL here. The user runs **Execute CQL**; results go to
-`input/tests/results/<Library>.txt`, one block per test case. Read them with the checkers, from the
-repo root, never by eye:
+The `cql-mcp` plugin (enabled in `.claude/settings.json`) lets Claude validate and run CQL itself,
+with the same language server (5.0.0, translator and engine 5.5.0) as the VS Code extension 1.0.0.
+See the `cql-mcp` skill for its tools. In this repo:
 
-- Test library: `python .claude/skills/cql/check_results.py <Library>Tests`. It reports an aborted
-  run (`Error=`), every `Test…` that isn't `true` on a case, a `_Passed` that doesn't list each test
-  exactly once, and case labels in `when` clauses that don't exist. A test commented out of `_Passed`
+- **Validate:** `cql_validate` with `cqlFile`. Pass `timeoutMs: 30000` on the first call of a
+  session, while the language server starts. Check a deliberate mistake once if a clean result
+  seems too quick. This is the same check as the editor's diagnostics, without the staleness.
+- **Run a test library:** `cql_test_run_suite` with `cqlFile` (`input/cql/<Library>Tests.cql`),
+  `suiteRoot` (`input/tests`) and `suiteName` (`<Library>Tests`). Its `status` per case only says
+  whether the run errored, not whether the tests passed, so then run
+  `py -3 .claude/skills/cql/check_results.py --mcp <Library>Tests`. A run takes a couple of minutes.
+- Run history is kept in `.cql-debug/test-runs/` (git-ignored); `cql_test_diff` compares two runs.
+
+The user can also run **Execute CQL**, which writes `input/tests/results/<Library>.txt`; check it
+with the same script without `--mcp`. Read results with the checkers, from the repo root, never by eye:
+
+- Test library: `check_results.py [--mcp] <Library>Tests`. It reports a run error (`Error=`), every
+  `Test…` that isn't `true` on a case, a `_Passed` that doesn't list each test exactly once, and
+  case labels in `when` clauses that don't exist. A test commented out of `_Passed`
   (`// and TestX`, with the reason) is reported as a known failure.
-- Measure: `python .claude/skills/cql/check_measure_results.py <Measure> input/tests/<Measure>/populations.json`,
-  which compares each population define's count with the MeasureReport's expected counts.
+- Measure: `py -3 .claude/skills/cql/check_measure_results.py <Measure> input/tests/<Measure>/populations.json`,
+  which compares each population define's count with the MeasureReport's expected counts in the
+  Execute CQL results file.
 
-With the extension 0.9.8 in use here, one run-time error aborts the whole run: the results file holds
-only an `Error=...` line (1.0.0 limits it to the failing case; see `vscode-cql`). Find the expression,
-take it out with a comment saying why, and ask the user to run again.
+A run-time error in a define stops that case's results (`Error=...`). Find the expression, take it
+out with a comment saying why, and run again.
+
+Use `py -3` for the scripts: the `python` on PATH here may be another program's bundled interpreter.
 
 ## Test cases
 
